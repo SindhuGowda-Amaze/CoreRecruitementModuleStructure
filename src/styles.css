@@ -1,1 +1,267 @@
 /* You can add global styles to this file, and also import other style files */
+
+body, button, p, table, label, h1, h6, h4, h2, th, span {
+    font-size: 13px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  input {
+    font-size: 12px;
+  }
+  
+  .count{
+    height: 15px;
+  left: 221px;
+  top: 100px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  color:#0C275A ;
+  }
+  
+  /* th{
+      background-color: #e4e5e6;
+      color:#404040;
+      font-family: "DIN Bold";
+  } */
+  
+  .Edit {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 100%;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .poppinns {
+    font-family: 'Poppins';
+    font-size: 13px;
+  }
+  
+  .cancel{
+    border: none;
+    background: #3247D5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  
+  /* table thead tr th {
+      border: none!important;
+      min-width: 50px;
+      color: #404040 !important;
+      font-size: 12px;
+      background: #e4e5e6 !important;
+      vertical-align: middle;
+      font-family: "DIN Bold";
+  }
+  
+   .table td {
+    color: #494949;
+    font-size: 12px;
+    vertical-align: middle;
+    font-family: "DIN Medium";
+  
+  } */
+  
+  
+  html, body {
+    height: 100%;
+  }
+  
+  /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+  
+  .Addbutton {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 40%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .Heading1 {
+    padding-left: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #3247d5;
+    font-style: normal;
+  }
+  .dashboardicons {
+    position: absolute;
+    height: 20.01px;
+    left: 16.94%;
+    right: 81.67%;
+    background: #FFFFFF;
+  }
+  
+  .icon28 {
+  
+    color: #BEBEBE;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+  
+  }
+  
+  .card{
+  padding: 20px;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  }
+  
+  th:first-of-type {
+  
+    border-top-left-radius: 10px;
+  
+  }
+  
+  
+  
+  th:last-of-type {
+  
+    border-top-right-radius: 10px;
+  
+  }
+  
+  
+  
+  tr:last-of-type td:first-of-type {
+  
+    border-bottom-left-radius: 10px;
+  
+  
+  
+  }
+  
+  
+  
+  tr:last-of-type td:last-of-type {
+  
+    border-bottom-right-radius: 10px;
+  
+  }
+  
+  
+  
+  table,
+  
+  tr,
+  
+  td {
+  
+    border: none !important;
+  
+    font-family: Poppins;
+  
+    font-style: normal;
+  
+    font-weight: normal;
+  
+    font-size: 13px;
+  
+    line-height: 17px;
+  
+    /* identical to box height, or 131% */
+  
+    color: #0C275A;
+    width: 5%;
+  
+  }
+  th{
+    background-color: #02CFFF;
+    color: white;
+    width: 5%;
+  }
+  
+  .NoResultShow{
+    font-size: 16px;
+  }
+  
+  
+  tr:nth-child(odd) {
+    background-color: #F2F2F2 !important
+  
+  
+  }
+  
+  
+  tr:nth-child(even) {
+  
+    background-color: #FFFFFF !important
+  
+  }
+  
+  .Heading{
+    padding-left: 5px;
+    font-size: 20px;
+    color:#3247D5;
+  }
+  .upload {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    /* margin-left: -19px; */
+    border-radius: 5px;
+    border: none;
+    height: 28px;
+    background-color: #3247d5;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100px;
+  }
+  
+  
+  .AddButton {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 40%;
+    float: right;
+    margin-right: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+  
+  }
+  .Heading1 {
+    padding-left: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #3247d5;
+    font-style: normal;
+  }
+  
