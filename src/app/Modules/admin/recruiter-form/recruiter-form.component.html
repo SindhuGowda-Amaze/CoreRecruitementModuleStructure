@@ -1,1 +1,127 @@
-<p>recruiter-form works!</p>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+
+            <div class="row">
+                <div class="col-lg-2">
+                    <p class="FormHeadText">Recruiter Form </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10"></div>
+            </div>
+            <br>
+            <div class="card BOXCARD">
+                <div class="row leavereq">
+                      <div class="col-md-2">
+                        <label>Client Logo<span style="color: red;">*</span></label>
+                    </div> 
+                    <div class="col-md-2">
+                        <label>Recruiter Name<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Phone No.<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Email  <span style="color: red;">*</span></label>
+                    </div>
+                    <!-- <div class="col-md-2">
+                        <label>Contact Person Name<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Contact Person No.<span style="color: red;">*</span></label>
+                    </div> -->
+                    <div class="col-md-3">
+                        <label>Address<span style="color: red;">*</span></label>
+                    </div>
+                  
+                </div>
+                <div class="row leavereq">
+                    <!-- <div class="col-md-2">
+                        <div class="dropdown">
+                            <select class="form-control inputfield" >
+                                <option value="Select">Select Min. Range</option>
+                                <option value="1">Min. Range 1 to 50</option>
+                                <option value="1">Min. Range 51 to 100</option>
+                                <option value="1">Min. Range 101 to 151</option>
+                                <option value="1">Min. Range 151 to 200</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-md-2">
+                        <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                            <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </ngx-dropzone>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" name="Name" id="Name" [(ngModel)]="Name">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" name="PhoneNo" id="PhoneNo"  [(ngModel)]="PhoneNo">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" name="Email" id="Email"[(ngModel)]="Email">
+                    </div>
+                    <!-- <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" >
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" >
+                    </div> -->
+                    <div class="col-md-3">
+                        <textarea type="text" class="form-control inputfield" name="Address" id="Address" [(ngModel)]="Address"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row leavereq">
+                    <!-- <div class="col-md-2">
+                        <label>MPF-ER<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>MPF-EE<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>EC-ER<span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Total Contribution<span style="color: red;">*</span></label>
+                    </div> -->
+                </div>
+                <div class="row leavereq">
+                    <!-- <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" >
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" >
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control inputfield" >
+                    </div> -->
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-1">
+                        <button class="form-control CancelBTN">Cancel</button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="form-control SubmitBTN" *ngIf="ID==undefined"  (click)="insertdetails()">Save</button>
+                        <button type="button" class="form-control SubmitBTN" *ngIf="ID != undefined"  (click)="updateRecruiter()" >Update</button> 
+                    </div>
+                </div>
+            </div><br>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+</div>
+
+

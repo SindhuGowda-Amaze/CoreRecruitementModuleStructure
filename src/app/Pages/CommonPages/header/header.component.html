@@ -1,1 +1,175 @@
-<p>header works!</p>
+ <!-- <div class="container-fluid">
+    <div class="row ">
+        <div class="col-lg-2">
+            <img src="../../assets/Images/digiRecruitment_250_100.png" class="logo" alt="logo">
+        </div>
+        <div class="col-lg-10">  
+            <img src="../../assets/Images/logout.png" class="logout" (click)="logout()">&nbsp;
+            <img src="../../assets/Images/notification.png" class="notify">&nbsp; &nbsp;&nbsp;
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="container-fluid" *ngIf="temp=='1'">
+    <div class="row">
+        <div class="col-lg-1">
+            <img src="assets/Images/digiRecruitment_250_100.png" class="logo" alt="logo">
+        </div>
+
+        <div class="col-lg-1" *ngIf="roleid!=5">
+            <h6 class="menutext" *ngIf="roleid!=1" routerLink="/Dashboard">Dashboard</h6>
+            <h6 class="menutext" *ngIf="roleid==1" routerLink="/AdminDashboard">Dashboard</h6>
+        </div>
+        <div class="col-lg-1" *ngIf="roleid!='4' && roleid!=3 && roleid!=6 && roleid!=5">
+            <h6 class=" dropdown-toggle menutext" *ngIf="roleid!=8" type="button" id="dropdownMenu1"
+                data-toggle="dropdown" aria-expanded="false">Set Up</h6>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a class="menuitem" tabindex="-1" *ngIf="roleid!='7'"
+                        routerLink="/ClientDashBoard">Client</a></li>
+                <li class="dropdown-item"><a class="menuitem" tabindex="-1"
+                        routerLink="/ClientStaffDashBoard">Client Staff </a></li>
+              
+                <li class="dropdown-item"><a class="menuitem" routerLink="/RecruiterStaffDashboard">Company Staff </a></li> 
+                <li class="dropdown-item"><a class="menuitem" 
+                        routerLink="/VendorDashboard">Vendor</a></li>
+       <li class="dropdown-item"><a class="menuitem" routerLink="/VendorStaffDashboard">Vendor Staff</a></li> 
+           <li class="dropdown-item"><a class="menuitem" routerLink="/SourcingDashboard">Sourcing</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/SourcingStaffDashboard">Sourcing Staff</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="col-lg-1" *ngIf="roleid==5" >
+            <h6 class=" dropdown-toggle menutext" *ngIf="roleid!=8" type="button" id="dropdownMenu3"
+                data-toggle="dropdown" aria-expanded="false">Scheduled Interviews</h6>
+          
+                <ul class="dropdown-menu">
+              
+                <li class="dropdown-item"><a class="menuitem" 
+                        routerLink="/ScheduledInterviews">Scheduled Interviews </a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/SelectedCandidates">SelectedCandidates</a>
+                </li>
+                </ul>  
+        </div>
+
+
+        <div class="col-lg-1" *ngIf="roleid!=1 && roleid!=5" >
+            <h6 class=" dropdown-toggle menutext" *ngIf="roleid!=8" type="button" id="dropdownMenu1"
+                data-toggle="dropdown" aria-expanded="false">Job Recruitments</h6>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a class="menuitem" tabindex="-1" *ngIf="roleid=='4'"
+                        routerLink="/JobRecruitements">Job Recruitment </a></li>
+                <li class="dropdown-item"><a class="menuitem" tabindex="-1" *ngIf="roleid=='3' || roleid=='6'"
+                        routerLink="/VendorJobOpenings">Job Recruitment </a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/AppliedCandidates">Applied Candidates</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/ShortListedCandidates">Shortlisted Candidates</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/SelectedCandidates">Selected Candidates</a>
+                </li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/OfferedCandidates">Offered Candidates </a>
+                </li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/JoinedCandidates">Joined Candidates</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/DroppedCandidates">Dropped Candidates </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-1" style="margin-left: 61px;" *ngIf="roleid!=1 && roleid!=5">
+            <h6 class=" dropdown-toggle menutext" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-expanded="false" *ngIf="roleid!=8">Reports</h6>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a class="menuitem" tabindex="-1" routerLink="/JobRecruitementReport">Job
+                        Recruitments Report</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/AppliedCandidatesReports">Applied Candidates
+                        Report</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/ShortlistedCandidatesReports">Shortlisted
+                        Candidates Report</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/ScheduledInterviewsReports">Scheduled
+                        Interviews Report</a></li>
+                <li class="dropdown-item"><a class="menuitem"
+                        routerLink="/SelectedCandidatesReports">Selected Candidates Reports</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/OfferedCandidatesReports">Offered Candidates
+                        Report</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/JoinedCandidatesReport">Joined Candidates
+                        Reports</a></li>
+                <li class="dropdown-item"><a class="menuitem" routerLink="/DroppedCandiadtesReports">Dropped Candidates
+                        Report</a></li>
+            </ul>
+        </div>
+
+        <div class="col-lg-4" *ngIf="roleid==5 "></div>
+        <div class="col-lg-4" *ngIf="roleid==1"></div>
+        <div class="col-lg-4" *ngIf="roleid==4 "></div> 
+        <div class="col-lg-4" *ngIf="roleid==6 || roleid==3"></div> 
+        <div class="col-lg-1" style="margin-left: 100px;">
+            <img src="assets/Images/logout.png" class="logout" (click)="logout()">&nbsp;
+            <img src="assets/Images/notification.png" class="notify" routerLink="/Notification">&nbsp; &nbsp;&nbsp;
+        </div>
+        <div class="col-lg-1"> Welcome {{UserName}} ({{role}})</div>
+    </div>
+</div>  -->
+<!-- 
+<div class="container-fluid" *ngIf="temp=='1'" style="background: #3247D5; height:70px;">
+
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard">
+        </div>
+        <div class="col-lg-4"></div>
+       
+        <div class="col-lg-1" style="margin-left: 100px;">
+            <img src="assets/Images/noti.png" style="    width: 30%;
+            margin-top: 15px;" >
+            <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" class="logout">
+        </div>
+        <div class="col-lg-2">
+            <img src="assets/Images/usr.png" style="    width: 15%;
+            margin-top: 15px;">
+            <p class="user">Hi {{UserName}} ({{role}})</p>
+           
+        </div>
+    </div>
+</div> -->
+
+<div class="container-fluid" *ngIf="temp=='1'" style="background: #3247D5; height:70px;">
+
+    <div class="row">
+        <div class="col-lg-2">
+           
+            <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard"  style="    height: 57px;
+            margin-top: 3px;
+            width: 176px;">
+        </div>
+        <div class="col-lg-3" style="display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: start;margin-right: 85px 
+px
+;">
+            <div class="time">
+                <p class="time1">{{hh}}  </p>
+            </div>
+            <div class="time">
+                <p class="time1">{{mm}} </p>
+            </div>
+            <div class="time">
+                <p class="time1">{{ampm}}</p>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="centerlabel">{{pagename}}</div>
+        </div>
+        <div class="col-lg-1"></div>
+       
+        <div class="col-lg-1" style="margin-left: 100px;">
+            <img src="assets/Images/noti.png" style="    width: 26%;
+            margin-top: 20px;" >
+            <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" class="logout">
+        </div>
+        <div class="col-lg-1">
+            <img src="assets/Images/usr.png" style="width: 30%;
+            margin-top: 17px;">
+            <p class="user">Hi {{UserName}}</p>
+          
+        </div>
+    </div>
+</div> 

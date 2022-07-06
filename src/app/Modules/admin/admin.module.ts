@@ -16,6 +16,8 @@ import { JobDescriptionFormComponent } from './job-description-form/job-descript
 import { JobApprovalConfigComponent } from './job-approval-config/job-approval-config.component';
 import { ClientStaffDashboardComponent } from './client-staff-dashboard/client-staff-dashboard.component';
 import { ClientStaffFormComponent } from './client-staff-form/client-staff-form.component';
+import { SharedModule } from '../shared/shared.module';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -33,11 +35,13 @@ import { ClientStaffFormComponent } from './client-staff-form/client-staff-form.
     JobDescriptionFormComponent,
     JobApprovalConfigComponent,
     ClientStaffDashboardComponent,
-    ClientStaffFormComponent
+    ClientStaffFormComponent,
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

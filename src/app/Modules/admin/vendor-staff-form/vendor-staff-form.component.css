@@ -1,0 +1,115 @@
+.Job{
+    color:gray;
+    padding-left: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+    font-weight: 400;
+  }
+  .search{
+    margin-left: 10px;
+  }
+  
+  .newFont{
+   
+    color:black;
+    width:100%;
+    vertical-align: middle;
+  }
+  td{
+    background-color: white
+  }
+  /* .th{
+    background-color: #e4e5e6;
+    color:#404040;
+    font-family: "DIN Bold";
+  } */
+  .table, th, td {
+  border: 1px solid lightgray;
+   border-collapse: collapse; 
+  }
+  .Heading{
+    font-size: 20px;
+    font-weight: bold;
+    color: #3247D5; 
+    font-family: 'Poppins';
+  }
+  .head{
+  background-color: #e4e5e6;
+  color:#404040;
+  font-family: "DIN Bold";
+  }
+  .FilterClass{
+  padding-left: 15px;
+  }
+  .count{
+  text-align: right;
+  padding-right: 10px;;
+  }
+  
+  /* .button1{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #21a4da;
+    border:none;
+    width:100%;
+  }
+
+  .button1 {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 100%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  } */
+  
+  
+  .leavereq {
+    color: #0c275a;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .Heading {
+    padding-left: 15px;
+    color: #212529;
+    font-size: 20px !important;
+    font-family: "DIN Bold";
+    font-weight: bold;
+  }
+  
+  .Edit {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 90%;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .card {
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    width: 98%;
+    margin-left: 10px;
+  }

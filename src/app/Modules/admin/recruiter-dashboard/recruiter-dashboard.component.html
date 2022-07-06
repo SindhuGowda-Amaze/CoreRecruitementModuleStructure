@@ -1,1 +1,76 @@
-<p>recruiter-dashboard works!</p>
+<br>
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="" class="Heading">Recruiter Dashboard</a>
+                    <hr class="HrLine">
+                </div>
+            </div>
+            <div class="row FilterClass">
+                <div class="col-lg-2">
+                    Filter By
+                </div>
+                <div class="col-lg-2">
+                    <input class="form-control" type="date" placeholder="Duration">
+                </div>
+                <div class="col-lg-6">
+                    <input class="form-control" type="search" placeholder="Search for date , Type or Code">
+                </div>
+                <div class="col-lg-4">
+                    <p class="Text" style="float:right; padding-right:50px;">Count:{{count}}</p>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-8 View">
+                    <ul>
+                        <li><a class="active">View</a></li>
+                        <li><a>Modify</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <a href="/RecruiterForm"><button class="button">Add</button> </a>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr class="newFont">
+                                    <th>Client Logo</th>
+                                    <th>Recruiter Name</th>
+                                    <th> Recruiter Phone No.</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <!-- <th>Contact Person Name</th>
+                                    <th>Contact Person Phone No.</th> -->
+                                    <th>Actions</th>
+                                <tr>
+                            </thead>
+                            <tbody>
+                                <tr class="newFont" *ngFor="let recuiter of recruiterlist">
+                                
+                                    <td><img src="{{recuiter.logo}}" class="logo" > </td>
+                                    <td>{{recuiter.name}}</td>
+                                    <td>{{recuiter.phoneNo}}</td>
+                                    <td>{{recuiter.email}}</td>
+                                    <td>{{recuiter.address}}</td>
+                                    <td><button class="Edit" (click)="Update(recuiter.id)">Edit</button><br><br>
+                                        <button class="Edit" (click)="delete(recuiter.id)">Delete</button></td>
+                                    <!-- <td><img class="imgcancel" src="/assets/cancel (1).png" ></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+

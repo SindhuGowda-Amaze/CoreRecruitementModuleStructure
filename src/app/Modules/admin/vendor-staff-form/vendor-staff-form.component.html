@@ -1,1 +1,181 @@
-<p>vendor-staff-form works!</p>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-11">
+                <a href="" class="Heading" style="color: #3247D5; font-family: 'Poppins';">Staff Details</a>
+            </div>
+        </div>
+        <br>
+        <!-- <hr class="HrLine"> -->
+        <!-- <div class="card">
+                <br>
+                <div class="row FilterClass">
+                    <div class="col-lg-1">
+                        Filter By
+                    </div>
+                    <div class="col-lg-3">
+                        <input class="form-control" placeholder="Search">
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="count">Count:</p>
+                    </div>
+                </div> <br>
+            </div> <br> -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <br>
+                    <div class="row">
+                        <form style="margin-left: 30px; margin-right: 30px;">
+                            <div class="row leavereq">
+                                <div class="col-md-3">
+                                    <label>Vendor Name <span style="color: red;">*</span></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Role<span style="color: red;">*</span></label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Staff Name<span style="color: red;">*</span></label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Phone Number <span style="color: red;">*</span></label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Email Id<span style="color: red;">*</span></label>
+                                </div>
+                            </div>
+                            <div class="row leavereq">
+                                <div class="col-md-3">
+                                    <select name="Select" class="form-control" [(ngModel)]="vendor_Name" name="vendor_Name" id="vendor_Name">
+                                        <option value="">Select Vendor</option>
+                                        <option *ngFor="let vendor of vendordetails" value="{{vendor.id}}">
+                                            {{vendor.vendor_Name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="dropdown">
+                                        <select class="form-control" name="role_Id" id="role_Id" [(ngModel)]="role_Id" name="role_Id" id="role_Id">
+                                            <option value="">Select Role</option>
+                                            <option *ngFor="let User of roleList" value={{User.id}}>{{User.short}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="form-control inputfield" placeholder="Staff Name" name="staff_Name" id="staff_Name"
+                                        [(ngModel)]="staff_Name">
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="form-control inputfield" placeholder="Phone Number" name="phone_Number" id="phone_Number"
+                                        [(ngModel)]="phone_Number">
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="form-control inputfield" placeholder="Email ID" name="Email_Id" id="Email_Id"
+                                        [(ngModel)]="Email_ID">
+                                </div>
+                            </div><br>
+                            <!-- <div class="row leavereq">
+                                <div class="col-md-3">
+                                    <label>Signature</label>
+                                </div>
+                            </div> -->
+                            <div class="row leavereq">
+                                <div class="col-lg-3">
+                                    <!-- <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                        <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+                                            (removed)="onRemove(f)">
+                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-preview>
+                                    </ngx-dropzone> -->
+                                </div>
+                                <div class="col-lg-7"></div>
+                                <div class="col-lg-1">
+                                    <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                                </div>
+                                <div class="col-lg-1">
+                                    <button class="form-control Edit" *ngIf="id==null || id==undefined"
+                                        (click)="Save()">Save</button>
+                                    <button class="form-control Edit" *ngIf="id!=null || id!=undefined"
+                                        (click)="Update()">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card">
+                <div class="row leavereq">
+                    <div class="col-lg-2">
+                        <p class="newFont">Vendor Name </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Role</p>
+                    </div>                  
+                    <div class="col-lg-2">
+                        <p class="newFont">Staff Name </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Phone Number </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Email Id </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="newFont">Signature </p>
+                    </div>                
+                </div> <br>                            
+                <div class="row leavereq ">
+                    <div class="col-md-2">
+                        <select name="Select" class="form-control"  [(ngModel)]="vendor_Name">
+                            <option value="">Select Vendor</option>
+                            <option  *ngFor="let vendor of vendordetails" value="{{vendor.id}}" >{{vendor.vendor_Name}}</option>
+                          
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="dropdown">
+                            <select class="form-control" name="role_Id" id="role_Id" [(ngModel)]="role_Id">
+                                <option value="">Select Role</option>
+                                <option *ngFor="let User of roleList" value={{User.id}}>{{User.short}} </option>
+                            </select>
+                        </div>
+                    </div>                
+                    <div class="col-md-2">
+                        <input class="form-control inputfield" placeholder="Staff Name" [(ngModel)]="staff_Name">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control inputfield" placeholder="Phone Number" [(ngModel)]="phone_Number">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control inputfield" placeholder="Email ID" [(ngModel)]="Email_ID">
+                    </div>
+                    <div class="col-md-2" >
+                        <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                            <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </ngx-dropzone>
+                    </div>
+                </div> <br> <br>
+
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-1">
+                        <button class="form-control " (click)="cancel()">CANCEL</button>
+                    </div>
+                    <div class="col-lg-1">
+                         <button class="form-control button1"  *ngIf="id==null || id==undefined" (click)="Save()">Save</button>    
+                         <button class="form-control button1"  *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>   
+                    </div>
+                </div><br>
+            
+             
+            </div>  -->
+    </div>
+</div>

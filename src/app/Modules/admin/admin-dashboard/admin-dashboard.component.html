@@ -1,0 +1,279 @@
+<div class="container-fluid" style="background-color: #f2f2f2; ">
+    <br>
+    <div class="row" style="margin-left: 10px;">
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back ">
+                            <br>
+                            <div class="cardscroll">
+                                <div class="row " *ngFor="let job of clientlist">
+                                    <div class="col-lg-2">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                            margin-left: 5px;"></i>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-7">
+                                        <label class="name">{{job.name}}<br>
+                                            <div class="din-Medium1">{{job.email}}</div>
+                                            <div class="din-Medium1">{{job.phoneNo}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization()"
+                                        style="color: white; background-color: #3247D5;">VIEW ALL</button></a>
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 cream">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2">
+                                    <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h1 class="cardlabel">CLIENT </h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="cardscroll">
+                                <div class="row" *ngFor="let job of clientstafflist">
+                                    <div class="col-lg-2">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                            margin-left: 5px;"></i>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-7">
+                                        <label class="name">{{job.name}}<br>
+                                            <div class="din-Medium1">{{job.email}}</div>
+                                            <!-- <div class="din-Medium1">{{job.phoneNo}}</div> -->
+                                            <div class="din-Medium1">{{job.clientName}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization1()">VIEW ALL</button></a>
+
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 red">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-circle-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel">CLIENT STAFF</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count1}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of Vendorlist1">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7">
+                                    <label class="name">{{job.vendor_Name}}<br>
+                                        <div class="din-Medium1">{{job.email_ID}}</div>
+                                        <div class="din-Medium1">{{job.phone_Number}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization2()">VIEW ALL</button></a>
+
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 blue">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-circle-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel">VENDOR</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count2}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of clientstafflist1">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7">
+                                    <label class="name">{{job.name}}<br>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                        <div class="din-Medium1">{{job.phoneNo}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization3()">VIEW ALL</button></a>
+
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 orange">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-circle-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel">VENDOR STAFF</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count4}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+
+    <div class="row" style="margin-left: 10px;">
+
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of CompanyStaffList">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7">
+                                    <label class="name">{{job.name}}<br>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                        <div class="din-Medium1">{{job.phoneNo}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization4()">VIEW ALL</button></a>
+
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 blue">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-circle-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel">RPO STAFF </h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count3}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+</div>

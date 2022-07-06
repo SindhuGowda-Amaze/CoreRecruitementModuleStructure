@@ -6,6 +6,12 @@ import { SharedComponent } from './shared.component';
 import { HelpComponent } from './help/help.component';
 import { SupportTicketDashboardComponent } from './support-ticket-dashboard/support-ticket-dashboard.component';
 import { SupportTicketsComponent } from './support-tickets/support-tickets.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
+
+
 
 
 @NgModule({
@@ -13,11 +19,28 @@ import { SupportTicketsComponent } from './support-tickets/support-tickets.compo
     SharedComponent,
     HelpComponent,
     SupportTicketDashboardComponent,
-    SupportTicketsComponent
+    SupportTicketsComponent,
+   
+  
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    Ng2SearchPipeModule,
+    FormsModule,
+    NgxDropzoneModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    Ng2SearchPipeModule,
+    FormsModule,
+    NgxDropzoneModule,
+    ReactiveFormsModule
+   
+
   ]
+
+
+
 })
 export class SharedModule { }

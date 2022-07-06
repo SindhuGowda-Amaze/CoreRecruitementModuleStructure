@@ -1,0 +1,169 @@
+.Job {
+    color: gray;
+    padding-left: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+    font-weight: 400;
+  }
+  
+  .search {
+    margin-left: 10px;
+  }
+  
+  .newFont {
+  
+    color: black;
+    width: 100%;
+    vertical-align: middle;
+  }
+  
+  
+  
+  /* .th{
+      background-color: #e4e5e6;
+      color:#404040;
+      font-family: "DIN Bold";
+    } */
+  /* .table, th, td {
+    border: 1px solid lightgray;
+     border-collapse: collapse; 
+    } */
+  .Heading {
+    padding-left: 15px;
+    font-size: 20px;
+  
+    color: #3247D5;
+  }
+  
+  /* .head {
+    background-color: #dee2e6;
+    color: #404040;
+    font-family: "DIN Bold";
+  } */
+  
+  .FilterClass {
+    padding-left: 15px;
+  }
+  
+  
+  .button1 {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 55%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  
+  
+  .button2 {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #2F87CC;
+    border: none;
+    width: 50%;
+    margin-left: 15px;
+  
+  }
+  
+  
+  
+  /* .Text {
+    font-size: 18px;
+  } */
+  
+  .NoResultShow {
+    font-size: 16px;
+  }
+  
+  .card {
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    width: 99%;
+  }
+  /* 
+  table {
+    border-radius: 12px;
+  } */
+  
+  .Heading {
+    padding-left: 15px;
+    color: #212529;
+    font-size: 20px !important;
+    font-family: "DIN Bold";
+    font-weight: bold;
+  }
+  
+  .Count {
+    color: #3247d5;
+    font-size: 20px !important;
+    font-family: "Poppins";
+    font-weight: bold;
+    float: right;
+    margin-top: 5px;
+    margin-right: -80px;
+  }
+  
+  .button {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 20%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .Edit {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 50%;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* .table td {
+    color: #0c275a;
+    vertical-align: middle;
+    background-color: white;
+    font-family: "Poppins";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #02cfff !important;
+    color: #ffffff;
+  } */
+  
+  

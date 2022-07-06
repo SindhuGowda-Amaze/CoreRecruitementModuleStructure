@@ -1,1 +1,80 @@
-<p>vendor-staff-dashboard works!</p>
+<br>
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-11">
+                <a href="" class="Heading" style="color: #3247D5; font-family: 'Poppins';">Vendor Staff Dashboard</a>
+            </div>
+        </div>
+        <br>
+        <div class="row FilterClass">
+            <div class="col-lg-12">
+                <div class="card">
+                   
+                    <div class="row">
+                        <div class="col-lg-1" >
+                            <p>Filter By</p>
+                        </div>
+                        <div class="col-lg-4" >
+                            <input class="form-control poppinns" type="search" placeholder="Search" [(ngModel)]="search"
+                                name="search">
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-2">
+                            <p class="Count">Count: {{count}}</p>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+                <a routerLink="/VendorStaffForm"><button class="Addbutton">Add</button> </a>
+            </div>
+        </div> <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table" *ngIf="(staffdetails | filter: search).length > 0; else noResults">
+                        <thead>
+                            <tr class="head">
+                                <th>Vendor Name</th>
+                                <th>Role </th>
+                                <th>Staff Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <!-- <th style="width:160px;">Signature</th> -->
+                                <th>Actions</th>
+                            </tr>
+                            <tr *ngFor="let vendor of staffdetails|filter:search">
+                                <td>{{vendor.vendor_Name}}</td>
+                                <td>{{vendor.short}}</td>
+                                <td>{{vendor.staff_Name}}</td>
+                                <td>{{vendor.phone_Number}}</td>
+                                <td>{{vendor.email_Id}}</td>
+                                <!-- <td><img style="width:40% ; text-align:center;" src="{{vendor.signature}}"> </td> -->
+                                <td><button class="Edit" (click)="edit(vendor.id)">Edit</button> <br> <br>
+                                    <button class="Edit" (click)="Ondelete(vendor.id)">Delete</button><br><br>
+
+                                    <img src="assets/Images/activate.png" style="width:30%"
+                                        *ngIf="vendor.enable_Disable==0 || vendor.enable_Disable==null "
+                                        (click)="DisableStaff(vendor.id)"> <br />
+
+                                    <img src="assets/Images/deactivate.png" *ngIf="vendor.enable_Disable==1"
+                                        (click)="DisableStaff1(vendor.id)" style="width:30%">
+
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <ng-template #noResults>
+                        <p class="NoResultShow"> No results found for "{{search}}" </p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

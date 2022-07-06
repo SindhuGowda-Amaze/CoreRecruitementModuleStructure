@@ -1,1 +1,72 @@
-<p>job-approval-config works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-11">
+                    <br />
+                    <p class="Heading1">MRF APPROVAL CONFIGURATION</p>
+                </div>
+            </div>
+            <!-- <div class="row LocDashboard">
+                    <div class="col-lg-12">
+                        <label style="padding-left: 10px;">Add Holiday</label>
+                    </div>
+                </div> -->
+            <div class="card">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11">
+                    <div class="row leavereq">
+                        <div class="col-lg-4">
+                            <p>Approver Subsidiary</p>
+                            <select class="form-control" id="CompanyName" name="CompanyName" [(ngModel)]="CompanyName">
+                                <option value="">Select Subsidiary</option>
+                                <option value="Ayala Land">Ayala Land</option>
+                                <option value="Avida Land Corp">Avida Land Corp</option>
+                                <option value="Avida Sales Corp">Avida Sales Corp</option>
+                                <option value="Ayala Land Premier, Inc">Ayala Land Premier, Inc</option>
+                                <option value="Ayala Land Sales Inc">Ayala Land Sales Inc</option>
+                                <option value="Ayala Land Offices, Inc">Ayala Land Offices, Inc</option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <p>1st Level Approval(Manager):</p>
+                            <input type="radio" id="AutoApproval" name="AutoApproval" [(ngModel)]="AutoApproval"
+                                value="Auto Approval" [checked]="true">
+
+                        </div>
+                        <div class="col-lg-4">
+                            <p>2nd Level Approval(BU Head):</p>
+                            <input type="radio" id="AutoApproval1" name="AutoApproval1" [(ngModel)]="AutoApproval1"
+                                value="Manager Approval" [checked]="true">
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+
+
+                    <div class="col-lg-2">
+                        <!-- <button type="button" class="button" *ngIf="ID!=undefined"
+                        (click)="UpdateHolidays()">Update</button> -->
+                        <button class=" form-control requestbtn" (click)="update()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

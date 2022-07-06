@@ -1,0 +1,14 @@
+.Text {
+    text-align: center;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 15px;
+    margin-right: auto;
+    padding-left: 300px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    height: 10px;
+}

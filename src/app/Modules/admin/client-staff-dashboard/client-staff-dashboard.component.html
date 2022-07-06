@@ -1,1 +1,90 @@
-<p>client-staff-dashboard works!</p>
+<br>
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-11">
+                <p class="Heading" >Client Staff Dashboard</p>
+            </div>
+        </div>
+        <br>
+        <!-- <hr class="HrLine"> -->
+        <div class="row FilterClass">
+            <div class="col-lg-12">
+                <div class="card">
+              
+                    <div class="row">
+                        <div class="col-lg-1" >
+                            <p>Filter By</p>
+                        </div>
+                        <div class="col-lg-4" style="font-family: 'Poppins';">
+                            <input class="form-control" type="search" placeholder="Search for Client Name"
+                                [(ngModel)]="search">
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-2">
+                            <p class="Count">Count: {{count}}</p>
+                        </div>
+                    </div>
+         
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-8">
+            </div>
+            <div class="col-lg-4">
+                <a routerLink="/ClientStaffForm"><button class="Addbutton">Add</button> </a>
+            </div>
+        </div><br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table" *ngIf="(ClientStaffList | filter: search).length > 0; else noResults">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Role </th>
+                                <th>Staff Name</th>
+                                <th>Staff Phone No.</th>
+                                <th>Email</th>
+                                <th>Address
+                                <th>
+                                <th>Signature
+                                <th>
+                                <th>Actions</th>
+                            <tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ClientStaffData of ClientStaffList | filter:search">
+                                <td>{{ClientStaffData.clientName}}</td>
+                                <!-- <td style="width: 176px;"><img src="{{ClientStaffData.logo}}" style="width:65%;"></td> -->
+                                <td>{{ClientStaffData.role}}</td>
+                                <td>{{ClientStaffData.name}}</td>
+                                <td>{{ClientStaffData.phoneNo}}</td>
+                                <td>{{ClientStaffData.email}}</td>
+                                <td>{{ClientStaffData.address}}</td>
+                                <td></td>
+                                <td><img src="{{ClientStaffData.signature}}" style="width:30%;"></td>
+                                <td></td>
+                                <td><button class="Edit" (click)="edit(ClientStaffData.id)">Edit</button><br><br>
+                                    <button class="Edit" (click)="delete(ClientStaffData)">Delete</button><br><br>
+                                    <img src="assets/Images/activate.png" style="width:50%"
+                                        *ngIf="ClientStaffData.enable_Disable==0 || ClientStaffData.enable_Disable==null "
+                                        (click)="DisableStaff(ClientStaffData.id)"> <br />
+                                    <img src="assets/Images/deactivate.png" *ngIf="ClientStaffData.enable_Disable==1"
+                                        (click)="DisableStaff1(ClientStaffData.id)" style="width:50%">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ng-template #noResults>
+                        <p class="NoResultShow"> No results found for "{{search}}" </p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

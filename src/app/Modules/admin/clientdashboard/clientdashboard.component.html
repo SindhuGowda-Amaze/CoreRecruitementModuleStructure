@@ -1,1 +1,78 @@
-<p>clientdashboard works!</p>
+<br>
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-11">
+                <P class="Heading" >Client Dashboard</P>
+            </div>
+        </div>
+        <br>
+        <!-- <hr class="HrLine"> -->
+        <div class="row FilterClass">
+            <div class="col-lg-12">
+                <div class="card">
+                
+                    <div class="row">
+                        <div class="col-lg-1" style="color: #0C275A; font-family: 'Poppins'; 
+                        margin-left: 15px; margin-top: 5px;">
+                            <p>Filter By</p>
+                        </div>
+                        <div class="col-lg-4" style="font-family: 'Poppins';">
+                            <input class="form-control" type="search" placeholder="Search for Client Name"
+                                [(ngModel)]="search">
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-2">
+                            <p class="Count">Count: {{count}}</p>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+                <div class="col-lg-8">
+                </div>
+                <div class="col-lg-4">
+                    <a routerLink="/ClientForm"><button class="Addbutton">Add</button> </a>
+                </div>
+            </div><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table" *ngIf="(ClientMasterlist | filter: search).length > 0; else noResults">
+                        <!-- <thead> -->
+                        <tr>
+                            <th>Client Logo</th>
+                            <th>Client Name</th>
+                            <th>Email</th>
+                            <th>Client Phone No.</th>
+                            <th>Address
+                            <th>
+                            <th>Actions</th>
+                        <tr>
+                            <!-- </thead> -->
+                            <!-- <tbody > -->
+                        <tr *ngFor="let ClientMasterData of ClientMasterlist | filter:search">
+                            <td style="width: 176px;"><img src="{{ClientMasterData.logo}}" style="width:65%;"></td>
+                            <td>{{ClientMasterData.name}}</td>
+                            <td>{{ClientMasterData.phoneNo}}</td>
+                            <td>{{ClientMasterData.email}}</td>
+                            <td>{{ClientMasterData.address}}</td>
+                            <td></td>
+                            <td><button class="Edit" (click)="edit(ClientMasterData.id)">Edit</button><br><br>
+                                <button class="Edit" (click)="delete(ClientMasterData)">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- </tbody> -->
+                    </table>
+                    <ng-template #noResults>
+                        <p class="NoResultShow"> No results found for "{{search}}" </p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

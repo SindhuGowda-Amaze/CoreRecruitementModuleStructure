@@ -8,7 +8,7 @@ import { HeaderComponent } from './Pages/CommonPages/header/header.component';
 import { SidebarComponent } from './Pages/CommonPages/sidebar/sidebar.component';
 import { FooterComponent } from './Pages/CommonPages/footer/footer.component';
 import { LoaderComponent } from './Pages/CommonPages/loader/loader.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +16,14 @@ import { LoaderComponent } from './Pages/CommonPages/loader/loader.component';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

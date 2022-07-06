@@ -1,1 +1,74 @@
-<p>vendor-dashboard works!</p>
+<br>
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-11">
+                <p class="Heading" >Vendor Dashboard</p>
+            </div>
+        </div>
+        <br>
+        <!-- <hr class="HrLine"> -->
+        <div class="row FilterClass">
+            <div class="col-lg-12">
+                <div class="card">
+            
+                    <div class="row">
+                        <div class="col-lg-1" >
+                            <p>Filter By</p>
+                        </div>
+                        <div class="col-lg-4" style="font-family: 'Poppins';">
+                            <input class="form-control" type="search" placeholder="Search for Name.."
+                                [(ngModel)]="search" name="search">
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-2">
+                            <p class="Count">Count: {{count}}</p>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+                <a routerLink="/VendorForm"><button class="Addbutton">Add</button> </a>
+            </div>
+        </div> <br>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table" *ngIf="(vendordetails | filter: search).length > 0; else noResults">
+                        <thead>
+                            <tr>
+                                <th>Vendor Logo</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Id</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                            <tr *ngFor="let vendor of vendordetails|filter:search">
+                                <td><img style="width: 100px;" src="{{vendor.vendor_Logo}}"></td>
+                                <td>{{vendor.vendor_Name}}</td>
+                                <td>{{vendor.phone_Number}}</td>
+                                <td>{{vendor.email_ID}}</td>
+                                <td>{{vendor.address}}</td>
+                                <td><button class=" Edit" (click)="edit(vendor.id)">Edit</button> <br> <br>
+                                    <button class=" Edit" (click)="Ondelete(vendor.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <ng-template #noResults>
+                        <p class="NoResultShow"> No results found for "{{search}}" </p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
