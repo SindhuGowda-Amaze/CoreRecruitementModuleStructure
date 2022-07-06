@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
   client: any
   public Client() {
     localStorage.setItem('Pagename', 'CLIENT')
-    this.router.navigate(['/admin/ClientDashBoard']);
+    this.router.navigate(['/admin/Clientdashboard']);
     this.client = true
     this.home = false
     this.clientstaff = false
@@ -943,7 +943,7 @@ export class SidebarComponent implements OnInit {
 
     this.active = 'Description'
     localStorage.setItem("clickname", "Description")
-    this.router.navigate(['#admin/JobDescriptionDash']);
+    this.router.navigate(['admin/JobDescriptionDash']);
   }
 
   

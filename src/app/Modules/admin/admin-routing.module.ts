@@ -19,27 +19,33 @@ import { VendorStaffFormComponent } from './vendor-staff-form/vendor-staff-form.
 const routes: Routes = [{ path: '', component: AdminComponent },
 {path:'AdminDashboard',component:AdminDashboardComponent},
 
-{path:'ClientStaffDashboard',component:ClientStaffDashboardComponent},
+{path:'ClientStaffDashBoard',component:ClientStaffDashboardComponent},
+{path:'ClientStaffForm',component:ClientStaffFormComponent},
 {path:'ClientStaffForm/:id',component:ClientStaffFormComponent},
 
 
 {path:'Clientdashboard',component:ClientdashboardComponent},
+{path:'Clientform',component:ClientformComponent},
 {path:'Clientform/:id',component:ClientformComponent},
 
 {path:'JobApprovalConfig',component:JobApprovalConfigComponent},
 
 {path:'JobDescriptionDash',component:JobDescriptionDashComponent},
+{path:'JobDescriptionForm',component:JobDescriptionFormComponent},
 {path:'JobDescriptionForm/:id',component:JobDescriptionFormComponent},
 
-{path:'RecruiterDashboard',component:RecruiterDashboardComponent},
+{path:'RecruiterStaffDashboard',component:RecruiterDashboardComponent},
+{path:'RecruiterForm',component:RecruiterFormComponent},
 {path:'RecruiterForm/:id',component:RecruiterFormComponent},
 
 
 {path:'VendorDashboard',component:VendorDashboardComponent},
+{path:'VendorForm',component:VendorFormComponent},
 {path:'VendorForm/:id',component:VendorFormComponent},
 
 {path:'VendorStaffDashboard',component:VendorStaffDashboardComponent},
-{path:'VendorStaffForm',component:VendorStaffFormComponent}
+{path:'VendorStaffForm',component:VendorStaffFormComponent},
+{path:'VendorStaffForm/:id',component:VendorStaffFormComponent}
 
 
 
