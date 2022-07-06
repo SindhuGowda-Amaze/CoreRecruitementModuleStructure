@@ -1,7 +1,10 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './Pages/login/login.component';
 
 const routes: Routes = [
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "login", component: LoginComponent },
   { path: 'admin', loadChildren: () => import('./Modules/admin/admin.module').then(m => m.AdminModule) },
   { path: 'recruiter', loadChildren: () => import('./Modules/recruiter/recruiter.module').then(m => m.RecruiterModule) },
   { path: 'vendor', loadChildren: () => import('./Modules/vendor/vendor.module').then(m => m.VendorModule) },
@@ -12,7 +15,7 @@ const routes: Routes = [
   { path: 'manager', loadChildren: () => import('./Modules/Client/manager/manager.module').then(m => m.ManagerModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

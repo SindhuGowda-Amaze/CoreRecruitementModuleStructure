@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: SharedComponent },
   { path: 'Help', component: HelpComponent },
   { path: 'SupportTicketDash', component: SupportTicketDashboardComponent },
-  { path: 'SupportTickets', component: SupportTicketsComponent }
+  { path: 'SupportTickets/:id', component: SupportTicketsComponent }
  
 
 
