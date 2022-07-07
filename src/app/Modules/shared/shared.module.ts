@@ -9,6 +9,10 @@ import { SupportTicketsComponent } from './support-tickets/support-tickets.compo
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxFullCalendarModule } from 'ngx-fullcalendar';
+ 
 
 
 
@@ -29,13 +33,20 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     Ng2SearchPipeModule,
     FormsModule,
     NgxDropzoneModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule,
+    NgxFullCalendarModule
   ],
   exports: [
     Ng2SearchPipeModule,
     FormsModule,
     NgxDropzoneModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule,
+    NgxFullCalendarModule
+  
    
 
   ]

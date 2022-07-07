@@ -1,0 +1,420 @@
+<div class="container-fluid" style="background-color: #f2f2f2;">
+    <br>
+    <!-- <div class="row" *ngIf="roleid!='3'|| roleid!='6'"> -->
+        <div class="hmcard"  *ngIf="roleid==4 ||roleid==6">
+            <div class="row" >
+                <div class="col-lg-1">
+                    <p>Filter By :</p>
+                </div>
+                <div class="col-lg-3">
+                <select   class="form-control form-select" [(ngModel)]="hiringManager"  (change)="changestaff()">
+                    <option value="">Select Hiring Manager</option>
+                    <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-3">
+                    <select   class="form-control form-select" [(ngModel)]="department"  (change)="changedepartment()">
+                        <option value="">Select Department</option>
+                        <option *ngFor="let dept of deptlist" value="{{dept.name}}">{{dept.name}}</option>
+                        <!-- <option>Development</option>
+                        <option>Testing</option>
+                        <option>Finance</option>
+                        <option>Human Resourse</option> -->
+                      </select>
+                    </div>
+            </div>
+        </div>
+       
+    <br/>
+    <br/>
+    
+    <div class="row" style="margin-left: 10px;"  >
+       
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist1">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.jobTitle}}<br>
+                                        <div class="din-Medium1">{{job.date}}</div>
+                                        <div class="din-Medium1">{{job.joblocation}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/JobRecruitements"><button class="viewall"   *ngIf="roleid!='7'" (click)="Regularization()">VIEW ALL</button></a>
+
+                                <a href="#/VendorJobOpenings"><button class="viewall" *ngIf="roleid=='7'" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 red" > 
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel poppinns"  >OPEN POSITIONS</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1" >VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist3">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.jobTitle}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/AppliedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 cream">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >APPLIED</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count1}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist6">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.jobTitle}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/ShortListedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 blue">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-th-list calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >SHORTLISTED</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count9}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist7">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.jobTitle}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/SelectedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 orange">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-check-square-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >SELECTED</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count3}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+
+    <div class="row" style="margin-left: 10px;">
+      
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist9">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.jobTitle}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/OfferedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 red">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-file-text calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >OFFERED</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count4}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist11">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.jobTitle}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/JoinedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 blue">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-plus calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >JOINED</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count5}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of joblist13">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"
+                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7" >
+                                    <label class="name">{{job.candidateName}}<br>
+                                        <div class="din-Medium1">{{job.phoneNo}}</div>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a href="#/DroppedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 orange">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-times calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel" >DROPPED OUT</h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count6}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+</div>
+
+<div id="Allocate" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <i class="fa fa-bullhorn" aria-hidden="true" style="font-size:30px;color: #2F87CC;"></i>
+                    </div>
+                    <div class="col-lg-8">
+                        <h1 class="cardlabel">Announcements</h1>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body ">
+                <div class="container-fluid">
+                    <div class="row" style="text-align: center;">
+                        <label> Welcome to DigiOffice Worklife, for the One Organisation experience! </label>
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>

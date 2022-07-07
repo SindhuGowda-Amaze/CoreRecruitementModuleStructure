@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { RecruiterRoutingModule } from './recruiter-routing.module';
 import { RecruiterComponent } from './recruiter.component';
+import { ShortListedComponent } from './short-listed/short-listed.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    RecruiterComponent
+    RecruiterComponent,
+    ShortListedComponent
   ],
   imports: [
     CommonModule,
-    RecruiterRoutingModule
+    RecruiterRoutingModule,
+    SharedModule
   ]
 })
 export class RecruiterModule { }

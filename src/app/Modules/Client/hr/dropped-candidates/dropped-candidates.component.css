@@ -1,0 +1,65 @@
+.Job{
+    color:gray;
+    padding-left: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+    font-weight: 400;
+  }
+  .search{
+    margin-left: 10px;
+  }
+  
+  .newFont{
+   
+    color:black;
+    width:100%;
+    vertical-align: middle;
+  }
+  
+  /* .th{
+    background-color: #e4e5e6;
+    color:#404040;
+    font-family: "DIN Bold";
+  } */
+  /* .table, th, td {
+  border: 1px solid lightgray;
+   border-collapse: collapse; 
+  } */
+  .Heading{
+  padding-left: 5px;
+  font-size: 20px;
+  color:#3247D5;
+  }
+  .head{
+  background-color:#02CFFF;
+  color:white;
+  
+  }
+  .FilterClass{
+  padding-left: 15px;
+  color: #0C275A;
+  font-size: 15px;
+  }
+  .Count{
+  
+    font-size: 20px !important;
+  
+    font-weight: bold;
+    float: right;
+    padding-right: 10px;;
+  }
+  
+  .button{
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: #21a4da;
+    border:none;
+    width:100%;
+  }
+  .card{
+    width:100%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+  }

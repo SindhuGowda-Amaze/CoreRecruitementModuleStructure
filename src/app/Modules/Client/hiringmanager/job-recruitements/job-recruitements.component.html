@@ -1,0 +1,338 @@
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="container-fluid"><BR>
+    <div class="row">
+      
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-10">
+                    <p class="Heading">OPEN POSITIONS</p>
+                </div>
+                <div class="col-lg-2">
+                    <button class="Add" *ngIf="roleid==2" routerLink='/JobRequisition'>Add</button>
+                </div>
+            </div>
+       <BR> 
+
+            <div class="card">
+         
+                <div class="row FilterClass">
+                    <div class="col-lg-1">
+                        <p>Filter By</p>
+                    </div>
+                   
+                    <div class="col-lg-3"  *ngIf="roleid==2" >
+                        <input type="date" class="form-control poppinns" (change)="GetDate($event)" name="date" value="date"  [(ngModel)]="date">
+
+                    </div>
+                    <div class="col-lg-3"  *ngIf="roleid!=2">
+                        <select   class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
+                            <option value="">Select Hiring Manager</option>
+                            <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+                          </select>
+
+                    </div>
+                    <!-- <div class="col-lg-3">
+                        <select name="Select" class="form-control poppinns">
+                            <option value="Select CTC">Select CTC Budget</option>
+                            <option *ngFor="let job of joblist" value="30,000-50,000">{{job.package}}</option> -->
+                            <!-- <option value="50,000-1,00000">50,000-1,00000</option>
+                            <option value="1,00000-2,00000">1,00000-2,00000</option> -->
+                        <!-- </select>
+                    </div> -->
+                    <div class="col-lg-3">
+                        <input class="form-control poppinns" placeholder="Search..." [(ngModel)]="search" (ngModelChange)="Filterjobs()" name="search">
+                    </div>
+                    <div *ngIf="roleid!=2" class="col-lg-3">
+                       
+                    </div>
+                  
+                    <div class="col-lg-2">
+                        <p class="Count">Count:{{count}}</p>
+                    </div>
+                </div> 
+            </div> <br>
+
+            <div class="row">
+                <div class="col-lg-12"  style="overflow:auto">
+                    <table class="table tablebordered" >
+                    
+                            <tr class="head">
+                                <th >Job Reference ID</th>
+                                <th>Date</th>
+                                <!-- <th>Client Name</th> -->
+                                <th>Job Title</th>
+                                <th>Skill/Technology</th>
+                                <th>Total Years of Experience</th>
+                                <th>Expected Experience</th>
+                                <th>Job Description</th>
+                                <th>Job Location</th>
+                                <th>No of Positions</th>
+                                <!-- <th>CTC Budget</th> -->
+                                <th *ngIf="roleid==4">Hiring Manager</th>
+                                 <th>Other Required Conditions</th>
+                                 <th>Status</th>
+                                <th *ngIf="roleid==2||roleid==11||roleid==10 ">Actions </th>
+                                <!-- <th>Assigned Vendors</th> -->
+                            </tr>
+                        
+                        <tr *ngFor="let job of joblist | paginate: { itemsPerPage: count1, currentPage: p }">
+                            <td >{{job.jobRefernceID}}</td>
+                            <td >{{job.date|date}}</td>
+                            <!-- <td>MindTree</td> -->
+                            <td >{{job.jobTitle}}</td>
+                            <td>  <button class="Button"  data-toggle="modal"
+                                (click)="GEtskills(job)" data-target="#viewempcomments1" >View</button></td>
+                            <td >{{job.totalExp}}</td>
+                            <td >{{job.relaventExp}}</td>
+                            <td ><button class="Button"  data-toggle="modal"
+                            (click)="GEtemployeecomments(job)" data-target="#viewempcomments" >View</button></td>
+                            <!-- <td >{{job.jobDescription}}</td> -->
+                            <td >{{job.joblocation}}</td>
+                            <td >{{job.noofpositions}}</td>
+                            <!-- <td >{{job.package}} </td> -->
+                            <td *ngIf="roleid==4">{{job.hiringManager}}</td>
+                            <td >{{job.otherRequiredConditions}}</td>
+                            <!-- <td *ngIf="job.vendor==null">{{job.resourceManager}}</td> -->
+                            <!-- <td *ngIf="job.vendor==null"><button class="button form-control Add1" data-toggle="modal"
+                                    (click)="GetId(job.id)" data-target="#ScheduleInterview">Assign Vendor</button> <br/>
+                                    <button class="button form-control Add1" data-toggle="modal"
+                                    (click)="GetId(job.id)" data-target="#ScheduleInterview1">Assign Recruiter</button></td>
+                            -->
+                            <td>{{job.status}}</td>
+                            <td *ngIf="roleid==2"> <button class="button form-control Add1" data-toggle="modal"
+                                data-target="#ScheduleInterview2" (click)="GetId(job.id)">UnPost</button></td>
+
+                                <td *ngIf="roleid==11|| roleid==10"> <button class="button form-control Add1"  (click)="ApproveId(job.id)">Approve</button><br>
+                                    <button class="button form-control Add1"  (click)="Reject(job.id)">Reject</button>
+                                </td>
+                                <!-- <td>Monster</td> -->
+                        </tr>
+                    </table>
+                   
+                    <!-- <ng-template #noResults>
+                        <p class="NoResultShow"> No results found for "{{search}}" </p> 
+                    </ng-template> -->
+                </div> 
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>  
+                <span *ngIf="joblist.length==0">No data found.</span>
+                <br>
+            </div>   
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="viewempcomments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <h5 class="modal-title Heading" id="exampleModalLabel">Job Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-7 ">
+                        <p style="padding:5px" [innerHTML]="description">
+                        </p>
+                    </div>
+                    <div class="col-lg-3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewempcomments1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <h5 class="modal-title Heading" id="exampleModalLabel">Skillsets</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-7 ">
+                        <p style="padding:5px" [innerHTML]="skills">
+                        </p>
+                    </div>
+                    <div class="col-lg-3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div id="ScheduleInterview2" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">UnPost Job</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text">Hired :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <select class="form-control" [(ngModel)]="Hired">
+                            <option value="">Select </option>
+                            <option>Yes</option>  
+                            <option>No</option> 
+                        </select>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">No Of Positions Hired :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control" name="NoofpositionsHired" id="NoofpositionsHired" [(ngModel)]="NoofpositionsHired"
+                            placeholder="No Of Positions Hired">
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Save"  (click)="UpdateJobPost()">save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+                <div class="col-lg-2">
+                    <button class="Button" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="ScheduleInterview" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Assign Vendor</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text">Vendor :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <!-- <select class="form-control" [(ngModel)]="Vendor">
+                            <option value="">Select </option>
+                            <option *ngFor="let User of Userlist" value={{User.id}}>{{User.vendor_Name}} </option>
+                        </select> -->
+                        <ng-multiselect-dropdown [placeholder]="'Select Vendor'" [settings]="dropdownSettings1"
+                        [data]="dropdownList1" [(ngModel)]="Vendor">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div> <br>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Notes :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <textarea class="form-control" name="Notes" id="Notes" [(ngModel)]="Notes"
+                            placeholder="Notes"></textarea>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Save" (click)="UpdateVendor()">Assign</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+                <div class="col-lg-2">
+                    <button class="Button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ScheduleInterview1" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Assign Recruiter</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text">Recruiter :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <select class="form-control" [(ngModel)]="Recruiter">
+                            <option value="">Select Recruiter</option>
+                            <option *ngFor="let User of stafflist" value={{User.id}}>{{User.name}} </option>
+                        </select>
+                    </div>
+                </div> <br>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Text" style="font-weight: bold;">Notes :</label>
+                    </div>
+                    <div class="col-lg-5">
+                        <textarea class="form-control" name="Notes" id="Notes" [(ngModel)]="Notes"
+                            placeholder="Notes"></textarea>
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Save" (click)="UpdateRecruiter()">Assign</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr>
+                <div class="col-lg-2">
+                    <button class="Button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
