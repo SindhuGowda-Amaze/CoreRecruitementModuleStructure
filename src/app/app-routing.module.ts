@@ -12,7 +12,9 @@ const routes: Routes = [
   { path: 'shared', loadChildren: () => import('./Modules/shared/shared.module').then(m => m.SharedModule) },
   { path: 'InterviewPanel', loadChildren: () => import('./Modules/Client/interview-panel/interview-panel.module').then(m => m.InterviewPanelModule) },
   { path: 'BUHead', loadChildren: () => import('./Modules/Client/buhead/buhead.module').then(m => m.BUHeadModule) },
-  { path: 'manager', loadChildren: () => import('./Modules/Client/manager/manager.module').then(m => m.ManagerModule) }];
+  { path: 'manager', loadChildren: () => import('./Modules/Client/manager/manager.module').then(m => m.ManagerModule) },
+  { path: 'report', loadChildren: () => import('./Modules/report/report.module').then(m => m.ReportModule) },
+  { path: 'hr', loadChildren: () => import('./Modules/Client/hr/hr.module').then(m => m.HrModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
