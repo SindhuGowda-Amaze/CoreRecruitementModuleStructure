@@ -121,7 +121,7 @@ export class ClientStaffFormComponent implements OnInit {
         debugger
         let id = data;
         Swal.fire("Successfully Submitted...!!");
-        location.href = "#/ClientStaffDashBoard"
+        location.href = "#admin/ClientStaffDashBoard"
       })
   // }
  
@@ -164,12 +164,12 @@ this.files.splice(this.files.indexOf(event),1);
         debugger
         let result = data;
         Swal.fire("Updated Sucessfully...");
-        location.href = "#/ClientStaffDashBoard";
+        location.href = "#admin/ClientStaffDashBoard";
       })
   }
 
 cancel(){
-  location.href = "#/ClientStaffDashBoard";
+  location.href = "#admin/ClientStaffDashBoard";
 }
 }
 
