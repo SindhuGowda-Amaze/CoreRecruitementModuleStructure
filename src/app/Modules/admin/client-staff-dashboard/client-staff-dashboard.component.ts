@@ -35,7 +35,7 @@ export class ClientStaffDashboardComponent implements OnInit {
 
   edit(details: any){
     debugger
-    location.href="#/ClientStaffForm/"+ details;
+    location.href="#admin/ClientStaffForm/"+ details;
     }
 
 
