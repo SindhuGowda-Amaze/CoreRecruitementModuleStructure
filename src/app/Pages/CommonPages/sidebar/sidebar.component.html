@@ -1,14 +1,14 @@
-<!-- <div class="container-fluid background">
+<div class="container-fluid background">
 *ngIf="login==1" 
     <div class="row side-height">
         <div class="col-lg-12 negative-padding">
             <p class="side-anchr">Welcome, Amulya Bijur</p>
             <hr class="HrLine">
             <p>
-                <span routerLink="/Dashboard" class="side-anchr ">Dashboard</span>
+                <span routerLink="Dashboard" class="side-anchr ">Dashboard</span>
             </p>
             <p>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button data-toggle="collapse" class="togglebtn button" data-target="#recruite">Job
                     Recruitement</button>
                 <div id="recruite" class="collapse submenu">
@@ -45,10 +45,10 @@
                             Dropped Candidates
                         </a>
                 </div>
-            </div>
+            </div> -->
 
             <p>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button data-toggle="collapse" class="togglebtn button" data-target="#reports">Reports</button>
                 <div id="reports" class="collapse submenu">
                     <p><a class="tablinks submenu" routerLink="/JobRecruitementReport">
@@ -63,30 +63,28 @@
                             Shortlisted Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/ScheduledInterviewsReports">
+                        <a class="tablinks submenu" routerLink="/SelectedCandidatesReports">
                             Scheduled Interviews Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/SelectedCandidatesReports">
+                        <a class="tablinks submenu" routerLink="/OfferedCandidatesReports">
                             Selected Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/OfferedCandidatesReports">
+                        <a class="tablinks submenu" routerLink="/JoinedCandidatesReport">
                             Offered Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/JoinedCandidatesReports">
+                        <a class="tablinks submenu" routerLink="/DroppedCandiadtesReports">
                             Joined Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/DroppedCandiadtesReports">
-                            Dropped Candidates Reports
-                        </a>
+                      
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-</div> -->
+</div> 
 
 <!-- <div class="container-fluid">
     <div class="row ">
@@ -299,6 +297,13 @@
                 <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
             </a>
 
+
+
+
+
+
+
+
             <div id="userapplications2" class="collapse" style="padding-left: 7%; ">
                 <a (click)="JobRecruitReport()" *ngIf="roleid!='3' || roleid!='6'" class="nonactive"
                     (click)="openCity($event)">
@@ -379,6 +384,13 @@
                     CANDIDATES
                 </a>
             </div>
+
+
+
+
+
+
+
             <a routerLink="/shared/Help" class="tablinks" (click)="highlight($event)" (click)="help()">
                 <img src="assets/Images/64 Blue/leaves.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 'help' ? 'Active1' : 'Active2'" />

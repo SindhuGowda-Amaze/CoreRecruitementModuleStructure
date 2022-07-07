@@ -1,0 +1,98 @@
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="container-fluid"><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="Heading">OFFERED CANDIDATES REPORT</p>
+                </div>
+            </div>
+            <br>
+        
+            <div class="card">   
+                   
+                <div class="row filterclass">
+                    <div class="col-lg-1">
+                        <p>Filter By</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <select *ngIf="roleid!=2"  class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
+                            <option value="">Select Hiring Manager</option>
+                            <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+                          </select>
+
+                        <input  *ngIf="roleid==2" class="form-control poppinns" type="date" placeholder="Duration">
+                    </div>
+                    <div class="col-lg-3">
+                        <input class="form-control poppinns" type="search" placeholder="Search by Job Reference ID..." [(ngModel)]="term" name="term">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class=" form-control export poppinns" (click)="refresh()">Refresh</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class=" form-control export poppinns" (click)="exportexcel()">Export to Excel</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="Count">Count:{{count}}</p>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-lg-12" 
+                style="height: 440px; overflow-y: scroll;">
+                    <table class="table" id="downloadaplication">
+                        <tr>
+                             <!-- <th>Vendor</th> -->
+                             <th>Job Reference ID</th>
+                             <th *ngIf="roleid=='4'">Source</th>
+                             <th *ngIf="roleid!='2'">Hiring Manager</th>
+                             <th>Job Title</th>
+                             <th>Tentative DOJ</th>
+                             <!-- <th>Offered Date </th> -->
+                             <th>Candidate Name</th>
+                             <th>Phone No</th>
+                             <th>Email</th>
+                             <th>Total Years of Experience</th>
+                             <th>Relevant Experience</th>
+                             <th>Offer Letter</th>
+                             <!-- <th>Offer Comments</th> -->
+                           
+                        </tr>
+                        <tr *ngFor="let job of joblist|filter:term">
+                            <td>{{job.jobRefernceID}}</td>
+                                    <td *ngIf="roleid=='4'">{{job.source}}</td>
+                                    <!-- <td>{{job.date}}</td>
+                                    <td>{{job.slotTime}}</td> -->
+                                    <td *ngIf="roleid!='2'">{{job.hiringManager}}</td>
+                                  
+                                    <td>{{job.jobTitle}}</td>
+                                    <td>{{job.tentativeDate|date}}</td>
+                                    <td>{{job.candidateName}}</td>
+                                    <td>{{job.phoneNo}}</td>
+                                    <td>{{job.email}}</td>
+                                    <td>{{job.yearsofExp}}</td>
+                                    <td>{{job.relavantExp}}</td>
+                                    <td>
+                                        <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.offerLetter)">
+                                        <!-- <input type="file" id="test" name="test" accept=".pdf" (click)="GetOfferLetter(job.offerLetter)"> -->
+                                    </td>
+                                    <!-- <td>
+                                        <span *ngIf="job.offerAcceptreject=='1'">Joined</span>
+                                        <span *ngIf="job.offerAcceptreject=='2'">Dropped</span>
+                                    </td> -->
+                                    <!-- <td>
+                                        <textarea class="form-control" row="4" [(ngModel)]="job.offerComments" name="job.offerComments" placeholder="Comments"></textarea>
+                                    </td> -->
+                                    <!-- <td  *ngIf="roleid=='4' && roleid!='6'">
+                                        <button class="btn btn-primary Joined" *ngIf="job.offerAcceptreject=='0'"
+                                            (click)="Accept(job.id,job.offerComments)">Joined</button><br><br>
+                                        <button class="btn btn-danger" *ngIf="job.offerAcceptreject=='0'"
+                                            (click)="Reject(job.id,job.offerComments)">Dropped</button>   
+                                    </td> -->
+                           
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                 
+       
+</div>

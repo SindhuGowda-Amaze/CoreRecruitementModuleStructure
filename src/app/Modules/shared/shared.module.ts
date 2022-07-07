@@ -9,8 +9,7 @@ import { SupportTicketsComponent } from './support-tickets/support-tickets.compo
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -20,7 +19,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     HelpComponent,
     SupportTicketDashboardComponent,
     SupportTicketsComponent,
-   
+  
   
   ],
   imports: [
@@ -29,13 +28,15 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     Ng2SearchPipeModule,
     FormsModule,
     NgxDropzoneModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports: [
     Ng2SearchPipeModule,
     FormsModule,
     NgxDropzoneModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
    
 
   ]
