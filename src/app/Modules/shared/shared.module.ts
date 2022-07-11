@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
 import { HelpComponent } from './help/help.component';
@@ -12,10 +11,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxFullCalendarModule } from 'ngx-fullcalendar';
- 
-
-
-
 
 
 @NgModule({
@@ -24,7 +19,7 @@ import { NgxFullCalendarModule } from 'ngx-fullcalendar';
     HelpComponent,
     SupportTicketDashboardComponent,
     SupportTicketsComponent,
-   
+  
   
   ],
   imports: [
@@ -46,9 +41,7 @@ import { NgxFullCalendarModule } from 'ngx-fullcalendar';
     NgxPaginationModule,
     NgMultiSelectDropDownModule,
     NgxFullCalendarModule
-  
    
-
   ]
 
 

@@ -159,7 +159,7 @@ export class SidebarComponent implements OnInit {
     }
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
-      this.router.navigate(['/Dashboard']);
+      this.router.navigate(['hiringmanager/Dashboard']);
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
@@ -367,7 +367,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 80;
       localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
-      this.router.navigate(['/ScheduledInterviews']);
+      this.router.navigate(['InterviewPanel/ScheduledInterviews']);
     }
 
   }
@@ -386,7 +386,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 82;
       localStorage.setItem('Pagename', 'REJECTED CANDIDATES')
-      this.router.navigate(['/RejectedCadidates']);
+      this.router.navigate(['InterviewPanel/RejectedCadidates']);
     }
 
   }
@@ -446,7 +446,7 @@ export class SidebarComponent implements OnInit {
 
   public Appliedcandidates() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
-    this.router.navigate(['/AppliedCandidates']);
+    this.router.navigate(['hiringmanager/AppliedCandidates']);
     this.applied = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -625,7 +625,7 @@ export class SidebarComponent implements OnInit {
 
   public Dropped() {
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES')
-    this.router.navigate(['/DroppedCandidates']);
+    this.router.navigate(['hiringmanager/DroppedCandidates']);
     this.dropped = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -690,7 +690,7 @@ export class SidebarComponent implements OnInit {
   }
   public AppliedReport() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES REPORT')
-    this.router.navigate(['/AppliedCandidatesReports']);
+    this.router.navigate(['report/AppliedCandidatesReports']);
     this.appliedreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -719,7 +719,7 @@ export class SidebarComponent implements OnInit {
 
   public Shortlistedreport() {
     localStorage.setItem('Pagename', 'SHORTLISTED CANDIDATES REPORT')
-    this.router.navigate(['/ShortlistedCandidatesReports']);
+    this.router.navigate(['report/ShortlistedCandidatesReports']);
 
     this.shortlistedreport = true
     this.Jobrecruit = false
@@ -778,7 +778,7 @@ export class SidebarComponent implements OnInit {
 
   public SelectedReport() {
     localStorage.setItem('Pagename', 'SELECTED CANDIDATES REPORT')
-    this.router.navigate(['/SelectedCandidatesReports']);
+    this.router.navigate(['report/SelectedCandidatesReports']);
     this.selectedreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -807,7 +807,7 @@ export class SidebarComponent implements OnInit {
 
   public OfferedReport() {
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-    this.router.navigate(['/OfferedCandidatesReports']);
+    this.router.navigate(['report/OfferedCandidatesReports']);
     this.offeredreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -836,7 +836,7 @@ export class SidebarComponent implements OnInit {
 
   public JobRecruitReport() {
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-    this.router.navigate(['/JobRecruitementReport']);
+    this.router.navigate(['report/JobRecruitementReport']);
     this.Jobrecruitreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -865,7 +865,7 @@ export class SidebarComponent implements OnInit {
 
   public JoinedReport() {
     localStorage.setItem('Pagename', 'JOINED CANDIDATES REPORT')
-    this.router.navigate(['/JoinedCandidatesReport']);
+    this.router.navigate(['report/JoinedCandidatesReport']);
     this.joinedreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -894,7 +894,7 @@ export class SidebarComponent implements OnInit {
 
   public DroppedReport() {
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES REPORT')
-    this.router.navigate(['/DroppedCandiadtesReports']);
+    this.router.navigate(['report/DroppedCandiadtesReports']);
     this.droppedreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false

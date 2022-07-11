@@ -1,0 +1,33 @@
+.export{
+    border-radius: 10px;
+    background-color: #3247D5;
+  
+    color: #fff;
+    width: 100%;
+   border-radius: 5px;
+   
+}
+
+
+.hrline{
+   margin-top: 0px;
+}
+
+
+.Count{
+  font-size: 20px !important;
+  font-weight: bold;
+  float: right;
+  padding-right: 10px;;
+}
+
+.head{
+    background-color:#02CFFF;
+    color:white;
+    font-family: "DIN Bold";
+}
+
+.filterclass{
+  font-size: 15px;
+  color:#0C275A;
+}

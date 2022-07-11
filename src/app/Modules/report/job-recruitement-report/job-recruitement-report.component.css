@@ -1,0 +1,52 @@
+.export{
+    border-radius: 10px;
+    background-color: #3247D5;
+ 
+    color: #fff;
+    width: 100%;
+   border-radius: 5px;
+   
+}
+
+
+.hrline{
+   margin-top: 0px;
+}
+.Button {
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3247D5;
+    color: white;
+    width: 100%;
+  }
+
+.head{
+    background-color:#02CFFF ;
+    color:white;
+}
+
+.Count{
+  
+    font-size: 20px !important;
+
+    font-weight: bold;
+    float: right;
+    padding-right: 10px;;
+  }
+
+/* .heading{
+    background-color: #e4e5e6;
+    color:#404040;
+    font-family: "DIN Bold";
+} */
+/* table{
+    border-collapse: collapse;
+    width: 100%;
+} */
+
+.filterclass{
+    font-size: 15px;
+  
+    color:#0C275A;
+}
