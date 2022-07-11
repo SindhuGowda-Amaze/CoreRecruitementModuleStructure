@@ -22,6 +22,7 @@ export class VendorStaffDashboardComponent implements OnInit {
   count: any;
   loader: any;
   search: any;
+  Job:any;
   currentUrl: any
   Job:any
   ngOnInit(): void {
