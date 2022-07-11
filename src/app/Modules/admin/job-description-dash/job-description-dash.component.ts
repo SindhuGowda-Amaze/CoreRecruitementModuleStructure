@@ -16,6 +16,7 @@ export class JobDescriptionDashComponent implements OnInit {
   staff_Code:any;
   signature:any;
   role_Id:any;
+  Job:any;
   staffdetails:any;
   count:any;
   loader:any;

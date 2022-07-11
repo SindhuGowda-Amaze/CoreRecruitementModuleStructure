@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-joined-candidates-report',
@@ -7,14 +8,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./joined-candidates-report.component.css']
 })
 export class JoinedCandidatesReportComponent implements OnInit {
-
-  constructor(private RecruitementService: RecruitementService){ }
-
- 
-  refresh(){
-    location.reload();
-  }
-
+  
   OfferComments: any;
   joblist: any;
   count: any;
@@ -26,34 +20,79 @@ export class JoinedCandidatesReportComponent implements OnInit {
   count1: any = 5;
   roleid:any;
   username:any;
+  currentUrl: any;
+  hiringManager:any;
+
+  constructor(private RecruitementService: RecruitementService){ }
+
+ 
+  refresh(){
+    location.reload();
+  }
+
+
   ngOnInit(): void {
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
     this.GetCandidateReg()
+    this.GetClientStaff()
 
-    
-    this.RecruitementService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
   }
 
-  public GetCandidateReg() {
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      if(this.roleid==2){
-        this.joblist = data.filter(x => x.offerAcceptreject == 1 && x.hiringManager==this.username);
-        this.jobListCopy=this.joblist
+  GetClientStaff(){
+  this.RecruitementService.GetClientStaff()
+  .subscribe({
+    next: data => {
+      debugger
+      this.hrlist = data;
+    }, error: (err) => {
+      Swal.fire('Issue in GetClientStaff');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
       }
-      else{
-        this.joblist = data.filter(x => x.offerAcceptreject == 1);
-        this.jobListCopy=this.joblist
-      }
- 
-      this.loader=false;
-      this.count = this.joblist.length;
-    })
+      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
 
+  public GetCandidateReg() {
+    this.RecruitementService.GetCandidateRegistration()
+    .subscribe({
+      next: data => {
+        if(this.roleid==2){
+          this.joblist = data.filter(x => x.offerAcceptreject == 1 && x.hiringManager==this.username);
+          this.jobListCopy=this.joblist
+        }
+        else{
+          this.joblist = data.filter(x => x.offerAcceptreject == 1);
+          this.jobListCopy=this.joblist
+        }
+   
+        this.loader=false;
+        this.count = this.joblist.length;
+      }, error: (err) => {
+        Swal.fire('Issue in GetCandidateRegistration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
   }
 
   public Filterjobs() {
@@ -82,19 +121,34 @@ export class JoinedCandidatesReportComponent implements OnInit {
     this.loader = false;
   }
   
-  hiringManager:any;
+ 
   public GetJobRequirements(){
   
   
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      debugger
+    this.RecruitementService.GetCandidateRegistration()
+    .subscribe({
+      next: data => {
+        debugger
      
       this.joblist = data.filter(x => x.offerAcceptreject == 1 && x.hiringManager == this.hiringManager);
      
       this.count = this.joblist.length;
    
-  
+      }, error: (err) => {
+        Swal.fire('Issue in GetCandidateRegistration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+  
   
   }
 }

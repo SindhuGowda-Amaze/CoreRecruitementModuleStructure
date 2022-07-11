@@ -17,14 +17,32 @@
                     <div class="row">
                         <div class="col-lg-1" style="color: #0C275A; font-family: 'Poppins'; 
                         margin-left: 15px; margin-top: 5px;">
-                            <p>Filter By</p>
+                            <p style="margin-top: 23px;">Filter By</p>
                         </div>
-                        <div class="col-lg-4" style="font-family: 'Poppins';">
+                        <div class="col-lg-2" style="font-family: 'Poppins';" style="margin-top: 23px;">
                             <input class="form-control" type="search" placeholder="Search for Client Name"
                                 [(ngModel)]="search">
                         </div>
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2"><span>Start Date*</span>
+                            <input class="form-control" type="date">
+                        </div>
+                        <div class="col-lg-2"><span>End Date*</span>
+                            <input class="form-control" type="date">
+
+                        </div>
+                        <div class="col-lg-2" style="margin-top: 23px;">
+                                <select class="form-control" id="" name="Job" [(ngModel)]="Job">
+                                    <option value="">JobTitle</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+
+                        </div>
+                        <div class="col-lg-2" style="margin-top: 23px;">
                             <p class="Count">Count: {{count}}</p>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./client-staff-dashboard.component.css']
 })
 export class ClientStaffDashboardComponent implements OnInit {
-
+  Job:any;
   count: any;
   search:any;
   loader:any;

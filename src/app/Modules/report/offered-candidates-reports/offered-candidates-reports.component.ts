@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-offered-candidates-reports',
@@ -7,8 +8,6 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./offered-candidates-reports.component.css']
 })
 export class OfferedCandidatesReportsComponent implements OnInit {
-
-  constructor(private RecruitementService: RecruitementService) { }
   OfferComments: any;
   joblist: any;
   count: any;
@@ -17,41 +16,102 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   roleid:any;
   hrlist:any;
   username:any;
+  currentUrl: any;
+  constructor(private RecruitementService: RecruitementService) { }
+
   ngOnInit(): void {
     this.hiringManager="";
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
-    this.RecruitementService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
-
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      debugger
-      this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
- 
-      this.count = this.joblist.length;
+    this.GetCandidateRegistration();
+    this.GetClientStaff()
+  
+  }
+  GetClientStaff(){ this.RecruitementService.GetClientStaff()
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.hrlist = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetClientStaff');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
+ 
+  GetCandidateRegistration(){  this.RecruitementService.GetCandidateRegistration()
+    
+    .subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+    
+        this.count = this.joblist.length;
+      }, error: (err) => {
+        Swal.fire('Issue in GetCandidateRegistration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+}
+
+
+
   refresh(){
     location.reload();
   }
   public GetCandidateReg() {
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      if(this.roleid==2){
-        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 && x.hiringManager==this.username);
+    this.RecruitementService.GetCandidateRegistration()
+    
+    .subscribe({
+      next: data => {
+        if(this.roleid==2){
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 && x.hiringManager==this.username);
+        }
+        else
+        {
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+        // this.jobListCopy = this.joblist
+        }
+  
+       
+        
+        this.loader=false;
+        this.count = this.joblist.length;
+      }, error: (err) => {
+        Swal.fire('Issue in GetCandidateRegistration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      else
-      {
-        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-      // this.jobListCopy = this.joblist
-      }
-
-     
-      
-      this.loader=false;
-      this.count = this.joblist.length;
     })
-
     
   }
 
@@ -79,15 +139,29 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   public GetJobRequirements(){
   
   
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      debugger
+    this.RecruitementService.GetCandidateRegistration()
+    .subscribe({
+      next: data => {
+        debugger
      
       this.joblist = data.filter(x => (x.offered == 1 && x.offerAcceptreject == 0) && x.hiringManager == this.hiringManager);
      
       this.count = this.joblist.length;
-   
-  
+      }, error: (err) => {
+        Swal.fire('Issue in GetCandidateRegistration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   
   }
 }
