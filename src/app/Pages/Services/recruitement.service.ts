@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class RecruitementService {
+ 
 
  
 
@@ -470,5 +471,16 @@ export class RecruitementService {
    this.url = this.host + '/Vendor/UpdateCanditateBudgetStatus';
    return this.http.post(this.url, data);
  }
+
+
+ public InsertExceptionLogs(data: any) {
+
+  debugger;
+
+  this.url = this.host + '/Master/InsertExceptionLogs';
+
+  return this.http.post(this.url, data);
+
+}
 
 }

@@ -25,7 +25,9 @@ export class JobDescriptionFormComponent implements OnInit {
   Actions: any;
   id: any;
   Description:any;
+  currentUrl:any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.role_Id="";
     this.vendor_Name="";
     this.GetRoleType();
@@ -41,17 +43,29 @@ export class JobDescriptionFormComponent implements OnInit {
 
   }
 
-
   GetVendor_Staff() {
-    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(
-      data => {
-        debugger
-        this.result = data;
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+  next: data => {
+    debugger
+    this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
         this.Description = this.result[0].description;
         this.role_Id = this.result[0].role;
+  }, error: (err) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
 
-      })
   }
   Save() {
     debugger;
@@ -61,30 +75,71 @@ export class JobDescriptionFormComponent implements OnInit {
       "Description": this.Description,
      
     };
-    this.RecruitmentServiceService.InsertJobDescriptionMaster(json).subscribe(
+    this.RecruitmentServiceService.InsertJobDescriptionMaster(json).subscribe({
+  next: data => {
+    debugger
+    let id = data;
+    Swal.fire("Successfully saved!!")
+    location.href = "#/JobDescriptionDash"
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
-        let id = data;
-        Swal.fire("Successfully saved!!")
-        location.href = "#/JobDescriptionDash"
-      })
+      },
+    )
+  }
+})
+
   }
   vendordetails: any;
   public GetVendor_Dasboard() {
-    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe(data => {
-      this.vendordetails = data;
-
-    })
+    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+  next: data => {
+    debugger
+    this.vendordetails = data;
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
 
   }
   roleList:any;
   public GetRoleType() {
     debugger
-    this.RecruitmentServiceService.GetRoleType().subscribe(
+    this.RecruitmentServiceService.GetRoleType().subscribe({
+  next: data => {
+    debugger
+    this.roleList = data
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire(' Getting Role Type');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
-      this.roleList = data
-    
-    })
+        debugger
+      },
+    )
+  }
+})
 
   }
 
@@ -95,15 +150,27 @@ export class JobDescriptionFormComponent implements OnInit {
       "Role": this.role_Id,
       "Description": this.Description,
     };
-    this.RecruitmentServiceService.UpdateJobDescriptionMaster(json).subscribe(
-      data => {
-        debugger
-        Swal.fire("Updated Sucessfully");
+    this.RecruitmentServiceService.UpdateJobDescriptionMaster(json).subscribe({
+  next: data => {
+    debugger
+    Swal.fire("Updated Sucessfully");
         let id = data;
         location.href = "#/JobDescriptionDash";
 
-      }
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
     )
+  }
+})
   }
   cancel(){
     location.href = "#/JobDescriptionDash";

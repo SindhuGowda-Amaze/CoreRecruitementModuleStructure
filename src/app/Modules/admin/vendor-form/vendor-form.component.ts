@@ -19,7 +19,9 @@ export class VendorFormComponent implements OnInit {
   address: any;
   result: any;
   id: any;
+  currentUrl:any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
@@ -29,8 +31,6 @@ export class VendorFormComponent implements OnInit {
     })
 
   }
-
-
   Company_logo: any;
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
@@ -47,14 +47,13 @@ export class VendorFormComponent implements OnInit {
   }
   public uploadattachments() {
     debugger
-    this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
+    this.RecruitmentServiceService.UploadImages(this.files)
+    .subscribe(res => {
       debugger
       this.Company_logo = res;
       alert("ATTACHMENT UPLOADED");
     })
   }
-
-
   Save() {
     debugger
     if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined)
@@ -69,20 +68,32 @@ else{
     "Email_ID": this.email_ID,
     "Address": this.address
   };
-  this.RecruitmentServiceService.InsertVendor_Dasboard(json).subscribe(
-    data => {
-      debugger
-      let id = data;
+  this.RecruitmentServiceService.InsertVendor_Dasboard(json).subscribe({
+      next: data => {
+        debugger
+        let id = data;
       Swal.fire("Saved Sucessfully");
       location.href = "#/VendorDashboard";
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
-}
-   
+} 
   }
 
   GetVendor_Dasboard() {
-    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe(
-      data => {
+    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+      next: data => {
         debugger
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
@@ -91,9 +102,27 @@ else{
         this.phone_Number = this.result[0].phone_Number;
         this.email_ID = this.result[0].email_ID;
         this.address = this.result[0].address;
-
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Getting vendor Dashboard');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+
+
+
+
+
+
+
   }
 
   Update() {
@@ -107,15 +136,27 @@ else{
       "Address": this.address
     };
 
-    this.RecruitmentServiceService.UpdateVendor_Dasboard(json).subscribe(
-      data => {
-        debugger
-        let result = data;
+    this.RecruitmentServiceService.UpdateVendor_Dasboard(json).subscribe({
+        next: data => {
+          debugger
+          let result = data;
         Swal.fire("Update Sucessfully");
         location.href = "#/VendorDashboard";
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
-
 
   cancel() {
     location.href = "#/VendorDashboard";

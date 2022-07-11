@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { NgxFullCalendarModule } from 'ngx-fullcalendar';
 
 
 @NgModule({
@@ -31,7 +30,7 @@ import { NgxFullCalendarModule } from 'ngx-fullcalendar';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgMultiSelectDropDownModule,
-    NgxFullCalendarModule
+
   ],
   exports: [
     Ng2SearchPipeModule,
@@ -40,7 +39,6 @@ import { NgxFullCalendarModule } from 'ngx-fullcalendar';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgMultiSelectDropDownModule,
-    NgxFullCalendarModule
    
   ]
 

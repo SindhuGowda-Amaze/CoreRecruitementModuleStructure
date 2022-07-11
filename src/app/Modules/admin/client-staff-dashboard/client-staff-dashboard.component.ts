@@ -13,10 +13,12 @@ export class ClientStaffDashboardComponent implements OnInit {
   count: any;
   search:any;
   loader:any;
+  currentUrl: any;
 
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
    this.GetClientStaff();
    this.loader=true;
   }
@@ -25,12 +27,26 @@ export class ClientStaffDashboardComponent implements OnInit {
   
   public GetClientStaff() {
     debugger
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data=>{
-      debugger
-      this.ClientStaffList=data ;
+    this.RecruitmentServiceService.GetClientStaff().subscribe({
+      next: data => {
+        debugger
+        this.ClientStaffList=data ;
       this.loader=false;
       this.count = this.ClientStaffList.length;
-     })
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   edit(details: any){
@@ -53,18 +69,28 @@ export class ClientStaffDashboardComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.RecruitmentServiceService.DeleteClientStaff(details.id).subscribe(
-          data => {
-            debugger        
-         Swal.fire('Deleted Successfully')
-         location.reload();
+        this.RecruitmentServiceService.DeleteClientStaff(details.id).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            location.reload();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
       }
     })
   }
-
-
-
 
   public DisableStaff(id: any) {
     debugger
@@ -81,13 +107,25 @@ export class ClientStaffDashboardComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.RecruitmentServiceService.EnableClientStaff(eb).subscribe(
-          data => {
+        this.RecruitmentServiceService.EnableClientStaff(eb).subscribe({
+          next: data => {
             debugger
             Swal.fire('Disable successfully.');
             location.reload();
-          },
-        )
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
       }
     })
   }
@@ -107,13 +145,25 @@ export class ClientStaffDashboardComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.RecruitmentServiceService.EnableClientStaff(eb).subscribe(
-          data => {
+        this.RecruitmentServiceService.EnableClientStaff(eb).subscribe({
+          next: data => {
             debugger
             Swal.fire('Updated successfully.');
             location.reload();
-          },
-        )
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
       }
     })
   }
