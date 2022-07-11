@@ -23,6 +23,7 @@ export class VendorStaffDashboardComponent implements OnInit {
   loader: any;
   search: any;
   currentUrl: any
+  Job:any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetVendor_Staff();
