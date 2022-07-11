@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-dropped-candiadtes-reports',
@@ -7,13 +8,6 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./dropped-candiadtes-reports.component.css']
 })
 export class DroppedCandiadtesReportsComponent implements OnInit {
-
-  constructor(private RecruitementService: RecruitementService) { }
-
-
-  refresh(){
-    location.reload();
-  }
 
   OfferComments: any;
   joblist: any;
@@ -24,31 +18,79 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
   hrlist:any;
   hiringManager:any;
   username:any;
+  currentUrl: any;
+  constructor(private RecruitementService: RecruitementService) { }
+
+
+  refresh(){
+    location.reload();
+  }
+
   ngOnInit(): void {
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
-    
     this.hiringManager="";
-    this.RecruitementService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
+    this.GetClientStaff();
     this.GetCandidateReg();
   }
 
 
+
+  GetClientStaff(){
+  this.RecruitementService.GetClientStaff()
+  
+.subscribe({
+  next: data => {
+    this.hrlist = data;
+  }, error: (err) => {
+    Swal.fire('Issue in GetClientStaff');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+  }
+
+
+
   public GetCandidateReg() {
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      if(this.roleid==2){
-        this.joblist = data.filter(x => x.offerAcceptreject == 2 && x.hiringManager==this.username);
-      }
-      else{
-        this.joblist = data.filter(x => x.offerAcceptreject == 2);
-      }
-     
-      this.loader=false;
-      this.count = this.joblist.length;
-    })
+    this.RecruitementService.GetCandidateRegistration()
+    
+.subscribe({
+  next: data => {
+    if(this.roleid==2){
+      this.joblist = data.filter(x => x.offerAcceptreject == 2 && x.hiringManager==this.username);
+    }
+    else{
+      this.joblist = data.filter(x => x.offerAcceptreject == 2);
+    }
+   
+    this.loader=false;
+    this.count = this.joblist.length;
+   
+  }, error: (err) => {
+    Swal.fire('Issue in GetCandidateRegistration ');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+    
 
   }
 
@@ -75,18 +117,30 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
   public GetJobRequirements(){
   
   
-    this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-      debugger
+    this.RecruitementService.GetCandidateRegistration()
+    
+.subscribe({
+  next: data => {
+    debugger
      
       this.joblist = data.filter(x => x.offerAcceptreject == 2  && x.hiringManager == this.hiringManager);
      
       this.count = this.joblist.length;
    
-  
-    })
-  
-   
-  
-  
+  }, error: (err) => {
+    Swal.fire('Issue in GetCandidateRegistration');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+
   }
   }

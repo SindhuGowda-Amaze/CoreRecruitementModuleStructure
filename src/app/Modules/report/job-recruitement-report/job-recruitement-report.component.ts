@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-job-recruitement-report',
@@ -9,14 +10,6 @@ import * as XLSX from 'xlsx';
 export class JobRecruitementReportComponent implements OnInit {
   ID: any;
   show: any;
-
-  constructor(private RecruitementService: RecruitementService) { }
-
-
-  refresh(){
-    location.reload();
-  }
-
   joblist: any;
   search: any;
   count: any;
@@ -27,17 +20,63 @@ export class JobRecruitementReportComponent implements OnInit {
   count1: any = 5;
   roleid:any;
   username:any;
+  description:any;
+  empcomments: any;
+  skills: any;
+  joblist1:any;
+  currentUrl: any;
+  constructor(private RecruitementService: RecruitementService) { }
+
+
+  refresh(){
+    location.reload();
+  }
+
+ 
   ngOnInit(): void {
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName'); 
     this.loader=true;
     this.hiringManager="";
-    this.RecruitementService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
+ 
+   this. GetClientStaff()
+    this.GetJob_Requirements()
+   
+  }
+ 
+ 
+  GetClientStaff()
+  {
+    
+    this.RecruitementService.GetClientStaff()
+    .subscribe({
+      next: data => {
+        debugger
+        this.hrlist = data;
+      }, error: (err) => {
+        Swal.fire('Issue in GetClientStaff');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+    
 
-    this.RecruitementService.GetJob_Requirements().subscribe(data => {
-
+}
+GetJob_Requirements()
+{
+  this.RecruitementService.GetJob_Requirements()
+  
+  .subscribe({
+    next: data => {
+      debugger
       if(this.roleid==2){
         this.joblist = data.filter(x=>x.hiringManager==this.username);
         this.loader=false;
@@ -49,11 +88,23 @@ export class JobRecruitementReportComponent implements OnInit {
         this.loader=false;
         this.count = this.joblist.length;
       }
+    }, error: (err) => {
+      Swal.fire('Issue in GetJob_Requirements');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
 
-      
-    })
-  }
-  description:any;  
+}
+
   GetId(id: any) {
     this.ID = id
     debugger
@@ -61,12 +112,12 @@ export class JobRecruitementReportComponent implements OnInit {
     this.show=1;
   }
 
-  empcomments: any;
+;
   public GEtemployeecomments(job: any) {
     this.description = job.jobDescription
   }
 
-  skills: any;
+ 
   public GEtskills(job: any) {
     this.skills = job.skills
   }
@@ -90,18 +141,33 @@ export class JobRecruitementReportComponent implements OnInit {
   }
 
 
-  joblist1:any;
+ 
   public GetJobRequirements(){
   
   
-    this.RecruitementService.GetJob_Requirements().subscribe(data => {
-      debugger
+    this.RecruitementService.GetJob_Requirements()
+    
+    .subscribe({
+      next: data => {
+        debugger
      
-      this.joblist = data.filter(x => x.hiringManager == this.hiringManager);
+        this.joblist = data.filter(x => x.hiringManager == this.hiringManager);
+       
+        this.count = this.joblist.length;
      
-      this.count = this.joblist.length;
-   
-  
+      }, error: (err) => {
+        Swal.fire('Issue in GetJob_Requirements');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
 
 }

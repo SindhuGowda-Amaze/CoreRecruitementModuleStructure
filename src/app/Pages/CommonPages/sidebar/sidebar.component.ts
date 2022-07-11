@@ -7,12 +7,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  client: any;
+  scheduled: any;
+  selected: any;
+  offered: any;
+  joined: any;
+  dropped: any;
+  clientstaff: any;
+  recruitstaff: any;
+  vendo: any;
+  ManpowerPlanning1: any;
+  vendorstaf: any;
+  home: any;
+  Vendorrecruit: any;
   company_name: any;
   temp: any
   roleid: any;
   role: any;
   UserName: any;
+  active: any;
+  Jobrecruit: any
+  applied: any
+  shortlist: any
+  vendorreport: any
+  appliedreport: any
+  shortlistedreport: any
+  scheduledreport: any
+  selectedreport: any
+  offeredreport: any
+  Jobrecruitreport: any
+  joinedreport: any
+  droppedreport: any
   constructor(public router: Router) { }
 
   ngOnInit(): void {
@@ -54,10 +79,10 @@ export class SidebarComponent implements OnInit {
     evt.currentTarget.className += " active";
   }
 
-  client: any
+  
   public Client() {
     localStorage.setItem('Pagename', 'CLIENT')
-    this.router.navigate(['/admin/Clientdashboard']);
+    this.router.navigate(['admin/Clientdashboard']);
     this.client = true
     this.home = false
     this.clientstaff = false
@@ -67,7 +92,7 @@ export class SidebarComponent implements OnInit {
 
 
   }
-  clientstaff: any
+
   public Clientstaff() {
     localStorage.setItem('Pagename', 'CLIENT STAFF')
     this.router.navigate(['admin/ClientStaffDashBoard']);
@@ -78,7 +103,7 @@ export class SidebarComponent implements OnInit {
     this.vendorstaf = false
     this.vendo = false
   }
-  recruitstaff: any
+  
   public Recruitstaff() {
     localStorage.setItem('Pagename', 'RECRUITER')
     this.router.navigate(['admin/RecruiterStaffDashboard']);
@@ -89,7 +114,7 @@ export class SidebarComponent implements OnInit {
     this.vendorstaf = false
     this.vendo = false
   }
-  vendo: any
+  
   public vendor() {
     localStorage.setItem('Pagename', 'VENDOR')
     this.router.navigate(['admin/VendorDashboard']);
@@ -100,7 +125,7 @@ export class SidebarComponent implements OnInit {
     this.recruitstaff = false
     this.vendorstaf = false
   }
-  ManpowerPlanning1: any
+ 
   public ManpowerPlanning() {
     localStorage.setItem('Pagename', 'Manpower Planning')
     this.router.navigate(['/ManpowerPlanningandBudgetingdash']);
@@ -113,8 +138,6 @@ export class SidebarComponent implements OnInit {
     this.ManpowerPlanning1 = true;
   }
 
-
-  vendorstaf: any
   public vendorstaff() {
     localStorage.setItem('Pagename', 'VENDOR STAFF')
     this.router.navigate(['admin/VendorStaffDashboard']);
@@ -126,8 +149,7 @@ export class SidebarComponent implements OnInit {
     this.recruitstaff = false
   }
 
-  home: any
-  Vendorrecruit: any
+
   public admin() {
     debugger
     if (this.roleid == '1') {
@@ -136,7 +158,6 @@ export class SidebarComponent implements OnInit {
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
-
       this.applied = false
       this.shortlist = false
       this.scheduled = false
@@ -190,7 +211,6 @@ export class SidebarComponent implements OnInit {
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
-
       this.applied = false
       this.shortlist = false
       this.scheduled = false
@@ -217,7 +237,6 @@ export class SidebarComponent implements OnInit {
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
-
       this.applied = false
       this.shortlist = false
       this.scheduled = false
@@ -244,7 +263,6 @@ export class SidebarComponent implements OnInit {
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
-
       this.applied = false
       this.shortlist = false
       this.scheduled = false
@@ -320,9 +338,7 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  Jobrecruit: any
-  applied: any
-  shortlist: any
+ 
   public JobRecruitment() {
     this.Jobrecruit = true
     this.Vendorrecruit = false
@@ -347,7 +363,7 @@ export class SidebarComponent implements OnInit {
     this.joinedreport = false
     this.droppedreport = false
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-    this.router.navigate(['admin/JobRecruitements']);
+    this.router.navigate(['hiringmanager/JobRecruitements']);
 
 
 
@@ -362,7 +378,6 @@ export class SidebarComponent implements OnInit {
 
   // }
 
-  active: any;
   public ScheduledInterviews() {
     if (this.roleid == '5') {
       this.active = 80;
@@ -377,7 +392,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 81;
       localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
-      this.router.navigate(['/SelectedCandidates']);
+      this.router.navigate(['hiringmanager/SelectedCandidates']);
     }
 
   }
@@ -392,9 +407,6 @@ export class SidebarComponent implements OnInit {
   }
 
 
-
-
-
   // public ScheduledInterviewCalender(){
   //   if(this.roleid=='5'){
   //     this.active = 83;
@@ -403,8 +415,6 @@ export class SidebarComponent implements OnInit {
   //   }
 
   // }
-
-
 
   public JOBAPPROVAL(){
     localStorage.setItem('Pagename', 'Job Approval')
@@ -440,7 +450,7 @@ export class SidebarComponent implements OnInit {
     this.joinedreport=false
     this.droppedreport=false
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-    this.router.navigate(['/VendorJobOpenings']);
+    this.router.navigate(['recruiter/VendorJobOpenings']);
 
   }
 
@@ -502,11 +512,7 @@ export class SidebarComponent implements OnInit {
     this.droppedreport = false
   }
 
-  scheduled: any
-  selected: any
-  offered: any
-  joined: any
-  dropped: any
+
   public Scheduled() {
     localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
     this.router.navigate(['/ScheduledInterviews']);
@@ -539,7 +545,7 @@ export class SidebarComponent implements OnInit {
 
   public Selected() {
     localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
-    this.router.navigate(['/SelectedCandidates']);
+    this.router.navigate(['hiringmanager/SelectedCandidates']);
     this.selected = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -625,7 +631,7 @@ export class SidebarComponent implements OnInit {
 
   public Dropped() {
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES')
-    this.router.navigate(['hiringmanager/DroppedCandidates']);
+    this.router.navigate(['/DroppedCandidates']);
     this.dropped = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -651,15 +657,7 @@ export class SidebarComponent implements OnInit {
     this.droppedreport = false
 
   }
-  vendorreport: any
-  appliedreport: any
-  shortlistedreport: any
-  scheduledreport: any
-  selectedreport: any
-  offeredreport: any
-  Jobrecruitreport: any
-  joinedreport: any
-  droppedreport: any
+
   public VendorReport() {
     localStorage.setItem('Pagename', 'VENDOR REPORT')
     this.router.navigate(['/VendorJobOpenings']);

@@ -21,6 +21,7 @@ export class VendorStaffDashboardComponent implements OnInit {
   staffdetails:any;
   count:any;
   loader:any;
+  Job:any;
 search:any;
   ngOnInit(): void {
   this.GetVendor_Staff(); 
