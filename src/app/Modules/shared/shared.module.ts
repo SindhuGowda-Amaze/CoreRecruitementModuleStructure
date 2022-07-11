@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
 import { HelpComponent } from './help/help.component';
@@ -9,8 +8,9 @@ import { SupportTicketsComponent } from './support-tickets/support-tickets.compo
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import {NgxPaginationModule} from 'ngx-pagination';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxFullCalendarModule } from 'ngx-fullcalendar';
 
 
 @NgModule({
@@ -29,16 +29,19 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     NgxDropzoneModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule,
+    NgxFullCalendarModule
   ],
   exports: [
     Ng2SearchPipeModule,
     FormsModule,
     NgxDropzoneModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule,
+    NgxFullCalendarModule
    
-
   ]
 
 

@@ -1,0 +1,116 @@
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="container-fluid">
+  <br>
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="Heading"> APPLIED CANDIDATES DASHBOARD</p>
+          <!-- <hr class="HrLine"> -->
+        </div>
+      </div> <br>
+      <div class="card">
+        <div class="row FilterClass">
+          <div class="col-lg-1" style="font-size: 15px;">
+            <p>Filter By</p>
+          </div>
+          <div class="col-lg-3"  *ngIf="roleid!=2 && roleid!=3">
+            <select   class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
+                <option value="">Select Hiring Manager</option>
+                <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+              </select>
+        </div>
+          <div class="col-lg-2"  *ngIf="roleid==3 ||roleid==2">
+            <select name="Select" class="form-control poppinns" [(ngModel)]="searchbyctc">
+              <option value="">Select CTC</option>
+              <option *ngFor="let job of ctclist" value="{{job.ctc}}">{{job.ctc}}</option>
+            </select>
+          </div>
+          <div class="col-lg-2">
+            <select name="Select" class="form-control poppinns form-select" (change)="changeoption()"  [(ngModel)]="searchbynotice">
+              <option value="">Select Notice Period</option>
+              <option  *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">{{job.noticePeriod}}</option>
+              <!-- <option value="15days">15days</option>
+              <option value="30days">30days</option>
+              <option value="90days">90days</option> -->
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <input class="form-control poppinns" placeholder="Search for Candidate Name..." [(ngModel)]="search">
+          </div>
+          <div *ngIf="roleid==2" class="col-lg-1"></div>
+          
+          <div class="col-lg-2">
+            <p class="Count">Count: {{count}}</p>
+          </div>
+        </div> 
+      </div><br><br>
+      <div class="row">
+        <div class="col-lg-12"  style="height: 470px; overflow-y: scroll;">
+          <table class="table tablebordered" *ngIf="(joblist | filter: search).length > 0; else noResults">
+            <thead>
+              <tr>
+                <!-- <th>Vendor</th> -->
+                <th>Job Reference ID</th>
+                <th *ngIf=" roleid!='6' ">Source</th>
+                <th>Job Title</th>
+                <th>Candidate Name</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                 <th  *ngIf=" roleid=='2' || roleid=='3' ">Current CTC</th> 
+                 <th  *ngIf=" roleid=='2' || roleid=='3' ">Expected CTC</th> 
+                 <th  *ngIf=" roleid!='2' ">Hirirng Manager</th>
+                 <th>Notice Period</th> 
+                <th>Total Years of Experience</th>
+                <th>Relevant Experience</th>
+                <th>City</th>
+                <th>Resume</th>
+                <th>Comments</th>
+                <th *ngIf="roleid=='2' && roleid!='6'">Actions</th>
+              </tr>
+              <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }|filter:search|filter:searchbyctc" >
+                <td style="color:#0C275A">{{job.jobRefernceID}}</td>
+                <td *ngIf=" roleid!='6' ">{{job.source}}</td>
+                <td  style="color:#0C275A">{{job.jobTitle}}</td>
+                <td  style="color:#0C275A">{{job.candidateName}}</td>
+                <td  style="color:#0C275A">{{job.phoneNo}}</td>
+                <td  style="color:#0C275A">{{job.email}}</td>
+                <td  style="color:#0C275A"  *ngIf=" roleid=='2'|| roleid=='3'">{{job.ctc}}</td> 
+                <td  style="color:#0C275A"  *ngIf=" roleid=='2'|| roleid=='3'">{{job.expectedctc}}</td> 
+                <td  *ngIf=" roleid!='2' ">{{job.hiringManager}}</td>
+                <td  style="color:#0C275A">{{job.noticePeriod}}</td>
+                <td  style="color:#0C275A">{{job.yearsofExp}}</td>
+                <td  style="color:#0C275A">{{job.relavantExp}}</td>
+                <td  style="color:#0C275A">{{job.city}}</td>
+                <td>
+                  <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)">
+                </td>
+                <!-- <td>{{job.comments}}</td> -->
+                <td>
+                  <p *ngIf="job.accept=='0'&&job.reject=='0'&&job.notes==null">NA</p>
+                  <p *ngIf="job.accept=='0'&&job.reject=='0'&&job.notes!=null">{{job.notes}} </p>
+                
+                
+                </td>
+                <td *ngIf="roleid=='2' && roleid!='6' ">
+                  <img src="assets/Images/acc.png" *ngIf="job.accept=='0'&&job.reject=='0'" tilte="Accept"
+                    style="width:20px;" (click)="Accept(job.id,job.shortlistionNotes)" />&nbsp;<br>
+
+                  <img src="assets/Images/can.png" *ngIf="job.accept=='0'&&job.reject=='0' " tilte="Reject"
+                    style="width:20px;" (click)="Reject(job.id,job.shortlistionNotes)" />
+                </td>
+              </tr>
+
+              
+              
+            </thead>
+          </table>
+          <ng-template #noResults>
+            <p>no results found for "{{search}}" </p> 
+          </ng-template>
+        </div>
+        <div class="text-right">
+          <br>
+          <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+      </div>  
+      <br>
+      </div> 
+</div>

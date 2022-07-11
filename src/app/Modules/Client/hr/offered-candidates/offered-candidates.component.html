@@ -1,0 +1,157 @@
+<!-- <app-spinner *ngIf="loader"></app-spinner> -->
+<div class="container-fluid">
+ <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="Heading">OFFERED CANDIDATES DASHBOARD</p>
+              
+                </div>
+            </div> <br>
+
+            <div class="card">
+                <div class="row FilterClass">
+                    <div class="col-lg-1">
+                        <p>Filter By</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <select *ngIf="roleid!=2"  class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
+                            <option value="">Select Hiring Manager</option>
+                            <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+                          </select>
+                        <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="Date" value="Date"  [(ngModel)]="Date">
+                    </div>
+                    <div class="col-lg-5">
+                        <input class="form-control poppinns" placeholder="Search"  [(ngModel)]="search" (ngModelChange)="Filterjobs()" >
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2">
+                        <p class="Count">Count:{{count}}</p>
+                    </div>
+                </div> 
+            </div><br> <br>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="col-lg-4">
+                        <!-- <select class="inputclass" (change)="changeStatus($event)">
+                          <option value="2">Calendar</option>
+                          <option value="1">List View</option>
+                        </select> -->
+                        <label class="switch">
+            
+                          <input type="checkbox" checked (change)="changeStatus($event)">
+                          <span class="slider round"></span>
+                        </label>
+                        <!-- &nbsp; &nbsp; &nbsp;<span>Calendar View</span> -->
+                      </div>
+                </div>
+            </div>
+
+            <div class="row" [hidden]="showorhidecontent">
+                <div class="col-lg-12" style=" overflow:auto">
+                    <table class="table tablebordered" >
+                        <thead>
+                            <tr>
+                                <!-- <th>Vendor</th> -->
+                                <th>Job Reference ID</th>
+                                <th *ngIf="roleid=='4'">Source</th>
+                                <th *ngIf="roleid!='2'">Hiring Manager</th>
+                                <th>Job Title</th>
+                                <th>Tentative DOJ</th>
+                                <!-- <th>Offered Date </th> -->
+                                <th>Candidate Name</th>
+                                <th>Phone No</th>
+                                <th>Email</th>
+                                <th>Total Years of Experience</th>
+                                <th>Relevant Experience</th>
+                                <th>Offer Letter</th>
+                                <!-- <th>Offer Comments</th> -->
+                                <th *ngIf="roleid==8">Actions</th>
+                            </tr>
+                            
+                                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }">
+                                    <td>{{job.jobRefernceID}}</td>
+                                    <td *ngIf="roleid=='4'">{{job.source}}</td>
+                                    <td *ngIf="roleid!='2'">{{job.hiringManager}}</td>
+                                    <!-- <td>{{job.date}}</td>
+                                    <td>{{job.slotTime}}</td> -->
+                                    <!-- <td *ngIf="roleid!='2'">{{job.hiringManager}}</td> -->
+                                   
+                                    <td>{{job.jobTitle}}</td>
+                      
+                                    <td>{{job.tentativeDate|date}}</td>
+                                    <td>{{job.candidateName}}</td>
+                                    <td>{{job.phoneNo}}</td>
+                                    <td>{{job.email}}</td>
+                                    <td>{{job.yearsofExp}}</td>
+                                    <td>{{job.relavantExp}}</td>
+                                    <td>
+                                        <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.offerLetter)">
+                                        <!-- <input type="file" id="test" name="test" accept=".pdf" (click)="GetOfferLetter(job.offerLetter)"> -->
+                                    </td>
+                                    <!-- <td>
+                                        <span *ngIf="job.offerAcceptreject=='1'">Joined</span>
+                                        <span *ngIf="job.offerAcceptreject=='2'">Dropped</span>
+                                    </td> -->
+                                    <!-- <td>
+                                        <textarea class="form-control" row="4" [(ngModel)]="job.offerComments" name="job.offerComments" placeholder="Comments"></textarea>
+                                    </td> -->
+                                    <td  *ngIf="roleid==8">
+                                        <button class="btn btn-primary Joined" *ngIf="job.offerAcceptreject=='0'"
+                                            (click)="Accept(job.id,job.offerComments)">Joined</button><br><br>
+                                        <button class="btn btn-danger" *ngIf="job.offerAcceptreject=='0'"
+                                            (click)="Reject(job.id,job.offerComments)">Dropped</button>   
+                                    </td>
+                                </tr>                       
+                        </thead>
+                    </table>
+                    <ng-template #noResults>
+                        <p>no results found for "{{search}}" </p> 
+                      </ng-template>
+                </div>
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div> 
+                <span *ngIf="joblist.length==0">No data found.</span>
+            </div>
+            
+     <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent" > 
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row callendernavButtons">
+              <div class="col-lg-4">
+                <a (click)="previousmonth()">
+                  <img src="assets/Images/left.png" class="montharrow">
+                  <!-- <i class="fa fa-angle-left" aria-hidden="true"></i> -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <strong>{{callenderMonth}}</strong> {{callenderyear}}
+
+              </div>
+              <div class="col-lg-4">
+                <a (click)="nextmonth()">
+                  <img src="assets/Images/right-arrow.png" class="montharrow">
+                  <!-- <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
+                </a>
+              </div>
+
+            </div>
+            <div class="row callenderdiv">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
+                    {{calday.date}} {{calday.day}}
+                    <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
+                      style="overflow-y: auto; border-bottom: solid 6px white;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> 
+     
+</div>
