@@ -159,7 +159,7 @@ export class SidebarComponent implements OnInit {
     }
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
-      this.router.navigate(['/Dashboard']);
+      this.router.navigate(['hiringmanager/Dashboard']);
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
@@ -367,7 +367,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 80;
       localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
-      this.router.navigate(['/ScheduledInterviews']);
+      this.router.navigate(['InterviewPanel/ScheduledInterviews']);
     }
 
   }
@@ -386,7 +386,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 82;
       localStorage.setItem('Pagename', 'REJECTED CANDIDATES')
-      this.router.navigate(['/RejectedCadidates']);
+      this.router.navigate(['InterviewPanel/RejectedCadidates']);
     }
 
   }
@@ -446,7 +446,7 @@ export class SidebarComponent implements OnInit {
 
   public Appliedcandidates() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
-    this.router.navigate(['/AppliedCandidates']);
+    this.router.navigate(['hiringmanager/AppliedCandidates']);
     this.applied = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -625,7 +625,7 @@ export class SidebarComponent implements OnInit {
 
   public Dropped() {
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES')
-    this.router.navigate(['/DroppedCandidates']);
+    this.router.navigate(['hiringmanager/DroppedCandidates']);
     this.dropped = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
