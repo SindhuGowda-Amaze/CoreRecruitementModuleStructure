@@ -5,12 +5,16 @@ import { RecruiterRoutingModule } from './recruiter-routing.module';
 import { RecruiterComponent } from './recruiter.component';
 import { ShortListedComponent } from './short-listed/short-listed.component';
 import { SharedModule } from '../shared/shared.module';
+import { VendorJobOpeningsComponent } from './vendor-job-openings/vendor-job-openings.component';
+import { JobVacanciesComponent } from './job-vacancies/job-vacancies.component';
 
 
 @NgModule({
   declarations: [
     RecruiterComponent,
-    ShortListedComponent
+    ShortListedComponent,
+    VendorJobOpeningsComponent,
+    JobVacanciesComponent
   ],
   imports: [
     CommonModule,

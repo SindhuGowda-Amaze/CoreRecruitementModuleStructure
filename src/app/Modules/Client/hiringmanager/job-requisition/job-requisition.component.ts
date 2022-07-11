@@ -26,24 +26,39 @@ export class JobRequisitionComponent implements OnInit {
   public resourcemanager: any;
   public hrlist: any;
   username: any;
+  currentUrl: any
 
   constructor(private RecruitmentServiceService: RecruitementService) { }
   editor: any;
   html: any;
-
   Department: any;
-
-
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
 
     this.username = sessionStorage.getItem('UserName');
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
-    this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe(data => {
-      this.joblist = data.filter(x => x.department == sessionStorage.getItem('Department'));
-    })
+    this.RecruitmentServiceService.GetClientStaff()
+      .subscribe(data => {
+        this.hrlist = data;
+      })
+    this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.department == sessionStorage.getItem('Department'));
 
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   public GetHrName(even: any) {
@@ -58,16 +73,13 @@ export class JobRequisitionComponent implements OnInit {
 
   //    })
   // }
-
-
-
   public insertdetails() {
     debugger;
     if (this.jobtitile == null || this.jobtitile == undefined || this.jobtitile == 0 ||
       this.skills == null || this.skills == undefined || this.skills == 0 ||
       this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
       this.yearsofrelavantexp == null || this.yearsofrelavantexp == undefined || this.yearsofrelavantexp == 0 ||
-    
+
       this.joblocation == null || this.joblocation == undefined || this.joblocation == 0 ||
       this.noofpositions == null || this.noofpositions == undefined || this.noofpositions == 0 ||
       // this.companyname==null || this.companyname==undefined || this.companyname==0 ||
@@ -95,50 +107,76 @@ export class JobRequisitionComponent implements OnInit {
         'ResourceManager': this.resourcemanager,
         'Status': 'Manager Pending'
       }
-      this.RecruitmentServiceService.InsertJob_Requirements(entity).subscribe(data => {
-        if (data != 0) {
-          Swal.fire({
-            title: '<strong>Use this link to post in External site<br></strong>',
-            icon: 'info',
-            html:
-              // 'You can use <b>below link to Apply</b>, ' +
-              '<a target="_blank" href="http://103.133.214.197/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ' ,
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            // confirmButtonText:
-            //   '<i class="fa fa-thumbs-up"></i> Great!',
-            // confirmButtonAriaLabel: 'Thumbs up, great!',
-            // cancelButtonText:
-            //   '<i class="fa fa-thumbs-down"></i>',
-            // cancelButtonAriaLabel: 'Thumbs down'
-          })
+      this.RecruitmentServiceService.InsertJob_Requirements(entity).subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+            Swal.fire({
+              title: '<strong>Use this link to post in External site<br></strong>',
+              icon: 'info',
+              html:
+                // 'You can use <b>below link to Apply</b>, ' +
+                '<a target="_blank" href="http://103.133.214.197/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ',
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              // confirmButtonText:
+              //   '<i class="fa fa-thumbs-up"></i> Great!',
+              // confirmButtonAriaLabel: 'Thumbs up, great!',
+              // cancelButtonText:
+              //   '<i class="fa fa-thumbs-down"></i>',
+              // cancelButtonAriaLabel: 'Thumbs down'
+            })
 
-          location.href = "#/JobRecruitements";
+            location.href = "#/JobRecruitements";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-
       })
     }
 
   }
 
-
-
   public Getjobno(event: any) {
     debugger
-    this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe(data => {
-      let temp: any = data.filter(x => x.id == event.target.value);
-      this.Department = temp[0].department;
-      this.noofpositions = temp[0].headCount;
-      this.jobtitile = temp[0].roletype;
+    this.RecruitmentServiceService.GetManpowerPlanningandBudgeting()
+      .subscribe(data => {
+        let temp: any = data.filter(x => x.id == event.target.value);
+        this.Department = temp[0].department;
+        this.noofpositions = temp[0].headCount;
+        this.jobtitile = temp[0].roletype;
+      })
+
+
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.department == this.Department);
+        this.jobdescription = temp[0].description;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
-    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data => {
-      let temp: any = data.filter(x => x.department == this.Department);
-      this.jobdescription = temp[0].description;
-
-    })
-
-
-
   }
 }
