@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./applied-candidates.component.css']
 })
 export class AppliedCandidatesComponent implements OnInit {
+  err: any;
 
   constructor(private RecruitmentServiceService:RecruitementService,private ActivatedRoute:ActivatedRoute ) { }
   joblist: any;
@@ -30,7 +31,9 @@ export class AppliedCandidatesComponent implements OnInit {
   hrlist:any
   hiringManager:any;
   username:any;
+  currentUrl:any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
   this.hiringManager="";
   this.searchbynotice="";
   this.searchbyctc="";
@@ -42,44 +45,99 @@ export class AppliedCandidatesComponent implements OnInit {
 
     
     
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
- 
+    this.RecruitmentServiceService.GetClientStaff().subscribe({
+  next: data => {
+    debugger
+    this.hrlist = data;
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Getting Client Staff');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+
     if(this.roleid=='3'){
       debugger;
-      this.RecruitmentServiceService.GetCandidateRegistration().
-      subscribe(data => {
-        this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 && (x.source == "Vendor" && x.vendorId == this.userid) )
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 && (x.source == "Vendor" && x.vendorId == this.userid) )
         this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && (x.source == "Vendor" && x.vendorId == this.userid));
         this.noticeperiodlist = data.filter(x => x.accept == 0 && x.reject == 0 && (x.source == 'Vendor' && x.vendorId == this.userid)  );
         this.ctclist= data.filter(x => x.accept == 0 && x.reject == 0 && (x.source == 'Vendor' && x.vendorId == this.userid)  );
        
         this.count = this.joblist.length;
-      })
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Getting Candidate Registration');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
     }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+    }
+  else if (this.roleid==2) {
   
-
-
-    else if (this.roleid==2) {
-  
-      this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-        this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 )
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 )
         this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 );
         this.noticeperiodlist = data.filter(x => x.accept == 0 && x.reject == 0  );
         this.ctclist= data.filter(x =>  x.accept == 0 && x.reject == 0 );
         this.count = this.joblist.length;
-      })
-  
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Getting Candidate Registration');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+ 
     }
     else{
-      this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-        this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 )
-        this.joblist = data.filter(x => x.accept == 0 && x.reject == 0);
-        this.noticeperiodlist = data.filter(x => x.accept == 0 && x.reject == 0 );
-        this.ctclist= data.filter(x =>  x.accept == 0 && x.reject == 0 );
-        this.count = this.joblist.length;
-      })
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 )
+    this.joblist = data.filter(x => x.accept == 0 && x.reject == 0);
+    this.noticeperiodlist = data.filter(x => x.accept == 0 && x.reject == 0 );
+    this.ctclist= data.filter(x =>  x.accept == 0 && x.reject == 0 );
+    this.count = this.joblist.length;
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': this.err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
     }
     
     // this.GetCandidateReg();
@@ -122,15 +180,31 @@ export class AppliedCandidatesComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.UpdateCandidateRegistrationAcceptReject(id, 1, shortlistionNotes).subscribe(data => {
-          Swal.fire(
-            'Shortlisted!',
-            'Candidate has been shortlisted',
-            'success'
-          )
-          location.reload();
-          // this.GetCandidateReg()
-        })
+        this.RecruitmentServiceService.UpdateCandidateRegistrationAcceptReject(id, 1, shortlistionNotes).subscribe({
+  next: data => {
+    debugger
+    Swal.fire(
+      'Shortlisted!',
+      'Candidate has been shortlisted',
+      'success'
+    )
+    location.reload();
+    // this.GetCandidateReg()
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -159,16 +233,30 @@ export class AppliedCandidatesComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.UpdateCandidateRegistrationAcceptReject(id, 2, shortlistionNotes).
-        subscribe(data => {
-          Swal.fire(
-            'Rejected!',
-            'Candidate has been Rejected',
-            'success'
-          )
-          location.reload();
-          // this.GetCandidateReg()
-        })
+        this.RecruitmentServiceService.UpdateCandidateRegistrationAcceptReject(id, 2, shortlistionNotes).subscribe({
+  next: data => {
+    debugger
+    Swal.fire(
+      'Rejected!',
+      'Candidate has been Rejected',
+      'success'
+    )
+    location.reload();
+    // this.GetCandidateReg()
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -186,34 +274,74 @@ export class AppliedCandidatesComponent implements OnInit {
   public changeoption() {
     debugger;
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 &&  x.noticePeriod == this.searchbynotice);
-    });
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 &&  x.noticePeriod == this.searchbynotice);
+
+    Swal.fire('Getting Candidate Registration');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': this.err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+});
   }
 
   public changectc(){
     debugger;
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      this.joblist = data.filter(x => (x.accept == 0 && x.reject == 0) &&  (x.ctc == this.searchbyctc));
-    });
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.joblist = data.filter(x => (x.accept == 0 && x.reject == 0) &&  (x.ctc == this.searchbyctc));
+
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': this.err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+}) ;
   }
 
   public GetJobRequirements(){
   
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      debugger
-      this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager==this.hiringManager);
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+  next: data => {
+    debugger
+    this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager==this.hiringManager);
       // this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.hiringManager);
      
       this.count = this.joblist.length;
    
-  
-    })
-  
-   
-  
-  
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+ 
   }
 }
