@@ -9,32 +9,67 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./client-staff-form.component.css']
 })
 export class ClientStaffFormComponent implements OnInit {
+  currentUrl: any;
+  res:any
 
   constructor(private RecruitmentServiceService:RecruitementService,private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.currentUrl = window.location.href;
     this.GetRoleType();
 
     this.GetClientMaster();
 
 
-        this.ActivatedRoute.params.subscribe(params=>{
+        this.ActivatedRoute.params
+        .subscribe(params=>{
       debugger
      this.id=params["id"];
      if(this.id!=null&&this.id!=undefined){
        this.GetClientStaff1();
      }
     })
+
+
+
+
+
+
+
+
+
+
+    
   }
   RoleList:any;
   public GetRoleType() {
     debugger
-    this.RecruitmentServiceService.GetRoleType().subscribe(
-      data => {
-      this.RoleList = data
-      this.count = this.RoleList.length;
+    this.RecruitmentServiceService.GetRoleType().subscribe({
+      next: data => {
+        debugger
+        this.RoleList = data
+        this.count = this.RoleList.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
+
+
+
+
+
+
 
   }
 
@@ -43,10 +78,33 @@ export class ClientStaffFormComponent implements OnInit {
   ClientStaffList:any;
   public GetClientMaster() {
     debugger
-    this.RecruitmentServiceService.GetClientMaster().subscribe(data=>{
-      debugger
-      this.ClientList=data ;
-     })
+    this.RecruitmentServiceService.GetClientMaster().subscribe({
+      next: data => {
+        debugger
+        debugger
+        this.ClientList=data ;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+
+
+
+
+
+
   }
 
   id:any;
@@ -67,8 +125,6 @@ export class ClientStaffFormComponent implements OnInit {
   ClientList:any;
   recruiterlist:any;
 
-
-
   GetClientStaff1()
   {
   this.RecruitmentServiceService.GetClientStaff().subscribe(
@@ -86,8 +142,6 @@ export class ClientStaffFormComponent implements OnInit {
       this.Staff=this.result[0].clientID;
     })
   }
-
-
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
@@ -116,15 +170,27 @@ export class ClientStaffFormComponent implements OnInit {
       "Address": this.Address,
       "Signature": this.Signature,
     };
-    this.RecruitmentServiceService.InsertClientStaff(json).subscribe(
-      data => {
-        debugger
-        let id = data;
-        Swal.fire("Successfully Submitted...!!");
-        location.href = "#admin/ClientStaffDashBoard"
+    this.RecruitmentServiceService.InsertClientStaff(json).subscribe({
+        next: data => {
+          debugger
+          let id = data;
+          Swal.fire("Successfully Submitted...!!");
+          location.href = "#admin/ClientStaffDashBoard"
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   // }
- 
 }
 
 
@@ -137,14 +203,26 @@ this.files.splice(this.files.indexOf(event),1);
 
   public uploadattachments() {
     debugger
-    this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
-      debugger
-      this.Signature = res;
+    this.RecruitmentServiceService.UploadImages(this.files).subscribe({
+      next: (res: any) => {
+        debugger
+        this.Signature = res;
       alert("Signature Uploaded...!");
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
-
-
   Staff1:any
   Update() {
     debugger
@@ -159,15 +237,27 @@ this.files.splice(this.files.indexOf(event),1);
       "Signature": this.Signature,
     };
 
-    this.RecruitmentServiceService.UpdateClientStaff(json).subscribe(
-      data => {
-        debugger
-        let result = data;
-        Swal.fire("Updated Sucessfully...");
-        location.href = "#admin/ClientStaffDashBoard";
+    this.RecruitmentServiceService.UpdateClientStaff(json).subscribe({
+        next: data => {
+          debugger
+          let result = data;
+          Swal.fire("Updated Sucessfully...");
+          location.href = "#admin/ClientStaffDashBoard";
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
-
 cancel(){
   location.href = "#admin/ClientStaffDashBoard";
 }

@@ -11,8 +11,6 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./clientform.component.css']
 })
 export class ClientformComponent implements OnInit {
-
- 
   RegForm = new FormGroup({
     // Company_logo: new FormControl('', Validators.required),
     Name: new FormControl('', Validators.required),
@@ -23,30 +21,34 @@ export class ClientformComponent implements OnInit {
 
   count: any;
   recruiterlist: any;
-  showButton:any;
+  showButton: any;
+  currentUrl: any
+  res: any
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
 
-    this.ActivatedRoute.params.subscribe(params => {
-      debugger
-      this.id = params["id"];
-      if (this.id != null && this.id != undefined) {
-        this.GetClientMaster();
-        this.showButton=1;
-      }
-      else
-      {
-        this.showButton=2;
-        this.GetClientMaster();
-      }
-    })
+    this.ActivatedRoute.params
+      .subscribe(params => {
+        debugger
+        this.id = params["id"];
+        if (this.id != null && this.id != undefined) {
+          this.GetClientMaster();
+          this.showButton = 1;
+        }
+        else {
+          this.showButton = 2;
+          this.GetClientMaster();
+        }
+      })
+
   }
 
   GetClientMaster() {
-    this.RecruitmentServiceService.GetClientMaster().subscribe(
-      data => {
+    this.RecruitmentServiceService.GetClientMaster().subscribe({
+      next: data => {
         debugger
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
@@ -56,9 +58,21 @@ export class ClientformComponent implements OnInit {
         this.PhoneNo = this.result[0].phoneNo;
         this.Email = this.result[0].email;
         this.Address = this.result[0].address;
-      })
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
-
 
   id: any;
   ID: any;
@@ -68,10 +82,6 @@ export class ClientformComponent implements OnInit {
   Email: any;
   Address: any;
   result: any;
-
-
-
-
 
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
@@ -95,16 +105,26 @@ export class ClientformComponent implements OnInit {
 
     };
 
-    this.RecruitmentServiceService.InsertClientMaster(json).subscribe(
-      data => {
-
-
+    this.RecruitmentServiceService.InsertClientMaster(json).subscribe({
+      next: data => {
+        debugger
         location.href = "#/ClientDashBoard"
-      })
-
-    alert("Mentioned PhoneNo is " + this.PhoneNo)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  alert("Mentioned PhoneNo is " + this.PhoneNo)
   }
-
 
   onRemove(event: any) {
     debugger
@@ -114,16 +134,27 @@ export class ClientformComponent implements OnInit {
 
   public uploadattachments() {
     debugger
-    this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
-      debugger
-      this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+    this.RecruitmentServiceService.UploadImages(this.files).subscribe({
+      next: data => {
+        debugger
+        this.Company_logo = this.res;
+        alert("ATTACHMENT UPLOADED");
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
-
-
-
-  // Save() {
+ // Save() {
   //   debugger
   //   var json = {
   //     "Logo": this.Company_logo,
@@ -144,37 +175,45 @@ export class ClientformComponent implements OnInit {
 
   public Save() {
     debugger
-  //   if(this.Name==undefined||this.PhoneNo==undefined||this.Email==undefined||this.Address==undefined||this.Company_logo==undefined)
-  // {
-  //   alert("Please Fill All Fields to Save!!!")
-  // }
-  if(this.RegForm.invalid)
-  {
-    alert("Please Fill All Fields to Save!!!")
-  }
-  else{
-    var entity = {
-      'Logo': this.Company_logo,
-      'Name': this.Name,
-      'PhoneNo': this.PhoneNo,
-      'Email': this.Email,
-      'Address': this.Address,
+    //   if(this.Name==undefined||this.PhoneNo==undefined||this.Email==undefined||this.Address==undefined||this.Company_logo==undefined)
+    // {
+    //   alert("Please Fill All Fields to Save!!!")
+    // }
+    if (this.RegForm.invalid) {
+      alert("Please Fill All Fields to Save!!!")
     }
-    this.RecruitmentServiceService.InsertClientMaster(entity).subscribe(data => {
-      // if (data != 0) {
-      //   Swal.fire("Successfully Submitted...!!");
-      // }
-      let id=data;
-      Swal.fire("Successfully Submitted...!!");
-      location.href = "#/ClientDashBoard"
-    })
+    else {
+      var entity = {
+        'Logo': this.Company_logo,
+        'Name': this.Name,
+        'PhoneNo': this.PhoneNo,
+        'Email': this.Email,
+        'Address': this.Address,
+      }
+      this.RecruitmentServiceService.InsertClientMaster(entity).subscribe({
+        next: data => {
+          debugger
+          let id = data;
+          Swal.fire("Successfully Submitted...!!");
+          location.href = "#/ClientDashBoard"
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+    }
+
   }
-   
-  }
-
-
-
-
   public Update() {
     debugger;
     var entity = {
@@ -185,10 +224,24 @@ export class ClientformComponent implements OnInit {
       'EmailID': this.Email,
       'Address': this.Address,
     }
-    this.RecruitmentServiceService.UpdateClientMaster(entity).subscribe(data => {
-      Swal.fire("Updated Sucessfully...");
-      location.href = "#/ClientDashBoard";
-
+    this.RecruitmentServiceService.UpdateClientMaster(entity).subscribe({
+      next: data => {
+        debugger
+        Swal.fire("Updated Sucessfully...");
+        location.href = "#/ClientDashBoard";
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 

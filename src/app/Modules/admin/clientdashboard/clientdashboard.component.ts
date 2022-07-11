@@ -13,35 +13,44 @@ export class ClientdashboardComponent implements OnInit {
   count: any;
   search:any;
   loader:any;
+  currentUrl:any
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
    this.GetClientMaster()
    this.loader=true;
   }
 
   ClientMasterlist:any
-
-
   public GetClientMaster() {
     debugger
-  
-    this.RecruitmentServiceService.GetClientMaster().subscribe(data=>{
-      debugger
-      this.ClientMasterlist=data ;
-      this.loader=false;
-      this.count = this.ClientMasterlist.length;
-     })
+    this.RecruitmentServiceService.GetClientMaster().subscribe({
+      next: data => {
+        debugger
+        this.ClientMasterlist=data ;
+        this.loader=false;
+        this.count = this.ClientMasterlist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   edit(details: any){
     debugger
     location.href="#/ClientForm/"+ details;
-    
-
     }
-
-
     public delete(details: any) {
       debugger
       var json={
@@ -56,11 +65,24 @@ export class ClientdashboardComponent implements OnInit {
         cancelButtonText: 'No, keep it'
       }).then((result) => {
         if (result.value == true) {
-          this.RecruitmentServiceService.DeleteClientMaster(details.id).subscribe(
-            data => {
-              debugger        
-           Swal.fire('Deleted Successfully')
-           location.reload();
+          this.RecruitmentServiceService.DeleteClientMaster(details.id).subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Deleted Successfully')
+              location.reload();
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Deleted Successfully');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
           })
         }
       })

@@ -15,33 +15,61 @@ export class RecruiterDashboardComponent implements OnInit {
   recruiterlist: any;
   count: any;
   loader:any;
+  currentUrl: any
   constructor(private RecruitmentServiceService: RecruitementService,private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.GetRecruiterMaster();
     this.loader=true;
     
   }
-
-
   public GetRecruiterMaster() {
-    this.RecruitmentServiceService.GetRecruiterMaster().subscribe(
-      data => {
-        this.recruiterlist = data;
+    this.RecruitmentServiceService.GetRecruiterMaster().subscribe({
+  next: data => {
+    debugger
+    this.recruiterlist = data;
         this.loader=false;
         this.count = this.recruiterlist.length;
-      })
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
 
   }
 
   delete(id: any) {
-    this.RecruitmentServiceService.DeleteRecruiterMaster(id).subscribe(
+    this.RecruitmentServiceService.DeleteRecruiterMaster(id).subscribe({
+  next: data => {
+    debugger
+    Swal.fire('Deleted');
+    this.GetRecruiterMaster();
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
-        Swal.fire('Deleted');
-        this.GetRecruiterMaster();
-      })
+      },
+    )
   }
+})
+
+ }
 
   Update(id:any) {
     location.href = "#/RecruiterForm/" +id;

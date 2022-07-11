@@ -10,32 +10,48 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VendorStaffDashboardComponent implements OnInit {
 
-  constructor(private RecruitmentServiceService:RecruitementService,private ActivatedRoute:ActivatedRoute) { }
-  vendor_Name:any;
-  staff_Name:any;
-  email_Id:any;
-  phone_Number:any;
-  staff_Code:any;
-  signature:any;
-  role_Id:any;
-  staffdetails:any;
-  count:any;
-  loader:any;
-  Job:any;
-search:any;
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  vendor_Name: any;
+  staff_Name: any;
+  email_Id: any;
+  phone_Number: any;
+  staff_Code: any;
+  signature: any;
+  role_Id: any;
+  staffdetails: any;
+  count: any;
+  loader: any;
+  search: any;
+  currentUrl: any
   ngOnInit(): void {
-  this.GetVendor_Staff(); 
-  this.loader=true;
+    this.currentUrl = window.location.href;
+    this.GetVendor_Staff();
+    this.loader = true;
   }
 
-  
+
   public GetVendor_Staff() {
-    this.RecruitmentServiceService.GetVendor_Staff().subscribe(data => {
-      this.staffdetails = data;
-      this.loader=false;
-      this.count=this.staffdetails.length;
-     
+    this.RecruitmentServiceService.GetVendor_Staff().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader = false;
+        this.count = this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   }
 
   edit(id: any) {
@@ -43,7 +59,7 @@ search:any;
     location.href = "#/VendorStaffForm/" + id;
   }
 
-  
+
   public Ondelete(id: any) {
     debugger
 
@@ -56,21 +72,30 @@ search:any;
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-       this.RecruitmentServiceService.DeleteVendor_Staff(id).subscribe(
-      data => {
-        debugger
-        this.GetVendor_Staff();
-        Swal.fire('Deleted');
-      }
-    )
+        this.RecruitmentServiceService.DeleteVendor_Staff(id).subscribe({
+          next: data => {
+            debugger
+            this.GetVendor_Staff();
+            Swal.fire('Deleted');
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+
       }
     })
   }
-
-
-
-
-  public DisableStaff(id: any) {
+ public DisableStaff(id: any) {
     debugger
     var eb = {
       'ID': id,
@@ -85,13 +110,26 @@ search:any;
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe(
-          data => {
+        this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe({
+          next: data => {
             debugger
             Swal.fire('Updated successfully.');
             location.reload();
-          },
-        )
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+
       }
     })
   }
@@ -111,17 +149,28 @@ search:any;
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe(
-          data => {
+        this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe({
+          next: data => {
             debugger
             Swal.fire('Updated successfully.');
             location.reload();
-          },
-        )
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+
       }
     })
   }
-
-
 
 }
