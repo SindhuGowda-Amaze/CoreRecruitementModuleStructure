@@ -4,7 +4,9 @@ import { InterviewPanelComponent } from './interview-panel.component';
 import { RejectedComponent } from './rejected/rejected.component';
 import { ScheduledInterviewsComponent } from './scheduled-interviews/scheduled-interviews.component';
 
-const routes: Routes = [{ path: '', component: InterviewPanelComponent },
+const routes: Routes = [
+  
+  { path: '', component: InterviewPanelComponent },
 {path:'ScheduledInterviews',component:ScheduledInterviewsComponent},
 {path:'',component:RejectedComponent}
 

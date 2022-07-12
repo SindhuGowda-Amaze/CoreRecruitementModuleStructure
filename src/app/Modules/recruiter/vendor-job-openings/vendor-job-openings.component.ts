@@ -13,6 +13,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
 export class VendorJobOpeningsComponent implements OnInit {
 
   Date: any;
+  title: any;
   
   
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -212,4 +213,33 @@ export class VendorJobOpeningsComponent implements OnInit {
   
   
   }
+
+  public jobTitle() {
+    debugger;
+
+    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
+      this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
+    });
+  }
+
+
+
+  public CandidateRegistration () {
+    debugger;
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
+
+      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+    });
+  }
+
+
+
+
+
+
+
+
+
+
 }

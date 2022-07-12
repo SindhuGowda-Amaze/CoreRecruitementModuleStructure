@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('temp', '1');
       sessionStorage.setItem('role', 'Admin');
       // this.router.navigate(["/Dashboard"]);
-      location.href = "#/AdminDashboard"
+      location.href = "#/admin/AdminDashboard"
       sessionStorage.setItem('roleid', '1');
       location.reload();
 
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'recruiter');
           sessionStorage.setItem('roleid', '6');
           localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
+          location.href = "#/recruiter/Dashboard";
           location.reload();
 
 
@@ -133,7 +133,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('role', 'Client');
           sessionStorage.setItem('roleid', '4');
           localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
+          location.href = "/Dashboard";
           location.reload();
 
 
@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('role', 'HR');
       sessionStorage.setItem('roleid', '8');
       localStorage.setItem('Pagename', 'DASHBOARD')
-      location.href = "#/ManpowerPlanningandBudgetingdash";
+      location.href = "/ManpowerPlanningandBudgetingdash";
       location.reload();
 
     }
@@ -168,7 +168,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('role', 'CEO');
       sessionStorage.setItem('roleid', '9');
       localStorage.setItem('Pagename', 'DASHBOARD')
-      location.href = "#/ManpowerPlanningandBudgetingdash";
+      location.href = "/ManpowerPlanningandBudgetingdash";
       location.reload();
 
     }
@@ -497,7 +497,7 @@ export class LoginComponent implements OnInit {
 
           sessionStorage.setItem('roleid', '2');
           localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
+          location.href = "#/admin/Dashboard";
           location.reload();
         }
         else {

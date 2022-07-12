@@ -31,6 +31,8 @@ export class ShortListedComponent implements OnInit {
   ctclist: any;
   hrlist: any;
   username: any
+  title: any;
+  Date: any;
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -92,6 +94,9 @@ export class ShortListedComponent implements OnInit {
       })
 
     }
+
+    this.jobTitle()
+    this.CandidateRegistration()
   }
 
   public changeoption() {
@@ -271,4 +276,25 @@ this.files.splice(this.files.indexOf(event),1);
       alert("ATTACHMENT UPLOADED");
     })
   }
+
+  public jobTitle() {
+    debugger;
+
+    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
+      this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
+    });
+  }
+
+
+
+  public CandidateRegistration () {
+    debugger;
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
+
+      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+    });
+  }
+
+
 }

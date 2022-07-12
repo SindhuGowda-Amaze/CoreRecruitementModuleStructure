@@ -8,6 +8,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./joined-candidates.component.css']
 })
 export class JoinedCandidatesComponent implements OnInit {
+  title: any;
 
   constructor(private RecruitServiceService:RecruitementService) { }
 
@@ -149,9 +150,34 @@ export class JoinedCandidatesComponent implements OnInit {
    
   
     })
+
+  }
+
+    public jobTitle() {
+      debugger;
+  
+      this.RecruitServiceService.GetClientStaff().subscribe(data => {
+        this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
+      });
+    }
+  
+  
+  
+    public CandidateRegistration () {
+      debugger;
+  
+      this.RecruitServiceService.GetCandidateRegistration().subscribe(data => {
+  
+        this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+      });
+    }
+  
+
+
+
   
    
   
   
   }
-}
+
