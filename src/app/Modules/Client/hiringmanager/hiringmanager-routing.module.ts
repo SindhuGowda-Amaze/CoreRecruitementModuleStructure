@@ -10,11 +10,13 @@ import { SelectedCandidatesComponent } from './selected-candidates/selected-cand
 
 const routes: Routes = [{ path: '', component: HiringmanagerComponent },
 {path:'AppliedCandidates',component:AppliedCandidatesComponent},
+
 {path:'Dashboard',component:DashboardComponent},
 
 {path:'JobRecruitements',component:JobRecruitementsComponent},
-{path:'JobRecruitements',component:JobRequisitionComponent},
-{path:'JobRecruitements/:id',component:JobRequisitionComponent},
+{path:'JobRequisition',component:JobRequisitionComponent},
+{path:'JobRequisition/:id',component:JobRequisitionComponent},
+
 
 {path:'SelectedCandidates',component:SelectedCandidatesComponent}
 

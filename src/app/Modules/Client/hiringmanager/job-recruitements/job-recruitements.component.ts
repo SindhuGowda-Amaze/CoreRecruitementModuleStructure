@@ -280,6 +280,9 @@ export class JobRecruitementsComponent implements OnInit {
       })
   }
   stafflist: any;
+  enddate:any;
+
+
   public GetRecruiterStaff() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
@@ -330,7 +333,7 @@ export class JobRecruitementsComponent implements OnInit {
     }
     else {
       debugger
-      this.joblist = this.dummjoblist.filter((x: { date: any; }) => x.date == this.date);
+      this.joblist = this.dummjoblist.filter((x: { date: any; }) => x.date >= this.date && x.date <= this.enddate);
       this.count = this.joblist.length;
     }
 

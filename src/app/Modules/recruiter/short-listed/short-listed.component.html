@@ -12,7 +12,7 @@
       <div class="col-lg-1">
         <p>Filter By</p>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <input class="form-control poppinns" placeholder="Search for  Job Reference ID..." [(ngModel)]="search"
           (ngModelChange)="Filterjobs()">
       </div>
@@ -34,11 +34,33 @@
             {{job.noticePeriod}}</option>
         </select>
       </div>
-      <div *ngIf="roleid==2" class="col-lg-2">
+      <div *ngIf="roleid==2">
 
       </div>
-      <div class="col-lg-2"></div>
       <div class="col-lg-2">
+
+        <select *ngIf="roleid==2"  name="Select" class="form-control poppinns form-select" (change)="jobTitle()"  [(ngModel)]="title">
+          <option value="">Job Title</option>
+          <option  *ngFor="let job of joblist " value="{{joblist.jobTitle}}">{{joblist.jobTitle}}</option>
+        </select>
+
+
+      </div>
+<div class="col-lg-2">
+  <p>Start Date*</p>
+  <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"
+  (change)="CandidateRegistration()" name="Date" value="Date" [(ngModel)]="Date">
+</div>
+
+<div class="col-lg-2">
+  <p>End  Date*</p>
+  <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"
+  (change)="CandidateRegistration()" name="Date" value="Date" [(ngModel)]="Date">
+</div>
+
+
+
+      <div class="col-lg-1">
         <p class="Count">Count:{{count}}</p>
       </div>
     </div>
