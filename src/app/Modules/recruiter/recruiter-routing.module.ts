@@ -10,6 +10,8 @@ const routes: Routes = [
   {path:'ShortListed',component:ShortListedComponent},
   {path:'JobVacancies',component:JobVacanciesComponent},
   {path:'VendorJobOpenings',component:VendorJobOpeningsComponent},
+  {path:'JobVacancies/:id',component:JobVacanciesComponent},
+
 
 ];
 

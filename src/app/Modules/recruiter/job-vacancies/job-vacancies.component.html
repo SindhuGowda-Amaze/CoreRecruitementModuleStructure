@@ -37,7 +37,7 @@
                     <span style="color: green;">Hiring Manager : {{job.hiringManager}}</span>
                 </div><br>
                 <div class="col-lg-3">
-                    <button class="button" data-toggle="modal" data-target="#exampleModal1" class="btn btn-primary"
+                    <button class="button" data-toggle="collapse" data-target="#exampleModal1" class="btn btn-primary"
                         (click)="GetJobID(job.id)">Upload Resume</button>&nbsp;
                 </div>
 
@@ -65,17 +65,17 @@
 
 
 
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="collapse fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog moda-xl" role="document">
-        <div class="modal-content moda-xl" style="width: 866px;">
-            <div class="modal-header moda-xl" style="width: 866px;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content moda-xl" >
+            <div class="modal-header moda-xl" >
                 <p class="modal-title" id="exampleModalLabel"style="font-size: 20px; color:#3247D5;">Registration</p>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" style="width: 1000px;">
+            <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-3">
