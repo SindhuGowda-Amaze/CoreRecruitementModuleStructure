@@ -35,11 +35,13 @@ export class ScheduledInterviewsComponent implements OnInit {
   jobListCopy: any;
   p: any = 1;
   count1: any = 5;
+  currentUrl: any
   ngOnInit(): void {
+    this.currentUrl = window.location.href
     this.staffid = localStorage.getItem('userid');
     this.Username = localStorage.getItem('UserName');
     this.GetCandidateReg();
-   
+
     // this.insertdetails()
 
 
@@ -112,19 +114,49 @@ export class ScheduledInterviewsComponent implements OnInit {
   public GetCandidateReg() {
     debugger
     if (this.staffid == undefined) {
-      this.RecriutmentServiceService.GetCandidateRegistration().subscribe(data => {
-        this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
-        this.jobListCopy = this.joblist
-        this.count = this.joblist.length;
-        this.buildcallender(this.joblist);
+      this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+          this.jobListCopy = this.joblist
+          this.count = this.joblist.length;
+          this.buildcallender(this.joblist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
+
     }
     else {
-      this.RecriutmentServiceService.GetCandidateRegistration().subscribe(data => {
-        debugger
-        this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid);
-        this.count = this.joblist.length;
-        this.buildcallender(this.joblist);
+      this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid);
+          this.count = this.joblist.length;
+          this.buildcallender(this.joblist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
 
     }
@@ -158,17 +190,30 @@ export class ScheduledInterviewsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         debugger
-        this.RecriutmentServiceService.RejectInterview(id, 1, rinterview).subscribe(data => {
-          Swal.fire(
-            'Shortlisted!',
-            'Candidate has been Accepted',
-            'success'
-          )
-          this.GetCandidateReg();
-          location.reload();
+        this.RecriutmentServiceService.RejectInterview(id, 1, rinterview).subscribe({
+          next: data => {
+            debugger
+            Swal.fire(
+              'Shortlisted!',
+              'Candidate has been Accepted',
+              'success'
+            )
+            this.GetCandidateReg();
+            location.reload();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
@@ -180,9 +225,6 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
   }
 
-
-
-
   public Reject(id: any, interview: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -193,16 +235,30 @@ export class ScheduledInterviewsComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecriutmentServiceService.RejectInterview(id, 2, interview).subscribe(data => {
-          Swal.fire(
-            'Rejected!',
-            'Candidate has been Rejected',
-            'success'
-          )
-          this.GetCandidateReg()
+        this.RecriutmentServiceService.RejectInterview(id, 2, interview).subscribe({
+          next: data => {
+            debugger
+            Swal.fire(
+              'Rejected!',
+              'Candidate has been Rejected',
+              'success'
+            )
+            this.GetCandidateReg()
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
@@ -214,43 +270,62 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
   rinterview: any;
   public Acceptcandidate() {
-
-
-    this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe(data => {
-      Swal.fire(
-        'Selected!!',
-        'Candidate has been Accepted',
-        'success'
-      )
-      this.GetCandidateReg()
+    this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
+      next: data => {
+        debugger
+        Swal.fire(
+          'Selected!!',
+          'Candidate has been Accepted',
+          'success'
+        )
+        this.GetCandidateReg()
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   }
-
-
-
   public Rejecttcandidate() {
-
-
-    this.RecriutmentServiceService.RejectInterview(this.id, 2, this.rinterview).subscribe(data => {
-      Swal.fire(
-        'Rejected!',
-        'Candidate has been Rejected',
-        'success'
-      )
-      this.GetCandidateReg()
+    this.RecriutmentServiceService.RejectInterview(this.id, 2, this.rinterview).subscribe({
+      next: data => {
+        debugger
+        Swal.fire(
+          'Rejected!',
+          'Candidate has been Rejected',
+          'success'
+        )
+        this.GetCandidateReg()
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
-  }
 
+  }
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
-
   public callenderstartday: any;
   public callenderendday: any;
-
-
-
-
   public alldates: any = []
   public buildcallender(MaintainanceList: string | any[]) {
     debugger
@@ -277,9 +352,6 @@ export class ScheduledInterviewsComponent implements OnInit {
 
       this.callenderdaysdount[i] = { date: _date, day: _day, dateformat: dateformat };
     }
-
-    //Events Binding
-
     for (let j = 0; j < MaintainanceList.length; j++) {
       debugger;
       let currenteventlist = this.callenderdaysdount.filter((x: { dateformat: any; }) => x.dateformat == MaintainanceList[j].cdate);
@@ -295,10 +367,8 @@ export class ScheduledInterviewsComponent implements OnInit {
         // // "<br>  Unit :" + MaintainanceList[j].unitID +
         "</span>";
       }
-
     }
   }
-
   public previousmonth() {
     debugger;
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() - 1);
@@ -309,8 +379,5 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() + 1);
     this.buildcallender(this.joblist);
   }
-
-
-
 
 }
