@@ -5,10 +5,10 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-10">
-                    <p class="Heading">OPEN POSITIONS</p>
+                    <p class="Heading">JOB Requisition</p>
                 </div>
                 <div class="col-lg-2">
-                    <button class="Add" *ngIf="roleid==2" routerLink='/JobRequisition'>Add</button>
+                    <button class="Add" *ngIf="roleid==2" routerLink='/hirignmanager/JobRequisition'>Add</button>
                 </div>
             </div>
        <BR> 
@@ -21,9 +21,20 @@
                     </div>
                    
                     <div class="col-lg-3"  *ngIf="roleid==2" >
-                        <input type="date" class="form-control poppinns" (change)="GetDate($event)" name="date" value="date"  [(ngModel)]="date">
+                        <input type="date" class="form-control poppinns"  name="date" value="date"  [(ngModel)]="date">
 
                     </div>
+
+                    <div class="col-lg-3"  *ngIf="roleid==2" >
+                        <input type="date" class="form-control poppinns"(change)="GetDate($event)" name="enddate" value="enddate"  [(ngModel)]="enddate">
+
+                    </div>
+
+                    
+                   
+
+
+
                     <div class="col-lg-3"  *ngIf="roleid!=2">
                         <select   class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
                             <option value="">Select Hiring Manager</option>

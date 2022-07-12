@@ -363,7 +363,7 @@ export class SidebarComponent implements OnInit {
     this.joinedreport = false
     this.droppedreport = false
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-    this.router.navigate(['hiringmanager/JobRecruitements']);
+    this.router.navigate(['hirignmanager/JobRecruitements']);
 
 
 
@@ -373,7 +373,7 @@ export class SidebarComponent implements OnInit {
   //   if(this.roleid=='2'){
   //     this.active = 88;
   //     localStorage.setItem('Pagename', 'OPEN POSITIONS')
-  //   this.router.navigate(['/JobRecruitements']);
+  //   this.router.navigate(['hiringmanager/JobRecruitements']);
   //   }
 
   // }
@@ -456,7 +456,7 @@ export class SidebarComponent implements OnInit {
 
   public Appliedcandidates() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
-    this.router.navigate(['hiringmanager/AppliedCandidates']);
+    this.router.navigate(['hirignmanager/AppliedCandidates']);
     this.applied = true
     this.Jobrecruit = false
     this.Vendorrecruit = false

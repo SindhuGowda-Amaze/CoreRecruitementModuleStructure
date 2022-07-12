@@ -84,6 +84,16 @@
             <div class="col-lg-3">
               <p class="text"> Maximun CTC Budget <span style="color: red;">*</span></p>
             </div>
+            <div class="col-lg-3">
+              <p class="text">Level <span style="color: red;">*</span></p>
+            </div>
+
+
+
+
+
+
+           
             <!-- <div class="col-lg-3">
               <p class="text"> Hiring Manager <span style="color: red;">*</span></p>
             </div> -->
@@ -102,6 +112,17 @@
             <div class="col-lg-3">
               <input class="form-control" placeholder=" Maximun CTC Budget" [(ngModel)]="package">
             </div>
+
+
+            <div class="col-lg-3">
+              <select name="" id="" class="form-control">
+                <option value="">level</option>
+                <option value="">A1</option>
+                <option value="">A2</option>
+                <option value="">A3</option>
+  
+              </select>
+            </div>
             <!-- <div class="col-lg-3">
               <select class="form-control" (change)="GetHrName($event)">
                 <option value="">Select</option>
@@ -118,7 +139,7 @@
               <p class="text"> Job Location <span style="color: red;">*</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="text">Other Required Conditions <span style="color: red;">*</span></p>
+              <p class="text">Other Required Conditions </p>
             </div>
             <!-- <div class="col-lg-3">
               <p class="text"> Resource Manager </p>
@@ -134,7 +155,8 @@
             </div>
             <div class="col-lg-3">
   
-              <input class="form-control" placeholder="Other Required Condition" [(ngModel)]="otherreqconditions">
+              <!-- <input class="form-control" placeholder="Other Required Condition" [(ngModel)]="otherreqconditions"> -->
+              <textarea class="form-control" placeholder="Other Required Condition" [(ngModel)]="otherreqconditions" rows="6"></textarea>
             </div>
             <!-- <div class="col-lg-3">
               <input class="form-control" placeholder=" Resource Manager" [(ngModel)]="resourcemanager">
@@ -171,7 +193,6 @@
             </div>
           </div>
         </div>
-  
   
   
       </div>
