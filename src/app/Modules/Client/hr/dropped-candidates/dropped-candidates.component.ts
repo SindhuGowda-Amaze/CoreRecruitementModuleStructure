@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
+import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
 
 @Component({
@@ -25,32 +26,79 @@ export class DroppedCandidatesComponent implements OnInit {
   roleid:any;
   hrlist:any;
   username:any;
+  currentUrl:any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
+    this.RecruitmentServiceService.GetClientStaff().subscribe({
+      next: data => {
+        debugger
+        this.hrlist = data;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Client Staff');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
     this.GetCandidateReg()
   }
 
 
   public GetCandidateReg() {
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      if(this.roleid==2){
-        this.joblist = data.filter(x=>x.hiringManager==this.username && x.offerAcceptreject == 2);
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if(this.roleid==2){
+          this.joblist = data.filter(x=>x.hiringManager==this.username && x.offerAcceptreject == 2);
+        }
+        else
+        {
+          this.joblist = data.filter(x => x.offerAcceptreject == 2);
+          this.jobListCopy = this.joblist
+        }
+       
+        this.loader=false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      else
-      {
-        this.joblist = data.filter(x => x.offerAcceptreject == 2);
-        this.jobListCopy = this.joblist
-      }
-     
-      this.loader=false;
-      this.count = this.joblist.length;
     })
+
 
   }
 
@@ -67,19 +115,73 @@ export class DroppedCandidatesComponent implements OnInit {
   public changeAnniversary() {
     debugger;
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  
-      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-    });
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ;
   }
 
   public changeoption() {
     debugger;
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  
-      this.joblist = data.filter(x => x.vendorName == this.option);
-    });
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.vendorName == this.option);
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    
+    
+    
+    
+    
+    
+    
+    
+    ;
   }
 
 
@@ -94,14 +196,37 @@ export class DroppedCandidatesComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.AcceptRejectOffer(id, 1, comments).subscribe(data => {
-          swal.fire(
-            'Joined!',
-            'Candidate has Joined',
-            'success'
-          )
-          this.GetCandidateReg()
+        this.RecruitmentServiceService.AcceptRejectOffer(id, 1, comments).subscribe({
+          next: data => {
+            debugger
+            swal.fire(
+              'Joined!',
+              'Candidate has Joined',
+              'success'
+            )
+            this.GetCandidateReg()
+            
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
+
+
+
+
+
+
+
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === swal.DismissReason.cancel) {
@@ -125,14 +250,30 @@ export class DroppedCandidatesComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.AcceptRejectOffer(id, 2, comments).subscribe(data => {
-          swal.fire(
-            'Rejected!',
-            'Candidate has dropped',
-            'success'
-          )
-          this.GetCandidateReg()
+        this.RecruitmentServiceService.AcceptRejectOffer(id, 2, comments).subscribe({
+          next: data => {
+            debugger
+            swal.fire(
+              'Rejected!',
+              'Candidate has dropped',
+              'success'
+            )
+            this.GetCandidateReg()
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
+  
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === swal.DismissReason.cancel) {
@@ -149,15 +290,27 @@ export class DroppedCandidatesComponent implements OnInit {
   public GetJobRequirements(){
   
   
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      debugger
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.offerAcceptreject == 2 && x.hiringManager == this.hiringManager);
      
-      this.joblist = data.filter(x => x.offerAcceptreject == 2 && x.hiringManager == this.hiringManager);
-     
-      this.count = this.joblist.length;
-   
-  
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
+
   
    
   

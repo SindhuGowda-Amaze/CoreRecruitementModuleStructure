@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RecruitementService } from '../Services/recruitement.service';
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   roledid: any;
   result: any;
   roleID: any;
@@ -20,12 +17,11 @@ export class LoginComponent implements OnInit {
   loginTypeList: any;
   companycode: any
   showpassword: any;
-
   name: any;
-
+  currentUrl: any
   constructor(public RecruitmentServiceService: RecruitementService, private router: Router) { }
-
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.showpassword = 0;
     if (localStorage.getItem('temp') == '1') {
       localStorage.clear();
@@ -34,7 +30,6 @@ export class LoginComponent implements OnInit {
     }
     this.GetLoginTypeMaster();
   }
-
   Showhidepassword() {
     debugger
     if (this.showpassword == 0) {
@@ -44,7 +39,6 @@ export class LoginComponent implements OnInit {
       this.showpassword = 0;
     }
   }
-
   public getcompanycode() {
     debugger
     localStorage.setItem('companycode', this.companycode);
@@ -58,16 +52,30 @@ export class LoginComponent implements OnInit {
   }
   GetLoginTypeMaster() {
 
-    this.RecruitmentServiceService.GetLoginTypeMaster().subscribe(data => {
+    this.RecruitmentServiceService.GetLoginTypeMaster().subscribe({
+      next: data => {
+        debugger
+        this.loginTypeList = data;
 
-      this.loginTypeList = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Login TypeMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
   public getRoleID(even: any) {
     debugger
     this.roleID = even.target.value;
   }
-
   // public login() {
   //   localStorage.setItem('temp', '1');
   //   localStorage.setItem('roleid', '1');
@@ -77,77 +85,90 @@ export class LoginComponent implements OnInit {
   // }
   result1: any;
   public login() {
-
     if (this.userName == 'admin' && this.password == '1') {
       debugger
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
       sessionStorage.setItem('role', 'Admin');
-      // this.router.navigate(["/Dashboard"]);
       location.href = "#/AdminDashboard"
       sessionStorage.setItem('roleid', '1');
       location.reload();
-
-
     }
     else if (this.roleID == 6) {
-      this.RecruitmentServiceService.GetRecruiterStaff().subscribe(data => {
-        let temp: any = data.filter(x => (x.email == this.userName || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'recruiter');
-          sessionStorage.setItem('roleid', '6');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
-
-
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.email == this.userName || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          // this.loader = true;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'recruiter');
+            sessionStorage.setItem('roleid', '6');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Recruiter Staff');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
-
-      })
+     })
 
     }
-
-
-
     else if (this.roleID == 4) {
-      this.RecruitmentServiceService.GetClientMaster().subscribe(data => {
-        let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Client');
-          sessionStorage.setItem('roleid', '4');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
-
-
+      this.RecruitmentServiceService.GetClientMaster().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'Client');
+            sessionStorage.setItem('roleid', '4');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Client Master');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid');
-          this.userName = "";
-          this.password = "";
-        }
-
       })
-
     }
-
     else if (this.roleID == 8) {
       sessionStorage.setItem('UserName', 'Anup');
       sessionStorage.setItem('userid', '1');
@@ -157,10 +178,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('Pagename', 'DASHBOARD')
       location.href = "#/ManpowerPlanningandBudgetingdash";
       location.reload();
-
     }
-
-
     else if (this.roleID == 9) {
       sessionStorage.setItem('UserName', 'KUmar');
       sessionStorage.setItem('userid', '1');
@@ -170,94 +188,79 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('Pagename', 'DASHBOARD')
       location.href = "#/ManpowerPlanningandBudgetingdash";
       location.reload();
-
     }
-
-
-
     else if (this.roleID == 3) {
-      this.RecruitmentServiceService.GetVendor_Dasboard().subscribe(data => {
-        let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.vendor_Name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Vendor');
-          sessionStorage.setItem('roleid', '3');
-          sessionStorage.setItem('notes', this.result.notes);
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
-
-
+      this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.vendor_Name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'Vendor');
+            sessionStorage.setItem('roleid', '3');
+            sessionStorage.setItem('notes', this.result.notes);
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid');
-          this.userName = "";
-          this.password = "";
-        }
-
       })
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // for vendor login
     else if (this.roleID == 7) {
       debugger;
-      this.RecruitmentServiceService.GetVendor_Staff().subscribe(data => {
-        // this.result = data;
-        let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        // this.result = data.filter(x => x.loginTypeID == 7);
-        debugger;
-        if (this.result != undefined || this.result != null) {
-          localStorage.setItem('temp', '1');
-          localStorage.setItem('roleid', '7');
-          localStorage.setItem('vendorid', this.result.id);
-          localStorage.setItem('staffID', this.result.staffID);
-          localStorage.setItem('buildingID', this.result.buildingID);
-          localStorage.setItem('userRoleID', this.result.userRoleID);
-          localStorage.setItem('userName', this.result.loginName);
-          localStorage.setItem('name', this.result.name);
-          localStorage.setItem('phoneNo', this.result.phoneNo);
-          localStorage.setItem('userName', this.result.emailID);
-          localStorage.setItem('password', this.result.password);
-          localStorage.setItem('projectName', this.result.projectName);
-          localStorage.setItem('Pagename', 'DASHBOARD')
+      this.RecruitmentServiceService.GetVendor_Staff()
+        .subscribe(data => {
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            localStorage.setItem('temp', '1');
+            localStorage.setItem('roleid', '7');
+            localStorage.setItem('vendorid', this.result.id);
+            localStorage.setItem('staffID', this.result.staffID);
+            localStorage.setItem('buildingID', this.result.buildingID);
+            localStorage.setItem('userRoleID', this.result.userRoleID);
+            localStorage.setItem('userName', this.result.loginName);
+            localStorage.setItem('name', this.result.name);
+            localStorage.setItem('phoneNo', this.result.phoneNo);
+            localStorage.setItem('userName', this.result.emailID);
+            localStorage.setItem('password', this.result.password);
+            localStorage.setItem('projectName', this.result.projectName);
+            localStorage.setItem('Pagename', 'DASHBOARD')
 
-          // this.router.navigate(["/Dashboard"]);
-          location.href = "#/Dashboard"
-          location.reload();
+            location.href = "#/Dashboard"
+            location.reload();
 
 
-        }
-        else {
-          Swal.fire('Username or Password is Invalid or User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
+          }
+          else {
+            Swal.fire('Username or Password is Invalid or User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
 
-      })
+        })
 
     }
 
@@ -445,193 +448,246 @@ export class LoginComponent implements OnInit {
 
 
     else if (this.roleID == 5) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-
-        let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        debugger;
-        // let temp1:any =data.filter(x=>x.x.enable_Disable==true)
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Interview Panel');
-          sessionStorage.setItem('roleid', '5');
-          location.href = "#/ScheduledInterviews";
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.reload();
-
-
+      this.RecruitmentServiceService.GetClientStaff().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          // let temp1:any =data.filter(x=>x.x.enable_Disable==true)
+          // this.loader = true;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'Interview Panel');
+            sessionStorage.setItem('roleid', '5');
+            location.href = "#/ScheduledInterviews";
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.reload();
+          }
+          // else if(temp1==true)
+          // {
+          //   Swal.fire('User is Disabled!!');
+          //   this.userName = "";
+          //   this.password = "";
+          // }
+          else {
+            Swal.fire('Username or Password is Invalid or User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Client Staff');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-
-        // else if(temp1==true)
-        // {
-        //   Swal.fire('User is Disabled!!');
-        //   this.userName = "";
-        //   this.password = "";
-        // }
-
-        else {
-          Swal.fire('Username or Password is Invalid or User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
-
-
       })
     }
-
     else if (this.roleID == 2) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-        let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Hiring Manager');
-          sessionStorage.setItem('Department', this.result.department);
+      this.RecruitmentServiceService.GetClientStaff().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'Hiring Manager');
+            sessionStorage.setItem('Department', this.result.department);
 
-          sessionStorage.setItem('roleid', '2');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
+            sessionStorage.setItem('roleid', '2');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid or User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Client Staff');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid or User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
-
       })
-
     }
-
-    
     else if (this.roleID == 11) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-        let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'Manager');
-          sessionStorage.setItem('Department', this.result.department);
+      this.RecruitmentServiceService.GetClientStaff().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'Manager');
+            sessionStorage.setItem('Department', this.result.department);
 
-          sessionStorage.setItem('roleid', '11');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
+            sessionStorage.setItem('roleid', '11');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid or User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Client Staff');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid or User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
-
       })
-
     }
-
-      
     else if (this.roleID == 10) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-        let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
-        this.result = temp[0];
-        debugger;
-        // this.loader = true;
-        if (this.result != undefined || this.result != null) {
-          sessionStorage.setItem('UserName', this.result.name);
-          sessionStorage.setItem('userid', this.result.id);
-          sessionStorage.setItem('temp', '1');
-          sessionStorage.setItem('role', 'BU Head');
-          sessionStorage.setItem('Department', this.result.department);
+      this.RecruitmentServiceService.GetClientStaff().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'BU Head');
+            sessionStorage.setItem('Department', this.result.department);
 
-          sessionStorage.setItem('roleid', '10');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          location.href = "#/Dashboard";
-          location.reload();
+            sessionStorage.setItem('roleid', '10');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid or User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Client Staff');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          Swal.fire('Username or Password is Invalid or User is Disabled');
-          this.userName = "";
-          this.password = "";
-        }
-
       })
 
     }
-
-
-
-
 
     else if (this.roleID == 5) {
 
-      this.RecruitmentServiceService.GetUsersdetailsForFinanceLogin(this.userName, this.password).subscribe(data => {
-        this.result = data;
-        if (this.result != undefined || this.result != null) {
-          localStorage.setItem('managerID', this.result.id);
-          localStorage.setItem('staffID', this.result.staffID);
-          localStorage.setItem('buildingID', this.result.buildingID);
-          localStorage.setItem('userRoleID', this.result.userRoleID);
-          localStorage.setItem('userName', this.result.loginName);
-          localStorage.setItem('name', this.result.name);
-          localStorage.setItem('phoneNo', this.result.phoneNo);
-          localStorage.setItem('userName', this.result.emailID);
-          localStorage.setItem('password', this.result.password);
-          localStorage.setItem('loginTypeId', this.result.loginTypeID);
-          localStorage.setItem('temp', '1');
-          localStorage.setItem('roleid', '5');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          this.router.navigate(["/Dashboard"]);
-          // location.reload();
-        }
-        else {
+      this.RecruitmentServiceService.GetUsersdetailsForFinanceLogin(this.userName, this.password).subscribe({
+        next: data => {
+          debugger
+          this.result = data;
+          if (this.result != undefined || this.result != null) {
+            localStorage.setItem('managerID', this.result.id);
+            localStorage.setItem('staffID', this.result.staffID);
+            localStorage.setItem('buildingID', this.result.buildingID);
+            localStorage.setItem('userRoleID', this.result.userRoleID);
+            localStorage.setItem('userName', this.result.loginName);
+            localStorage.setItem('name', this.result.name);
+            localStorage.setItem('phoneNo', this.result.phoneNo);
+            localStorage.setItem('userName', this.result.emailID);
+            localStorage.setItem('password', this.result.password);
+            localStorage.setItem('loginTypeId', this.result.loginTypeID);
+            localStorage.setItem('temp', '1');
+            localStorage.setItem('roleid', '5');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            this.router.navigate(["/Dashboard"]);
+          }
+          else {
 
-          Swal.fire('Username or Password is Invalid');
-          this.userName = "";
-          this.password = "";
+            Swal.fire('Username or Password is Invalid');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Users details For Finance Login')
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
       })
     }
-
     else if (this.roleID == 1) {
       debugger
-      this.RecruitmentServiceService.GetAdmin(this.userName, this.password).subscribe(data => {
-        debugger
-        this.result = data;
-
-        if (this.result != undefined || this.result != undefined) {
-          localStorage.setItem('userID', this.result.id);
-          localStorage.setItem('managerID', this.result.id);
-          localStorage.setItem('staffID', this.result.staffID);
-          localStorage.setItem('buildingID', this.result.buildingID);
-          localStorage.setItem('userRoleID', this.result.userRoleID);
-          localStorage.setItem('userName', this.result.loginName);
-          localStorage.setItem('name', this.result.name);
-          localStorage.setItem('phoneNo', this.result.phoneNo);
-          localStorage.setItem('userName', this.result.emailID);
-          localStorage.setItem('loginTypeID', this.result.loginTypeID);
-          localStorage.setItem('password', this.result.password);
-
-          localStorage.setItem('temp', '1');
-          localStorage.setItem('roleid', '1');
-          localStorage.setItem('Pagename', 'DASHBOARD')
-          this.router.navigate(["/Dashboard"]);
-          // location.reload();
-        }
-        else {
-
-          Swal.fire('Username or Password is Invalid');
-          this.userName = "";
-          this.password = "";
+      this.RecruitmentServiceService.GetAdmin(this.userName, this.password).subscribe({
+        next: data => {
+          debugger
+          this.result = data;
+          if (this.result != undefined || this.result != undefined) {
+            localStorage.setItem('userID', this.result.id);
+            localStorage.setItem('managerID', this.result.id);
+            localStorage.setItem('staffID', this.result.staffID);
+            localStorage.setItem('buildingID', this.result.buildingID);
+            localStorage.setItem('userRoleID', this.result.userRoleID);
+            localStorage.setItem('userName', this.result.loginName);
+            localStorage.setItem('name', this.result.name);
+            localStorage.setItem('phoneNo', this.result.phoneNo);
+            localStorage.setItem('userName', this.result.emailID);
+            localStorage.setItem('loginTypeID', this.result.loginTypeID);
+            localStorage.setItem('password', this.result.password);
+            localStorage.setItem('temp', '1');
+            localStorage.setItem('roleid', '1');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            this.router.navigate(["/Dashboard"]);
+          }
+          else {
+            Swal.fire('Username or Password is Invalid');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
       })
     }

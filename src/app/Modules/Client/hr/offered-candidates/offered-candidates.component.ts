@@ -10,9 +10,7 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./offered-candidates.component.css']
 })
 export class OfferedCandidatesComponent implements OnInit {
-
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
-
   p: any = 1;
   count1: any = 5;
 
@@ -20,13 +18,13 @@ export class OfferedCandidatesComponent implements OnInit {
   joblist: any;
   count: any;
   term: any;
-  search:any;
-  roleid:any;
-  loader:any;
-  jobListCopy:any;
-  Date:any;
-  hrlist:any;
-  username:any;
+  search: any;
+  roleid: any;
+  loader: any;
+  jobListCopy: any;
+  Date: any;
+  hrlist: any;
+  username: any;
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
   public selectedlanguage: any;
@@ -37,17 +35,34 @@ export class OfferedCandidatesComponent implements OnInit {
   public callenderBindData = new Date();
   public todaydate = new Date().getDate();
   public options1: any;
+  currentUrl: any
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
   ngOnInit(): void {
-    this.hiringManager="";
+    this.currentUrl = window.location.href;
+    this.hiringManager = "";
     this.GetCandidateReg()
     this.roleid = sessionStorage.getItem('roleid');
-    this.loader=true;
+    this.loader = true;
     this.username = sessionStorage.getItem('UserName');
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.hrlist = data;
-    })
+    this.RecruitmentServiceService.GetClientStaff().subscribe({
+      next: data => {
+        debugger
+        this.hrlist = data;
 
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Client Staff');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
     this.showorhidecontent = false;
     const format = 'yyyy-MM-dd';
@@ -114,50 +129,72 @@ export class OfferedCandidatesComponent implements OnInit {
   }
 
   public GetCandidateReg() {
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      if(this.roleid==2){
-        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 );
-        this.buildcallender(this.joblist);
-      }
-      else
-      {
-        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-      this.jobListCopy = this.joblist
-      this.buildcallender(this.joblist);
-      }
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2) {
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+          this.buildcallender(this.joblist);
+        }
+        else {
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+          this.jobListCopy = this.joblist
+          this.buildcallender(this.joblist);
+        }
 
-     
-      
-      this.loader=false;
-      this.count = this.joblist.length;
+        this.loader = false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
 
   }
 
-  public GetOfferLetter(offer:any) {
+  public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
-
-
 
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
-    this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string,jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy)||x.jobTitle.toLowerCase().includes(searchCopy));
+    this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
 
-  
-public changeAnniversary() {
-  debugger;
+  public changeAnniversary() {
+    debugger;
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
 
-    this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
-  });
-}
-
-
-  public Accept(id:any, comments:any) {
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    });
+  }
+  public Accept(id: any, comments: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Candidate joined!',
@@ -167,13 +204,28 @@ public changeAnniversary() {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.AcceptRejectOffer(id, 1, comments).subscribe(data => {
-          Swal.fire(
-            'Joined!',
-            'Candidate has Joined',
-            'success'
-          )
-          this.GetCandidateReg()
+        this.RecruitmentServiceService.AcceptRejectOffer(id, 1, comments).subscribe({
+          next: data => {
+            debugger
+            Swal.fire(
+              'Joined!',
+              'Candidate has Joined',
+              'success'
+            )
+            this.GetCandidateReg()
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
@@ -188,7 +240,7 @@ public changeAnniversary() {
   }
 
 
-  public Reject(id:any, comments:any) {
+  public Reject(id: any, comments: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Candidate has dropped!',
@@ -198,14 +250,15 @@ public changeAnniversary() {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.RecruitmentServiceService.AcceptRejectOffer(id, 2, comments).subscribe(data => {
-          Swal.fire(
-            'Rejected!',
-            'Candidate has dropped',
-            'success'
-          )
-          this.GetCandidateReg()
-        })
+        this.RecruitmentServiceService.AcceptRejectOffer(id, 2, comments)
+          .subscribe(data => {
+            Swal.fire(
+              'Rejected!',
+              'Candidate has dropped',
+              'success'
+            )
+            this.GetCandidateReg()
+          })
         // For more information about handling dismissals please visit
         // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -219,31 +272,34 @@ public changeAnniversary() {
   }
 
 
-  hiringManager:any;
-  public GetJobRequirements(){
-  
-  
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-      debugger
-     
-      this.joblist = data.filter( x=>x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.hiringManager);
-     
-      this.count = this.joblist.length;
-   
-  
+  hiringManager: any;
+  public GetJobRequirements() {
+
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 && x.hiringManager == this.hiringManager);
+
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
-  
-   
-  
-  
+
   }
-
-
   public callenderstartday: any;
   public callenderendday: any;
-
-
-
 
   public alldates: any = []
   public buildcallender(MaintainanceList: string | any[]) {
@@ -303,7 +359,4 @@ public changeAnniversary() {
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() + 1);
     this.buildcallender(this.joblist);
   }
-
-
-
 }
