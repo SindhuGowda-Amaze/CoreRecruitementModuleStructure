@@ -268,6 +268,7 @@ public updatejoiningdate() {
 
   Date: any;
   userid: any;
+  endDate:any
   // public GetDate(event:any) {
   //   if(this.Date==0){
   //     debugger
@@ -311,7 +312,9 @@ public updatejoiningdate() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');

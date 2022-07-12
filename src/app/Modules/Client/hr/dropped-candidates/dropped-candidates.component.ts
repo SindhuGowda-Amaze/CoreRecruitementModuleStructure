@@ -28,7 +28,15 @@ export class DroppedCandidatesComponent implements OnInit {
   hrlist:any;
   username:any;
   currentUrl:any
+  endDate : any
+  staffdetails:any
+  vendor: any
+  role:any
+  Role: any
+  
   ngOnInit(): void {
+    this.role="";
+    this.GetJobDescription()
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
@@ -67,6 +75,9 @@ export class DroppedCandidatesComponent implements OnInit {
 
 
     this.GetCandidateReg()
+  }
+  GetJobDescriptionMaster() {
+    throw new Error('Method not implemented.');
   }
 
 
@@ -119,7 +130,9 @@ export class DroppedCandidatesComponent implements OnInit {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Candidate Registration');
@@ -318,25 +331,32 @@ export class DroppedCandidatesComponent implements OnInit {
   
   }
 
+  public GetJobDescription() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader=false;
+        this.count=this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Get Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-  public jobTitle() {
-    debugger;
-
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
-    });
   }
 
 
 
-  public CandidateRegistration () {
-    debugger;
-
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-
-      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-    });
-  }
 
 
 
@@ -346,3 +366,5 @@ export class DroppedCandidatesComponent implements OnInit {
 
 
 }
+
+

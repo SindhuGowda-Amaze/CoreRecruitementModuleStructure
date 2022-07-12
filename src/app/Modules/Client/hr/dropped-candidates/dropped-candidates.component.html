@@ -13,34 +13,31 @@
             <div class="col-lg-1">
                 <p>Filter By</p>
             </div>
-            <!-- <div class="col-lg-2">
-                <input  type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="Date" value="Date"  [(ngModel)]="Date">
-            </div> -->
+             <div class="col-lg-2">
+                 <input  type="date" style="color:#0C275A;" class="form-control poppinns"     name="Date" value="Date"  [(ngModel)]="Date"> 
+            </div> 
+
+
             <div class="col-lg-2">
-                <input class="form-control poppinns" placeholder="Search" [(ngModel)]="search" (ngModelChange)="Filterjobs()">
-            </div>
+                <input  type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="endDate" value="endDate"  [(ngModel)]="endDate"> 
+           </div>
+
+
+          
+           <div class="col-lg-2">
+            <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
+              <option value="">Select Role</option>
+              <option value="" *ngFor="let vendor of staffdetails">
+                {{vendor.role}}
+              </option>
+            </select>
+          </div>
+            
+
 
   
-            <div class="col-lg-2">
-          
-                <select *ngIf="roleid==2"  name="Select" class="form-control poppinns form-select" (change)="jobTitle()"  [(ngModel)]="title">
-                  <option value="">Job Title</option>
-                  <option  *ngFor="let job of joblist " value="{{joblist.jobTitle}}">{{joblist.jobTitle}}</option>
-                </select>
-        
-        
-              </div>
-        <div class="col-lg-2">
-          <p>Start Date*</p>
-          <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"
-          (change)="CandidateRegistration()" name="Date" value="Date" [(ngModel)]="Date">
-        </div>
-        
-        <div class="col-lg-2">
-          <p>End  Date*</p>
-          <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"
-          (change)="CandidateRegistration()" name="Date" value="Date" [(ngModel)]="Date">
-        </div>
+           
+
 
 
 

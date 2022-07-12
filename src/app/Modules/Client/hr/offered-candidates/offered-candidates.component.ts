@@ -26,6 +26,9 @@ export class OfferedCandidatesComponent implements OnInit {
   Date: any;
   hrlist: any;
   username: any;
+  endDate: any
+  staffdetails: any
+  vendor: any
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
   public selectedlanguage: any;
@@ -40,12 +43,12 @@ export class OfferedCandidatesComponent implements OnInit {
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
   ngOnInit(): void {
 
-    this.CandidateRegistration();
     this.jobTitle()
 
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.GetCandidateReg()
+    this.GetJobDescriptionMaster()
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
@@ -119,6 +122,9 @@ export class OfferedCandidatesComponent implements OnInit {
       height: 500,
     }
   }
+  GetJobDescriptionMaster() {
+    throw new Error('Method not implemented.');
+  }
 
   showorhidecontent: any;
 
@@ -182,7 +188,9 @@ export class OfferedCandidatesComponent implements OnInit {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
+        // this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Candidate Registration');
@@ -365,7 +373,7 @@ export class OfferedCandidatesComponent implements OnInit {
     this.buildcallender(this.joblist);
   }
 
-  
+
   public jobTitle() {
     debugger;
 
@@ -374,14 +382,45 @@ export class OfferedCandidatesComponent implements OnInit {
     });
   }
 
-  public CandidateRegistration () {
-    debugger;
+  public Role(){
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
+      this.staffdetails=data
+    })
+     
+   
 
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-
-      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-    });
   }
+
+
+
+
+  // public GetJobDescriptionMaster() {
+  //   this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+  //     next: data => {
+  //       debugger
+  //       this.staffdetails = data;
+  //       this.loader=false;
+  //       this.count=this.staffdetails.length;
+  //     }, error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire('Getting Get Job Description Master ');
+  //       // Insert error in Db Here//
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
+
+  // }
+
+
+
+
 
 
 
