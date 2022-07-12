@@ -132,7 +132,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   }
   GetId(id: any) {
     this.ID = id
-    location.href = "#/JobVacancies/" + this.ID
+    location.href = "#/recruiter/JobVacancies/" + this.ID
   }
 
   description: any;
