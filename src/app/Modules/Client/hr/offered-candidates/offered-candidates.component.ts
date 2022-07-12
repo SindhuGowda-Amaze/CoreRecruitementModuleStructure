@@ -10,6 +10,7 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./offered-candidates.component.css']
 })
 export class OfferedCandidatesComponent implements OnInit {
+  title: any;
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
   p: any = 1;
   count1: any = 5;
@@ -38,6 +39,10 @@ export class OfferedCandidatesComponent implements OnInit {
   currentUrl: any
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
   ngOnInit(): void {
+
+    this.CandidateRegistration();
+    this.jobTitle()
+
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.GetCandidateReg()
@@ -359,4 +364,31 @@ export class OfferedCandidatesComponent implements OnInit {
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() + 1);
     this.buildcallender(this.joblist);
   }
+
+  
+  public jobTitle() {
+    debugger;
+
+    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
+      this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
+    });
+  }
+
+  public CandidateRegistration () {
+    debugger;
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
+
+      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+    });
+  }
+
+
+
+
+
+
+
+
+
 }

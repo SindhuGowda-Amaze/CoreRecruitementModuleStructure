@@ -456,7 +456,7 @@ export class SidebarComponent implements OnInit {
 
   public Appliedcandidates() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
-    this.router.navigate(['hirignmanager/AppliedCandidates']);
+    this.router.navigate(['/hiringmanager/AppliedCandidates']);
     this.applied = true
     this.Jobrecruit = false
     this.Vendorrecruit = false

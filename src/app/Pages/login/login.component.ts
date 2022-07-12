@@ -176,7 +176,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('role', 'HR');
       sessionStorage.setItem('roleid', '8');
       localStorage.setItem('Pagename', 'DASHBOARD')
-      location.href = "#/ManpowerPlanningandBudgetingdash";
+      location.href = "/ManpowerPlanningandBudgetingdash";
       location.reload();
     }
     else if (this.roleID == 9) {
@@ -186,7 +186,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('role', 'CEO');
       sessionStorage.setItem('roleid', '9');
       localStorage.setItem('Pagename', 'DASHBOARD')
-      location.href = "#/ManpowerPlanningandBudgetingdash";
+      location.href = "/ManpowerPlanningandBudgetingdash";
       location.reload();
     }
     else if (this.roleID == 3) {
