@@ -22,6 +22,7 @@ export class JoinedCandidatesComponent implements OnInit {
   Date:any;
   hrlist:any;
   username:any;
+  endDate :any
   currentUrl:any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -99,7 +100,9 @@ export class JoinedCandidatesComponent implements OnInit {
     this.RecruitServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Candidate Registration');

@@ -456,7 +456,7 @@ export class SidebarComponent implements OnInit {
 
   public Appliedcandidates() {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
-    this.router.navigate(['/hiringmanager/AppliedCandidates']);
+    this.router.navigate(['hirignmanager/AppliedCandidates']);
     this.applied = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -545,7 +545,7 @@ export class SidebarComponent implements OnInit {
 
   public Selected() {
     localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
-    this.router.navigate(['/hiringmanager/SelectedCandidates']);
+    this.router.navigate(['hirignmanager/SelectedCandidates']);
     this.selected = true
     this.Jobrecruit = false
     this.Vendorrecruit = false

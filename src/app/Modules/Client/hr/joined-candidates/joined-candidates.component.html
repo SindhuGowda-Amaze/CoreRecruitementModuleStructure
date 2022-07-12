@@ -9,7 +9,7 @@
 
     <div class="card">
         <div class="row FilterClass">
-            <div class="col-lg-1">
+            <div class="col-lg-2">
                 <p>Filter By</p>
             </div>
         
@@ -18,8 +18,14 @@
                     <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
                   </select> -->
               
-              
-                  <!-- <input  *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="Date" value="Date"  [(ngModel)]="Date"> -->
+              <div class="col-lg-2">
+                <input  *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"    name="Date" value="Date"  [(ngModel)]="Date">
+
+              </div>
+              <div class="col-lg-2">
+                <input  *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="endDate" value="endDate"  [(ngModel)]="endDate">
+
+              </div>
 
 
 
