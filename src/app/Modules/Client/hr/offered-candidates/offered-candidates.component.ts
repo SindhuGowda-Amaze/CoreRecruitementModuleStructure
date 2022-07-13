@@ -29,6 +29,9 @@ export class OfferedCandidatesComponent implements OnInit {
   endDate: any
   staffdetails: any
   vendor: any
+  Role1:any
+  GetJobDescription:any
+
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
   public selectedlanguage: any;
@@ -40,6 +43,7 @@ export class OfferedCandidatesComponent implements OnInit {
   public todaydate = new Date().getDate();
   public options1: any;
   currentUrl: any
+ 
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
   ngOnInit(): void {
 
@@ -48,7 +52,9 @@ export class OfferedCandidatesComponent implements OnInit {
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.GetCandidateReg()
-    this.GetJobDescriptionMaster()
+    this.GetJobDescription1()
+    this.Role1=""
+
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
@@ -418,6 +424,31 @@ export class OfferedCandidatesComponent implements OnInit {
 
   // }
 
+  
+
+  public GetJobDescription1() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader=false;
+        this.count=this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Get Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
 
 
 

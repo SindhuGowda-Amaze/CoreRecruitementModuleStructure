@@ -26,8 +26,8 @@
           
            <div class="col-lg-2">
             <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
-              <option value="">Select Role</option>
-              <option value="" *ngFor="let vendor of staffdetails">
+              <option value="">Select Job Title</option>
+              <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
                 {{vendor.role}}
               </option>
             </select>

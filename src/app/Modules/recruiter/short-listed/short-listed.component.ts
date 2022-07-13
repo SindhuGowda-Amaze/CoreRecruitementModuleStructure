@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -34,9 +35,13 @@ export class ShortListedComponent implements OnInit {
   title: any;
   Date: any;
   currentUrl: any;
+  staffdetails:any
+  Role: any
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.GetJobDescription()
+    this.Role=""
     this.loader = true;
     this.searchbyctc = "";
     this.searchbynotice = "";
@@ -370,6 +375,33 @@ export class ShortListedComponent implements OnInit {
       this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
     });
   }
+
+
+
+  public GetJobDescription() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader=false;
+        this.count=this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Get Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
+
 
 
 }

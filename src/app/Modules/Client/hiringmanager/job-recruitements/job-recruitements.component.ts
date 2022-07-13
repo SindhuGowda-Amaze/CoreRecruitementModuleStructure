@@ -31,7 +31,11 @@ export class JobRecruitementsComponent implements OnInit {
   dropdownList1: any = [];
   username: any;
   currentUrl: any
+  staffdetails:any
+  Role: any
   ngOnInit(): void {
+    this.GetJobDescription()
+    this.Role=""
     this.currentUrl = window.location.href;
     this.show = 0;
     this.hiringManager = "";
@@ -472,6 +476,33 @@ export class JobRecruitementsComponent implements OnInit {
         })
       }
     })
+  }
+
+
+
+
+  public GetJobDescription() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader=false;
+        this.count=this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Get Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
   }
 
 

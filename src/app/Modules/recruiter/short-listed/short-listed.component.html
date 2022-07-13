@@ -38,13 +38,12 @@
 
       </div>
       <div class="col-lg-2">
-
-        <select *ngIf="roleid==2"  name="Select" class="form-control poppinns form-select" (change)="jobTitle()"  [(ngModel)]="title">
-          <option value="">Job Title</option>
-          <option  *ngFor="let job of joblist " value="{{joblist.jobTitle}}">{{joblist.jobTitle}}</option>
+        <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
+          <option value="">Select Job Title</option>
+          <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
+            {{vendor.role}}
+          </option>
         </select>
-
-
       </div>
 
 
