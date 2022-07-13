@@ -73,12 +73,13 @@ export class DashboardComponent implements OnInit {
     debugger
     this.hrlist = data;
 
-    Swal.fire('Issue in Getting Expenses List Web');
+    
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Issue in Getting Expenses List Web');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -159,14 +160,16 @@ export class DashboardComponent implements OnInit {
     else{
       this.joblist = data
       this.count = this.joblist.length;
+    
     }
 
-    Swal.fire('Getting Job Requirements  ');
+   
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage':this. err.error.message
     }
+    Swal.fire('Getting Job Requirements  ');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -244,13 +247,15 @@ export class DashboardComponent implements OnInit {
       this.count1 = this.joblist4.length;
 
       debugger
+      
     }
-    Swal.fire('Getting Candidate Registration');
+   
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage':this. err.error.message
     }
+    Swal.fire('Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -355,14 +360,16 @@ export class DashboardComponent implements OnInit {
       this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
       this.joblist7 = this.joblist7.slice(0, 3);
       debugger
+    
     }
    
-    Swal.fire('Getting Candidate Registration');
+    
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -452,15 +459,17 @@ export class DashboardComponent implements OnInit {
     else{
       this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
       this.count4 = this.joblist10.length;
+     
   
     }
 
-    Swal.fire('Getting Candidate Registration');
+
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -614,13 +623,15 @@ export class DashboardComponent implements OnInit {
       this.joblist14 = data.filter(x => x.offerAcceptreject == 2);
       this.count6 = this.joblist14.length;
       debugger
+   
     }
-    Swal.fire('Getting Candidate Registration');
+
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -661,12 +672,13 @@ export class DashboardComponent implements OnInit {
    debugger
    this.count = this.joblist.length;
 
-    Swal.fire('Getting Job Requirements');
+  
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Getting Job Requirements');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger

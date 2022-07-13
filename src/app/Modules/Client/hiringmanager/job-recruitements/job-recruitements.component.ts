@@ -64,12 +64,14 @@ export class JobRecruitementsComponent implements OnInit {
       next: data => {
         debugger
         this.dropdownList1 = data;
-        Swal.fire('Getting Vendor Dasboard');
+   
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': this.err.error.message
+         
         }
+        Swal.fire('Getting Vendor Dasboard');
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
@@ -101,12 +103,13 @@ export class JobRecruitementsComponent implements OnInit {
         this.loader = false;
         debugger
         this.count = this.joblist.length;
-        Swal.fire('Getting Job Requirements');
+       
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': this.err.error.message
         }
+        Swal.fire('Getting Job Requirements');
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
@@ -347,12 +350,13 @@ export class JobRecruitementsComponent implements OnInit {
         debugger
         this.joblist = data.filter(x => x.vendor == null && x.hiringManager == this.hiringManager);
         this.count = this.joblist.length;
-        Swal.fire('Getting Job Requirements');
+     
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': this.err.error.message
         }
+        Swal.fire('Getting Job Requirements');
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger

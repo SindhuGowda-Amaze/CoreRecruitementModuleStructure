@@ -180,7 +180,7 @@ export class SidebarComponent implements OnInit {
     }
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
-      this.router.navigate(['/Dashboard']);
+      this.router.navigate(['/hirignmanager/Dashboard']);
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false

@@ -125,12 +125,13 @@ export class AppliedCandidatesComponent implements OnInit {
     this.noticeperiodlist = data.filter(x => x.accept == 0 && x.reject == 0 );
     this.ctclist= data.filter(x =>  x.accept == 0 && x.reject == 0 );
     this.count = this.joblist.length;
-    Swal.fire('Issue in Getting Expenses List Web');
+  
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Issue in Getting Expenses List Web');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -302,12 +303,13 @@ export class AppliedCandidatesComponent implements OnInit {
     debugger
     this.joblist = data.filter(x => (x.accept == 0 && x.reject == 0) &&  (x.ctc == this.searchbyctc));
 
-    Swal.fire('Issue in Getting Expenses List Web');
+  
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
+    Swal.fire('Issue in Getting Expenses List Web');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger

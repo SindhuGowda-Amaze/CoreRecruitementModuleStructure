@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
       sessionStorage.setItem('role', 'Admin');
-      location.href = "#/AdminDashboard"
+      location.href = "#admin/AdminDashboard"
       sessionStorage.setItem('roleid', '1');
       location.reload();
     }
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'recruiter');
             sessionStorage.setItem('roleid', '6');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#recruiter/Dashboard";
             location.reload();
           }
           else {
@@ -507,7 +507,7 @@ export class LoginComponent implements OnInit {
 
             sessionStorage.setItem('roleid', '2');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -627,7 +627,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('temp', '1');
             localStorage.setItem('roleid', '5');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            this.router.navigate(["/Dashboard"]);
+            this.router.navigate(["/InterviewPanel/Dashboard"]);
           }
           else {
 

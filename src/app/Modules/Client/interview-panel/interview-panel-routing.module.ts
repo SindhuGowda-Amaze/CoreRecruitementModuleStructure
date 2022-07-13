@@ -8,7 +8,7 @@ const routes: Routes = [
   
   { path: '', component: InterviewPanelComponent },
 {path:'ScheduledInterviews',component:ScheduledInterviewsComponent},
-{path:'',component:RejectedComponent}
+{path:'Rejected',component:RejectedComponent}
 
 
 
