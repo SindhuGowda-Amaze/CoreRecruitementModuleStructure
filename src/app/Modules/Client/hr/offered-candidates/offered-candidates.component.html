@@ -14,13 +14,23 @@
         <p>Filter By</p>
       </div>
       <div class="col-lg-2">
-        <select *ngIf="roleid!=2" class="form-control form-select poppinns" [(ngModel)]="hiringManager"
+        <select  class="form-control form-select poppinns" [(ngModel)]="hiringManager"
           (change)="GetJobRequirements()">
           <option value="">Select Hiring Manager</option>
           <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
         </select>
-        <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns" name="Date"
-          value="Date" [(ngModel)]="Date">
+       
+      </div>
+      <div class="col-lg-2">
+        <input  type="date" style="color:#0C275A;" class="form-control poppinns" name="Date"
+        value="Date" [(ngModel)]="Date">
+      </div>
+
+
+      <div class="col-lg-2">
+        <input  type="date" style="color:#0C275A;" class="form-control poppinns"
+          (change)="changeAnniversary()" name="endDate" value="endDate" [(ngModel)]="endDate">
+
       </div>
 
       <div class="col-lg-2">
@@ -32,11 +42,7 @@
         </select>
       </div>
 
-      <div class="col-lg-2">
-        <input *ngIf="roleid==2" type="date" style="color:#0C275A;" class="form-control poppinns"
-          (change)="changeAnniversary()" name="endDate" value="endDate" [(ngModel)]="endDate">
-
-      </div>
+     
 
 
 

@@ -20,10 +20,7 @@
 
             <div class="col-lg-2">
                 <input  type="date" style="color:#0C275A;" class="form-control poppinns"    (change)="changeAnniversary()" name="endDate" value="endDate"  [(ngModel)]="endDate"> 
-           </div>
-
-
-          
+           </div>         
            <div class="col-lg-2">
             <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
               <option value="">Select Job Title</option>
@@ -33,22 +30,6 @@
             </select>
           </div>
             
-
-
-  
-           
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="col-lg-2">
                 <select *ngIf="roleid!=2"  class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >

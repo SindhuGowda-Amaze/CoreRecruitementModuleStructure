@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-10">
             <br>
-            <p class="Heading" style="color:#3247D5">OPEN POSITIONS</p>
+            <p class="Heading" style="color:#3247D5">CLOSED POSITIONS</p>
         </div>
     </div><br>
     <div class="card">
@@ -77,15 +77,15 @@
                         <th class="heading">Job Title</th>
                         <th class="heading">Skill/Technology</th>
                         <th class="heading">Total Years of Experience</th>
-                        <th class="heading">Expected Experience</th>
                         <th class="heading">Job Description</th>
                         <th class="heading">Job Location</th>
                         <th class="heading">No of Positions</th>
-                        <th class="heading"> CTC Budget</th>
                         <th class="heading">Hiring Manager</th>
+                        <th class="heading">N0 Of Cvs</th>
+                        <th class="heading">No Of candidates Selected</th>
+                        <th class="heading">No Of candidates Offered</th>
+                        <th class="heading">No Of candidates Joined</th>
                         <!-- <th class="heading">Recruiter Comments</th> -->
-                        <th class="heading">Actions </th>
-                        <th *ngIf="roleid==6">Assigned Vendors</th>
                     </tr>
                 </thead>
                 <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }" >
@@ -96,24 +96,23 @@
                         <button class="Button"  data-toggle="modal"
                         (click)="GEtskills(job)" data-target="#viewempcomments1" >View</button>
                       </td>
-                    <td>{{job.totalExp}}</td>
                     <td>{{job.relaventExp}}</td>
                     <td ><button class="Button"  data-toggle="modal"
                         (click)="GEtemployeecomments(job)" data-target="#viewempcomments" >View</button></td>
                    
                     <td>{{job.joblocation}}</td>
                     <td>{{job.noofpositions}}</td>
-                    <td>{{job.package}}</td>
                     <td>{{job.hiringManager}}</td>
+               
+                   
+
                     <!-- <td>{{job.notes}}</td> -->
-                    <td><button class="Button form-control" data-toggle="modal" (click)="GetId(job.id)">Upload</button>
-                        <br />
-                        <button *ngIf="roleid==6" class=" form-control Add1" data-toggle="modal"
-                            (click)="GetId1(job.id)" data-target="#Assign">Assign Vendor</button>
-                            <!-- <button  class="Add1 form-control " data-toggle="modal"
-                            (click)="GetId1(job.id)" data-target="#Assign">Assign Vendor</button> -->
-                    </td>
-                    <td  *ngIf="roleid==6">{{job.vendor}}</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                 <td>-</td>
+                   
+                    
                 </tr>
             </table>
            
@@ -192,51 +191,4 @@
 
 
 
-<div id="Assign" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Assign Vendor</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-2">
-                        <label class="Text">Vendor :</label>
-                    </div>
-                    <div class="col-lg-5">
-                        <ng-multiselect-dropdown [placeholder]="'Select Vendor'" [settings]="dropdownSettings1"
-                        [data]="dropdownList1" [(ngModel)]="Vendor"  (onSelect)="onItemSelect1($event)">
-                        </ng-multiselect-dropdown>
-                    </div>
-                </div> <br>
 
-                <div class="row">
-                    <div class="col-lg-2">
-                        <label class="Text" style="font-weight: bold;">Notes :</label>
-                    </div>
-                    <div class="col-lg-10">
-
-                        <ckeditor id="Notes"   name="Notes"  [(ngModel)]="Notes" data="<p>Write Here !</p>"></ckeditor>
-                    
-<!-- 
-                        <textarea class="form-control" name="Notes" id="Notes" [(ngModel)]="Notes"
-                            placeholder="Notes"></textarea> -->
-                    </div>
-                </div> <br>
-                <div class="row">
-                    <div class="col-lg-5"></div>
-                    <div class="col-lg-2">
-                        <button class="form-control Save" (click)="UpdateVendor()">Assign</button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <hr>
-                <div class="col-lg-2">
-                    <button class="Button">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

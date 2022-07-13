@@ -11,6 +11,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+import { ClosedPositionComponent } from './closed-position/closed-position.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
     HelpComponent,
     SupportTicketDashboardComponent,
     SupportTicketsComponent,
+    ClosedPositionComponent,
   
   
   ],
