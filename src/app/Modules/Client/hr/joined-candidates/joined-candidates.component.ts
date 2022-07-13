@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
+import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import swal from 'sweetalert2';
 @Component({
   selector: 'app-joined-candidates',
@@ -8,6 +8,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./joined-candidates.component.css']
 })
 export class JoinedCandidatesComponent implements OnInit {
+  RecruitmentServiceService: any;
   constructor(private RecruitServiceService:RecruitementService) { }
   OfferComments: any;
   joblist: any;
@@ -24,7 +25,13 @@ export class JoinedCandidatesComponent implements OnInit {
   username:any;
   endDate :any
   currentUrl:any
+  staffdetails : any
+
+data: any
+  Role:any
   ngOnInit(): void {
+    this.GetJobDescription()
+  this.Role=""
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
@@ -236,4 +243,30 @@ export class JoinedCandidatesComponent implements OnInit {
     })
 
   }
+
+
+  public GetJobDescription() {
+
+    this.RecruitServiceService.GetJobDescriptionMaster().subscribe(data=>{
+      this.staffdetails=data;
+    })
+    debugger
+    // this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe((data: any)=>{
+    //   this.staffdetails=data;
+    //   debugger
+    //   console.log("staff",this.staffdetails)
+    // })
+
+  }
+
+
+
+
+  
+
+
+
+
+
+  
 }

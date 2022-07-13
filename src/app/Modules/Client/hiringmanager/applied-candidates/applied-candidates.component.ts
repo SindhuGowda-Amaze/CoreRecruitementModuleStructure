@@ -32,7 +32,12 @@ export class AppliedCandidatesComponent implements OnInit {
   hiringManager:any;
   username:any;
   currentUrl:any
+  job:any
+  Role: any
+  staffdetails :any
   ngOnInit(): void {
+    this.GetJobDescription()
+    this.Role=""
     this.currentUrl = window.location.href;
   this.hiringManager="";
   this.searchbynotice="";
@@ -344,4 +349,33 @@ export class AppliedCandidatesComponent implements OnInit {
 })
  
   }
+
+
+
+
+
+  public GetJobDescription() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+      next: data => {
+        debugger
+        this.staffdetails = data;
+        this.loader=false;
+        this.count=this.staffdetails.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Get Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
+
 }

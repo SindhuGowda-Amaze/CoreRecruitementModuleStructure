@@ -36,7 +36,8 @@ export class DroppedCandidatesComponent implements OnInit {
   
   ngOnInit(): void {
     this.role="";
-    this.GetJobDescription()
+    this.GetJobDescription();
+    this.Role="";
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
