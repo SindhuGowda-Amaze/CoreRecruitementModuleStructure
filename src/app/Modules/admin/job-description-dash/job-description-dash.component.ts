@@ -89,7 +89,7 @@ public Ondelete(id: any) {
 
   edit(id: any) {
     debugger
-    location.href = "#/JobDescriptionForm/" + id;
+    location.href = "#admin/JobDescriptionForm/" + id;
   }
 
 
