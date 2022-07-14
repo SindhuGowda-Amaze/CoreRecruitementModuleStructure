@@ -393,7 +393,12 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
+  Cancel(){
 
+    window.location.reload()
+
+  }
+  
   public changeAnniversary() {
     debugger;
 
@@ -426,6 +431,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
       this.staffdetails=data
     })
+
   }
 
   public SendMailEmployee() {

@@ -181,7 +181,7 @@ export class SidebarComponent implements OnInit {
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
       this.router.navigate(['/hirignmanager/Dashboard']);
-      this.home = true
+      this.home = false
       this.Jobrecruit = false
       this.Vendorrecruit = false
 
@@ -231,32 +231,32 @@ export class SidebarComponent implements OnInit {
       this.joinedreport = false
       this.droppedreport = false
     }
-    else if (this.roleid == '11') {
-      localStorage.setItem('Pagename', 'DASHBOARD')
-      this.router.navigate(['/Dashboard']);
-      this.home = true
-      this.Jobrecruit = false
-      this.Vendorrecruit = false
-      this.applied = false
-      this.shortlist = false
-      this.scheduled = false
-      this.Vendorrecruit = false
-      this.applied = false
-      this.shortlist = false
-      this.scheduled = false
-      this.selected = false
-      this.offered = false
-      this.joined = false
-      this.dropped = false
-      this.vendorreport = false
-      this.appliedreport = false
-      this.shortlistedreport = false
-      this.selectedreport = false
-      this.offeredreport = false
-      this.Jobrecruitreport = false
-      this.joinedreport = false
-      this.droppedreport = false
-    }
+  //  else if (this.roleid == '11') {
+    //   localStorage.setItem('Pagename', 'DASHBOARD')
+    //   this.router.navigate(['/Dashboard']);
+    //   this.home = true
+    //   this.Jobrecruit = false
+    //   this.Vendorrecruit = false
+    //   this.applied = false
+    //   this.shortlist = false
+    //   this.scheduled = false
+    //   this.Vendorrecruit = false
+    //   this.applied = false
+    //   this.shortlist = false
+    //   this.scheduled = false
+    //   this.selected = false
+    //   this.offered = false
+    //   this.joined = false
+    //   this.dropped = false
+    //   this.vendorreport = false
+    //   this.appliedreport = false
+    //   this.shortlistedreport = false
+    //   this.selectedreport = false
+    //   this.offeredreport = false
+    //   this.Jobrecruitreport = false
+    //   this.joinedreport = false
+    //   this.droppedreport = false
+    // }
     else if (this.roleid == '3') {
       localStorage.setItem('Pagename', 'DASHBOARD')
       this.router.navigate(['/Dashboard']);
@@ -337,8 +337,7 @@ export class SidebarComponent implements OnInit {
       this.droppedreport = false
     }
   }
-
- 
+  
   public JobRecruitment() {
     this.Jobrecruit = true
     this.Vendorrecruit = false

@@ -103,7 +103,7 @@
     <div class="row">
         <div class="col-md-2 sidenav " style="height: 100vh;margin-top: 75px;position: fixed;">
 
-            <a (click)="admin()" class="nonactive" (click)="openCity($event)">
+            <a (click)="admin()" class="nonactive" (click)="openCity($event)" *ngIf="roleid!=5">
 
                 <img *ngIf="!home" src="assets/Images/64/home.png" style="width: 13%;  margin-right: 17px;">&nbsp;
                 <img *ngIf="home" src="assets/Images/64 Blue/home.png" style="width: 13%;  margin-right: 17px;" />

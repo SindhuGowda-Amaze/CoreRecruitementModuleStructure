@@ -240,4 +240,12 @@
   
   
   
+  .sub-table tr:nth-child(odd)
+  {
+    background-color: transparent !important;
+  }
   
+  .sub-table tr:nth-child(even)
+  {
+    background-color: transparent !important;
+  }
