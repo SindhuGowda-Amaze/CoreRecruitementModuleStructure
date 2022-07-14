@@ -1,0 +1,71 @@
+
+/* table{
+    border-collapse: collapse;
+    width: 100%;
+} */
+/* td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+} */
+
+
+.heading {
+    background-color: #02CFFF;
+    color: white;
+
+}
+
+.button {
+    background-color: #3247D5;
+    color: #fff;
+}
+
+.Add1 {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3247D5;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    height: 61px;
+}
+
+.Button {
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3247D5;
+    color: white;
+    width: 100%;
+  }
+
+.Count {
+    color: #3247D5;
+    font-size: 20px !important;
+
+    font-weight: bold;
+    float: right;
+    margin-right: 15px;
+}
+
+.Heading {
+
+    font-size: 20px !important;
+
+    font-weight: bold;
+}
+
+.HrLine {
+    margin-bottom: 15px;
+    margin-top: 0px;
+}
+
+.FilterClass {
+    color: #0C275A;
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+

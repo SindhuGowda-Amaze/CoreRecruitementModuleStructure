@@ -36,7 +36,14 @@ export class ScheduledInterviewsComponent implements OnInit {
   p: any = 1;
   count1: any = 5;
   currentUrl: any
+  Date: any
+  endDate: any
+  staffdetails: any
+  data:any
+  Role1: any
   ngOnInit(): void {
+    this.GetJobDescription1()
+    this.Role1=""
     this.currentUrl = window.location.href
     this.staffid = localStorage.getItem('userid');
     this.Username = localStorage.getItem('UserName');
@@ -381,6 +388,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
 
 
+<<<<<<< HEAD
   Cancel(){
 
     window.location.reload()
@@ -391,6 +399,42 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
     
+=======
+
+
+  public changeAnniversary() {
+    debugger;
+
+    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        // this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    });
+  }
+
+
+
+  public GetJobDescription1(){
+    this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
+      this.staffdetails=data
+    })
+>>>>>>> 847dc9074cfb71aa380f8e09d40cf178db04965c
   }
 
 }

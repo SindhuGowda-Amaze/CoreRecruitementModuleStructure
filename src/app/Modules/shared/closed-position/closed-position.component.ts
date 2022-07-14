@@ -3,12 +3,14 @@ import { RecruitementService } from 'src/app/Pages/Services/recruitement.service
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+
 @Component({
-  selector: 'app-vendor-job-openings',
-  templateUrl: './vendor-job-openings.component.html',
-  styleUrls: ['./vendor-job-openings.component.css']
+  selector: 'app-closed-position',
+  templateUrl: './closed-position.component.html',
+  styleUrls: ['./closed-position.component.css']
 })
-export class VendorJobOpeningsComponent implements OnInit {
+export class ClosedPositionComponent implements OnInit {
+
   Date: any;
   title: any;
   RecruitServiceService: any;
