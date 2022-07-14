@@ -129,7 +129,7 @@
                             <p *ngIf="job.budgetStatus==null">Waiting for Approval</p>
                             <p *ngIf="job.budgetStatus!=null">{{job.budgetStatus}}</p>
                         </td>
-                        <td >
+                        <td *ngIf="roleid!='4' && (roleid=='6'|| roleid=='2')">
 
                             <button class="btn btn-danger" *ngIf="job.offered=='0' && job.budgetStatus=='Approved' && roleid=='6'" 
                                 data-toggle="modal" data-target="#exampleModal"
