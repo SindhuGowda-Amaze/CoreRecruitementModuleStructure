@@ -124,7 +124,8 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+          this.joblist = data
+          // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
