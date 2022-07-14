@@ -462,7 +462,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('temp', '1');
             sessionStorage.setItem('role', 'Interview Panel');
             sessionStorage.setItem('roleid', '5');
-            location.href = "#/ScheduledInterviews";
+            location.href = "#InterviewPanel/ScheduledInterviews";
             localStorage.setItem('Pagename', 'DASHBOARD')
             location.reload();
           }

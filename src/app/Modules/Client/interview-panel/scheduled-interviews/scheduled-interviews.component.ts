@@ -380,4 +380,17 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.buildcallender(this.joblist);
   }
 
+
+  Cancel(){
+
+    window.location.reload()
+
+  }
+
+  Note(){
+
+
+    
+  }
+
 }
