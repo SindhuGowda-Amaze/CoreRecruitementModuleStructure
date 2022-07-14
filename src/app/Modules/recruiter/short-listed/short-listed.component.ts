@@ -40,7 +40,7 @@ export class ShortListedComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.GetJobDescription()
+   
     this.Role=""
     this.loader = true;
     this.searchbyctc = "";
@@ -134,8 +134,9 @@ export class ShortListedComponent implements OnInit {
       })
     }
 
-    this.jobTitle()
-    this.CandidateRegistration()
+
+    this.CandidateRegistration();
+    this.GetJobDescription();
   }
   public changeoption() {
     debugger;
@@ -357,13 +358,14 @@ export class ShortListedComponent implements OnInit {
     })
   }
 
-  public jobTitle() {
-    debugger;
+  
+  // public jobTitle() {
+  //   debugger;
 
-    this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-      this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
-    });
-  }
+  //   this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
+  //     this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
+  //   });
+  // }
 
 
 
@@ -372,7 +374,7 @@ export class ShortListedComponent implements OnInit {
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
 
-      this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+      this.joblist = data
     });
   }
 

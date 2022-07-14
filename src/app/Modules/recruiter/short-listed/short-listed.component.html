@@ -40,8 +40,8 @@
       <div class="col-lg-2">
         <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
           <option value="">Select Job Title</option>
-          <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
-            {{vendor.role}}
+          <option value="{{job.id}}" *ngFor="let job of staffdetails">
+            {{job.role}}
           </option>
         </select>
       </div>
@@ -160,22 +160,8 @@
             <input type="date" class="form-control" [(ngModel)]="date" name="date" (change)="GetDate($event)">
           </div>
         </div><br>
-        <div class="row">
-          <div class="col-lg-3 ">
-            <label>Who Will take interview : <span style="color: red;">*</span></label>
-          </div>
-          <div class="col-lg-6">
-            <input type="text" class="form-control">
-          </div>
-        </div><br>
-        <div class="row">
-          <div class="col-lg-3">
-            <label>Why Shortlisted  : <span style="color: red;">*</span></label>
-          </div>
-          <div class="col-lg-6">
-            <textarea class="form-control" rows="4"></textarea>
-          </div>
-        </div>
+     <br>
+       
         <br>
         <div class="row">
           <div class="col-lg-3">
