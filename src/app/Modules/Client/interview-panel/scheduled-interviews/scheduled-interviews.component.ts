@@ -388,23 +388,13 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   Cancel(){
 
     window.location.reload()
 
   }
-
-  Note(){
-
-
-    
-=======
-=======
->>>>>>> 847dc9074cfb71aa380f8e09d40cf178db04965c
-
-
+  
   public changeAnniversary() {
     debugger;
 
@@ -437,10 +427,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
       this.staffdetails=data
     })
-<<<<<<< HEAD
->>>>>>> 847dc9074cfb71aa380f8e09d40cf178db04965c
-=======
->>>>>>> 847dc9074cfb71aa380f8e09d40cf178db04965c
+
   }
 
 }
