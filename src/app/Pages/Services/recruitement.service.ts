@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class RecruitementService {
+  
+ 
  
 
  
@@ -426,14 +428,14 @@ export class RecruitementService {
 
  public InsertJobDescriptionMaster(data: any) {
    debugger;
-   this.url = this.host + '/Master/InsertJobDescriptionMaster';
+   this.url = this.host + '/Vendor/InsertJobDescriptionMaster';
    return this.http.post(this.url, data);
  }
 
 
  public UpdateJobDescriptionMaster(data:any) {
    debugger
-   this.url = this.host + "/User/UpdateJobDescriptionMaster";
+   this.url = this.host + "/Vendor/UpdateJobDescriptionMaster";
    return this.http.post(this.url, data);
  }
 
@@ -474,7 +476,7 @@ export class RecruitementService {
 
 
  public InsertExceptionLogs(data: any) {
-
+ 
   debugger;
 
   this.url = this.host + '/Master/InsertExceptionLogs';
@@ -482,5 +484,38 @@ export class RecruitementService {
   return this.http.post(this.url, data);
 
 }
+
+public GetClosedJobRequirement() {
+
+  return this.http.get<any[]>(this.host + "/Master/GetClosedJobRequirement");
+}
+
+
+public sendemailattachements(data: any) {
+
+  debugger
+
+  this.url = this.host + '/Master/sendemailattachements';
+
+  return this.http.post(this.url, data)
+
+
+
+}
+
+public sendemailattachementsforemail(data: any) {
+
+  debugger
+
+  this.url = '  https://asticom.digiofficeapp.com/AsticomMainAPI' + '/Master/sendemailattachements';
+
+  return this.http.post(this.url, data)
+
+
+
+}
+
+
+
 
 }

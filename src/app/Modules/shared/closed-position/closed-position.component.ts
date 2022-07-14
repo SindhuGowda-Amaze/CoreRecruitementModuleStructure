@@ -34,8 +34,9 @@ export class ClosedPositionComponent implements OnInit {
   username: any;
   currentUrl: any
   endDate: any
-  data :any
+  data :any=[];
   Role: any
+
   staffdetails: any
   ngOnInit(): void {
     debugger;
@@ -67,8 +68,8 @@ export class ClosedPositionComponent implements OnInit {
 
     if (this.roleid == '3') {
       debugger;
-      this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-        next: data => {
+      this.RecruitmentServiceService.GetClosedJobRequirement().subscribe({
+        next: (data: any[]) => {
           debugger
           this.joblist = data.filter(x => x.vendor == this.username);
           this.count = this.joblist.length;
@@ -337,9 +338,9 @@ export class ClosedPositionComponent implements OnInit {
 
   public GetJobDescription() {
 
-    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
-      this.staffdetails=data
-    })
+  this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
+    this.staffdetails=data
+  })
 
 
 

@@ -27,6 +27,8 @@ export class JobRequisitionComponent implements OnInit {
   public hrlist: any;
   username: any;
   currentUrl: any
+  files: any;
+
 
   constructor(private RecruitmentServiceService: RecruitementService) { }
   editor: any;
@@ -128,6 +130,17 @@ export class JobRequisitionComponent implements OnInit {
               // cancelButtonAriaLabel: 'Thumbs down'
             })
 
+
+            var sub = 'Hiring Manager has Posted the job'
+            var email='gmrmadhavreddy416@gmail.com'
+            var desc = 'Dear  Manager Hiring Manger is posted the job Need your approval Applicant,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            this.SendMailEmployee(sub, desc,email);
+
+            var sub = 'Hiring Manager has Posted the job'
+            var email='divyashree@amazeinc.in'
+            var desc = 'Dear  SBU Hiring Manger is posted the job Need your approval Applicant,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            this.SendMailEmployee(sub, desc,email);
+
             location.href = "#/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
@@ -179,4 +192,49 @@ export class JobRequisitionComponent implements OnInit {
       }
     })
   }
+
+  public SendMailEmployee(sub: any, desc: any,email : any) {
+
+    debugger
+
+    var entity3 = {
+
+      'emailto': email,
+      // 'emailto': 'divyashree@amazeinc.in',
+      'emailsubject': sub,
+      'emailbody': desc,
+      'attachmenturl': this.files,
+
+      'cclist': 'sindhugowda.amazeinc@gmail.com',
+
+      'bcclist': 'sindhugowda.amazeinc@gmail.com',
+
+    }
+
+
+
+    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+
+      debugger;
+
+
+
+      // Swal.fire('Letter Generated and Sent Successfully');
+
+      Swal.fire('Checklist Sent to Respective Department');
+
+    })
+
+
+
+  }
+
+
+
+Cancel(){
+    location.href = "#/hirignmanager/JobRecruitements";
+  }
+
+
+
 }

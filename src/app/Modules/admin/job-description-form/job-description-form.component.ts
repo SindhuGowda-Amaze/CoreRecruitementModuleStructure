@@ -173,6 +173,6 @@ export class JobDescriptionFormComponent implements OnInit {
 })
   }
   cancel(){
-    location.href = "#/JobDescriptionDash";
+    location.href = "#/admin/JobDescriptionDash";
   }
 }

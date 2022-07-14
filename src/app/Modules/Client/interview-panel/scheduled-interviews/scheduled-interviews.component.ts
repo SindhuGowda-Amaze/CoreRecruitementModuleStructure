@@ -11,6 +11,7 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./scheduled-interviews.component.css']
 })
 export class ScheduledInterviewsComponent implements OnInit {
+  files: any;
 
   constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
 
@@ -41,6 +42,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   staffdetails: any
   data:any
   Role1: any
+ 
   ngOnInit(): void {
     this.GetJobDescription1()
     this.Role1=""
@@ -126,6 +128,10 @@ export class ScheduledInterviewsComponent implements OnInit {
           debugger
           this.joblist = data
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+<<<<<<< HEAD
+=======
+          debugger
+>>>>>>> f3d0d822c715f643e17738539d0a07a4048f043f
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
@@ -286,6 +292,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           'Candidate has been Accepted',
           'success'
         )
+        this.SendMailEmployee()
         this.GetCandidateReg()
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
@@ -430,5 +437,50 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
 
   }
+
+  public SendMailEmployee() {
+
+    debugger
+
+    var entity3 = {
+
+      'emailto': 'gmrmadhavreddy416@gmail.com',
+
+    
+
+      'emailsubject': 'Selected candidates',
+
+      'emailbody': 'Dear Applicant,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>',
+
+      'attachmenturl': this.files,
+
+      'cclist': 'sindhugowda.amazeinc@gmail.com',
+
+      'bcclist': 'sindhugowda.amazeinc@gmail.com',
+
+    }
+
+
+
+    this.RecriutmentServiceService.sendemailattachements(entity3).subscribe(res => {
+
+      debugger;
+
+
+
+      // Swal.fire('Letter Generated and Sent Successfully');
+
+      Swal.fire('Checklist Sent to Respective Department');
+
+    })
+
+
+
+  }
+
+
+
+
+
 
 }

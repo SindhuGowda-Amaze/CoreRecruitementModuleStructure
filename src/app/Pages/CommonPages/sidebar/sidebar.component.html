@@ -280,6 +280,21 @@
                         style="width: 13%;  margin-right: 17px;" /> &nbsp;DROPPED CANDIDATES
 
                 </a>
+                <a routerLink="/shared/ClosedPosition" class="tablinks" (click)="highlight($event)"
+                (click)="SupportTickets()">
+                <img src="assets/Images/64 Blue/Staff.png" style="width:13% ;margin-right: 17px;"
+                    [ngClass]="active == 'ClosedPosition' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active != 'ClosedPosition' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'ClosedPosition' ? 'Active1' : 'Active3'">CLOSED POSITION</span>
+                &nbsp;
+            </a>
+
+
+
+
+
             </div>
             <!-- <a (click)="JobRecruitment()" *ngIf="roleid==11" class="nonactive" (click)="openCity($event)">
                 <img src="assets/Images/64 Blue/Staff.png" style="width: 20px;    margin-right: 17px;" />
@@ -415,16 +430,7 @@
 
 
 
-            <a routerLink="/shared/ClosedPosition" class="tablinks" (click)="highlight($event)"
-            (click)="SupportTickets()">
-            <img src="assets/Images/64 Blue/Staff.png" style="width:13% ;margin-right: 17px;"
-                [ngClass]="active == 'ClosedPosition' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active != 'ClosedPosition' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
-                style="width:13%; margin-right: 17px;">
-            &nbsp;
-            <span [ngClass]="active == 'ClosedPosition' ? 'Active1' : 'Active3'">CLOSED POSITION</span>
-            &nbsp;
-        </a>
+           
 
 
             <a *ngIf="roleid==10||roleid==11" class="tablinks" (click)="highlight($event)" (click)="offermanage()">
