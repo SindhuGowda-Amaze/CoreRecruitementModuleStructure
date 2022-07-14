@@ -42,6 +42,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   staffdetails: any
   data:any
   Role1: any
+ 
   ngOnInit(): void {
     this.GetJobDescription1()
     this.Role1=""
