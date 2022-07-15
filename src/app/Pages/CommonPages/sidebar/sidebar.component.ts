@@ -381,7 +381,7 @@ export class SidebarComponent implements OnInit {
     if (this.roleid == '5') {
       this.active = 80;
       localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
-      this.router.navigate(['InterviewPanel/ScheduledInterviews']);
+      this.router.navigate(['/Interviewpanel/ScheduledInterviews']);
     }
 
   }
