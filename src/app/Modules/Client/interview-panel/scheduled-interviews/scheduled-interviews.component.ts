@@ -128,10 +128,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           debugger
           this.joblist = data
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
-<<<<<<< HEAD
-=======
           debugger
->>>>>>> f3d0d822c715f643e17738539d0a07a4048f043f
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
@@ -428,6 +425,36 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
     });
   }
+
+   
+
+    public  Note()  {
+      this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
+        next: data => {
+          debugger
+          Swal.fire(
+            'Selected!!',
+            'Candidate has been Accepted',
+            'success'
+          )
+          //this.SendMailEmployee()
+          this.GetCandidateReg()
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  
+    }
 
 
 
