@@ -432,15 +432,15 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
         next: data => {
           debugger
-          Swal.fire(
-            'Selected!!',
-            'Candidate has been Accepted',
-            'success'
-          )
+          // Swal.fire(
+          //   'Selected!!',
+          //   'Candidate has been Accepted',
+          //   'success'
+          // )
           //this.SendMailEmployee()
-          this.GetCandidateReg()
+          //this.GetCandidateReg()
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          //Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
