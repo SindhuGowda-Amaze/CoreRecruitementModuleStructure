@@ -45,6 +45,8 @@ export class SelectedCandidatesComponent implements OnInit {
   currentUrl: any
   staffdetails:any
   Role:any
+  data : any
+  
 
   ngOnInit(): void {
     this.GetJobDescription()
@@ -265,8 +267,7 @@ public updatejoiningdate() {
       'cclist': 0,
       'bcclist': 0
     }
-    this.RecruitmentServiceService.sendemail(entity)
-      .subscribe(data => {
+    this.RecruitmentServiceService.sendemail(entity).subscribe(data => {
       })
   }
 
@@ -451,8 +452,6 @@ public updatejoiningdate() {
       }
     })
   }
-
-
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -513,13 +512,4 @@ public updatejoiningdate() {
     })
 
   }
-
-
-
-
-
-
-
-
-
 }
