@@ -34,6 +34,8 @@ export class JobRequisitionComponent implements OnInit {
   editor: any;
   html: any;
   Department: any;
+  hrlist1:any;
+  hrlist2:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
@@ -41,8 +43,10 @@ export class JobRequisitionComponent implements OnInit {
     this.RecruitmentServiceService.GetClientStaff()
       .subscribe(data => {
         this.hrlist = data;
-        this.manager = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'Manager')
-        this.buHead = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'BU Head')
+        this.hrlist1 = data.filter((x: { role: string; }) => x.role == 'Manager');
+        this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
+        this.manager = this.hrlist1[0].id
+        this.buHead = this.hrlist2[0].id
 
 
 
@@ -137,7 +141,7 @@ export class JobRequisitionComponent implements OnInit {
 
 
             var sub = 'Hiring Manager has Posted the job'
-            var email = 'sindhugowda.amazeinc@gmail.com'
+            var email = 'iam.manikanta244@gmail.com'
             var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval ,<br><br>.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
             this.SendMailEmployee(sub, desc, email);
 
@@ -149,8 +153,8 @@ export class JobRequisitionComponent implements OnInit {
             this.InsertNotificationSBU();
             this.InsertNotificationManager();
 
-
-            location.href = "#/JobRecruitements";
+            Swal.fire('Saved Successfully');
+            location.href = "#/hirignmanager/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
@@ -210,7 +214,7 @@ export class JobRequisitionComponent implements OnInit {
       'emailsubject': sub,
       'emailbody': desc,
       'attachmenturl': this.files,
-      'cclist': 'sindhugowda.amazeinc@gmail.com',
+      'cclist': 'gmrmadhavreddy416@gmail,com',
       'bcclist': 'sindhugowda.amazeinc@gmail.com',
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
