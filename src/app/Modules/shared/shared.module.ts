@@ -7,11 +7,12 @@ import { SupportTicketDashboardComponent } from './support-ticket-dashboard/supp
 import { SupportTicketsComponent } from './support-tickets/support-tickets.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
 import { ClosedPositionComponent } from './closed-position/closed-position.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
