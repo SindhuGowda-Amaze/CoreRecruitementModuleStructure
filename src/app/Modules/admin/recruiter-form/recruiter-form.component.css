@@ -1,46 +1,26 @@
-.SubmitBTN{
+.SubmitBTN {
     background-color: #21a4da;
     color: white;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-}
-
-.SubmitBTN:hover {background-color: #28a745;}
-
-.CancelBTN{
+  }
+  
+  .SubmitBTN:hover {
+    background-color: #28a745;
+  }
+  
+  .CancelBTN {
     color: black;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-}
-
-
-.card{
-    padding: 20px;
-    border-radius: 0px;
-}
-
-.BOXCARD{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-th{
-    background-color: #e4e5e6;
-}
-.dropdown-toggle{
+  }
+  
+  .dropdown-toggle {
     text-align: left;
-}
-.LocDashboard{
+  }
+  .LocDashboard {
     padding-top: 10px;
     margin: 0px;
     background-color: #e4e5e6;
@@ -49,26 +29,62 @@ th{
     border-top-right-radius: 5px;
     font-size: 15px;
     font-weight: bold;
-    
-}
-
-.leavereq{
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.FormHeadText{
+  }
+  
+  .leavereq {
+      color: #0c275a;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  
+  .FormHeadText {
     color: #494949 !important;
     font-size: 15px !important;
     font-weight: bold;
     margin-left: 5px;
     margin-top: 25px;
     margin-bottom: 0px;
-}
-
-body{
+  }
+  
+  body {
     color: #494949 !important;
-}
-.inputfield{
+  }
+  .inputfield {
     background-color: #f2f2f2;
-}
+  }
+  
+  .Heading {
+    padding-left: 15px;
+    color: #212529;
+    font-size: 20px !important;
+    font-family: "DIN Bold";
+    font-weight: bold;
+  }
+  
+  .Edit {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    background-color: #3247d5;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 90%;
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .card {
+    background: #ffffff;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    width: 98%;
+    margin-left: 10px;
+  }
+  

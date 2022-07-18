@@ -8,52 +8,63 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./recruiter-form.component.css']
 })
 export class RecruiterFormComponent implements OnInit {
-
-  Company_logo: any;
-  ID: any;
+  Signature: any;
   recruiterlist: any;
+  count: any;
   Name: any;
   PhoneNo: any;
   Email: any;
   Address: any;
-  currentUrl:any
-  err :any
-  constructor(private RecruitmentServiceService: RecruitementService,private ActivatedRoute: ActivatedRoute) { }
+  RecruiterID: any;
+  ID: any;
+  roleList: any;
+  roleid: any;
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+    this.GetRecruiterMaster();
+    this.GetRoleType();
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
-      if (this.ID != undefined && this.ID!=null) {
-        this.GetRecruiterMaster();
+      if (this.ID != undefined && this.ID != null) {
+        this.GetRecruiterStaff();
       }
     })
+    this.GetRoleType();
   }
-  public GetRecruiterMaster() {
-    this.RecruitmentServiceService.GetRecruiterMaster().subscribe({
-  next: data => {
+
+
+  public GetRecruiterStaff() {
     debugger
-    this.recruiterlist = data
-    this.Company_logo=this.recruiterlist[0].logo;
-    this.Name=this.recruiterlist[0].name;
-    this.PhoneNo=this.recruiterlist[0].phoneNo;
-    this.Email=this.recruiterlist[0].email;
-    this.Address=this.recruiterlist[0].address;
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Recruiter Master');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe(
       data => {
-        debugger
-      },
-    )
-  }
-})
+        this.recruiterlist = data
+        // this.RecruiterID = this.recruiterlist[0].recruiterName;
+      
+        this.Name = this.recruiterlist[0].name;
+        this.PhoneNo = this.recruiterlist[0].phoneNo;
+        this.Email = this.recruiterlist[0].email;
+        this.Address = this.recruiterlist[0].address;
+        this.Signature = this.recruiterlist[0].signature;
+        // this.count = this.recruiterlist.length;
+      })
 
   }
+
+
+  public GetRoleType() {
+    debugger
+    this.RecruitmentServiceService.GetRoleType().subscribe(
+      data => {
+        this.roleList = data
+        this.count = this.roleList.length;
+      })
+
+  }
+
+
+
 
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
@@ -64,6 +75,7 @@ export class RecruiterFormComponent implements OnInit {
     console.log("content", this.files);
   }
 
+
   onRemove(event: any) {
     debugger
     console.log(event);
@@ -72,87 +84,80 @@ export class RecruiterFormComponent implements OnInit {
 
   public uploadattachments() {
     debugger
-    this.RecruitmentServiceService.UploadImages(this.files).subscribe({
-  next: (res: any) => {
-    debugger
-    this.Company_logo = res;
-    alert("ATTACHMENT UPLOADED");
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('ATTACHMENT UPLOADED');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
+    this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
+      debugger
+      this.Signature = res;
+      alert("ATTACHMENT UPLOADED");
+    })
   }
-})
+
+
+  public GetRecruiterMaster() {
+    debugger
+    this.RecruitmentServiceService.GetRecruiterMaster().subscribe(
+      data => {
+        this.recruiterlist = data.filter(x => x.id == this.ID)
+        this.count = this.recruiterlist.length;
+      })
 
   }
-public insertdetails() {
+
+  public insertdetails() {
+    debugger
+    if( this.roleid==undefined||this.roleid==null|| 
+      this.Name==undefined||this.Name==null||
+      this.PhoneNo==undefined||this.PhoneNo==null||
+      this.Email==undefined||this.Email==null||
+      this.Address==undefined||this.Address==null||
+      this.Signature==undefined||this.Signature==null)
+      {
+      Swal.fire("Please fill all fields!!");
+    }
+    else{
+      var entity = {
+        'recruiterID':'4',
+        'name': this.Name,
+        'phoneNo': this.PhoneNo,
+        'email': this.Email,
+        'address': this.Address,
+        "signature": this.Signature,
+        "roleId": this.roleid
+  
+      }
+      this.RecruitmentServiceService.InsertRecruiterStaff(entity).subscribe(data => {
+        if (data != 0) {
+          Swal.fire("Registered Successfully");
+        }
+        location.href = "#/RecruiterStaffDashboard";
+      })
+    }
+  
+  }
+
+
+  public Update() {
     debugger
     var entity = {
-      'Logo': this.Company_logo,
-      'Name': this.Name,
-      'PhoneNo': this.PhoneNo,
-      'Email': this.Email,
-      'Address': this.Address,
-    }
-    this.RecruitmentServiceService.InsertRecruiterMaster(entity).subscribe({
-  next: data => {
-    debugger
-    if (data != 0) {
-      Swal.fire("Registered Successfully");
-    }
-    location.reload();
-    Swal.fire('Issue in Getting Expenses List Web');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
+      'ID': this.ID,
+      'recruiterID':'4',
+      'name': this.Name,
+      'phoneNo': this.PhoneNo,
+      'email': this.Email,
+      'address': this.Address,
+      "signature": this.Signature,
+      "roleId": this.roleid
 
+    }
+    this.RecruitmentServiceService.UpdateRecruiterStaff(entity).subscribe(data => {
+      if (data != 0) {
+        Swal.fire("Updated Recruiter Staff Successfully");
+        // location.reload();
+        location.href = "#/RecruiterStaffDashboard";
+      }
+    })
   }
 
-  public updateRecruiter() {
-    debugger;
-    var entity = {
-        'Logo': this.Company_logo,
-        'Name': this.Name,
-        'PhoneNo': this.PhoneNo,
-        'EmailID': this.Email,
-        'Address': this.Address, 
-    }
-    this.RecruitmentServiceService.UpdateRecruiterMaster(entity).subscribe({
-  next: data => {
-    debugger
-    Swal.fire('Recruiter Updated Successfully.');
-      location.href = "/RecruiterDashboard";
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
+  cancel() {
+    location.href = "#/admin/RecruiterStaffDashboard"
   }
 }
