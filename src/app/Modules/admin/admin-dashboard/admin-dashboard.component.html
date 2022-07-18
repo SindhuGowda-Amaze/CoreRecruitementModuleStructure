@@ -4,7 +4,7 @@
 
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-lg-3">
+                <!-- <div class="col-lg-3">
                     <div class="card1" style="background-color: white; height: 325px;width: 275px;"
                         (click)="flip1($event)">
                         <div class="back ">
@@ -55,7 +55,7 @@
                             <button class="clickbutton1">VIEW DETAILS</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="col-lg-3">
                     <div class="card1" style="background-color: white; height: 325px;width: 275px;"
@@ -72,7 +72,6 @@
                                     <div class="col-lg-7">
                                         <label class="name">{{job.name}}<br>
                                             <div class="din-Medium1">{{job.email}}</div>
-                                            <!-- <div class="din-Medium1">{{job.phoneNo}}</div> -->
                                             <div class="din-Medium1">{{job.clientName}}</div>
                                         </label>
                                     </div>
@@ -211,18 +210,6 @@
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-        </div>
-        <div class="col-lg-1"></div>
-    </div><br><br><br>
-
-    <div class="row" style="margin-left: 10px;">
-
-        <div class="col-lg-12">
-            <div class="row">
-
                 <div class="col-lg-3">
                     <div class="card1" style="background-color: white; height: 325px;width: 275px;"
                         (click)="flip1($event)">
@@ -273,6 +260,67 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div><br><br><br>
+
+    <div class="row" style="margin-left: 10px;">
+
+        <div class="col-lg-12">
+            <div class="row">
+
+                <!-- <div class="col-lg-3">
+                    <div class="card1" style="background-color: white; height: 325px;width: 275px;"
+                        (click)="flip1($event)">
+                        <div class="back">
+                            <br>
+                            <div class="row" *ngFor="let job of CompanyStaffList">
+                                <div class="col-lg-2">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
+                                        margin-left: 5px;"></i>
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-7">
+                                    <label class="name">{{job.name}}<br>
+                                        <div class="din-Medium1">{{job.email}}</div>
+                                        <div class="din-Medium1">{{job.phoneNo}}</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr class="new4">
+                            <div class="backflip">
+                                <button class="bcakbtn">BACK</button>
+                                <a><button class="viewall" (click)="Regularization4()">VIEW ALL</button></a>
+
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+                            <br>
+                            <div class="row title_outer1 blue">
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-1">
+                                    <i class="fa fa-user-circle-o calend" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h1 class="cardlabel">RPO STAFF </h1>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="text-align: center;">
+                                    <h6 class="Number">{{count3}}</h6>
+                                </div>
+                                <div class="col-lg-4"></div>
+                            </div><br><br><br><br>
+                            <button class="clickbutton1">VIEW DETAILS</button>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
         <div class="col-lg-1"></div>
