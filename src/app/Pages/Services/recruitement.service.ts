@@ -506,7 +506,10 @@ public sendemailattachementsforemail(data: any) {
   return this.http.post(this.url, data)
 }
 
+public GetNotification(id:any) {
 
+  return this.http.get<any[]>(this.host + "/Master/GetNotification");
+}
 
 
 }
