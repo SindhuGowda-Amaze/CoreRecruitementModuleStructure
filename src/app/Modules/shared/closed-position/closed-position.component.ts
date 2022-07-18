@@ -35,9 +35,16 @@ export class ClosedPositionComponent implements OnInit {
   currentUrl: any
   endDate: any
   data :any=[];
-  Role: any
-
-  staffdetails: any
+  Role: any;
+  joblist4:any;
+  err: any;
+  staffdetails: any;
+  joblist20:any;
+  count9:any;
+  joblist10:any;
+  count4:any;
+  joblist12:any;
+  count5:any;
   ngOnInit(): void {
     debugger;
     this.GetJobDescription()
@@ -48,6 +55,138 @@ export class ClosedPositionComponent implements OnInit {
     this.vendorid = sessionStorage.getItem('vendorid');
     this.username = sessionStorage.getItem('UserName')
     this.roleid = sessionStorage.getItem("roleid")
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
+          this.count4 = this.joblist10.length;
+        
+        }
+        else if(this.roleid==3){
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username);
+          this.count4 = this.joblist10.length;
+        }
+        else{
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+          this.count4 = this.joblist10.length;
+         
+      
+        }
+    
+    
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': this.err.error.message
+        }
+        Swal.fire('Getting Candidate Registration');
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.hiringManager == this.username);
+          this.count5 = this.joblist12.length;
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.vendor == this.username);
+          this.count5 = this.joblist12.length;
+        }
+        else{
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1);
+          this.count5 = this.joblist12.length;
+          debugger
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.hiringManager == this.username);
+          this.count9 = this.joblist20.length;
+        }
+        else if(this.roleid==3){
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.vendor == this.username);
+          this.count9 = this.joblist20.length;
+        }
+        else{
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0);
+          this.count9 = this.joblist20.length;
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0  && x.hiringManager == this.username);
+          this.count1 = this.joblist4.length;
+    
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist4 = data.filter(x =>  x.accept == 0 && x.reject == 0 && x.vendor == this.username);
+          this.count1 = this.joblist4.length;
+        }
+        else{
+          this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0);
+          this.count1 = this.joblist4.length;
+    
+          debugger
+          
+        }
+       
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage':this. err.error.message
+        }
+        Swal.fire('Getting Candidate Registration');
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
     this.RecruitmentServiceService.GetClientStaff().subscribe({
       next: data => {
         debugger

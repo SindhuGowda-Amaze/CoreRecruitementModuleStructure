@@ -25,6 +25,7 @@ export class RecruiterFormComponent implements OnInit {
   ngOnInit(): void {
     this.GetRecruiterMaster();
     this.GetRoleType();
+    this.roleid="";
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
       if (this.ID != undefined && this.ID != null) {
@@ -87,7 +88,7 @@ export class RecruiterFormComponent implements OnInit {
     this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
       debugger
       this.Signature = res;
-      alert("ATTACHMENT UPLOADED");
+      Swal.fire('Attachment Added Successfully');
     })
   }
 
@@ -126,9 +127,9 @@ export class RecruiterFormComponent implements OnInit {
       }
       this.RecruitmentServiceService.InsertRecruiterStaff(entity).subscribe(data => {
         if (data != 0) {
-          Swal.fire("Registered Successfully");
+          Swal.fire("Saved Successfully");
+          location.href = "#/admin/RecruiterStaffDashboard";
         }
-        location.href = "#/RecruiterStaffDashboard";
       })
     }
   

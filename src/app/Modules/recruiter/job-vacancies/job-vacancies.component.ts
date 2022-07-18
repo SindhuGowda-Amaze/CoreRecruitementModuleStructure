@@ -27,13 +27,26 @@ export class JobVacanciesComponent implements OnInit {
   city: any;
   ctc: any;
   Expectedctc: any;
-
+  hrlist:any;
+  hirirngmanger:any;
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid')
     this.Source = sessionStorage.getItem('role')
+
+    this.RecruitmentServiceService.GetClientStaff()
+    .subscribe(data => {
+      this.hrlist = data;
+      this.hirirngmanger = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'Hiring Manager')
+
+
+
+
+    })
+
+
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
       this.RecruitmentServiceService.GetJob_Requirements().subscribe({
@@ -105,6 +118,7 @@ export class JobVacanciesComponent implements OnInit {
           Swal.fire("Applied Successfully");
 
           this. SendMailEmployee();
+          this.InsertNotificationhr();
 
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Applied');
@@ -122,6 +136,34 @@ export class JobVacanciesComponent implements OnInit {
       })
       location.reload();
     }
+  }
+
+  
+  public InsertNotificationhr() {
+    debugger
+    var event: any = 'Recruiter Applied for the job';
+
+    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.hirirngmanger, 'Your Recruiter Applied for new Job')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
   }
 
   files: File[] = [];

@@ -28,8 +28,8 @@ export class JobRequisitionComponent implements OnInit {
   username: any;
   currentUrl: any
   files: any;
-
-
+  manager: any;
+  buHead:any;
   constructor(private RecruitmentServiceService: RecruitementService) { }
   editor: any;
   html: any;
@@ -41,6 +41,11 @@ export class JobRequisitionComponent implements OnInit {
     this.RecruitmentServiceService.GetClientStaff()
       .subscribe(data => {
         this.hrlist = data;
+        this.manager = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'Manager')
+        this.buHead = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'BU Head')
+
+
+
       })
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe({
       next: data => {
@@ -132,15 +137,19 @@ export class JobRequisitionComponent implements OnInit {
 
 
             var sub = 'Hiring Manager has Posted the job'
-            var email='sindhugowda.amazeinc@gmail.com'
+            var email = 'sindhugowda.amazeinc@gmail.com'
             var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval ,<br><br>.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
-            this.SendMailEmployee(sub, desc,email);
+            this.SendMailEmployee(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
-            var email='sindhugowda.amazeinc@gmail.com'
+            var email = 'sindhugowda.amazeinc@gmail.com'
             var desc = 'Dear  SBU, Hiring Manger has posted the job, need your approval ,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
-            this.SendMailEmployee(sub, desc,email);
-            
+            this.SendMailEmployee(sub, desc, email);
+
+            this.InsertNotificationSBU();
+            this.InsertNotificationManager();
+
+
             location.href = "#/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
@@ -193,7 +202,7 @@ export class JobRequisitionComponent implements OnInit {
     })
   }
 
-  public SendMailEmployee(sub: any, desc: any,email : any) {
+  public SendMailEmployee(sub: any, desc: any, email: any) {
     debugger
     var entity3 = {
       'emailto': email,
@@ -212,7 +221,63 @@ export class JobRequisitionComponent implements OnInit {
   }
 
 
-Cancel(){
+  public InsertNotificationSBU() {
+    debugger
+    var event: any = 'Job Post';
+
+    this.RecruitmentServiceService.InsertNotificationSBU(event, this.buHead, 'Your HR Posted new Job,waiting for your approval')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+
+
+  public InsertNotificationManager() {
+    debugger
+    var event: any = 'Job Post';
+
+    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.manager, 'Your HR Posted new Job,waiting for your approval')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+
+
+  Cancel() {
     location.href = "#/hirignmanager/JobRecruitements";
   }
 }
