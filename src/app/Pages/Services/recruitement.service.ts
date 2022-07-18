@@ -497,7 +497,7 @@ public GetClosedJobRequirement() {
 public sendemailattachements(data: any) {
   debugger
   this.url = this.host + 'Vendor/sendemail/';
-  return this.http.post(this.url, data)
+  return this.http.post(this.url, data) 
 }
 
 public sendemailattachementsforemail(data: any) {
