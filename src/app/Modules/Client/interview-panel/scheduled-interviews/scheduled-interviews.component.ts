@@ -435,9 +435,9 @@ export class ScheduledInterviewsComponent implements OnInit {
           //   'success'
           // )
           //this.SendMailEmployee()
-         // this.GetCandidateReg()
+          //this.GetCandidateReg()
         }, error: (err: { error: { message: any; }; }) => {
-         // Swal.fire('Issue in Getting Expenses List Web');
+          //Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
