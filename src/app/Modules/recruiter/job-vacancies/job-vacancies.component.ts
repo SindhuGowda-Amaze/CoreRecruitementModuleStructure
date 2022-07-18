@@ -141,9 +141,9 @@ export class JobVacanciesComponent implements OnInit {
   
   public InsertNotificationhr() {
     debugger
-    var event: any = 'Job Post';
+    var event: any = 'Recruiter Applied for the job';
 
-    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.hirirngmanger, 'Your HR Posted new Job,waiting for your approval')
+    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.hirirngmanger, 'Your Recruiter Applied for new Job')
       .subscribe({
         next: data => {
           debugger
