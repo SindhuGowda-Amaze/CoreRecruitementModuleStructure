@@ -5,7 +5,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { ClientdashboardComponent } from './clientdashboard/clientdashboard.component';
 import { ClientformComponent } from './clientform/clientform.component';
-import { RecruiterDashboardComponent } from './recruiter-dashboard/recruiter-dashboard.component';
 import { RecruiterFormComponent } from './recruiter-form/recruiter-form.component';
 import { VendorDashboardComponent } from './vendor-dashboard/vendor-dashboard.component';
 import { VendorFormComponent } from './vendor-form/vendor-form.component';
@@ -18,6 +17,7 @@ import { ClientStaffDashboardComponent } from './client-staff-dashboard/client-s
 import { ClientStaffFormComponent } from './client-staff-form/client-staff-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { RecruiterStaffDashboardComponent } from './recruiter-staff-dashboard/recruiter-staff-dashboard.component';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     AdminComponent,
     ClientdashboardComponent,
     ClientformComponent,
-    RecruiterDashboardComponent,
     RecruiterFormComponent,
     VendorDashboardComponent,
     VendorFormComponent,
@@ -36,7 +35,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     JobApprovalConfigComponent,
     ClientStaffDashboardComponent,
     ClientStaffFormComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    RecruiterStaffDashboardComponent
   ],
   imports: [
     CommonModule,
