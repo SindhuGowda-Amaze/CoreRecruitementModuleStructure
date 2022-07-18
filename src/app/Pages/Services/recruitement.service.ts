@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class RecruitementService {
+
   attachements(entity3: { emailto: any; emailsubject: any; emailbody: any; attachmenturl: any; cclist: string; bcclist: string; }) {
     throw new Error('Method not implemented.');
   }
@@ -496,7 +497,7 @@ public GetClosedJobRequirement() {
 
 public sendemailattachements(data: any) {
   debugger
-  this.url = this.host + 'Vendor/sendemail/';
+  this.url = this.host + '/Master/sendemailattachements';
   return this.http.post(this.url, data) 
 }
 
@@ -506,10 +507,40 @@ public sendemailattachementsforemail(data: any) {
   return this.http.post(this.url, data)
 }
 
+
+public ClearNotificationByID(ID: any) {
+  return this.http.get<any[]>(
+    this.host + "/Announcement/ClearNotificationByID?ID=" + ID);
+}
 public GetNotification(id:any) {
 
   return this.http.get<any[]>(this.host + "/Master/GetNotification");
 }
 
+public UpdateNotificationSeen(data: any) {
+  debugger;
+  this.url = this.host + '/Master/UpdateNotificationSeen';
+  return this.http.post(this.url, data);
+}
+
+public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
+  debugger
+  var entity = {
+    'Date': new Date(),
+    'Event': Event,
+    'FromUser': 'Admin',
+    'ToUser': localStorage.getItem('staffid'),
+    'Message': Message,
+    'Photo': 'Null',
+    'Building': 'Dynamics 1',
+    'UserID': ToUser ,
+    'NotificationTypeID': 3,
+    'VendorID': 0
+  }
+  this.url = this.host + '/Vendor/InsertNotifications';
+  return this.http.post(this.url, entity);
+
+
+}
 
 }
