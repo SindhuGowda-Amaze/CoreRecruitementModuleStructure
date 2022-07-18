@@ -52,7 +52,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
 
 
   Update(staff: any) {
-    location.href = "#/RecruiterStaff/" + staff.id
+    location.href = "#/admin/RecruiterForm/" + staff.id
   }
 
 

@@ -31,6 +31,7 @@ export class RecruiterFormComponent implements OnInit {
         this.GetRecruiterStaff();
       }
     })
+    this.GetRoleType();
   }
 
 
