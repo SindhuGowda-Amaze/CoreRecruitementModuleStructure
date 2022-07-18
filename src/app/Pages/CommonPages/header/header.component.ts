@@ -25,9 +25,9 @@ export class HeaderComponent implements OnInit {
   username: any;
   staffID:any;
   ngOnInit() {
-
+this.GetNotification();
   this.pagename = "DASHBOARD"
-  this.staffID = localStorage.getItem('staffid');
+  this.staffID = sessionStorage.getItem('userid');
    
     interval(1000).subscribe((x => {
       
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
   public GetNotification() {
     debugger
 
-    this.RecruitmentServiceService.GetNotification(this.staffID).subscribe((data: any) => {
+    this.RecruitmentServiceService.GetNotification(sessionStorage.getItem('userid')).subscribe((data: any) => {
       debugger
       this.notificationslist = data;
       this.notificationCount = this.notificationslist.length;

@@ -512,9 +512,12 @@ public ClearNotificationByID(ID: any) {
   return this.http.get<any[]>(
     this.host + "/Announcement/ClearNotificationByID?ID=" + ID);
 }
-public GetNotification(id:any) {
 
-  return this.http.get<any[]>(this.host + "/Master/GetNotification");
+
+public GetNotification(UserID: any) {
+  return this.http.get<any[]>(
+    this.host + "/User/GetNotification?UserID=" + UserID
+  );
 }
 
 public UpdateNotificationSeen(data: any) {
@@ -529,7 +532,7 @@ public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
     'Date': new Date(),
     'Event': Event,
     'FromUser': 'Admin',
-    'ToUser': localStorage.getItem('staffid'),
+    'ToUser': sessionStorage.getItem('userid'),
     'Message': Message,
     'Photo': 'Null',
     'Building': 'Dynamics 1',
@@ -537,7 +540,7 @@ public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
     'NotificationTypeID': 3,
     'VendorID': 0
   }
-  this.url = this.host + '/Vendor/InsertNotifications';
+  this.url = this.host + '/User/InsertNotification/';
   return this.http.post(this.url, entity);
 
 
