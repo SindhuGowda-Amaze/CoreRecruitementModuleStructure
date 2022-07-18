@@ -31,7 +31,7 @@ export class RejectedComponent implements OnInit {
     this.RecruitServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.offerAcceptreject == 2);
+        this.joblist = data.filter(x => x.interviewRejected == 1);
         this.loader = false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
