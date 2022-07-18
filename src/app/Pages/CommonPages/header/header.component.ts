@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
+import Swal from 'sweetalert2';
 import { RecruitementService } from '../../Services/recruitement.service';
 @Component({
   selector: 'app-header',
@@ -77,6 +78,30 @@ export class HeaderComponent implements OnInit {
 
     localStorage.clear();
     location.reload();
+  }
+
+ 
+  public ClearNotification() {
+    debugger
+    this.RecruitmentServiceService.ClearNotificationByID(Number(this.staffID)).subscribe((_data: any) => {
+      debugger
+
+    })
+
+    Swal.fire('Cleared Successfully');
+    this.GetNotification();
+
+  }
+
+  show: any;
+  public changecolor(ID: any) {
+    debugger
+    var entity = {
+      ID: ID
+    }
+    this.RecruitmentServiceService.UpdateNotificationSeen(entity).subscribe((_data: any) => {
+      location.reload();
+    })
   }
 }
 
