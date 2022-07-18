@@ -195,8 +195,8 @@ px
 
                                 <h6 (click)="changecolor(item.id)">
 
-                                    <p *ngIf="item.seen!=null">{{item.message}}</p>
-                                    <p *ngIf="item.seen==null" style="background-color: rgb(145, 188, 145)">
+                                    <p *ngIf="item.readBit!=null">{{item.message}}</p>
+                                    <p *ngIf="item.readBit==null" style="background-color: rgb(145, 188, 145)">
                                         {{item.message}}</p>
                                 </h6>
 
