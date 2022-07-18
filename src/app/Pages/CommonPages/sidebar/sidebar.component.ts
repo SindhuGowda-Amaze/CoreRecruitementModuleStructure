@@ -150,7 +150,7 @@ export class SidebarComponent implements OnInit {
  
   public ManpowerPlanning() {
     localStorage.setItem('Pagename', 'Manpower Planning')
-    this.router.navigate(['/ManpowerPlanningandBudgetingdash']);
+    this.router.navigate(['/BUHead/ManpowerPlanningandBudgetingdash']);
     this.vendo = false;
     this.client = false
     this.clientstaff = false
