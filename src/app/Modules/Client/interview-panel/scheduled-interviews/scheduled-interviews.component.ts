@@ -48,6 +48,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.Role1=""
     this.currentUrl = window.location.href
     this.staffid = localStorage.getItem('userid');
+    this.roleid = localStorage.getItem('roleid');
     this.Username = localStorage.getItem('UserName');
     this.GetCandidateReg();
 
@@ -465,39 +466,19 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
 
   public SendMailEmployee() {
-
     debugger
-
     var entity3 = {
-
-      'emailto': 'gmrmadhavreddy416@gmail.com',
-
-    
-
+      'emailto': 'sindhugowda.amazeinc@gmail.com',
       'emailsubject': 'Selected candidates',
-
-      'emailbody': 'Dear Applicant,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>',
-
-      'attachmenturl': this.files,
-
-      'cclist': 'sindhugowda.amazeinc@gmail.com',
-
-      'bcclist': 'sindhugowda.amazeinc@gmail.com',
-
+      'emailbody': 'Dear HiringManager  these are the Selected candidates',
+      'attachmenturl': [],
+      'cclist': [],
+      'bcclist': [],
     }
-
-
-
-    this.RecriutmentServiceService.sendemailattachements(entity3).subscribe(res => {
-
+   this.RecriutmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
-
-
-
       // Swal.fire('Letter Generated and Sent Successfully');
-
-      Swal.fire('Checklist Sent to Respective Department');
-
+      Swal.fire('Email sent');
     })
 
 
