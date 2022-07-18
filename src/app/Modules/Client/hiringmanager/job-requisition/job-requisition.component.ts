@@ -142,12 +142,12 @@ export class JobRequisitionComponent implements OnInit {
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'gmrmadhavreddy416@gmail.com'
-            var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval ,<br><br>.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval from your side'
             this.SendMailEmployee(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'sindhugowda.amazeinc@gmail.com'
-            var desc = 'Dear  SBU, Hiring Manger has posted the job, need your approval ,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            var desc = 'Dear  SBU, Hiring Manger has posted the job, need your approval from your side'
             this.SendMailEmployee(sub, desc, email);
 
             this.InsertNotificationSBU();
