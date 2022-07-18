@@ -48,6 +48,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.Role1=""
     this.currentUrl = window.location.href
     this.staffid = localStorage.getItem('userid');
+    this.roleid = localStorage.getItem('roleid');
     this.Username = localStorage.getItem('UserName');
     this.GetCandidateReg();
 

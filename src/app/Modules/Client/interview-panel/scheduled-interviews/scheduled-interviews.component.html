@@ -85,8 +85,8 @@
                   <th>Resume</th>
                   <th>Comments</th>
                   <th>Interview Guid</th>
-                  <th *ngIf="roleid!=6">Actions</th>
-                  <th></th>
+                  <th>Actions</th>
+                  <!-- <th></th> -->
                 </tr>
                 <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
                   <td>{{job.jobRefernceID}}</td>
@@ -110,7 +110,7 @@
                   </td>
                   <td>
 
-                    <table class="sub-table" *ngIf="roleid!=6">
+                    <table class="sub-table">
                       <tr>
                         <td>
 
