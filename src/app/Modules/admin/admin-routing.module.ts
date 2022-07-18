@@ -47,12 +47,6 @@ const routes: Routes = [{ path: '', component: AdminComponent },
 {path:'VendorStaffForm',component:VendorStaffFormComponent},
 {path:'VendorStaffForm/:id',component:VendorStaffFormComponent}
 
-
-
-
-
-
-
 ];
 
 @NgModule({
