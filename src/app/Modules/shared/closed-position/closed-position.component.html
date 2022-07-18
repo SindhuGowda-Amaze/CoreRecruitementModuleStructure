@@ -34,7 +34,7 @@
       
                 <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
                     <option value="">Select Job Title</option>
-                    <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
+                    <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails ">
                       {{vendor.role}}
                     </option>
                   </select>
@@ -122,7 +122,7 @@
             <br>
             <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
         </div> 
-        <span *ngIf="joblist.length==0">No data found.</span>
+        <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
     </div>
 
 

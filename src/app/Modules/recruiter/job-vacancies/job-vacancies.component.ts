@@ -207,4 +207,10 @@ export class JobVacanciesComponent implements OnInit {
 
 
   }
+
+
+  Cancle(){
+    location.href = "#/recruiter/VendorJobOpenings";
+  }
+  
 }

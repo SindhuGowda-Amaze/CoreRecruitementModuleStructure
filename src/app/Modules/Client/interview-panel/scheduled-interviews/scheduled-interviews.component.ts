@@ -425,9 +425,6 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
     });
   }
-
-   
-
     public  Note()  {
       this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
         next: data => {
