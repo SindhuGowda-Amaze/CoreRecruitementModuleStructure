@@ -45,8 +45,10 @@ export class ClosedPositionComponent implements OnInit {
   count4:any;
   joblist12:any;
   count5:any;
+  jobRefernceID:any;
   ngOnInit(): void {
     debugger;
+  
     this.GetJobDescription()
     this.Role=""
     this.currentUrl = window.location.href;
@@ -60,7 +62,7 @@ export class ClosedPositionComponent implements OnInit {
       next: data => {
         debugger
         if (this.roleid == 2){
-          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username && x.jobRefernceID==this.jobRefernceID);
           this.count4 = this.joblist10.length;
         
         }

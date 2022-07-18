@@ -48,6 +48,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.Role1=""
     this.currentUrl = window.location.href
     this.staffid = localStorage.getItem('userid');
+    this.roleid = localStorage.getItem('roleid');
     this.Username = localStorage.getItem('UserName');
     this.GetCandidateReg();
 
@@ -126,10 +127,11 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data
+          this.joblist = data.filter(x => x.interviewRejected == 0)
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
           debugger
           this.jobListCopy = this.joblist
+          console.log("===",this.jobListCopy)
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -254,6 +256,7 @@ export class ScheduledInterviewsComponent implements OnInit {
               'Candidate has been Rejected',
               'success'
             )
+
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');

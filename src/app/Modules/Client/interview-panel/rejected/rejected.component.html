@@ -55,7 +55,7 @@
                                 <th>Notice Period</th> 
                                 <th>Interviewer Comments</th>
                                 <!-- <th>Interviewer Feedback</th> -->
-                                <th  *ngIf="roleid!='4' && roleid=='6'">Actions</th>
+                                <th  *ngIf="roleid!='4' && roleid!='6'">Actions</th>
                             </tr>
                             <tr *ngFor="let job of joblist|filter:search |filter:searchbynotice   ">
                                 <td>{{job.jobRefernceID}}</td>
@@ -75,7 +75,7 @@
                                 <!-- <td>{{job.ctc}}</td>  -->
                                 <td>{{job.noticePeriod}}</td> 
                                 <td>{{job.interviewercomments}}</td>    
-                                <td  *ngIf="roleid!='4' && roleid=='6'">
+                                <td  *ngIf="roleid!='4' && roleid!='6'">
                                     <button class="btn btn-danger" *ngIf="job.offered=='0'" data-toggle="modal"
                                         data-target="#exampleModal" (click)="GetOfferID(job.id,job)">Offer</button><br><br>
         

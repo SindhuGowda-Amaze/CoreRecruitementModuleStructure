@@ -86,6 +86,7 @@
                   <th>Comments</th>
                   <th>Interview Guid</th>
                   <th>Actions</th>
+                  <!-- <th></th> -->
                 </tr>
                 <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
                   <td>{{job.jobRefernceID}}</td>
@@ -344,7 +345,7 @@ aria-hidden="true">
           <div class="col-lg-5"></div>
           <div class="col-lg-2">
             <button class="btn btn-primary " style="background-color:#dc3545; border:none ; margin-left: 10%;"
-              (click)="Rejecttcandidate()">Rejeted</button>
+              (click)="Rejecttcandidate()" data-dismiss="modal">Rejected</button>
           </div>
         </div> <br>
       </div>

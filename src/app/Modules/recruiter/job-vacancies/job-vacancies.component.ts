@@ -38,8 +38,9 @@ export class JobVacanciesComponent implements OnInit {
 
     this.RecruitmentServiceService.GetClientStaff()
     .subscribe(data => {
-      this.hrlist = data;
-      this.hirirngmanger = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'Hiring Manager')
+      this.hrlist = data.filter((x: { role: string; }) => x.role == 'Hiring Manager');
+
+      this.hirirngmanger = this.hrlist[0].id
 
 
 
@@ -111,13 +112,14 @@ export class JobVacanciesComponent implements OnInit {
         'VendorId': this.userid,
         'expectedctc': this.Expectedctc
       }
-    
+      // location.reload();
+      debugger
       this.RecruitmentServiceService.InsertCandidateRegistration(entity).subscribe({
         next: data => {
           debugger
           Swal.fire("Applied Successfully");
 
-          this. SendMailEmployee();
+          this.SendMailEmployee();
           this.InsertNotificationhr();
           location.href='#/recruiter/VendorJobOpenings'
 
@@ -135,7 +137,7 @@ export class JobVacanciesComponent implements OnInit {
           )
         }
       })
-    
+      // location.reload();
     }
   }
 
