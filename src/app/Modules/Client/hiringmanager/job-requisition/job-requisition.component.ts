@@ -143,12 +143,16 @@ export class JobRequisitionComponent implements OnInit {
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'gmrmadhavreddy416@gmail.com'
-            var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval from your side'
+            var desc =  'Hiring manager to Manager'
+                        'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+                        'Thank You!'             
             this.SendMailEmployee(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'sindhugowda.amazeinc@gmail.com'
-            var desc = 'Dear  SBU, Hiring Manger has posted the job, need your approval from your side'
+            var desc =   'Hiring manager to SBU'
+                          'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+                          'Thank You!'
             this.SendMailEmployee(sub, desc, email);
 
             this.InsertNotificationSBU();
