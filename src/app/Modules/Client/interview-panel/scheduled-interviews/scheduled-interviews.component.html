@@ -1,313 +1,255 @@
 <div class="container-fluid">
-    <BR>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-lg-12">
-            <p class="Heading">SCHEDULED INTERVIEWS DASHBOARD</p>
-  
-          </div>
-        </div> <br>
-  
-        <div class="card">
-          <div class="row FilterClass">
-            <div class="col-lg-1">
-              <P>Filter By</P>
-            </div>
-            <div class="col-lg-3">
-              <input class="form-control" placeholder="Search" [(ngModel)]="search" (ngModelChange)="Filterjobs()">
-            </div>
-            <div class="col-lg-2">
-              <input  type="date" style="color:#0C275A;" class="form-control poppinns" name="Date"
-              value="Date" [(ngModel)]="Date">
-            </div>
-      
-      
-            <div class="col-lg-2">
-              <input  type="date" style="color:#0C275A;" class="form-control poppinns"
-                (change)="changeAnniversary()" name="endDate" value="endDate" [(ngModel)]="endDate">
-      
-            </div>
-            <div class="col-lg-2">
-              <select class="form-control" id="Role1" name="Role1" [(ngModel)]="Role1" (change)="GetJobDescription1()">
-                <option value="">Select Job Title</option>
-                <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
-                  {{vendor.role}}
-                </option>
-              </select>
-            </div>
+  <BR>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="Heading">SCHEDULED INTERVIEWS DASHBOARD</p>
 
-            <div class="col-lg-2">
-              <p class="Count">Count :{{count}}</p>
-            </div>
-            
+        </div>
+      </div> <br>
+
+      <div class="card">
+        <div class="row FilterClass">
+          <div class="col-lg-1">
+            <P>Filter By</P>
           </div>
-  
-        </div><br>
-        <div class="row">
+          <div class="col-lg-3">
+            <input class="form-control" placeholder="Search" [(ngModel)]="search" (ngModelChange)="Filterjobs()">
+          </div>
           <div class="col-lg-2">
+            <input type="date" style="color:#0C275A;" class="form-control poppinns" name="Date" value="Date"
+              [(ngModel)]="Date">
           </div>
-          <div class="col-lg-10">
-            <div class="col-lg-4">
-              <!-- <select class="inputclass" (change)="changeStatus($event)">
+
+
+          <div class="col-lg-2">
+            <input type="date" style="color:#0C275A;" class="form-control poppinns" (change)="changeAnniversary()"
+              name="endDate" value="endDate" [(ngModel)]="endDate">
+
+          </div>
+          <div class="col-lg-2">
+            <select class="form-control" id="Role1" name="Role1" [(ngModel)]="Role1" (change)="GetJobDescription1()">
+              <option value="">Select Job Title</option>
+              <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
+                {{vendor.role}}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-lg-2">
+            <p class="Count">Count :{{count}}</p>
+          </div>
+
+        </div>
+
+      </div><br>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-10">
+          <div class="col-lg-4">
+            <!-- <select class="inputclass" (change)="changeStatus($event)">
                 <option value="2">Calendar</option>
                 <option value="1">List View</option>
               </select> -->
-              <label class="switch">
-  
-                <input type="checkbox" checked (change)="changeStatus($event)">
-                <span class="slider round"></span>
-              </label>
-              <!-- &nbsp; &nbsp; &nbsp;<span>Calendar View</span> -->
-            </div>
-            <div class="col-lg-4">
-            </div>
+            <label class="switch">
+
+              <input type="checkbox" checked (change)="changeStatus($event)">
+              <span class="slider round"></span>
+            </label>
+            <!-- &nbsp; &nbsp; &nbsp;<span>Calendar View</span> -->
+          </div>
+          <div class="col-lg-4">
           </div>
         </div>
-        <div class="row" [hidden]="showorhidecontent">
-          <div class="col-lg-12" style="overflow: auto;">
-            <table class="table tablebordered">
-              <thead>
-                <tr class="head">
-                  <!-- <th>Vendor</th> -->
-                  <th>Job Reference ID</th>
-                  <th>Interview Date</th>
-                  <!-- <th>Client Name</th> -->
-                  <th>Time</th>
-                  <!-- <th>Interviewer</th> -->
-                  <th>Job Title</th>
-                  <th>Candidate Name</th>
-                  <th>Phone No</th>
-                  <th>Email</th>
-                  <!-- <th>CTC</th> -->
-                  <!-- <th>Notice Period</th> -->
-                  <th>Total Years of Experience</th>
-                  <th>Relevant Experience</th>
-                  <th>Resume</th>
-                  <th>Comments</th>
-                  <th>Interview Guid</th>
-                  <th>Actions</th>
-                </tr>
-                <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
-                  <td>{{job.jobRefernceID}}</td>
-                  <td>{{job.date|date}}</td>
-                  <!-- <td>Mind Tree</td> -->
-                  <td>{{job.slotTime}}</td>
-                  <!-- <td>{{job.staffname}}</td> -->
-                  <td>{{job.jobTitle}}</td>
-                  <td>{{job.candidateName}}</td>
-                  <td>{{job.phoneNo}}</td>
-                  <td>{{job.email}}</td>
-                  <td>{{job.yearsofExp}}</td>
-                  <td>{{job.relavantExp}}</td>
-                  <td>
-                    <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter(job.resumeUrl)">
-                  </td>
-                  <!-- <td>{{job.comments}}</td> -->
-                  <td>Select based on Relevant Experience</td>
-                  <td>
-                    <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
-                  </td>
-                  <td>
+      </div>
+      <div class="row" [hidden]="showorhidecontent">
+        <div class="col-lg-12" style="overflow: auto;">
+          <table class="table tablebordered">
+            <thead>
+              <tr class="head">
+                <!-- <th>Vendor</th> -->
+                <th>Job Reference ID</th>
+                <th>Interview Date</th>
+                <!-- <th>Client Name</th> -->
+                <th>Time</th>
+                <!-- <th>Interviewer</th> -->
+                <th>Job Title</th>
+                <th>Candidate Name</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                <!-- <th>CTC</th> -->
+                <!-- <th>Notice Period</th> -->
+                <th>Total Years of Experience</th>
+                <th>Relevant Experience</th>
+                <th>Resume</th>
+                <th>Comments</th>
+                <th>Interview Guid</th>
+                <th>Actions</th>
+              </tr>
+              <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
+                <td>{{job.jobRefernceID}}</td>
+                <td>{{job.date|date}}</td>
+                <!-- <td>Mind Tree</td> -->
+                <td>{{job.slotTime}}</td>
+                <!-- <td>{{job.staffname}}</td> -->
+                <td>{{job.jobTitle}}</td>
+                <td>{{job.candidateName}}</td>
+                <td>{{job.phoneNo}}</td>
+                <td>{{job.email}}</td>
+                <td>{{job.yearsofExp}}</td>
+                <td>{{job.relavantExp}}</td>
+                <td>
+                  <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter(job.resumeUrl)">
+                </td>
+                <!-- <td>{{job.comments}}</td> -->
+                <td>Select based on Relevant Experience</td>
+                <td>
+                  <img class="resume" src="assets/Images/pdf.png"
+                    (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
+                </td>
+                <td>
 
-                    <table class="sub-table">
-                      <tr>
-                        <td>
+                  <table class="sub-table">
+                    <tr>
+                      <td>
 
-                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#exampleModal"
-                          (click)="getid(job.id)">Selected</button><br>
-                        </td>
-                        <td >
-                          <button class="btn btn-primary Button" style="background-color:#dc3545;" (click)="Cancel()">Cancel</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-toggle="modal"
-                          data-target="#Reject" (click)="getid(job.id)">Rejected</button>
-                        
-                        </td>
-                        <td>
-                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#Note" (click)="Acceptcandidate()">My Notes</button>
-      
-                        </td>
-                      </tr>
-                    </table>
+                        <button class="btn btn-primary Button" data-toggle="modal" data-target="#exampleModal"
+                         >Selected</button><br>
+                      </td>
+                      <td>
+                        <button class="btn btn-primary Button" style="background-color:#dc3545;"
+                          (click)="Cancel()">Cancel</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button class="btn btn-primary" style="background-color:#dc3545; border:none"
+                          data-toggle="modal" data-target="#exampleModal1" >Rejected</button>
 
-                
-                    <!-- <button class="btn btn-primary"
+                      </td>
+                      <td>
+                        <button class="btn btn-primary Button" data-toggle="modal" data-target="#exampleModal4"
+                         >My Notes</button>
+
+                      </td>
+                    </tr>
+                  </table>
+
+
+                  <!-- <button class="btn btn-primary"
                           *ngIf="job.interviewRejected=='0'&&job.interviewSelected=='0'"
                           (click)="Accept(job.id,job.interviewercomments)">Selected</button> &nbsp;
                        <br>
                       <button class="btn btn-danger"
                           *ngIf="job.interviewRejected=='0'&&job.interviewSelected=='0'"
                           (click)="Reject(job.id,job.interviewercomments)">Rejected</button> -->
-                  </td>
-                </tr>
-              </thead>
-            </table>
-          </div>
-          <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
+                </td>
+              </tr>
+            </thead>
+          </table>
         </div>
-  
-        <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="row callendernavButtons">
-                <div class="col-lg-4">
-                  <a (click)="previousmonth()">
-                    <img src="assets/Images/left.png" class="montharrow">
-                    <!-- <i class="fa fa-angle-left" aria-hidden="true"></i> -->
-                  </a>
-                </div>
-                <div class="col-lg-4">
-                  <strong>{{callenderMonth}}</strong> {{callenderyear}}
-  
-                </div>
-                <div class="col-lg-4">
-                  <a (click)="nextmonth()">
-                    <img src="assets/Images/right-arrow.png" class="montharrow">
-                    <!-- <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
-                  </a>
-                </div>
-  
+        <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
+      </div>
+
+      <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row callendernavButtons">
+              <div class="col-lg-4">
+                <a (click)="previousmonth()">
+                  <img src="assets/Images/left.png" class="montharrow">
+                  <!-- <i class="fa fa-angle-left" aria-hidden="true"></i> -->
+                </a>
               </div>
-              <div class="row callenderdiv">
-                <div class="col-lg-12">
-                  <div class="row">
-                    <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
-                      {{calday.date}} {{calday.day}}
-                      <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
-                        style="overflow-y: auto; border-bottom: solid 6px white;">
-                      </div>
+              <div class="col-lg-4">
+                <strong>{{callenderMonth}}</strong> {{callenderyear}}
+
+              </div>
+              <div class="col-lg-4">
+                <a (click)="nextmonth()">
+                  <img src="assets/Images/right-arrow.png" class="montharrow">
+                  <!-- <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
+                </a>
+              </div>
+
+            </div>
+            <div class="row callenderdiv">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
+                    {{calday.date}} {{calday.day}}
+                    <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
+                      style="overflow-y: auto; border-bottom: solid 6px white;">
                     </div>
                   </div>
                 </div>
-  
               </div>
+
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-1"></div>
     </div>
+    <div class="col-lg-1"></div>
   </div>
-  
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content" style="width:700px">
-        <div class="modal-header ">
-          <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <!-- <div class="col-lg-3">
-              <label style="font-size: 16px;">Selected Notes</label>
-            </div> -->
-            <div class="col-lg-12">
-  
-              <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-              <!-- <select class="form-control" (change)="GetStaffID($event)">
-                              <option value="">Select</option>
-                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
-                          </select> -->
-            </div>
-          </div><br>
-          <div class="row">
-            <div class="col-lg-5"></div>
-            <div class="col-lg-2">
-              <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
-                data-dismiss="modal">Selected</button>
+</div>
 
-                <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
-                data-dismiss="modal">Cancel</button>
-            </div>
-          </div> <br>
-  
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  <div class="modal fade" id="Reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content" style="width:700px">
-        <div class="modal-header">
-          <p class="Heading" id="exampleModalLabel">Interview Notes</p>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-lg-3">
-              <label style="font-size: 16px;">Rejected Notes</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <textarea class="form-control" placeholder="Notes" rows="10"></textarea>
-              <!-- <select class="form-control" (change)="GetStaffID($event)">
-                                <option value="">Select</option>
-                                <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
-                            </select> -->
-            </div>
-          </div>
-  
-          <br>
-          <div class="row">
-            <div class="col-lg-5"></div>
-            <div class="col-lg-2">
-              <button class="btn btn-primary " style="background-color:#dc3545; border:none ; margin-left: 10%;"
-                (click)="Rejecttcandidate()">Rejeted</button>
-            </div>
-          </div> <br>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  
-        </div>
-
-       
-
-      </div>
-    </div>
-  </div>
-
-  <!-- <div class="modal fade" id="Note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="Note">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <div class="modal fade" id="Note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="#exampleModal" tabindex="-1" role="dialog" aria-labelledby="#exampleModal"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
       <div class="modal-header ">
-        <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+        <p class="Heading" style="font-weight: bold;" id="exampleModal">Interview Notes </p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- <div class="col-lg-3">
+              <label style="font-size: 16px;">Selected Notes</label>
+            </div> -->
+          <div class="col-lg-12">
+
+            <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+            <!-- <select class="form-control" (change)="GetStaffID($event)">
+                              <option value="">Select</option>
+                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+                          </select> -->
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-5"></div>
+          <div class="col-lg-2">
+            <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
+              data-dismiss="modal">Selected</button>
+          </div>
+          <div class="col-lg-2">
+            <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
+              data-target="#exampleModal3">Cancel</button>
+          </div>
+        </div> <br>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="#exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header ">
+        <p class="Heading" style="font-weight: bold;" id="#exampleModal1">Rejected Notes </p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -332,6 +274,80 @@
             <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
               data-dismiss="modal">Note</button>
           </div>
+        </div> <br>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="#exampleModal3"  role="dialog" aria-labelledby="#exampleModal3"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header ">
+        <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <label class="Letter">Commetnts: <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <input type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModal4"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header ">
+        <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">MY Notes </p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- <div class="col-lg-3">
+              <label style="font-size: 16px;">Selected Notes</label>
+            </div> -->
+          <div class="col-lg-12">
+
+            <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+            <!-- <select class="form-control" (change)="GetStaffID($event)">
+                              <option value="">Select</option>
+                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+                          </select> -->
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-5"></div>
+          <div class="col-lg-2">
+            <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
+              data-dismiss="modal">Notes</button>
+          </div>
+        
         </div> <br>
 
         <div class="modal-footer">
