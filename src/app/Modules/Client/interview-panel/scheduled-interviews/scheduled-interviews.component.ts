@@ -500,6 +500,10 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
+  }  
+
+  update(){
+
   }
 
 

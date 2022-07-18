@@ -113,11 +113,13 @@
                       <tr>
                         <td>
 
-                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#exampleModal"
-                          (click)="getid(job.id)">Selected</button><br>
+                          <button class="btn btn-primary Button"
+                          (click)="getid(job.id)"  data-toggle="modal" data-target="#exampleModal">Selected</button><br>
                         </td>
                         <td >
-                          <button class="btn btn-primary Button" style="background-color:#dc3545;" (click)="Cancel()">Cancel</button>
+                          <button class="btn btn-primary" style="background-color:#dc3545;  border:none" data-dismiss="modal" data-toggle="modal"
+                          data-target="#exampleModal3">Cancel</button>
+                          <!-- <button class="btn btn-primary Button" style="background-color:#dc3545;" (click)="Cancel()">Cancel</button> -->
                         </td>
                       </tr>
                       <tr>
@@ -192,28 +194,21 @@
   </div>
 </div>
 
-<div class="modal fade" id="#exampleModal" tabindex="-1" role="dialog" aria-labelledby="#exampleModall"
+<!-- <div class="modal fade" id="#exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
       <div class="modal-header ">
-        <p class="Heading" style="font-weight: bold;" id="#exampleModal">Interview Notes </p>
+        <p class="Heading" style="font-weight: bold;" id="#exampleModalLabel">Interview Notes </p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <!-- <div class="col-lg-3">
-              <label style="font-size: 16px;">Selected Notes</label>
-            </div> -->
           <div class="col-lg-12">
 
             <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-            <!-- <select class="form-control" (change)="GetStaffID($event)">
-                              <option value="">Select</option>
-                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
-                          </select> -->
           </div>
         </div><br>
         <div class="row">
@@ -235,48 +230,131 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+aria-hidden="true">
+ <div class="modal-dialog" role="document">
+
+ <div class="modal-content" style="width:700px">
+
+ <div class="modal-header ">
+
+<p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+ <span aria-hidden="true">&times;</span>
+
+ </button>
+
+ </div>
+
+ <div class="modal-body">
+
+ <div class="row">
+
+<!-- <div class="col-lg-3">
+
+              <label style="font-size: 16px;">Selected Notes</label>
+
+            </div> -->
+
+ <div class="col-lg-12">
+ 
+ <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+
+ <!-- <select class="form-control" (change)="GetStaffID($event)">
+
+                              <option value="">Select</option>
+
+                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+
+                          </select> -->
+
+ </div>
+
+ </div><br>
+
+ <div class="row">
+
+ <div class="col-lg-5"></div>
+
+ <div class="col-lg-2">
+
+ <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" (click)="Acceptcandidate()"
+
+ data-dismiss="modal">Selected</button>
+
+ </div>
+ <div class="col-lg-2">
+  <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
+    data-target="#exampleModal3">Cancel</button> -->
+</div>
+
+ </div> <br>
+ 
+
+ <div class="modal-footer">
+
+ <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+
+ </div>
+
+ </div>
+
+ </div>
+
+</div>
+
 </div>
 
 
 
-
-
-<div class="modal fade" id="#Reject" tabindex="-1" role="dialog" aria-labelledby="#Reject" aria-hidden="true">
+<div class="modal fade" id="Reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
-      <div class="modal-header ">
-        <p class="Heading" style="font-weight: bold;" id="#Reject">Rejected Notes </p>
+      <div class="modal-header">
+        <p class="Heading" id="exampleModalLabel">Interview Notes</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <!-- <div class="col-lg-3">
-            <label style="font-size: 16px;">Selected Notes</label>
-          </div> -->
-          <div class="col-lg-12">
-
-            <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-            <!-- <select class="form-control" (change)="GetStaffID($event)">
-                            <option value="">Select</option>
-                            <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
-                        </select> -->
+          <div class="col-lg-3">
+            <label style="font-size: 16px;">Rejected Notes</label>
           </div>
-        </div><br>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea class="form-control" placeholder="Notes" rows="10"></textarea>
+            <!-- <select class="form-control" (change)="GetStaffID($event)">
+                              <option value="">Select</option>
+                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+                          </select> -->
+          </div>
+        </div>
+
+        <br>
         <div class="row">
           <div class="col-lg-5"></div>
           <div class="col-lg-2">
-            <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
-              data-dismiss="modal">Note</button>
+            <button class="btn btn-primary " style="background-color:#dc3545; border:none ; margin-left: 10%;"
+              (click)="Rejecttcandidate()">Rejeted</button>
           </div>
         </div> <br>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-        </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+
+     
+
     </div>
   </div>
 </div>
@@ -285,12 +363,60 @@
 
 
 
-<div class="modal fade" id="#exampleModal3"  role="dialog" aria-labelledby="#exampleModal3"
+
+
+
+
+
+
+<div class="modal fade" id="Note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content" style="width:700px">
+    <div class="modal-header ">
+      <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <!-- <div class="col-lg-3">
+          <label style="font-size: 16px;">Selected Notes</label>
+        </div> -->
+        <div class="col-lg-12">
+
+          <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+          <!-- <select class="form-control" (change)="GetStaffID($event)">
+                          <option value="">Select</option>
+                          <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+                      </select> -->
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2">
+          <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
+            data-dismiss="modal">Note</button>
+        </div>
+      </div> <br>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="exampleModal3"  role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
       <div class="modal-header ">
-        <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+        <p class="Heading" style="font-weight: bold;" >Reschedule Notes</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -302,53 +428,23 @@
             <label class="Letter">Commetnts: <span style="color: red;">*</span></label>
           </div>
           <div class="col-lg-6">
-            <input type="text">
+         <textarea name="" id="" cols="50"></textarea>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="modal fade" id="#Note" tabindex="-1" role="dialog" aria-labelledby="#Note"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:700px">
-      <div class="modal-header ">
-        <p class="Heading" style="font-weight: bold;" id="#Note">MY Notes </p>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+        <br>
         <div class="row">
-          <!-- <div class="col-lg-3">
-              <label style="font-size: 16px;">Selected Notes</label>
-            </div> -->
-          <div class="col-lg-12">
-
-            <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-            <!-- <select class="form-control" (change)="GetStaffID($event)">
-                              <option value="">Select</option>
-                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
-                          </select> -->
+          <div class="col-lg-4">
+            <label class="Letter">Date : <span style="color: red;">*</span></label>
           </div>
-        </div><br>
+          <div class="col-lg-6">
+            <input type="date" class="form-control">
+          </div>
+        </div>
         <div class="row">
-          <div class="col-lg-5"></div>
+          <div class="col-lg-10"></div>
           <div class="col-lg-2">
-            <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="Acceptcandidate()"
-              data-dismiss="modal">Notes</button>
+            <button (click)="update()"  class="btn btn-primary" style="background-color:#dc3545;  border:none">Cancel</button>
           </div>
-        
-        </div> <br>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
         </div>
       </div>
     </div>
