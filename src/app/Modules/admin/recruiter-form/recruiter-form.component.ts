@@ -23,25 +23,30 @@ export class RecruiterFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService,private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+    this.Role=""
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
-      if (this.ID != undefined && this.ID!=null) {
+      if (this.ID == undefined ) {
+       
+      }else{
         this.GetRecruiterMaster();
       }
     })
+    this.GetRoleType();
   }
   public GetRecruiterMaster() {
     this.RecruitmentServiceService.GetRecruiterMaster().subscribe({
   next: data => {
     debugger
-    this.recruiterlist = data
+    this.recruiterlist = data.filter(x => x.id == this.ID);
+    console.log("====recru",this.recruiterlist)
     this.Company_logo=this.recruiterlist[0].logo;
     this.Name=this.recruiterlist[0].name;
     this.PhoneNo=this.recruiterlist[0].phoneNo;
     this.Email=this.recruiterlist[0].email;
     this.Address=this.recruiterlist[0].address;
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Recruiter Master');
+    Swal.fire('Issue in Getting Recruiter Master');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -140,9 +145,9 @@ public insertdetails() {
   next: data => {
     debugger
     Swal.fire('Recruiter Updated Successfully.');
-      location.href = "/RecruiterDashboard";
+      location.href = "#/admin/RecruiterStaffDashboard";
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Updating Recruiter Master');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -168,6 +173,7 @@ public insertdetails() {
       next: data => {
         debugger
         this.RoleList = data
+        // this.Role=this.RoleList[0].short;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//

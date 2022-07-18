@@ -5,16 +5,19 @@
         <div class="col-lg-10">
 
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <p class="FormHeadText">Company Staff Details </p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-10"></div>
+                <div class="col-lg-9"></div>
             </div>
             <br>
             <div class="card BOXCARD">
                 <div class="row leavereq">
+                    <div class="col-md-2">
+                        <label>Role<span style="color: red;">*</span></label>
+                    </div>
                       <div class="col-md-2">
                         <label>Client Logo<span style="color: red;">*</span></label>
                     </div> 
@@ -33,9 +36,7 @@
                     <div class="col-md-2">
                         <label>Contact Person No.<span style="color: red;">*</span></label>
                     </div> -->
-                    <div class="col-md-3">
-                        <label>Address<span style="color: red;">*</span></label>
-                    </div>
+                  
                   
                 </div>
                 <div class="row leavereq">
@@ -50,17 +51,15 @@
                             </select>
                         </div>
                     </div> -->
+                   
                     <div class="col-md-2">
-                        <label>Role<span style="color: red;">*</span></label>
-                        <!-- <div class="col-md-2"> -->
-                            <div class="dropdown">
-                                <select class="form-control" name="Role" Id="Role" [(ngModel)]="Role">
-                                    <option value="">Select </option>
-                                    <option *ngFor="let Role of RoleList" value={{Role.id}}>
-                                        {{Role.short}} </option>
-                                </select>
-                            </div>
-                        <!-- </div> -->
+                        <div class="dropdown">
+                            <select class="form-control" name="Role" Id="Role" [(ngModel)]="Role">
+                                <option value="">Select Role </option>
+                                <option *ngFor="let Role of RoleList" value={{Role.id}}>
+                                    {{Role.short}} </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-2">
                         <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
@@ -85,12 +84,13 @@
                     <div class="col-md-2">
                         <input type="text" class="form-control inputfield" >
                     </div> -->
-                    <div class="col-md-3">
-                        <textarea type="text" class="form-control inputfield" name="Address" id="Address" [(ngModel)]="Address"></textarea>
-                    </div>
+                   
                 </div>
                 <br>
                 <div class="row leavereq">
+                    <div class="col-md-3">
+                        <label>Address<span style="color: red;">*</span></label>
+                    </div>
                     <!-- <div class="col-md-2">
                         <label>MPF-ER<span style="color: red;">*</span></label>
                     </div>
@@ -105,6 +105,9 @@
                     </div> -->
                 </div>
                 <div class="row leavereq">
+                    <div class="col-md-3">
+                        <textarea type="text" class="form-control inputfield" name="Address" id="Address" [(ngModel)]="Address"></textarea>
+                    </div>
                     <!-- <div class="col-md-2">
                         <input type="text" class="form-control inputfield" >
                     </div>
@@ -120,9 +123,9 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-10"></div>
-                    <div class="col-lg-1">
-                        <button class="form-control CancelBTN" (click)="cancel()">Cancel</button>
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-2">
+                        <button type="button" class="form-control CancelBTN" (click)="cancel()">Cancel</button>
                     </div>
                     <div class="col-lg-2">
                         <button class="form-control SubmitBTN" *ngIf="ID==undefined"  (click)="insertdetails()">Save</button>
