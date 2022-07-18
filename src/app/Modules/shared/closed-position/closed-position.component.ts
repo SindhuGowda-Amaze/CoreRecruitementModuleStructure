@@ -48,6 +48,7 @@ export class ClosedPositionComponent implements OnInit {
   jobRefernceID:any;
   ngOnInit(): void {
     debugger;
+  
     this.GetJobDescription()
     this.Role=""
     this.currentUrl = window.location.href;

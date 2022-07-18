@@ -199,7 +199,7 @@ export class JobRecruitementsComponent implements OnInit {
         debugger
         Swal.fire('Job Unposted Successfully');
         location.reload();
-        Swal.fire('Issue in Getting Expenses List Web');
+        //Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -212,10 +212,11 @@ export class JobRecruitementsComponent implements OnInit {
         )
       }
     })
+  }
 
 
-
-
+  public  Cancel(){
+window.location.reload();
 
   }
   ID: any;

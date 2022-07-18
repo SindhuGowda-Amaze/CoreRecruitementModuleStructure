@@ -34,6 +34,8 @@ export class JobRequisitionComponent implements OnInit {
   editor: any;
   html: any;
   Department: any;
+  hrlist1:any;
+  hrlist2:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
@@ -41,8 +43,10 @@ export class JobRequisitionComponent implements OnInit {
     this.RecruitmentServiceService.GetClientStaff()
       .subscribe(data => {
         this.hrlist = data;
-        this.manager = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'Manager')
-        this.buHead = this.hrlist[0].id.filter((x: { role: string; }) => x.role == 'BU Head')
+        this.hrlist1 = data.filter((x: { role: string; }) => x.role == 'Manager');
+        this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
+        this.manager = this.hrlist1[0].id
+        this.buHead = this.hrlist2[0].id
 
 
 
@@ -149,8 +153,8 @@ export class JobRequisitionComponent implements OnInit {
             this.InsertNotificationSBU();
             this.InsertNotificationManager();
 
-
-            location.href = "#/JobRecruitements";
+            Swal.fire('Saved Successfully');
+            location.href = "#/hirignmanager/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
