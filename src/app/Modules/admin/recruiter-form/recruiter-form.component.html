@@ -120,11 +120,17 @@
                 </div>
                 <br>
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col-lg-10"></div>
                     <div class="col-lg-1">
                         <button class="form-control CancelBTN" (click)="cancel()">Cancel</button>
+=======
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control CancelBTN">Cancel</button>
+>>>>>>> a445753dacc0d38b9ab8f380b882107c700de14f
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-2">
                         <button class="form-control SubmitBTN" *ngIf="ID==undefined"  (click)="insertdetails()">Save</button>
                         <button type="button" class="form-control SubmitBTN" *ngIf="ID != undefined"  (click)="updateRecruiter()" >Update</button> 
                     </div>
