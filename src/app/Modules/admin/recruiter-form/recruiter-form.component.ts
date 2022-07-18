@@ -18,6 +18,8 @@ export class RecruiterFormComponent implements OnInit {
   Address: any;
   currentUrl:any
   err :any
+  Role: any;
+  
   constructor(private RecruitmentServiceService: RecruitementService,private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -155,4 +157,39 @@ public insertdetails() {
 })
 
   }
+  cancel() {
+    location.href = "#/admin/RecruiterStaffDashboard";
+  }
+
+  RoleList:any;
+  public GetRoleType() {
+    debugger
+    this.RecruitmentServiceService.GetRoleType().subscribe({
+      next: data => {
+        debugger
+        this.RoleList = data
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+
+
+
+
+
+
+  }
+
 }
