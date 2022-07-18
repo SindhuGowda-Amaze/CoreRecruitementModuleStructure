@@ -396,7 +396,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   Cancel(){
 
-    window.location.reload()
+
 
   }
   
@@ -499,6 +499,10 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
 
 
+
+  }  
+
+  update(){
 
   }
 
