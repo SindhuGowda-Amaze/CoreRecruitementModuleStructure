@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
-
+import { RecruitementService } from '../../Services/recruitement.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +8,7 @@ import { interval } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private RecruitmentServiceService: RecruitementService) { }
 
   company_name: any;
   temp:any
@@ -22,10 +22,11 @@ export class HeaderComponent implements OnInit {
   mm: any;
   ampm: any;
   username: any;
+  staffID:any;
   ngOnInit() {
 
   this.pagename = "DASHBOARD"
-
+  this.staffID = localStorage.getItem('staffid');
    
     interval(1000).subscribe((x => {
       
@@ -56,7 +57,19 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  
+  initail: any
+  notificationslist: any
+  notificationCount: any;
+
+  public GetNotification() {
+    debugger
+
+    this.RecruitmentServiceService.GetNotification(this.staffID).subscribe((data: any) => {
+      debugger
+      this.notificationslist = data;
+      this.notificationCount = this.notificationslist.length;
+    })
+  }
 
   logout() {
     sessionStorage.clear();
