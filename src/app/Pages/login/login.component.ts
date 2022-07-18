@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'recruiter');
             sessionStorage.setItem('roleid', '6');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#recruiter/Dashboard";
+            location.href = "#hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -147,7 +147,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'Client');
             sessionStorage.setItem('roleid', '4');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -204,7 +204,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('roleid', '3');
             sessionStorage.setItem('notes', this.result.notes);
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#hirignmanager/Dashboard";
             location.reload();
           }
           else {
