@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 // import { Editor } from 'ngx-editor';
 import Swal from 'sweetalert2';
 
@@ -127,12 +128,12 @@ export class JobRequisitionComponent implements OnInit {
               icon: 'info',
               html:
                 'You can use <b>below link to Apply</b>, ' +
-                '<a target="_blank" href="http://23.101.22.93/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ',
+                '<a target="_blank" href="http://23.101.22.93/RecruitementModule/hiringnmanager/ExternalJobApply/53">Apply</a> ',
               showCloseButton: true,
               showCancelButton: true,
               focusConfirm: false,
               confirmButtonText:
-                '<i class="fa fa-thumbs-up"></i> Great!',
+                '<i class="fa fa-thumbs-up"></i> Save!',
               confirmButtonAriaLabel: 'Thumbs up, great!',
               cancelButtonText:
                 '<i class="fa fa-thumbs-down"></i>',
@@ -153,8 +154,8 @@ export class JobRequisitionComponent implements OnInit {
             this.InsertNotificationSBU();
             this.InsertNotificationManager();
 
-            Swal.fire('Saved Successfully');
-            location.href = "#/hirignmanager/JobRecruitements";
+            // Swal.fire('Saved Successfully');
+            // location.href = "#/hirignmanager/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
