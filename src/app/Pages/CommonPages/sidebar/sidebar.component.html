@@ -381,7 +381,7 @@
                 </a>
             </div>
 
-            <a *ngIf="roleid==5" data-toggle="collapse" class="togglebtn button nonactive"
+            <a *ngIf="roleid==5 || roleid==6" data-toggle="collapse" class="togglebtn button nonactive"
                 data-target="#userapplications4">
 
                 <i class="fa fa-gears icon28" style="width: 20px;   margin-right: 17px;" *ngIf="roleid!=8"></i>
@@ -394,18 +394,30 @@
                     <img src="assets/Images/Vector.png" style="width: 20px;    margin-right: 17px;" /> &nbsp; SCHEDULED
                     INTERVIEWS
                 </a>
-                <a routerLink="/hirignmanager/SelectedCandidates" class="nonactive" (click)="openCity($event)">
+            </div>
+
+            <div id="userapplications4" class="collapse" style="padding-left: 7%;">
+                <a routerLink="/hirignmanager/SelectedCandidates" class="nonactive" (click)="openCity1($event)">
                     <img src="assets/Images/Vector.png" style="width: 20px;    margin-right: 17px;" /> &nbsp; SELECTED
-                    CANDIDATES
-                </a>
-                <a routerLink="/InterviewPanel/Rejected" class="nonactive" (click)="openCity($event)">
-                    <img src="assets/Images/Vector.png" style="width: 20px;    margin-right: 17px;" /> &nbsp; REJECTED
                     CANDIDATES
                 </a>
             </div>
 
-
-
+            <div id="userapplications4" class="collapse" style="padding-left: 7%;">
+                <a routerLink="/InterviewPanel/Rejected" class="nonactive" (click)="openCity2($event)">
+                    <img src="assets/Images/Vector.png" style="width: 20px;    margin-right: 17px;" /> &nbsp; REJECTED
+                    CANDIDATES
+                </a>
+            </div>
+          
+           
+            <div id="userapplications4" class="collapse" style="padding-left: 7%;">
+                <a routerLink="/InterviewPanel/ScheduledInterviews" class="nonactive" (click)="openCity($event)">
+                    <img src="assets/Images/Vector.png" style="width: 20px;    margin-right: 17px;" /> &nbsp; RESCHEDULED
+                    INTERVIEWS
+                </a>
+            </div>
+           
 
 
 

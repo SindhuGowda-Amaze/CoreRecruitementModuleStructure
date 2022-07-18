@@ -67,6 +67,28 @@ export class SidebarComponent implements OnInit {
     evt.currentTarget.className += " active";
   }
 
+  public openCity1(evt: any) {
+    var i, tablinks;
+
+    tablinks = document.getElementsByClassName("nonactive");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    evt.currentTarget.className += " active";
+  }
+
+  public openCity2(evt: any) {
+    var i, tablinks;
+
+    tablinks = document.getElementsByClassName("nonactive");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    evt.currentTarget.className += " active";
+  }
+
   public highlight(evt: any) {
     debugger
     var i, tablinks;
