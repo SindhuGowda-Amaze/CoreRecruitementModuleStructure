@@ -126,17 +126,17 @@ export class JobRequisitionComponent implements OnInit {
               title: '<strong>Use this link to post in External site<br></strong>',
               icon: 'info',
               html:
-                // 'You can use <b>below link to Apply</b>, ' +
-                '<a target="_blank" href="http://103.133.214.197/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ',
+                'You can use <b>below link to Apply</b>, ' +
+                '<a target="_blank" href="http://23.101.22.93/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ',
               showCloseButton: true,
               showCancelButton: true,
               focusConfirm: false,
-              // confirmButtonText:
-              //   '<i class="fa fa-thumbs-up"></i> Great!',
-              // confirmButtonAriaLabel: 'Thumbs up, great!',
-              // cancelButtonText:
-              //   '<i class="fa fa-thumbs-down"></i>',
-              // cancelButtonAriaLabel: 'Thumbs down'
+              confirmButtonText:
+                '<i class="fa fa-thumbs-up"></i> Great!',
+              confirmButtonAriaLabel: 'Thumbs up, great!',
+              cancelButtonText:
+                '<i class="fa fa-thumbs-down"></i>',
+              cancelButtonAriaLabel: 'Thumbs down'
             })
 
 

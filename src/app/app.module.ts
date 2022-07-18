@@ -10,6 +10,7 @@ import { FooterComponent } from './Pages/CommonPages/footer/footer.component';
 import { LoaderComponent } from './Pages/CommonPages/loader/loader.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 // import { AuthGuard } from 'auth-guard';
 
 @NgModule({
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     FooterComponent,
     LoaderComponent,
-    
+ 
   ],
   imports: [
     BrowserModule,

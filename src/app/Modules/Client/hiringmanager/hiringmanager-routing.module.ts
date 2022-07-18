@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { JobDescriptionDashComponent } from '../../admin/job-description-dash/job-description-dash.component';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ExternalJobApplyComponent } from './external-job-apply/external-job-apply.component';
 import { HiringmanagerComponent } from './hiringmanager.component';
 import { JobRecruitementsComponent } from './job-recruitements/job-recruitements.component';
 import { JobRequisitionComponent } from './job-requisition/job-requisition.component';
@@ -18,7 +19,8 @@ const routes: Routes = [{ path: '', component: HiringmanagerComponent },
 {path:'JobRequisition/:id',component:JobRequisitionComponent},
 
 
-{path:'SelectedCandidates',component:SelectedCandidatesComponent}
+{path:'SelectedCandidates',component:SelectedCandidatesComponent},
+{path:'ExternalJobApply',component:ExternalJobApplyComponent}
 
 
 
