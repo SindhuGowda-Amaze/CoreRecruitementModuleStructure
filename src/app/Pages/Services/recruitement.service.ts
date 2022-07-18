@@ -495,27 +495,15 @@ public GetClosedJobRequirement() {
 
 
 public sendemailattachements(data: any) {
-
   debugger
-
-  this.url = this.host + '/Master/sendemailattachements';
-
+  this.url = this.host + 'Vendor/sendemail/';
   return this.http.post(this.url, data)
-
-
-
 }
 
 public sendemailattachementsforemail(data: any) {
-
   debugger
-
   this.url = '  https://asticom.digiofficeapp.com/AsticomMainAPI' + '/Master/sendemailattachements';
-
   return this.http.post(this.url, data)
-
-
-
 }
 
 
