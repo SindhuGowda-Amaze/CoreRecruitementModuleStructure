@@ -111,6 +111,7 @@
         class="nonactive"
         (click)="openCity($event)"
         *ngIf="roleid != 5"
+        [ngClass]="home==true?'highlighting':''"
       >
         <img
           *ngIf="!home"
@@ -137,9 +138,11 @@
         data-toggle="collapse"
         class="togglebtn button nonactive"
         data-target="#userapplications"
+        [ngClass]="setup?'highlighting':''"
+        (click)="activeSetup()"
       >
         <i
-          class="fa fa-gears icon28"
+          class="fa fa-gears icon28" [ngClass]="setup?'highlighting':''"
           style="width: 15%; margin-right: 17px"
         ></i>
         &nbsp; SETUP
@@ -147,7 +150,7 @@
       </a>
 
       <div id="userapplications" class="collapse" style="padding-left: 7%">
-        <a (click)="Client()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Client()" class="nonactive" (click)="openCity($event)" [ngClass]="client==true?'highlighting':''">
           <img
             *ngIf="client"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Employee Job History.png"
@@ -172,6 +175,7 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="Recruitstaff()"
+          [ngClass]="recruitstaff==true?'highlighting':''"
         >
           <img
             *ngIf="recruitstaff"
@@ -185,7 +189,7 @@
           />
           &nbsp;COMPANY STAFF
         </a>
-        <a class="nonactive" (click)="openCity($event)" (click)="vendor()">
+        <a class="nonactive" (click)="openCity($event)" (click)="vendor()" [ngClass]="vendo==true?'highlighting':''">
           <img
             *ngIf="!vendo"
             src="assets/Images/64/ATTENDANCE/Report/masters/Deniminis _master.png"
@@ -198,7 +202,7 @@
           />
           &nbsp;VENDOR
         </a>
-        <a class="nonactive" (click)="openCity($event)" (click)="vendorstaff()">
+        <a class="nonactive" (click)="openCity($event)" (click)="vendorstaff()"  [ngClass]="vendorstaf==true?'highlighting':''">
           <img
             *ngIf="vendorstaf"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
@@ -248,14 +252,14 @@
           &nbsp;
         </a>
 
-        <a class="nonactive" (click)="openCity($event)" (click)="JOBAPPROVAL()">
+        <a class="nonactive" (click)="openCity($event)" (click)="JOBAPPROVAL()" [ngClass]="jobstaff==true?'highlighting':''">
           <img
-            *ngIf="vendorstaf"
+            *ngIf="jobstaff"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!vendorstaf"
+            *ngIf="!jobstaff"
             src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -419,7 +423,7 @@
        
        
        
-        <a  (click)="SupportTickets()" class="nonactive" (click)="openCity($event)">
+        <a  (click)="SupportTickets()" class="nonactive" (click)="openCity($event)"  [ngClass]="closed==true?'highlighting':''"    >
             <img
               *ngIf="closed"
               src="assets/Images/64 Blue/Staff.png"
@@ -717,6 +721,7 @@
         class="tablinks"
         (click)="highlight($event)"
         (click)="SupportTickets()"
+        [ngClass]="active=='SupportTickets'?'highlighting':''" 
       >
         <img
           src="assets/Images/64 Blue/Staff.png"

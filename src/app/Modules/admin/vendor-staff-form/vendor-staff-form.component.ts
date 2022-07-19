@@ -107,8 +107,8 @@ export class VendorStaffFormComponent implements OnInit {
         next: data => {
           debugger
           let id = data;
-          alert("Successfully saved!!")
-          location.href = "#/VendorStaffDashboard"
+          Swal.fire('Saved Sucessfully..!');
+          location.href = "#admin/VendorStaffDashboard"
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
@@ -186,9 +186,9 @@ export class VendorStaffFormComponent implements OnInit {
     this.RecruitmentServiceService.UpdateVendor_Staff(json).subscribe({
       next: data => {
         debugger
-        alert("Updated Sucessfully");
+        Swal.fire('Updated Sucessfully');
         let id = data;
-        location.href = "#/VendorStaffDashboard";
+        location.href = "#admin/VendorStaffDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -206,7 +206,7 @@ export class VendorStaffFormComponent implements OnInit {
 
   }
   cancel(){
-    location.href = "#/VendorStaffDashboard";
+    location.href = "#admin/VendorStaffDashboard";
   }
 }
 

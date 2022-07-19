@@ -56,7 +56,7 @@ export class VendorFormComponent implements OnInit {
   }
   Save() {
     debugger
-    if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined)
+    if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined || this.vendor_Name==""||this.phone_Number==""||this.email_ID==""||this.address==""||this.Company_logo=="")
     {
       alert("Please Fill All Fields to Save!!!")
     }
@@ -73,7 +73,7 @@ else{
         debugger
         let id = data;
       Swal.fire("Saved Sucessfully");
-      location.href = "#/VendorDashboard";
+      location.href = "#/admin/VendorDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -141,7 +141,7 @@ else{
           debugger
           let result = data;
         Swal.fire("Update Sucessfully");
-        location.href = "#/VendorDashboard";
+        location.href = "#admin/VendorDashboard";
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
@@ -159,6 +159,6 @@ else{
   }
 
   cancel() {
-    location.href = "#/VendorDashboard";
+    location.href ='#admin/VendorDashboard';
   }
 }

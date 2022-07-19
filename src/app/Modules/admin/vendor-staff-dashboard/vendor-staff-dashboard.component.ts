@@ -58,7 +58,7 @@ export class VendorStaffDashboardComponent implements OnInit {
 
   edit(id: any) {
     debugger
-    location.href = "#/VendorStaffForm/" + id;
+    location.href = "#admin/VendorStaffForm/" + id;
   }
 
 
@@ -105,10 +105,10 @@ export class VendorStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Disable it.',
+      text: 'You want Enable the Vendor Staff.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, Disable it',
+      confirmButtonText: 'Yes, Enable it',
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
