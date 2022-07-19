@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
   Jobrecruitreport: any
   joinedreport: any
   droppedreport: any
+  closed:any;
   constructor(public router: Router) { }
 
   ngOnInit(): void {
@@ -46,6 +47,8 @@ export class SidebarComponent implements OnInit {
     this.company_name = sessionStorage.getItem("company_name");
     this.UserName = sessionStorage.getItem('UserName');
     this.role = sessionStorage.getItem('role')
+    this.Jobrecruit=false;
+  
   }
   logout() {
     sessionStorage.clear();
@@ -61,7 +64,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -72,7 +75,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -83,7 +86,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -95,7 +98,7 @@ export class SidebarComponent implements OnInit {
     //  localStorage.setItem("clickname",name)
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -111,6 +114,7 @@ export class SidebarComponent implements OnInit {
     this.recruitstaff = false
     this.vendorstaf = false
     this.vendo = false
+
 
 
   }
@@ -945,10 +949,49 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem("clickname", "HELP")
   }
 
-  SupportTickets(){
-    this.active = ' SupportTickets'
-    localStorage.setItem("clickname", "support tickets")
+  public  SupportTickets() {
+    localStorage.setItem('Pagename', 'CLOSED POSITION')
+    this.router.navigate(['/shared/ClosedPosition']);
+    this.dropped = false
+    this.Jobrecruit = false
+    this.Vendorrecruit = false
+    this.home = false
+    this.applied = false
+    this.shortlist = false
+    this.scheduled = false
+    this.Vendorrecruit = false
+    this.applied = false
+    this.shortlist = false
+    this.scheduled = false
+    this.selected = false
+    this.offered = false
+    this.joined = false
+
+    this.vendorreport = false
+    this.appliedreport = false
+    this.shortlistedreport = false
+    this.selectedreport = false
+    this.offeredreport = false
+    this.Jobrecruitreport = false
+    this.joinedreport = false
+    this.droppedreport = false
+    this.closed=true                      
+
   }
+
+
+
+
+
+
+
+
+
+
+  // SupportTickets(){
+  //   this.active = ' SupportTickets'
+  //   localStorage.setItem("clickname", "support tickets")
+  // }
 
   offermanage(){
     this.active = 'offermanage'
