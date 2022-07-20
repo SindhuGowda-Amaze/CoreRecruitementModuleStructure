@@ -150,7 +150,7 @@ export class AdminDashboardComponent implements OnInit {
 
   public Regularization() {
     debugger
-    this.router.navigate(['/ClientDashBoard']);
+    this.router.navigate(['/admin/Clientdashboard']);
   }
 
   public Regularization1() {
@@ -160,13 +160,13 @@ export class AdminDashboardComponent implements OnInit {
 
   public Regularization2() {
     debugger
-    this.router.navigate(['/admin/VendorStaffDashboard']);
+    this.router.navigate(['/admin/VendorDashboard']);
     
   }
 
   public Regularization3() {
     debugger
-    this.router.navigate(['/admin/VendorDashboard']);
+    this.router.navigate(['/admin/VendorStaffDashboard']);
   }
 
   public Regularization4() {
