@@ -91,17 +91,17 @@ export class RescheduledInterviewComponent implements OnInit {
       next: data => {
         debugger
         if (this.roleid == 2) {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
-          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.joblist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
+          this.noticeperiodlist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
           this.count = this.joblist.length;
           this.loader = false;
         }
         else {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.joblist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
           this.jobListCopy = this.joblist;
-          this.dummjoblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
-          this.dummjoblist1 = data.filter(x => x.interviewSelected != 1 && x.offered != 0);
-          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.dummjoblist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
+          this.dummjoblist1 = data.filter(x => x.Cancleinterview != 1 && x.offered != 0);
+          this.noticeperiodlist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
           this.loader = false;
           this.count = this.joblist.length;
         }
