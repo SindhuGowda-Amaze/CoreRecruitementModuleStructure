@@ -1005,19 +1005,12 @@ export class SidebarComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-  // SupportTickets(){
-  //   this.active = ' SupportTickets'
-  //   localStorage.setItem("clickname", "support tickets")
-  // }
+  Supporttickets(){
+    this.active = 'SupportTickets'
+    this.router.navigate(['/shared/SupportTicketDashboard'])
+   
+    localStorage.setItem("Pagename", "support tickets")
+  }
 
   offermanage(){
     this.active = 'offermanage'

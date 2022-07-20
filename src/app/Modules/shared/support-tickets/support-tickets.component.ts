@@ -115,7 +115,7 @@ export class SupportTicketsComponent implements OnInit {
         this.ticketid = data;
         this.uploadmultipleimages()
         Swal.fire("Saved Sucessfully");
-        location.href = "#/SupportTicketDashboard";
+        location.href = "#shared/SupportTicketDashboard";
 
         this.date = '';
         this.time = '';
@@ -205,6 +205,6 @@ export class SupportTicketsComponent implements OnInit {
     })
   }
   public cancel() {
-    location.href = "#/SupportTicketDashboard";
+    location.href = "#shared/SupportTicketDashboard";
   }
 }
