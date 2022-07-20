@@ -7,6 +7,7 @@ import { ShortListedComponent } from './short-listed/short-listed.component';
 import { SharedModule } from '../shared/shared.module';
 import { VendorJobOpeningsComponent } from './vendor-job-openings/vendor-job-openings.component';
 import { JobVacanciesComponent } from './job-vacancies/job-vacancies.component';
+import { RescheduledInterviewComponent } from './rescheduled-interview/rescheduled-interview.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { JobVacanciesComponent } from './job-vacancies/job-vacancies.component';
     RecruiterComponent,
     ShortListedComponent,
     VendorJobOpeningsComponent,
-    JobVacanciesComponent
+    JobVacanciesComponent,
+    RescheduledInterviewComponent
   ],
   imports: [
     CommonModule,

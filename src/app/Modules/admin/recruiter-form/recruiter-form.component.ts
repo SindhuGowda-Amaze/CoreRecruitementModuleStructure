@@ -19,6 +19,8 @@ export class RecruiterFormComponent implements OnInit {
   ID: any;
   roleList: any;
   roleid: any;
+ 
+ 
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -48,6 +50,7 @@ export class RecruiterFormComponent implements OnInit {
         this.Email = this.recruiterlist[0].email;
         this.Address = this.recruiterlist[0].address;
         this.Signature = this.recruiterlist[0].signature;
+        this.roleid= this.recruiterlist[0].roleId
         // this.count = this.recruiterlist.length;
       })
 
