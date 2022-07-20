@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.showpassword = 1;
     }
     else {
-      this.showpassword = 0;
+        this.showpassword = 0;
     }
   }
   public getcompanycode() {

@@ -12,12 +12,14 @@ export class SidebarComponent implements OnInit {
   selected: any;
   offered: any;
   joined: any;
+  report:any;
   dropped: any;
   clientstaff: any;
   recruitstaff: any;
   vendo: any;
   ManpowerPlanning1: any;
   vendorstaf: any;
+  manpower:any;
   home: any;
   Vendorrecruit: any;
   company_name: any;
@@ -220,7 +222,7 @@ export class SidebarComponent implements OnInit {
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
       this.router.navigate(['/hirignmanager/Dashboard']);
-      this.home = false
+      this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
 
@@ -246,7 +248,7 @@ export class SidebarComponent implements OnInit {
     }
     else if (this.roleid == '6') {
       localStorage.setItem('Pagename', 'DASHBOARD')
-      this.router.navigate(['/Dashboard']);
+      this.router.navigate(['/hirignmanager/Dashboard']);
       this.home = true
       this.Jobrecruit = false
       this.Vendorrecruit = false
@@ -473,7 +475,7 @@ export class SidebarComponent implements OnInit {
   public VendorRecruitment(){
     this.Vendorrecruit=true
     this.Jobrecruit=false
-   
+   this.manpower=false
     this.home=false
     this.applied=false
     this.shortlist=false
@@ -992,7 +994,7 @@ export class SidebarComponent implements OnInit {
     this.selected = false
     this.offered = false
     this.joined = false
-
+    this.closed=true
     this.vendorreport = false
     this.appliedreport = false
     this.shortlistedreport = false
@@ -1045,5 +1047,26 @@ export class SidebarComponent implements OnInit {
   }
 
   
+
+  Reports(){
+
+   this.report=true
+this.manpower=false
+
+
+  }
+  SelectedCANDIDATES(){
+    this.selected=true
+
+
+  }
+  Manpower(){
+
+
+
+
+    
+  }
+
 
 }
