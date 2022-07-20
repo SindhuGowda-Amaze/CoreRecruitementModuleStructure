@@ -58,7 +58,7 @@ export class VendorDashboardComponent implements OnInit {
   }
   edit(id: any){
     debugger
-   location.href="#/VendorForm/"+ id;
+   location.href="#admin/VendorForm/"+ id;
   }
 
   public Ondelete(id: any) {

@@ -19,6 +19,13 @@ export class VendorStaffFormComponent implements OnInit {
   role_Id: any;
   vendor_Name: any;
   err: any;
+  VendorStaffForm : any
+  VendorId: undefined;
+  Staff_Name: undefined;
+  Phone_Number: undefined;
+  Email_Id: undefined;
+  Signature: undefined;
+  Role: undefined;
 
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -95,7 +102,17 @@ export class VendorStaffFormComponent implements OnInit {
   }
   Save() {
     debugger;
-    var json = {
+    if( this.VendorId==undefined||this.VendorId==null|| 
+      this.Staff_Name==undefined||this.Staff_Name==null||
+      this.Phone_Number==undefined||this.Phone_Number==null||
+      this.Email_Id==undefined||this.Email_Id==null||
+      this.Signature==undefined||this.Signature==null||
+      this.Role==undefined||this.Role==null)
+      {
+      Swal.fire("Please fill all fields!!");
+    }
+    else{
+      var json = {
       "VendorId": this.vendor_Name,
       "Staff_Name": this.staff_Name,
       "Phone_Number": this.phone_Number,
@@ -104,25 +121,29 @@ export class VendorStaffFormComponent implements OnInit {
       "Role": this.role_Id
     };
     this.RecruitmentServiceService.InsertVendor_Staff(json).subscribe({
-        next: data => {
-          debugger
-          let id = data;
-          alert("Successfully saved!!")
-          location.href = "#/VendorStaffDashboard"
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: data => {
+        debugger
+        let id = data;
+        Swal.fire('Saved Sucessfully..!');
+        location.href = "#admin/VendorStaffDashboard"
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+      
+    }
+    
+ 
 
   }
   vendordetails: any;
@@ -186,9 +207,9 @@ export class VendorStaffFormComponent implements OnInit {
     this.RecruitmentServiceService.UpdateVendor_Staff(json).subscribe({
       next: data => {
         debugger
-        alert("Updated Sucessfully");
+        Swal.fire('Updated Sucessfully');
         let id = data;
-        location.href = "#/VendorStaffDashboard";
+        location.href = "#admin/VendorStaffDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -206,7 +227,7 @@ export class VendorStaffFormComponent implements OnInit {
 
   }
   cancel(){
-    location.href = "#/VendorStaffDashboard";
+    location.href = "#admin/VendorStaffDashboard";
   }
 }
 

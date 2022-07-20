@@ -38,6 +38,10 @@ export class SidebarComponent implements OnInit {
   Jobrecruitreport: any
   joinedreport: any
   droppedreport: any
+  closed:any;
+  Client : any
+  jobstaff: boolean | undefined;
+  setup: boolean | undefined;
   constructor(public router: Router) { }
 
   ngOnInit(): void {
@@ -46,6 +50,8 @@ export class SidebarComponent implements OnInit {
     this.company_name = sessionStorage.getItem("company_name");
     this.UserName = sessionStorage.getItem('UserName');
     this.role = sessionStorage.getItem('role')
+    this.Jobrecruit=false;
+  
   }
   logout() {
     sessionStorage.clear();
@@ -61,7 +67,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -72,7 +78,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -83,7 +89,7 @@ export class SidebarComponent implements OnInit {
 
     tablinks = document.getElementsByClassName("nonactive");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
@@ -95,22 +101,24 @@ export class SidebarComponent implements OnInit {
     //  localStorage.setItem("clickname",name)
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace("active", "");
     }
 
     evt.currentTarget.className += " active";
   }
 
   
-  public Client() {
+  public 8() {
     localStorage.setItem('Pagename', 'CLIENT')
     this.router.navigate(['admin/Clientdashboard']);
-    this.client = true
-    this.home = false
-    this.clientstaff = false
-    this.recruitstaff = false
-    this.vendorstaf = false
-    this.vendo = false
+    this.client = true;
+    this.clientstaff = false;
+    this.recruitstaff = false;
+    this.vendorstaf = false;
+    this.vendo = false;
+    this.jobstaff=false;
+    this.active='';
+
 
 
   }
@@ -135,6 +143,8 @@ export class SidebarComponent implements OnInit {
     this.recruitstaff = true
     this.vendorstaf = false
     this.vendo = false
+    this.active=''
+    this.jobstaff=false
   }
   
   public vendor() {
@@ -146,6 +156,8 @@ export class SidebarComponent implements OnInit {
     this.home = false
     this.recruitstaff = false
     this.vendorstaf = false
+    this.active=''
+    this.jobstaff=false
   }
  
   public ManpowerPlanning() {
@@ -168,12 +180,15 @@ export class SidebarComponent implements OnInit {
     this.client = false
     this.clientstaff = false
     this.home = false
-    this.recruitstaff = false
+    this.recruitstaff = false;
+    this.active ='';
+    this.jobstaff=false;
   }
 
 
   public admin() {
     debugger
+    this.setup=false;
     if (this.roleid == '1') {
       localStorage.setItem('Pagename', 'DASHBOARD')
       this.router.navigate(['admin/AdminDashboard']);
@@ -199,6 +214,8 @@ export class SidebarComponent implements OnInit {
       this.Jobrecruitreport = false
       this.joinedreport = false
       this.droppedreport = false
+      this.active=false
+      this.client=false
     }
     else if (this.roleid != '5') {
       localStorage.setItem('Pagename', 'DASHBOARD')
@@ -440,6 +457,13 @@ export class SidebarComponent implements OnInit {
   public JOBAPPROVAL(){
     localStorage.setItem('Pagename', 'Job Approval')
     this.router.navigate(['admin/JobApprovalConfig']);
+    this.jobstaff=true;
+    this.active='';
+    this.vendo=false;
+    this.home=false
+    this.client=false
+    this.vendorstaf=false
+    this.recruitstaff=false;
   }
   
 
@@ -470,6 +494,7 @@ export class SidebarComponent implements OnInit {
     this.Jobrecruitreport=false
     this.joinedreport=false
     this.droppedreport=false
+    this.jobstaff=false
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
     this.router.navigate(['/recruiter/VendorJobOpenings']);
 
@@ -942,13 +967,58 @@ export class SidebarComponent implements OnInit {
 
   help(){
     this.active = 'help'
+    this.home=false
+    this.jobstaff=false
+    this.recruitstaff=false
+    this.setup=false
     localStorage.setItem("clickname", "HELP")
   }
 
-  SupportTickets(){
-    this.active = ' SupportTickets'
-    localStorage.setItem("clickname", "support tickets")
+  public  SupportTickets() {
+    this.setup=false;
+    localStorage.setItem('Pagename', 'CLOSED POSITION')
+    this.router.navigate(['/shared/ClosedPosition']);
+    this.dropped = false
+    this.Jobrecruit = false
+    this.Vendorrecruit = false
+    this.home = false
+    this.applied = false
+    this.shortlist = false
+    this.scheduled = false
+    this.Vendorrecruit = false
+    this.applied = false
+    this.shortlist = false
+    this.scheduled = false
+    this.selected = false
+    this.offered = false
+    this.joined = false
+
+    this.vendorreport = false
+    this.appliedreport = false
+    this.shortlistedreport = false
+    this.selectedreport = false
+    this.offeredreport = false
+    this.Jobrecruitreport = false
+    this.joinedreport = false
+    this.droppedreport = false
+    this.active='SupportTickets'
+    this.jobstaff=false                      
+
   }
+
+
+
+
+
+
+
+
+
+
+  // SupportTickets(){
+  //   this.active = ' SupportTickets'
+  //   localStorage.setItem("clickname", "support tickets")
+  // }
 
   offermanage(){
     this.active = 'offermanage'
@@ -961,8 +1031,20 @@ export class SidebarComponent implements OnInit {
     // this.router.navigate(['/JobDescriptionDash']);
 
     this.active = 'Description'
+    this.vendorstaf=false
+    this.jobstaff=false
+    this.recruitstaff=false
+    this.client=false
+    this.vendo=false
     localStorage.setItem("clickname", "Description")
     this.router.navigate(['admin/JobDescriptionDash']);
+  }
+
+  activeSetup()
+  {
+    this.setup=true;
+    this.home=false;
+    this.active='';
   }
 
   
