@@ -16,7 +16,7 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-11">
                     <div class="row leavereq">
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <p>Approver Subsidiary</p>
                             <select class="form-control" id="CompanyName" name="CompanyName" [(ngModel)]="CompanyName">
                                 <option value="">Select Subsidiary</option>
@@ -28,16 +28,16 @@
                                 <option value="Ayala Land Offices, Inc">Ayala Land Offices, Inc</option>
                             </select>
 
-                        </div>
+                        </div> -->
                         <div class="col-lg-4">
                             <p>1st Level Approval(Manager):</p>
-                            <input type="radio" id="AutoApproval" name="AutoApproval" [(ngModel)]="AutoApproval"
+                            <input type="checkbox" id="AutoApproval" name="AutoApproval" [(ngModel)]="AutoApproval"
                                 value="Auto Approval" [checked]="true">
 
                         </div>
                         <div class="col-lg-4">
                             <p>2nd Level Approval(BU Head):</p>
-                            <input type="radio" id="AutoApproval1" name="AutoApproval1" [(ngModel)]="AutoApproval1"
+                            <input type="checkbox" id="AutoApproval1" name="AutoApproval1" [(ngModel)]="AutoApproval1"
                                 value="Manager Approval" [checked]="true">
                         </div>
 
