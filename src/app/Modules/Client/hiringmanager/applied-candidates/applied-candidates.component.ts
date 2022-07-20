@@ -229,6 +229,7 @@ export class AppliedCandidatesComponent implements OnInit {
               'Candidate has been shortlisted',
               'success'
             );
+            this.SendMailEmployee()
           
             this.GetJobDescription();
 
@@ -409,5 +410,46 @@ export class AppliedCandidatesComponent implements OnInit {
         );
       },
     });
+  }
+
+
+  public SendMailEmployee() {
+
+    debugger
+
+    var entity3 = {
+
+      'emailto': 'sindhugowda.amazeinc@gmail.com',
+
+      // 'emailto': 'divyashree@amazeinc.in',
+
+      'emailsubject': 'Dear HiringManager Shortlisted Candidate',
+
+      'emailbody': '',
+
+      'attachmenturl': [],
+
+      'cclist': [],
+
+      'bcclist': [],
+
+    }
+
+
+
+    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+
+      debugger;
+
+
+
+      // Swal.fire('Letter Generated and Sent Successfully');
+
+      Swal.fire('Email Sent');
+
+    })
+
+
+
   }
 }

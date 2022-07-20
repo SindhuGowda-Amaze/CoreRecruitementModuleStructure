@@ -155,23 +155,23 @@ export class AdminDashboardComponent implements OnInit {
 
   public Regularization1() {
     debugger
-    this.router.navigate(['/ClientStaffDashBoard']);
+    this.router.navigate(['/admin/ClientStaffDashBoard']);
   }
 
   public Regularization2() {
     debugger
-    this.router.navigate(['/VendorStaffDashboard']);
+    this.router.navigate(['/admin/VendorStaffDashboard']);
     
   }
 
   public Regularization3() {
     debugger
-    this.router.navigate(['/VendorDashboard']);
+    this.router.navigate(['/admin/VendorDashboard']);
   }
 
   public Regularization4() {
     debugger
-    this.router.navigate(['/RecruiterStaffDashboard']);
+    this.router.navigate(['/admin/RecruiterStaffDashboard']);
   }
 
   

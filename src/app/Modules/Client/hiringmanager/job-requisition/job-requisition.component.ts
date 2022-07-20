@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 // import { Editor } from 'ngx-editor';
 import Swal from 'sweetalert2';
 
@@ -127,12 +128,12 @@ export class JobRequisitionComponent implements OnInit {
               icon: 'info',
               html:
                 'You can use <b>below link to Apply</b>, ' +
-                '<a target="_blank" href="http://23.101.22.93/CoreDigiRecruitment/#/ExternalJobApply/53">Apply</a> ',
+                '<a target="_blank" href="http://23.101.22.93/RecruitementModule/hiringnmanager/ExternalJobApply/53">Apply</a> ',
               showCloseButton: true,
               showCancelButton: true,
               focusConfirm: false,
               confirmButtonText:
-                '<i class="fa fa-thumbs-up"></i> Great!',
+                '<i class="fa fa-thumbs-up"></i> Save!',
               confirmButtonAriaLabel: 'Thumbs up, great!',
               cancelButtonText:
                 '<i class="fa fa-thumbs-down"></i>',
@@ -141,20 +142,24 @@ export class JobRequisitionComponent implements OnInit {
 
 
             var sub = 'Hiring Manager has Posted the job'
-            var email = 'iam.manikanta244@gmail.com'
-            var desc = 'Dear  Manager, Hiring Manger has posted the job, need your approval ,<br><br>.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            var email = 'gmrmadhavreddy416@gmail.com'
+            var desc =  'Hiring manager to Manager'
+                        'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+                        'Thank You!'             
             this.SendMailEmployee(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'sindhugowda.amazeinc@gmail.com'
-            var desc = 'Dear  SBU, Hiring Manger has posted the job, need your approval ,<br><br><br>We would like to extend a warm welcome to you into ALI family.<br><br> We thank you for choosing to work for ALI. We are delighted to have you join us and support us in our journey - "Make the most of your Energy"<br><br>  <br>We strongly believe that an Organization is made up of People and ultimately its the People, who will make the difference between success and failure. We believe that you have the potential and enthusiasm that will bring in fresh blood into our organization. <br>You may login to fill joining form and see other details  with below link -<br>Url - @@OnboardingPortalURL@@<br>User Name - @@UserName@@<br>Password -  @@Password@@<br><br>Note: If any of the links is not opening on a click, please copy the link in Internet Explorer and then access the same.<br>'
+            var desc =   'Hiring manager to SBU'
+                          'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+                          'Thank You!'
             this.SendMailEmployee(sub, desc, email);
 
             this.InsertNotificationSBU();
             this.InsertNotificationManager();
 
-            Swal.fire('Saved Successfully');
-            location.href = "#/hirignmanager/JobRecruitements";
+            // Swal.fire('Saved Successfully');
+            // location.href = "#/hirignmanager/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
@@ -213,9 +218,9 @@ export class JobRequisitionComponent implements OnInit {
       // 'emailto': 'divyashree@amazeinc.in',
       'emailsubject': sub,
       'emailbody': desc,
-      'attachmenturl': this.files,
-      'cclist': 'gmrmadhavreddy416@gmail,com',
-      'bcclist': 'sindhugowda.amazeinc@gmail.com',
+      'attachmenturl': [],
+      'cclist':[],
+      'bcclist': [],
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
