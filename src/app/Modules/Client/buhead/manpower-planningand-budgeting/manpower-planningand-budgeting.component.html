@@ -1,1 +1,116 @@
-<p>manpower-planningand-budgeting works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <P class="Heading1">Manpower Planning and Budgeting</P>
+            <br>
+            <!-- <div class="row LocDashboard">
+                <div class="col-lg-12">
+                    <label style="padding-left: 10px;">Add Salary Details</label>
+                </div>
+            </div> -->
+            <div class="card">
+                <div class="row leavereq">
+                    <div class="col-md-3">
+                        <label>Subsidiary Name <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Department<span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Role<span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Job Order<span style="color: red;">*</span></p>
+                    </div>
+                </div>
+                <div class="row leavereq">
+                    <div class="col-md-3">
+                        <select class="form-control" id="CompanyName" name="CompanyName" [(ngModel)]="CompanyName">
+                            <option value="">Select Subsidiary</option>
+                            <option value="Ayala Land">Ayala Land</option>
+                            <option value="Avida Land Corp">Avida Land Corp</option>
+                            <option value="Avida Sales Corp">Avida Sales Corp</option>
+                            <option value="Ayala Land Premier, Inc">Ayala Land Premier, Inc</option>
+                            <option value="Ayala Land Sales Inc">Ayala Land Sales Inc</option>
+                            <option value="Ayala Land Offices, Inc">Ayala Land Offices, Inc</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="Department" name="Department" [(ngModel)]="Department">
+                            <option value="">Select Department</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Testing"> Testing</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Software Development">Software Development</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="Role" name="Role" [(ngModel)]="Role">
+                            <option value="">Select Role</option>
+                            <option value="{{item.short}}" *ngFor="let item of Departmentlist">
+                                {{item.short}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <textarea id="description" name="Joborder" [(ngModel)]="Joborder" class="form-control" role="2"
+                            placeholder="Job Order Number"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row leavereq">
+                    <div class="col-md-3">
+                        <label>Approved Count <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Year<span style="color: red;">*</span></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Remarks<span style="color: red;">*</span></p>
+                    </div>
+                </div>
+                <div class="row leavereq">
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" id="HeadCount" name="HeadCount"
+                            [(ngModel)]="HeadCount" placeholder="Approved Count">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="Year" name="Year" [(ngModel)]="Year">
+                            <option value="0">Select Year</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <textarea id="Remarks" name="Remarks" [(ngModel)]="Remarks" class="form-control" role="3"
+                            placeholder="Remarks"></textarea>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-1">
+                        <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="form-control Edit" 
+                        (click)="Save()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

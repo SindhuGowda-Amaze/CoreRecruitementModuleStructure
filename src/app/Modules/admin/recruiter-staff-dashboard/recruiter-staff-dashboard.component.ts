@@ -64,7 +64,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Disable it.',
+      text: 'Do you want to Enable the Recruiter',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, Disable it',
@@ -90,7 +90,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Enable it.',
+      text: 'Do you want to Enable the Recruiter',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, Enable it',

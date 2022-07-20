@@ -85,7 +85,7 @@
                   <th>Resume</th>
                   <th>Comments</th>
                   <th>Interview Guid</th>
-                  <th>Actions</th>
+                  <th *ngIf="roleid==5">Actions</th>
                   <!-- <th></th> -->
                 </tr>
                 <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
@@ -108,7 +108,7 @@
                   <td>
                     <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
                   </td>
-                  <td>
+                  <td  *ngIf="roleid==5">
 
                     <table class="sub-table">
                       <tr>
@@ -412,7 +412,7 @@ aria-hidden="true">
 </div>
 
 
-<div class="modal fade" id="exampleModal3"  role="dialog" aria-labelledby="exampleModalLabel"
+<!-- <div class="modal fade" id="exampleModal3"  role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
@@ -450,4 +450,85 @@ aria-hidden="true">
       </div>
     </div>
   </div>
+</div> -->
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+aria-hidden="true">
+ <div class="modal-dialog" role="document">
+
+ <div class="modal-content" style="width:700px">
+
+ <div class="modal-header ">
+
+<p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Reschedule Interview </p>
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+ <span aria-hidden="true">&times;</span>
+
+ </button>
+
+ </div>
+
+ <div class="modal-body">
+
+ <div class="row">
+
+<!-- <div class="col-lg-3">
+
+              <label style="font-size: 16px;">Selected Notes</label>
+
+            </div> -->
+
+ <div class="col-lg-12">
+ 
+ <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+
+ <!-- <select class="form-control" (change)="GetStaffID($event)">
+
+                              <option value="">Select</option>
+
+                              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+
+                          </select> -->
+
+ </div>
+
+ </div><br>
+
+ <div class="row">
+
+ <div class="col-lg-5"></div>
+
+ <div class="col-lg-2">
+
+ <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" 
+
+ data-dismiss="modal" style="background-color: red;">Cancel</button>
+
+ </div>
+ <div class="col-lg-2">
+  <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
+    data-target="#exampleModal3">Cancel</button> -->
+</div>
+
+ </div> <br>
+ 
+
+ <div class="modal-footer">
+
+ <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+
+ </div>
+
+ </div>
+
+ </div>
+
+</div>
+
 </div>

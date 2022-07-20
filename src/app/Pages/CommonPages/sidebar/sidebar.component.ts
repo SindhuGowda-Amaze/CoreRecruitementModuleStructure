@@ -1042,34 +1042,10 @@ export class SidebarComponent implements OnInit {
     this.active='';
   }
 
-  Manpower(){
-    this.manpower=true
-    this.Vendorrecruit=false
-    this.closed=false
-    // this.home = false
-    //   this.Jobrecruit = false
-    //   this.Vendorrecruit = false
-    //   this.applied = false
-    //   this.shortlist = false
-    //   this.scheduled = false
-    //   this.Vendorrecruit = false
-    //   this.applied = false
-    //   this.shortlist = false
-    //   this.scheduled = false
-    //   this.selected = false
-    //   this.offered = false
-    //   this.joined = false
-    //   this.dropped = false
-    //   this.vendorreport = false
-    //   this.appliedreport = false
-    //   this.shortlistedreport = false
-    //   this.selectedreport = false
-    //   this.offeredreport = false
-    //   this.Jobrecruitreport = false
-    //   this.joinedreport = false
-    //   this.droppedreport = false
-
+  Rescheduled(){
+    
   }
+
   
 
   Reports(){
@@ -1083,6 +1059,13 @@ this.manpower=false
     this.selected=true
 
 
+  }
+  Manpower(){
+
+
+
+
+    
   }
 
 
