@@ -246,7 +246,7 @@ export class ClientformComponent implements OnInit {
   }
 
   cancel() {
-    location.href ="#admin/ClientDashBoard";
+    location.href = "#/admin/Clientdashboard";
   }
 
   // Update() {
