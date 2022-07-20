@@ -85,7 +85,7 @@
                   <th>Resume</th>
                   <th>Comments</th>
                   <th>Interview Guid</th>
-                  <th *ngIf="roleid==5">Actions</th>
+                  <th *ngIf="roleid!=6">Actions</th>
                   <!-- <th></th> -->
                 </tr>
                 <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
@@ -108,7 +108,7 @@
                   <td>
                     <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
                   </td>
-                  <td  *ngIf="roleid==5">
+                  <td  *ngIf="roleid!=6">
 
                     <table class="sub-table">
                       <tr>
@@ -483,8 +483,8 @@ aria-hidden="true">
             </div> -->
 
  <div class="col-lg-12">
- 
- <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+ <p>Comments</p>
+ <textarea class="form-control" placeholder="Notes" id="Canclecomments" name="Canclecomments" [(ngModel)]="Canclecomments" rows="10"></textarea>
 
  <!-- <select class="form-control" (change)="GetStaffID($event)">
 
@@ -506,7 +506,7 @@ aria-hidden="true">
 
  <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" 
 
- data-dismiss="modal" style="background-color: red;">Cancel</button>
+ data-dismiss="modal" style="background-color: red;" (click)="update()">Cancel</button>
 
  </div>
  <div class="col-lg-2">

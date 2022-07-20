@@ -4,11 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: 'root'
 })
 export class RecruitementService {
-
-  attachements(entity3: { emailto: any; emailsubject: any; emailbody: any; attachmenturl: any; cclist: string; bcclist: string; }) {
-    throw new Error('Method not implemented.');
-  }
-  
+ 
  
  
 
@@ -526,6 +522,12 @@ public UpdateNotificationSeen(data: any) {
   return this.http.post(this.url, data);
 }
 
+public UpdateCandidateRegistration(data: any) {
+  debugger;
+  this.url = this.host + '/Master/UpdateCandidateRegistration';
+  return this.http.post(this.url, data);
+}
+
 public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
   debugger
   var entity = {
@@ -545,5 +547,6 @@ public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
 
 
 }
+
 
 }

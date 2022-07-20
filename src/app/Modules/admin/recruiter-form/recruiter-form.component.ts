@@ -156,7 +156,7 @@ export class RecruiterFormComponent implements OnInit {
       if (data != 0) {
         Swal.fire("Updated Recruiter Staff Successfully");
         // location.reload();
-        location.href = "#/RecruiterStaffDashboard";
+        location.href = "/#admin/RecruiterStaffDashboard";
       }
     })
   }

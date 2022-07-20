@@ -12,6 +12,8 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
 })
 export class ScheduledInterviewsComponent implements OnInit {
   files: any;
+  Canclecomments: any;
+  Cancleinterview: any;
 
   constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
 
@@ -42,14 +44,15 @@ export class ScheduledInterviewsComponent implements OnInit {
   staffdetails: any
   data:any
   Role1: any
+  cancle : any
  
   ngOnInit(): void {
     this.GetJobDescription1()
     this.Role1=""
     this.currentUrl = window.location.href
-    this.staffid = localStorage.getItem('userid');
-    this.roleid = localStorage.getItem('roleid');
-    this.Username = localStorage.getItem('UserName');
+    this.staffid = sessionStorage.getItem('userid');
+    this.roleid = sessionStorage.getItem('roleid');
+    this.Username = sessionStorage.getItem('UserName');
     this.GetCandidateReg();
 
     // this.insertdetails()
@@ -485,8 +488,17 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }  
 
-  update(){
-
+ public update(){
+    debugger
+    var entity={
+      "Canclecomments":this.Canclecomments,
+      "Cancleinterview" : 1
+    }
+    this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any)=>{
+      debugger
+      Swal.fire('cancle sucessfully')
+     
+    })
   }
 
 

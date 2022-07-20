@@ -448,7 +448,7 @@ export class LoginComponent implements OnInit {
 
 
     else if (this.roleID == 5) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe({
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
           let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
