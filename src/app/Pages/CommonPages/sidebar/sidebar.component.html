@@ -111,7 +111,7 @@
         class="nonactive"
         (click)="openCity($event)"
         *ngIf="roleid != 5"
-        [ngClass]="home==true?'highlighting':''"
+        [ngClass]="home?'highlighting':''"
       >
         <img
           *ngIf="!home"
@@ -269,19 +269,26 @@
       </div>
 
       <a
+      (click)="Manpower()"
         *ngIf="roleid != 1 && roleid != 5"
         data-toggle="collapse"
         class="togglebtn button"
         data-target="#userapplications1"
         class="nonactive"
         (click)="openCity($event)"
+        [ngClass]="manpower?'highlighting':''"
       >
         <img
           src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
           style="width: 13%; margin-right: 17px"
-          *ngIf="roleid != 8"
+          *ngIf="!manpower"
         />
 
+        <img
+        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+        style="width: 13%; margin-right: 17px"
+        *ngIf="manpower"
+      />
         &nbsp; Manpower Requisition
         <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
       </a>
@@ -292,6 +299,8 @@
           class="nonactive"
           (click)="openCity($event)"
           *ngIf="roleid != '3' && roleid != 6"
+          [ngClass]="Jobrecruit?'highlighting':''"
+
         >
           <img
             src="assets/Images/64 Blue/Staff.png"
@@ -311,6 +320,7 @@
           *ngIf="roleid == '3' || roleid == '6'"
           class="nonactive"
           (click)="openCity($event)"
+          [ngClass]="Vendorrecruit?'highlighting':''"
         >
           <img
             *ngIf="Vendorrecruit"
@@ -328,6 +338,7 @@
           (click)="Appliedcandidates()"
           class="nonactive"
           (click)="openCity($event)"
+          [ngClass]="applied?'highlighting':''"
         >
           <img
             *ngIf="!applied"
@@ -341,7 +352,7 @@
           />
           &nbsp;APPLIED CANDIDATES
         </a>
-        <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)" [ngClass]="shortlist? 'highlighting':''">
           <img
             *ngIf="shortlist"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
@@ -367,7 +378,7 @@
 
           &nbsp;SCHEDULED INTERVIEWS
         </a>
-        <a (click)="Selected()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Selected()" class="nonactive" (click)="openCity($event)"  [ngClass]="selected? 'highlighting':''">
           <img
             *ngIf="!selected"
             src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
@@ -381,7 +392,7 @@
 
           &nbsp;SELECTED CANDIDATES
         </a>
-        <a (click)="Offered()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Offered()" class="nonactive" (click)="openCity($event)"  [ngClass]="offered? 'highlighting':''">
           <img
             *ngIf="offered"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
@@ -394,7 +405,7 @@
           />
           &nbsp;OFFERED CANDIDATES
         </a>
-        <a (click)="Joined()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Joined()" class="nonactive" (click)="openCity($event)"  [ngClass]="joined? 'highlighting':''">
           <img
             *ngIf="joined"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
@@ -407,7 +418,7 @@
           />
           &nbsp;JOINED CANDIDATES
         </a>
-        <a (click)="Dropped()" class="nonactive" (click)="openCity($event)">
+        <a (click)="Dropped()" class="nonactive" (click)="openCity($event)"  [ngClass]="dropped? 'highlighting':''">
           <img
             *ngIf="dropped"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png "
@@ -431,7 +442,7 @@
             />
             <img
               *ngIf="!closed"
-              src="assets/Images/64 Blue/Staff.png"
+              src="assets/Images/64/Staff.png"
               style="width: 13%; margin-right: 17px"
             />
             &nbsp;CLOSED POSITION
@@ -468,17 +479,24 @@
             </a> -->
 
       <a
+      (click)="Reports()"
         *ngIf="roleid != 1 && roleid != 5"
         data-toggle="collapse"
         class="togglebtn button nonactive"
         data-target="#userapplications2"
+        [ngClass]="report? 'highlighting':''"
+
       >
         <img
-          src="assets/Images/64/ATTENDANCE/Report/Timesheet_repoorts.png"
-          *ngIf="roleid != 8"
+          src="assets/Images/64 Blue/ATTENDANCE/Report/Timesheet_repoorts.png"
+        *ngIf="report"
           style="width: 13%; margin-right: 17px"
         />
-
+  <img
+          src="assets/Images/64/ATTENDANCE/Report/Timesheet_repoorts.png"
+          *ngIf="!report"
+          style="width: 13%; margin-right: 17px"
+        />
         &nbsp; Reports
         <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
       </a>
@@ -489,6 +507,7 @@
           *ngIf="roleid != '3' || roleid != '6'"
           class="nonactive"
           (click)="openCity($event)"
+          [ngClass]="Jobrecruitreport? 'highlighting':''"
         >
           <img
             *ngIf="Jobrecruitreport"
@@ -513,6 +532,7 @@
           (click)="AppliedReport()"
           class="nonactive"
           (click)="openCity($event)"
+          [ngClass]="appliedreport? 'highlighting' :'' "
         >
           <img
             *ngIf="appliedreport"
@@ -530,6 +550,8 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="Shortlistedreport()"
+          
+          [ngClass]="shortlistedreport? 'highlighting' :'' "
         >
           <img
             *ngIf="shortlistedreport"
@@ -543,22 +565,35 @@
           />
           &nbsp;SHORTLISTED
         </a>
+  
+  
         <a
           *ngIf="roleid == 8"
           class="nonactive"
           (click)="openCity($event)"
           (click)="ScheduledReport()"
+          [ngClass]="shortlistedreport? 'highlighting' :'' "
         >
           <img
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
+            *ngIf="selectedreport"
           />
+
+          <img
+          src="assets/Images/Vector.png"
+          style="width: 20px; margin-right: 17px"
+          *ngIf="selectedreport"
+        />
           &nbsp;SCHEDULED INTERVIEWS
         </a>
+    
+    
         <a
           class="nonactive"
           (click)="openCity($event)"
           (click)="SelectedReport()"
+          [ngClass]="selectedreport? 'highlighting' :'' "
         >
           <img
             *ngIf="selectedreport"
@@ -576,6 +611,7 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="OfferedReport()"
+          [ngClass]="offeredreport? 'highlighting' :'' "
         >
           <img
             *ngIf="offeredreport"
@@ -592,6 +628,7 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="JoinedReport()"
+          [ngClass]="joinedreport? 'highlighting' :'' "
         >
           <img
             *ngIf="joinedreport"
@@ -609,6 +646,7 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="DroppedReport()"
+          [ngClass]="droppedreport? 'highlighting' :'' "
         >
           <img
             *ngIf="droppedreport"
@@ -655,14 +693,23 @@
 
       <div id="userapplications4" class="collapse" style="padding-left: 7%">
         <a
+        (click)="SelectedCANDIDATES()"
           routerLink="/hirignmanager/SelectedCandidates"
           class="nonactive"
           (click)="openCity1($event)"
+          [ngClass]="selected? 'highlighting' :'' "
         >
           <img
-            src="assets/Images/Vector.png"
+          *ngIf="!selected"
+            src="assets/Images/64 Blue/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
+
+          <img
+          *ngIf="selected"
+          src="assets/Images/Vector.png"
+          style="width: 20px; margin-right: 17px"
+        />
           &nbsp; SELECTED CANDIDATES
         </a>
       </div>
