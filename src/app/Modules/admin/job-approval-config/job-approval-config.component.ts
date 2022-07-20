@@ -9,14 +9,14 @@ import Swal from 'sweetalert2';
 })
 export class JobApprovalConfigComponent implements OnInit {
 
-  AutoApproval:any;
+   AutoApproval:any;
   AutoApproval1:any;
-  CompanyName:any;
+   CompanyName:any;
   constructor() { }
 
   ngOnInit(): void {
-    this.AutoApproval=true
-    this.AutoApproval1=true
+    // this.AutoApproval=true
+    // this.AutoApproval1=true
   }
 
 
