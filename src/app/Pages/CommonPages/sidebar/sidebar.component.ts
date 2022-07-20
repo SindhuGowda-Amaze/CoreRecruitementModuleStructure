@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
   joinedreport: any
   droppedreport: any
   closed:any;
-  Client : any
+
   jobstaff: boolean | undefined;
   setup: boolean | undefined;
   constructor(public router: Router) { }
@@ -108,7 +108,7 @@ export class SidebarComponent implements OnInit {
   }
 
   
-  public 8() {
+  public Client() {
     localStorage.setItem('Pagename', 'CLIENT')
     this.router.navigate(['admin/Clientdashboard']);
     this.client = true;
