@@ -47,7 +47,7 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control" id="Role" name="Role" [(ngModel)]="Role">
+                        <select class="form-control" id="Role" name="roletype" [(ngModel)]="roletype">
                             <option value="">Select Role</option>
                             <option value="{{item.short}}" *ngFor="let item of Departmentlist">
                                 {{item.short}}
@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-lg-1">
                         <button class="form-control Edit" 
-                        (click)="Save()">Submit</button>
+                        (click)="post()">{{ submit }}</button>
                     </div>
                 </div>
             </div>

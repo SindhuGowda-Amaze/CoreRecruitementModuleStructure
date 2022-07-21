@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 @Component({
@@ -10,7 +10,7 @@ import * as XLSX from 'xlsx';
 })
 export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
 
-  constructor(private DigipayrollServiceService1: RecruitementService) { }
+  constructor(private DigipayrollServiceService1: RecruitementService, private router: Router) { }
 
   awardlist1: any
   awardlist: any;
@@ -224,11 +224,23 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
 
   }
 
-  public ApproveBudget(holiday: any) {
-    debugger
-    Swal.fire('Approved Successfully');
-
+  public edit(id: any) {
+    debugger;
+    this.router.navigate(['/BUHead/ManpowerPlanningandBudgeting/' + id]);
     
+  }
+
+  
+  Delete(id:any){
+    debugger
+    this.DigipayrollServiceService1.DeleteManpowerPlanningandBudgeting(id).subscribe(data => {
+      Swal.fire('Deleted Sucessfully..!')
+      location.reload()
+    })
+
+
+
+
   }
 
 
