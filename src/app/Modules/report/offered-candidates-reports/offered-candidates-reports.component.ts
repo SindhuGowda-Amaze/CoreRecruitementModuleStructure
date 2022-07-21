@@ -20,6 +20,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
+    this.exportexcel()
     this.hiringManager="";
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
@@ -120,19 +121,34 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   }
 
   fileName = 'OFFERED CANDIDATES REPORT.xlsx';
+  //  public exportexcel(): void {
+  
+  
+  
+  //   let element = document.getElementById('downloadaplication');
+  //   debugger
+  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+  //   debugger
+
+  
+  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+  
+  //   XLSX.writeFile(wb, this.fileName);
+  //   this.loader = false;
+  // }
   exportexcel(): void {
-    this.loader = true;
     /* table id is passed over here */
     let element = document.getElementById('downloadaplication');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Offered Candidates');
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
-    this.loader = false;
   }
 
   hiringManager:any;

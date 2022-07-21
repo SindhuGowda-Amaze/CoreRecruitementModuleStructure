@@ -366,14 +366,16 @@
           &nbsp;SHORTLISTED
         </a>
 
+        <div  *ngIf="roleid=='6'">
           <a
+         
           (click)="RescheduledInterview()"
             routerLink="/recruiter/RescheduledInterview"
             class="nonactive"
             (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >
          
-            <img
-            *ngIf="manPowerMenu==4"
+            <img 
+          
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
@@ -385,6 +387,8 @@
             />
             &nbsp;RescheduledInterview
           </a>
+        </div>
+        
      
 
 
@@ -452,7 +456,7 @@
         </a>
       </div>
 
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
+      <!-- <div id="userapplications4" class="collapse" style="padding-left: 7%">
         <a
           routerLink="/InterviewPanel/ScheduledInterviews"
           class="nonactive"
@@ -464,7 +468,7 @@
           />&nbsp; RESCHEDULED INTERVIEWS
         
         </a>
-      </div>       
+      </div>        -->
         <a
           (click)="Scheduled()"
           *ngIf="roleid == 8"

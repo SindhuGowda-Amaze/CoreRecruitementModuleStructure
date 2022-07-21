@@ -492,7 +492,7 @@ export class LoginComponent implements OnInit {
       })
     }
     else if (this.roleID == 2) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe({
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
           let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
@@ -507,7 +507,7 @@ export class LoginComponent implements OnInit {
 
             sessionStorage.setItem('roleid', '2');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#hirignmanager/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -530,7 +530,7 @@ export class LoginComponent implements OnInit {
       })
     }
     else if (this.roleID == 11) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe({
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
           let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
@@ -545,7 +545,7 @@ export class LoginComponent implements OnInit {
 
             sessionStorage.setItem('roleid', '11');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -568,7 +568,7 @@ export class LoginComponent implements OnInit {
       })
     }
     else if (this.roleID == 10) {
-      this.RecruitmentServiceService.GetClientStaff().subscribe({
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
           let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
@@ -583,7 +583,7 @@ export class LoginComponent implements OnInit {
 
             sessionStorage.setItem('roleid', '10');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {

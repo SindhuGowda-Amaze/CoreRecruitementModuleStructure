@@ -42,13 +42,13 @@ export class ScheduledInterviewsComponent implements OnInit {
   Date: any
   endDate: any
   staffdetails: any
-  data:any
+  data: any
   Role1: any
-  cancle : any
- 
+  cancle: any
+
   ngOnInit(): void {
     this.GetJobDescription1()
-    this.Role1=""
+    this.Role1 = ""
     this.currentUrl = window.location.href
     this.staffid = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
@@ -134,7 +134,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
           debugger
           this.jobListCopy = this.joblist
-          console.log("===",this.jobListCopy)
+          console.log("===", this.jobListCopy)
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -400,12 +400,12 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
-  Cancel(){
+  Cancel() {
 
 
 
   }
-  
+
   public changeAnniversary() {
     debugger;
 
@@ -431,39 +431,39 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
     });
   }
-    public  Note()  {
-      this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
-        next: data => {
-          debugger
-          // Swal.fire(
-          //   'Selected!!',
-          //   'Candidate has been Accepted',
-          //   'success'
-          // )
-          //this.SendMailEmployee()
-          //this.GetCandidateReg()
-        }, error: (err: { error: { message: any; }; }) => {
-          //Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+  public Note() {
+    this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
+      next: data => {
+        debugger
+        // Swal.fire(
+        //   'Selected!!',
+        //   'Candidate has been Accepted',
+        //   'success'
+        // )
+        //this.SendMailEmployee()
+        //this.GetCandidateReg()
+      }, error: (err: { error: { message: any; }; }) => {
+        //Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
-  
-    }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
 
 
 
-  public GetJobDescription1(){
-    this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
-      this.staffdetails=data
+  public GetJobDescription1() {
+    this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data => {
+      this.staffdetails = data
     })
 
   }
@@ -478,7 +478,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       'cclist': [],
       'bcclist': [],
     }
-   this.RecriutmentServiceService.sendemailattachements(entity3).subscribe(res => {
+    this.RecriutmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
       // Swal.fire('Letter Generated and Sent Successfully');
       Swal.fire('Email sent');
@@ -486,18 +486,26 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
-  }  
+  }
 
- public update(){
+  jobid:any;
+
+  getId(id:any)
+  {
+    this.jobid=id;
+  }
+
+  public update() {
     debugger
-    var entity={
-      "Canclecomments":this.Canclecomments,
-      "Cancleinterview" : 1
+    var entity = {
+      "ID": this.jobid,
+      "Canclecomments": this.Canclecomments,
+      "Cancleinterview": 1
     }
-    this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any)=>{
+    this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any) => {
       debugger
       Swal.fire('cancle sucessfully')
-     
+
     })
   }
 
