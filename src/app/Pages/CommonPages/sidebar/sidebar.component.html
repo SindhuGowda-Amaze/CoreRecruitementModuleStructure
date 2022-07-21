@@ -388,73 +388,12 @@
             &nbsp;RescheduledInterview
           </a>
         </div>
+     
         
      
 
 
-        <a
-        *ngIf="roleid == 5 || roleid == 6"
-        data-toggle="collapse"
-        class="togglebtn button nonactive"
-        data-target="#userapplications4"
-      >
-        <i
-          class="fa fa-gears icon28"
-          style="width: 20px; margin-right: 17px"
-          *ngIf="roleid != 8"
-        ></i>
-        &nbsp; SCHEDULED INTERVIEWS
-        <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
-      </a>
-
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
-          routerLink="/InterviewPanel/ScheduledInterviews"
-          class="nonactive"
-          (click)="openCity($event)"
-        >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          &nbsp; SCHEDULED INTERVIEWS
-        </a>
-      </div>
-
-      <div id="userapplications4" class="collapse" style="padding-left: 7%" *ngIf="roleid==5">
-        <a
-        (click)="Select()"
-          routerLink="/hirignmanager/SelectedCandidates"
-          class="nonactive"
-          (click)="openCity1($event)"  [ngClass]="manPowerMenu==5?'highlighting': ''">
-          
-          <img
-          *ngIf="manPowerMenu!=5"
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          <img
-          *ngIf="manPowerMenu==5"
-          src="assets/Images/Vector.png"
-          style="width: 20px; margin-right: 17px"
-        />
-          &nbsp; SELECTED CANDIDATES
-        </a>
-      </div>
-
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
-          routerLink="/InterviewPanel/Rejected"
-          class="nonactive"
-          (click)="openCity2($event)"
-        >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          &nbsp; REJECTED CANDIDATES
-        </a>
-      </div>
+     
 
       <!-- <div id="userapplications4" class="collapse" style="padding-left: 7%">
         <a
@@ -469,7 +408,7 @@
         
         </a>
       </div>        -->
-        <a
+        <!-- <a
           (click)="Scheduled()"
           *ngIf="roleid == 8 && roleid==5"
           class="nonactive"
@@ -481,7 +420,23 @@
           />
 
           &nbsp;SCHEDULED INTERVIEWS
+        </a> -->
+        <a (click)="Scheduled()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==6?'highlighting': ''" *ngIf="roleid==5||roleid==6">
+          <img
+            *ngIf="manPowerMenu!=6"
+            src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
+            style="width: 13%; margin-right: 17px"
+          />
+          <img
+            *ngIf="manPowerMenu==6"
+            src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
+            style="width: 13%; margin-right: 17px"
+          />
+
+          &nbsp;Scheduled
         </a>
+
+
         <a (click)="Selected()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==6?'highlighting': ''" >
           <img
             *ngIf="manPowerMenu!=6"
