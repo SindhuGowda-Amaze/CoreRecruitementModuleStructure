@@ -9,6 +9,7 @@ export class RecruitementService {
     throw new Error('Method not implemented.');
   }
   
+ 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
  //  host = "http://103.133.214.197/CoreDigiRecuritmentAPI";
@@ -522,6 +523,12 @@ public UpdateNotificationSeen(data: any) {
   return this.http.post(this.url, data);
 }
 
+public UpdateCandidateRegistration(data: any) {
+  debugger;
+  this.url = this.host + '/Master/UpdateCandidateRegistration';
+  return this.http.post(this.url, data);
+}
+
 public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
   debugger
   var entity = {
@@ -541,5 +548,6 @@ public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
 
 
 }
+
 
 }

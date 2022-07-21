@@ -205,7 +205,7 @@ export class ShortListedComponent implements OnInit {
     this.GetSlotsMaster();
   }
   public GetStaffType() {
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
         this.stafflist = data;
