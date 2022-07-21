@@ -138,11 +138,11 @@
         data-toggle="collapse"
         class="togglebtn button nonactive"
         data-target="#userapplications"
-        [ngClass]="setup?'highlighting':''"
+        [ngClass]="menu==6?'highlighting':''"
         (click)="activeSetup()"
       >
         <i
-          class="fa fa-gears icon28" [ngClass]="setup?'highlighting':''"
+          class="fa fa-gears icon28" [ngClass]="menu==6?'highlighting':''"
           style="width: 15%; margin-right: 17px"
         ></i>
         &nbsp; SETUP
@@ -380,7 +380,7 @@
 
             <img
             *ngIf="manPowerMenu!=4"
-              src="assets/Images/Vector.png"
+              src="assets/Images/64 Blue/Vector.png"
               style="width: 20px; margin-right: 17px"
             />
             &nbsp;RescheduledInterview
@@ -851,10 +851,10 @@
         <img
           src="assets/Images/64 Blue/leaves.png"
           style="width: 13%; margin-right: 17px"
-          *ngIf="menu==4"
+          *ngIf="menu==4 "
         />
         <img
-          *ngIf="menu!=4"
+          *ngIf="menu!=4 "
           src="assets/Images/64/leaves.png"
           style="width: 13%; margin-right: 17px"
         />
