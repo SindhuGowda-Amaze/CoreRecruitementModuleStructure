@@ -225,6 +225,7 @@ export class ShortListedComponent implements OnInit {
   }
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
+    this.GetSlotsMaster();
   }
   public GetSlotsMaster() {
     debugger

@@ -380,11 +380,11 @@
             style="width: 20px; margin-right: 17px"
           />
 
-            <img
+            <!-- <img
             *ngIf="manPowerMenu!=4"
               src="assets/Images/64 Blue/Vector.png"
               style="width: 20px; margin-right: 17px"
-            /> -->
+            />  -->
             &nbsp;RescheduledInterview
           </a>
         </div>
@@ -833,11 +833,10 @@
       </div>
 
       <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
+        <a  *ngIf="roleid==6"
           routerLink="/InterviewPanel/ScheduledInterviews"
           class="nonactive"
-          (click)="openCity($event)"
-        >
+          (click)="openCity($event)">
           <img
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
