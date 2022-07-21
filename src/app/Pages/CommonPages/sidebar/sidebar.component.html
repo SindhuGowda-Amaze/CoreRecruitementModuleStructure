@@ -380,10 +380,10 @@
             style="width: 20px; margin-right: 17px"
           />
 
-            <img  *ngIf="manPowerMenu!=4"
+            <!-- <img  *ngIf="manPowerMenu!=4"
               src="assets/Images/Vector.png"
               style="width: 20px; margin-right: 17px"
-            />
+            /> -->
             &nbsp;RescheduledInterview
           </a>
         </div>
@@ -464,13 +464,13 @@
           <img
             src="assets/Images/Vector.png"
             style="width: 20px;"
-          />&nbsp; RESCHEDULED INTERVIEWS
+          />&nbsp; SCHEDULED INTERVIEWS
         
         </a>
       </div>        -->
         <a
           (click)="Scheduled()"
-          *ngIf="roleid == 8"
+          *ngIf="roleid == 8 && roleid==5"
           class="nonactive"
           (click)="openCity($event)"
         >
