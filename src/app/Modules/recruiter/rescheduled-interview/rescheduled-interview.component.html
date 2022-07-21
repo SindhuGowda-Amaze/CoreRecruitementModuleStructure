@@ -87,7 +87,7 @@
                         <th>Source</th>
                         <th *ngIf="roleid!=2">Hiring Manager</th>
                         <!-- <th>Time</th> -->
-                        <th *ngIf="roleid!=5">Canceled Interview </th>
+                        <th *ngIf="roleid!=5"> Interview Canceled by </th>
                         <!-- <th>Tentitive Joining Date</th> -->
                         <th>Job Title</th>
                         <th>Candidate Name</th>
@@ -103,7 +103,7 @@
 
                         <th>Budget Status</th>
                         <!-- <th>Interviewer Feedback</th> -->
-                        <th *ngIf="roleid!='4' && roleid!='6' && ( roleid=='2')">Actions</th>
+                        <th *ngIf="roleid!='4' && roleid=='6'">Actions</th>
                     </tr>
                     <tr *ngFor="let job of joblist | paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
@@ -131,26 +131,18 @@
                             <p *ngIf="job.budgetStatus==null">Waiting for Approval</p>
                             <p *ngIf="job.budgetStatus!=null">{{job.budgetStatus}}</p>
                         </td>
-                        <td *ngIf="roleid!='4' && roleid!='6' &&( roleid=='2')">
-
-                            <button class="btn btn-danger" *ngIf="job.offered=='0' && job.budgetStatus=='Approved' && roleid=='6'" 
-                                data-toggle="modal" data-target="#exampleModal"
-                                (click)="GetOfferID(job.id,job)" >Offer</button>
-
-                            <button class="button form-control Add1" data-toggle="modal" data-target="#exampleModal10"
-                                (click)="getid(job.id)"
-                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Approve</button><br>
-
-                            <button class="button form-control Add1" (click)="Reject(job.id)"
-                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Reject</button>
-                            <br><br>
-
-
-
-                            <!-- <button class="btn btn-danger" *ngIf="job.offered=='0'" data-toggle="modal"
-                                data-target="#exampleModal1" (click)="GetOfferID(job.id,job)">Notes</button> -->
-
-                        </td>
+                        <td *ngIf="roleid!='4' && roleid=='6'">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                              (click)="GetCandidateID(job.id)">
+                              Schedule Interview
+                            </button>
+              
+                            <!-- <img src="assets/images/acc.png" *ngIf="job.accept=='0'&&job.reject=='0'" tilte="Accept"
+                                      style="width:20px;" (click)="Accept(job.id)" />&nbsp;
+              
+                                  <img src="assets/images/can.png" *ngIf="job.accept=='0'&&job.reject=='0'" tilte="Reject"
+                                      style="width:20px;" (click)="Reject(job.id)" /> -->
+                          </td>
                     </tr>
                 </thead>
             </table>
@@ -251,166 +243,104 @@
 
 
 
+
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:700px">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Offer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="Letter">Offer Letter : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <!-- -->
-                        <!-- <ngx-dropzone style="height:50px">
-                            <ngx-dropzone-label (change)="onattachmentUpload($event)" >Drag and drop file here</ngx-dropzone-label>
-                        </ngx-dropzone> -->
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header">
+        <h5 class="modal-title Heading" id="exampleModalLabel">Schedule Interview</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Staff : <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" (change)="GetStaffID($event)">
+              <option value="">Select</option>
+              <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
+            </select>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <!-- <div class="col-lg-4">
+            <button type="button" class="btn btn-primary"  (click)="checkschedule()"
+            data-dismiss="modal">Check Interviwer Schedule</button>
+          </div> -->
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Date : <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <input type="date" class="form-control" [(ngModel)]="date" name="date" (change)="GetDate($event)">
+          </div>
+        </div><br>
+     <br>
+       
+        <br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Time : <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" (change)="GetTimeID($event)">
+              <option value="">Select</option>
+              <option *ngFor="let time of slotslist" value="{{time.id}}">{{time.slotTime}}</option>
+            </select>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-lg-3">
+            <label>Notes : <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="notes" name="notes"></textarea>
+          </div>
+        </div><br>
+        <!-- <div class="row">
+          <div class="col-lg-3">
+            <label>Interview Guid : <span style="color: red;">*</span></label>
+          </div>
+          <div class="col-lg-6">
+            <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+              <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+              <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+          </div>
+        </div><br> -->
+        <div class="row">
+          <div class="col-lg-5">
 
-                        <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
-                            <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
-                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                            </ngx-dropzone-preview>
-                        </ngx-dropzone>
-                    </div>
-                    <div class="col-lg-3">
-                        <!-- <img src="{{attachmentsurl}}" style="width: 40px;"> -->
-                    </div>
-
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="Letter">Notes : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="offernotes"
-                            name="offernotes"></textarea>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="Letter">Tentative DOJ <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="Date" class="form-control" [(ngModel)]="TentativeDate">
-                    </div>
-                </div> <br>
-                <div class="row">
-                    <div class="col-lg-5">
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary" (click)="updatedetails()"
-                            data-dismiss="modal">Save</button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-            </div>
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-primary" (click)="UpdateInterviewSchedule()"
+              data-dismiss="modal">Schedule</button>
+          </div>
+          <br>
         </div>
-    </div>
-</div>
 
+        <div class="row">
+          <div class="col-lg-5">
 
-<div class="modal fade" id="exampleModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:700px">
-            <div class="modal-header">
-                <h5 class="modal-title Heading" id="exampleModalLabel">View Recommended Compensation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Basic Salary : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="text" [(ngModel)]="basicsalary" name="basicsalary" class="form-control" disabled
-                            placeholder="Basic Salary">
-                    </div>
+          </div>
 
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Deminimis List : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea type="text" [(ngModel)]="DeminimisList " name="DeminimisList" class="form-control"
-                            placeholder="Deminimis List " rows="3" disabled></textarea>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Deminimis Amount : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="text" [(ngModel)]="demenisamt " name="demenisamt" class="form-control"
-                            placeholder="Deminimis Amount" disabled>
-                    </div>
-                </div><br>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Net Salary/month : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-
-                        <input type="text" [(ngModel)]="netsalary" name="netsalary" class="form-control"
-                            placeholder="Net Salary/month " disabled>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">CTC : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-
-                        <input type="text" [(ngModel)]="ctc" name="ctc" class="form-control" placeholder="CTC" disabled>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Current Level of Employee : <span style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="text" [(ngModel)]="currentlevel" name="currentlevel" class="form-control"
-                            placeholder="Current Level of Employee" disabled>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label class="Letter">Average Salary for Current Level: <span
-                                style="color: red;">*</span></label>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" placeholder="30000" disabled>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-5">
-
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary" (click)="ApproveId()"
-                            data-dismiss="modal">Approve</button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-            </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+
 

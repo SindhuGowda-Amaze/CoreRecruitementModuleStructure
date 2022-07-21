@@ -9,7 +9,7 @@ import { JobRequisitionComponent } from './job-requisition/job-requisition.compo
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { SelectedCandidatesComponent } from './selected-candidates/selected-candidates.component';
 import { SharedModule } from '../../shared/shared.module';
-import { ExternalJobApplyComponent } from './external-job-apply/external-job-apply.component';
+import { ExternalJobApplyComponent } from '../../../external-job-apply/external-job-apply.component';
 
 @NgModule({
   declarations: [
