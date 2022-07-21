@@ -61,7 +61,7 @@ export class AdminDashboardComponent implements OnInit {
       next: data => {
         debugger        
  this.clientstafflist = data;
- // this.clientstafflist1 = this.clientstafflist.slice(0, 4);
+ this.clientstafflist1 = this.clientstafflist.slice(0, 4);
  this.count1 = this.clientstafflist.length
  debugger
       }, error: (err) => {
