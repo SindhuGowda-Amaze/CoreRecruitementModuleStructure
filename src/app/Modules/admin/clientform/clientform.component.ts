@@ -24,6 +24,14 @@ export class ClientformComponent implements OnInit {
   showButton: any;
   currentUrl: any
   res: any
+  id: any;
+  ID: any;
+  Company_logo: any;
+  Name: any;
+  PhoneNo: any;
+  Email: any;
+  Address: any;
+  result: any;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -52,7 +60,7 @@ export class ClientformComponent implements OnInit {
         debugger
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-        this.ID = this.result[0].iD;
+        this.ID = this.result[0].id;
         this.Company_logo = this.result[0].company_logo;
         this.Name = this.result[0].name;
         this.PhoneNo = this.result[0].phoneNo;
@@ -74,14 +82,7 @@ export class ClientformComponent implements OnInit {
     })
   }
 
-  id: any;
-  ID: any;
-  Company_logo: any;
-  Name: any;
-  PhoneNo: any;
-  Email: any;
-  Address: any;
-  result: any;
+
 
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
@@ -96,7 +97,7 @@ export class ClientformComponent implements OnInit {
     debugger
     var json = {
 
-      "ID": this.ID,
+
       "Logo": this.Company_logo,
       "Name": this.Name,
       "PhoneNo": this.PhoneNo,
@@ -217,7 +218,7 @@ export class ClientformComponent implements OnInit {
   public Update() {
     debugger;
     var entity = {
-      'ID': this.ID,
+      'ID': this.id,
       'Logo': this.Company_logo,
       'Name': this.Name,
       'PhoneNo': this.PhoneNo,
