@@ -186,6 +186,7 @@ export class JobRequisitionComponent implements OnInit {
 
   public Getjobno(event: any) {
     debugger
+    this.jobtitile="";
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting()
       .subscribe(data => {
         let temp: any = data.filter(x => x.id == event.target.value);
