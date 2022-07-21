@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   offered: any;
   joined: any;
   report:any;
+  adminsetup:number | undefined
   rescheduled:any
   dropped: any;
   clientstaff: any;
@@ -1071,6 +1072,8 @@ this.manPowerMenu=8;
     this.setup=true;
     this.home=false;
     this.active='';
+    this.menu=6;
+    
   }
 
   Rescheduled(){

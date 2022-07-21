@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -24,6 +24,7 @@ export class ClientformComponent implements OnInit {
   showButton: any;
   currentUrl: any
   res: any
+  email: any;
   id: any;
   ID: any;
   Company_logo: any;
@@ -109,7 +110,7 @@ export class ClientformComponent implements OnInit {
     this.RecruitmentServiceService.InsertClientMaster(json).subscribe({
       next: data => {
         debugger
-        location.href = "#/ClientDashBoard"
+        location.href = "#admin/ClientDashBoard"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -138,8 +139,8 @@ export class ClientformComponent implements OnInit {
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
       next: data => {
         debugger
-        this.Company_logo = this.res;
-        alert("ATTACHMENT UPLOADED");
+        this.Company_logo = data;
+        Swal.fire("ATTACHMENT UPLOADED");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -181,7 +182,7 @@ export class ClientformComponent implements OnInit {
     //   alert("Please Fill All Fields to Save!!!")
     // }
     if (this.RegForm.invalid) {
-      alert("Please Fill All Fields to Save!!!")
+      Swal.fire("Please Fill All Fields to Save!!!")
     }
     else {
       var entity = {
@@ -196,7 +197,8 @@ export class ClientformComponent implements OnInit {
           debugger
           let id = data;
           Swal.fire("Successfully Submitted...!!");
-          location.href = "#/ClientDashBoard"
+          location.href ="#admin/Clientdashboard"
+        
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
@@ -222,14 +224,15 @@ export class ClientformComponent implements OnInit {
       'Logo': this.Company_logo,
       'Name': this.Name,
       'PhoneNo': this.PhoneNo,
-      'EmailID': this.Email,
+      'EmailID': this.email,
       'Address': this.Address,
     }
     this.RecruitmentServiceService.UpdateClientMaster(entity).subscribe({
       next: data => {
         debugger
         Swal.fire("Updated Sucessfully...");
-        location.href = "#/ClientDashBoard";
+        debugger
+        location.href ="#admin/Clientdashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
