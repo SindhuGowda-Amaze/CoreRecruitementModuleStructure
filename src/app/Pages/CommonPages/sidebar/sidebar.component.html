@@ -11,37 +11,37 @@
         <!-- <div class="dropdown"> 
                 <button data-toggle="collapse" class="togglebtn button" data-target="#recruite">Job
                     Recruitement</button>
-                <div id="recruite" class="collapse submenu">
-                    <p><a class="tablinks submenu" routerLink="hiringmanager/JobRecruitementReport">
+                <div id="recruite" class="collapse manPowerMenu">
+                    <p><a class="tablinks manPowerMenu" routerLink="hiringmanager/JobRecruitementReport">
                             Job Recruitement
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/AppliedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/AppliedCandidatesReports">
                             Applied Candidates
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/ShortlistedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/ShortlistedCandidatesReports">
                             Shortlisted Candidates
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/ScheduledInterviewsReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/ScheduledInterviewsReports">
                             Scheduled Interviews
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/SelectedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/SelectedCandidatesReports">
                             Selected Candidates
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/OfferedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/OfferedCandidatesReports">
                             Offered Candidates
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/JoinedCandidatesReport">
+                        <a class="tablinks manPowerMenu" routerLink="/JoinedCandidatesReport">
                             Offered Candidates
                         </a>
 
                     <p>
-                        <a class="tablinks submenu" routerLink="hiringmanager/DroppedCandiadtesReports">
+                        <a class="tablinks manPowerMenu" routerLink="hiringmanager/DroppedCandiadtesReports">
                             Dropped Candidates
                         </a>
                 </div>
@@ -51,32 +51,32 @@
       <p>
         <!-- <div class="dropdown">
                 <button data-toggle="collapse" class="togglebtn button" data-target="#reports">Reports</button>
-                <div id="reports" class="collapse submenu">
-                    <p><a class="tablinks submenu" routerLink="/JobRecruitementReport">
+                <div id="reports" class="collapse manPowerMenu">
+                    <p><a class="tablinks manPowerMenu" routerLink="/JobRecruitementReport">
                             Job Recruitement Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/AppliedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="/AppliedCandidatesReports">
                             Applied Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/ShortlistedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="/ShortlistedCandidatesReports">
                             Shortlisted Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/SelectedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="/SelectedCandidatesReports">
                             Scheduled Interviews Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/OfferedCandidatesReports">
+                        <a class="tablinks manPowerMenu" routerLink="/OfferedCandidatesReports">
                             Selected Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/JoinedCandidatesReport">
+                        <a class="tablinks manPowerMenu" routerLink="/JoinedCandidatesReport">
                             Offered Candidates Reports
                         </a>
                     <p>
-                        <a class="tablinks submenu" routerLink="/DroppedCandiadtesReports">
+                        <a class="tablinks manPowerMenu" routerLink="/DroppedCandiadtesReports">
                             Joined Candidates Reports
                         </a>
                     <p>
@@ -111,15 +111,15 @@
         class="nonactive"
         (click)="openCity($event)"
         *ngIf="roleid != 5"
-        [ngClass]="home?'highlighting':''"
+        [ngClass]="menu==1?'highlighting':''"
       >
         <img
-          *ngIf="!home"
+          *ngIf="menu!=1"
           src="assets/Images/64/home.png"
           style="width: 13%; margin-right: 17px"
         />&nbsp;
         <img
-          *ngIf="home"
+          *ngIf="menu==1"
           src="assets/Images/64 Blue/home.png"
           style="width: 13%; margin-right: 17px"
         />
@@ -276,18 +276,18 @@
         data-target="#userapplications1"
         class="nonactive"
         (click)="openCity($event)"
-        [ngClass]="manpower?'highlighting':''"
+        [ngClass]="menu==2?'highlighting':''"
       >
         <img
           src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
           style="width: 13%; margin-right: 17px"
-          *ngIf="!manpower"
+          *ngIf="menu!=2"
         />
 
         <img
         src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
         style="width: 13%; margin-right: 17px"
-        *ngIf="manpower"
+        *ngIf="menu==2"
       />
         &nbsp; Manpower Requisition
         <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
@@ -299,17 +299,17 @@
           class="nonactive"
           (click)="openCity($event)"
           *ngIf="roleid != '3' && roleid != 6"
-          [ngClass]="Jobrecruit?'highlighting':''"
+          [ngClass]="manPowerMenu==1?'highlighting':''"
 
         >
           <img
             src="assets/Images/64 Blue/Staff.png"
-            *ngIf="Jobrecruit == true"
+            *ngIf="manPowerMenu==1"
             style="width: 20px; margin-right: 17px"
           />
 
           <img
-            *ngIf="Jobrecruit == false"
+            *ngIf="manPowerMenu!=1"
             src="assets/Images/64/Staff.png"
             style="width: 20px; margin-right: 17px"
           />
@@ -338,28 +338,28 @@
           (click)="Appliedcandidates()"
           class="nonactive"
           (click)="openCity($event)"
-          [ngClass]="applied?'highlighting':''"
+          [ngClass]="manPowerMenu==2?'highlighting':''"
         >
           <img
-            *ngIf="!applied"
+            *ngIf="manPowerMenu!=2"
             src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="applied"
+            *ngIf="manPowerMenu==2"
             src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
             style="width: 13%; margin-right: 17px"
           />
           &nbsp;APPLIED CANDIDATES
         </a>
-        <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)" [ngClass]="shortlist? 'highlighting':''">
+        <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)" [ngClass]="manPowerMenu==3? 'highlighting':''">
           <img
-            *ngIf="shortlist"
+            *ngIf="manPowerMenu==3"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!shortlist"
+            *ngIf="manPowerMenu!=3"
             src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -367,10 +367,19 @@
         </a>
 
           <a
+          (click)="RescheduledInterview()"
             routerLink="/recruiter/RescheduledInterview"
             class="nonactive"
-            (click)="openCity1($event)">
+            (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >
+         
             <img
+            *ngIf="manPowerMenu==4"
+            src="assets/Images/Vector.png"
+            style="width: 20px; margin-right: 17px"
+          />
+
+            <img
+            *ngIf="manPowerMenu!=4"
               src="assets/Images/Vector.png"
               style="width: 20px; margin-right: 17px"
             />
@@ -410,13 +419,21 @@
 
       <div id="userapplications4" class="collapse" style="padding-left: 7%" *ngIf="roleid==5">
         <a
+        (click)="Select()"
           routerLink="/hirignmanager/SelectedCandidates"
           class="nonactive"
-          (click)="openCity1($event)">
+          (click)="openCity1($event)"  [ngClass]="manPowerMenu==5?'highlighting': ''">
+          
           <img
+          *ngIf="manPowerMenu!=5"
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
+          <img
+          *ngIf="manPowerMenu==5"
+          src="assets/Images/Vector.png"
+          style="width: 20px; margin-right: 17px"
+        />
           &nbsp; SELECTED CANDIDATES
         </a>
       </div>
@@ -461,54 +478,54 @@
 
           &nbsp;SCHEDULED INTERVIEWS
         </a>
-        <a (click)="Selected()" class="nonactive" (click)="openCity($event)" >
+        <a (click)="Selected()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==6?'highlighting': ''" >
           <img
-            *ngIf="!selected"
+            *ngIf="manPowerMenu!=6"
             src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="selected"
+            *ngIf="manPowerMenu==6"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
 
           &nbsp;SELECTED CANDIDATES
         </a>
-        <a (click)="Offered()" class="nonactive" (click)="openCity($event)"  [ngClass]="offered? 'highlighting':''">
+        <a (click)="Offered()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==7? 'highlighting':''">
           <img
-            *ngIf="offered"
+            *ngIf="manPowerMenu==7"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!offered"
+            *ngIf="manPowerMenu!=7"
             src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
             style="width: 13%; margin-right: 17px"
           />
           &nbsp;OFFERED CANDIDATES
         </a>
-        <a (click)="Joined()" class="nonactive" (click)="openCity($event)"  [ngClass]="joined? 'highlighting':''">
+        <a (click)="Joined()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==8?'highlighting':''">
           <img
-            *ngIf="joined"
+            *ngIf="manPowerMenu==8"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!joined"
+            *ngIf="manPowerMenu!=8"
             src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
             style="width: 13%; margin-right: 17px"
           />
           &nbsp;JOINED CANDIDATES
         </a>
-        <a (click)="Dropped()" class="nonactive" (click)="openCity($event)"  [ngClass]="dropped? 'highlighting':''">
+        <a (click)="Dropped()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==9? 'highlighting':''">
           <img
-            *ngIf="dropped"
+            *ngIf="manPowerMenu==9"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png "
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!dropped"
+            *ngIf="manPowerMenu!=9"
             src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -517,14 +534,14 @@
        
        
        
-        <a  (click)="SupportTickets()" class="nonactive" (click)="openCity($event)"  [ngClass]="closed==true?'highlighting':''"    >
+        <a  (click)="SupportTickets()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==10?'highlighting':''"    >
             <img
-              *ngIf="closed"
+              *ngIf="manPowerMenu==10"
               src="assets/Images/64 Blue/Staff.png"
               style="width: 13%; margin-right: 17px"
             />
             <img
-              *ngIf="!closed"
+              *ngIf="manPowerMenu!=10"
               src="assets/Images/64/Staff.png"
               style="width: 13%; margin-right: 17px"
             />
@@ -567,17 +584,17 @@
         data-toggle="collapse"
         class="togglebtn button nonactive"
         data-target="#userapplications2"
-        [ngClass]="report? 'highlighting':''"
+        [ngClass]="menu==3? 'highlighting':''"
 
       >
         <img
           src="assets/Images/64 Blue/ATTENDANCE/Report/Timesheet_repoorts.png"
-        *ngIf="report"
+        *ngIf="menu==3"
           style="width: 13%; margin-right: 17px"
         />
   <img
           src="assets/Images/64/ATTENDANCE/Report/Timesheet_repoorts.png"
-          *ngIf="!report"
+          *ngIf="menu!=3"
           style="width: 13%; margin-right: 17px"
         />
         &nbsp; Reports
@@ -590,15 +607,15 @@
           *ngIf="roleid != '3' || roleid != '6'"
           class="nonactive"
           (click)="openCity($event)"
-          [ngClass]="Jobrecruitreport? 'highlighting':''"
+          [ngClass]="reportmenu==1? 'highlighting':''"
         >
           <img
-            *ngIf="Jobrecruitreport"
+            *ngIf="reportmenu==1"
             src="assets/Images/64 Blue/Staff.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!Jobrecruitreport"
+            *ngIf="reportmenu!=1"
             src="assets/Images/64/Staff.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -615,15 +632,15 @@
           (click)="AppliedReport()"
           class="nonactive"
           (click)="openCity($event)"
-          [ngClass]="appliedreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==2? 'highlighting' :'' "
         >
           <img
-            *ngIf="appliedreport"
+            *ngIf="reportmenu==2"
             src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!appliedreport"
+            *ngIf="reportmenu!=2"
             src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -634,15 +651,15 @@
           (click)="openCity($event)"
           (click)="Shortlistedreport()"
           
-          [ngClass]="shortlistedreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==3? 'highlighting' :'' "
         >
           <img
-            *ngIf="shortlistedreport"
+            *ngIf="reportmenu==3"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!shortlistedreport"
+            *ngIf="reportmenu!=3"
             src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -676,15 +693,15 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="SelectedReport()"
-          [ngClass]="selectedreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==4? 'highlighting' :'' "
         >
           <img
-            *ngIf="selectedreport"
+            *ngIf="reportmenu==4"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!selectedreport"
+            *ngIf="reportmenu!=4"
             src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -694,15 +711,15 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="OfferedReport()"
-          [ngClass]="offeredreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==5? 'highlighting' :'' "
         >
           <img
-            *ngIf="offeredreport"
+            *ngIf="reportmenu==5"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!offeredreport"
+            *ngIf="reportmenu!=5"
             src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
             style="width: 13%; margin-right: 17px"
           />&nbsp;OFFERED CANDIDATES
@@ -711,15 +728,15 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="JoinedReport()"
-          [ngClass]="joinedreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==6? 'highlighting' :'' "
         >
           <img
-            *ngIf="joinedreport"
+            *ngIf="reportmenu==6"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!joinedreport"
+            *ngIf="reportmenu!=6"
             src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -729,15 +746,15 @@
           class="nonactive"
           (click)="openCity($event)"
           (click)="DroppedReport()"
-          [ngClass]="droppedreport? 'highlighting' :'' "
+          [ngClass]="reportmenu==7? 'highlighting' :'' "
         >
           <img
-            *ngIf="droppedreport"
+            *ngIf="reportmenu==7"
             src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="!droppedreport"
+            *ngIf="reportmenu!=7"
             src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -756,7 +773,7 @@
           style="width: 20px; margin-right: 17px"
           *ngIf="roleid != 8"
         ></i>
-        &nbsp; SCHEDULED INTERVIEWS
+        &nbsp;INTERVIEWS
         <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
       </a>
 
@@ -770,7 +787,7 @@
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
-          &nbsp; SCHEDULED INTERVIEWS
+          &nbsp; SCHEDULED 
         </a>
       </div>
 
@@ -834,15 +851,15 @@
         <img
           src="assets/Images/64 Blue/leaves.png"
           style="width: 13%; margin-right: 17px"
-          [ngClass]="active == 'help' ? 'Active1' : 'Active2'"
+          *ngIf="menu==4"
         />
         <img
-          [ngClass]="active != 'help' ? 'Active1' : 'Active2'"
+          *ngIf="menu!=4"
           src="assets/Images/64/leaves.png"
           style="width: 13%; margin-right: 17px"
         />
         &nbsp;
-        <span [ngClass]="active == 'help' ? 'Active1' : 'Active3'">HELP</span>
+        <span [ngClass]="menu==4? 'Active1' : 'Active3'">HELP</span>
         &nbsp;
       </a>
 
@@ -851,20 +868,20 @@
         class="tablinks"
         (click)="highlight($event)"
         (click)="Supporttickets()"
-        [ngClass]="active=='SupportTickets'?'highlighting':''" 
+        [ngClass]="menu==5?'highlighting':''" 
       >
         <img
           src="assets/Images/64 Blue/Staff.png"
           style="width: 13%; margin-right: 17px"
-          [ngClass]="active == 'SupportTickets' ? 'Active1' : 'Active2'"
+          *ngIf="menu==5"
         />
         <img
-          [ngClass]="active != 'SupportTickets' ? 'Active1' : 'Active2'"
+        *ngIf="menu!=5"
           src="assets/Images/64/Staff.png"
           style="width: 13%; margin-right: 17px"
         />
         &nbsp;
-        <span [ngClass]="active == 'SupportTickets' ? 'Active1' : 'Active3'"
+        <span [ngClass]="menu==5 ? 'Active1' : 'Active3'"
           >SUPPORT TICKETS</span
         >
         &nbsp;
