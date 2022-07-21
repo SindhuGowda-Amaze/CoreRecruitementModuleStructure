@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-rescheduled-interview',
@@ -12,6 +13,14 @@ export class RescheduledInterviewComponent implements OnInit {
 
   roleid: any
   err: any;
+  staffid: any;
+  timeid: any;
+  notes: any; 
+  slotslist : any
+  GetStaffID: any
+
+
+  stafflist : any
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -46,9 +55,13 @@ export class RescheduledInterviewComponent implements OnInit {
   staffdetails:any
   Role:any
   data : any
+  even : any
+ 
   
 
   ngOnInit(): void {
+   
+    this.GetStaffType()
     this.GetJobDescription()
     this.Role=""
     this.currentUrl = window.location.href;
@@ -510,6 +523,129 @@ public updatejoiningdate() {
         )
       }
     })
+
+  }
+
+
+  public GetCandidateID(candidateid: any) {
+    this.candidateid = candidateid;
+  }
+  public UpdateInterviewSchedule() {
+    if (this.staffid == null || this.staffid == undefined || this.staffid == 0 ||
+      this.date == null || this.date == undefined || this.date == 0 ||
+      this.timeid == null || this.timeid == undefined || this.timeid == 0 ||
+      this.notes == null || this.notes == undefined || this.notes == 0) {
+      Swal.fire('Please Fill the Mandatory Fields')
+    }
+    else {
+      var entity = {
+        'ID': this.candidateid,
+        'StaffID': this.staffid,
+        'Date': this.date,
+        'TimeID': this.timeid,
+        'Notes': this.notes
+      }
+      this.RecruitmentServiceService.UpdateCandidateInterviewSchedule(entity).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Interview Scheduled Successfully");
+          this.SendMailEmployee()
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Interview Scheduled');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+  }
+
+  public GetTimeID(even: any) {
+    this.timeid = even.target.value;
+  }
+  public GetDate(even: any) {
+    this.date = even.target.value;
+    this.GetSlotsMaster();
+  }
+
+  public GetSlotsMaster() {
+    debugger
+    this.RecruitmentServiceService.GetSlotsMasterByStaffID(this.date, this.staffid).subscribe({
+      next: data => {
+        debugger
+        this.slotslist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Slots Master ');        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  public GetStaffType() {
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+ 
+  public SendMailEmployee() {
+
+    debugger
+
+    var entity3 = {
+
+      'emailto': 'sindhugowda.amazeinc@gmail.com',
+
+      // 'emailto': 'divyashree@amazeinc.in',
+
+      'emailsubject': 'Recruiter Scheduled Interview',
+
+      'emailbody': 'Dear Interviewer Interview is Scheduled for candidate',
+      'attachmenturl': [],
+
+      'cclist': [],
+
+      'bcclist':[],
+
+    }
+
+
+
+    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+      debugger;
+      // Swal.fire('Letter Generated and Sent Successfully');
+    Swal.fire('Email Sent');
+
+    })
+
+
 
   }
 }
