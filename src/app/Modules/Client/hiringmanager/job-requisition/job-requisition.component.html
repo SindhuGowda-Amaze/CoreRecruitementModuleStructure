@@ -29,8 +29,8 @@
             <div class="col-lg-3">
               <select class="form-control" id="jobno" name="jobno" [(ngModel)]="jobno" (change)="Getjobno($event)">
                 <option value="">Select Job Order No.</option>
-                <option value="{{item.id}}" *ngFor="let item of joblist">
-                  {{item.joborder}}
+                <option value="{{holiday.id}}" *ngFor="let holiday of awardlist1">
+                  {{holiday.joborder}}
                 </option>
               </select>
             </div>
