@@ -77,7 +77,7 @@ export class VendorDashboardComponent implements OnInit {
     debugger
     this. GetVendor_Dasboard();
     swal.fire('Deleted Sucessfully');
-    Swal.fire('Issue in Getting Expenses List Web');
+   
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,

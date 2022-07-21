@@ -18,6 +18,7 @@ export class JobDescriptionFormComponent implements OnInit {
   staff_Code: any;
   role_Id: any;
   vendor_Name: any;
+  Role: undefined;
 
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -69,6 +70,9 @@ export class JobDescriptionFormComponent implements OnInit {
   }
   Save() {
     debugger;
+    
+     
+     
     var json = {
      
       "Role": this.role_Id,
