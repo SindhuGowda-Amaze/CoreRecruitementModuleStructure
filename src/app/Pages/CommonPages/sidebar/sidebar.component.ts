@@ -265,11 +265,11 @@ export class SidebarComponent implements OnInit {
       this.Vendorrecruit = false
       this.applied = false
       this.shortlist = false
-      this.scheduled = false
+      this.scheduled = true
       this.Vendorrecruit = false
       this.applied = false
       this.shortlist = false
-      this.scheduled = false
+      this.scheduled = true
       this.selected = false
       this.offered = false
       this.joined = false
@@ -431,7 +431,7 @@ export class SidebarComponent implements OnInit {
   // }
 
   public ScheduledInterviews() {
-    if (this.roleid == '5') {
+    if (this.roleid == '5'||this.roleid=='6') {
       this.active = 80;
       localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
       this.router.navigate(['/Interviewpanel/ScheduledInterviews']);
@@ -578,7 +578,7 @@ export class SidebarComponent implements OnInit {
 
   public Scheduled() {
     localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
-    this.router.navigate(['/ScheduledInterviews']);
+    this.router.navigate(['/InterviewPanel/ScheduledInterviews']);
     this.scheduled = true
     this.Jobrecruit = false
     this.Vendorrecruit = false

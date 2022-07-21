@@ -85,7 +85,7 @@
                   <th>Resume</th>
                   <th>Comments</th>
                   <th>Interview Guid</th>
-                  <th *ngIf="roleid!=6">Actions</th>
+                  <th *ngIf="roleid==5">Actions</th>
                   <!-- <th></th> -->
                 </tr>
                 <tr *ngFor="let job of joblist| paginate: { itemsPerPage: count1, currentPage: p }">
@@ -108,9 +108,9 @@
                   <td>
                     <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
                   </td>
-                  <td  *ngIf="roleid!=6">
+                  <td  *ngIf="roleid==5">
 
-                    <table class="sub-table">
+                    <table class="sub-table"*ngIf="roleid==5">
                       <tr>
                         <td>
 

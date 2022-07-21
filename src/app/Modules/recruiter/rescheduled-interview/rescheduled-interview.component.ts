@@ -103,8 +103,8 @@ export class RescheduledInterviewComponent implements OnInit {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        if (this.roleid == 2) {
-          this.joblist = data.filter(x => x.Cancleinterview == 1 && x.offered == 0);
+        if (this.roleid == 6) {
+          this.joblist = data.filter(x => x.cancleinterview == 1 && x.offered == 0);
           this.noticeperiodlist = data.filter(x => x.cancleinterview == 1 && x.offered == 0);
           this.count = this.joblist.length;
           this.loader = false;
