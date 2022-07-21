@@ -1,0 +1,105 @@
+.Job{
+    font-size: 25px;
+
+}
+.amaze{
+    font-size: 18px;
+    font-weight: 400;
+    color:#007bff;
+    padding-left: 20px;
+}
+
+.angular{
+    padding-left: 20px;
+}
+.research{
+padding-left:16px;
+  font-weight: bold;
+}
+.Button{
+    text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color:#3247D5 ;
+  color:white;
+  border-radius: 5px;
+  border:none;
+  padding: 5px;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  }
+
+
+  .registerbtn{
+    background-color:#2F87CC ;
+    color:white;
+  }
+  .manager{
+      color:green;
+      font-size: 18px;
+  }
+  /* .modal-content{
+      height: 730px;
+      width: 50%;
+      overflow-y: scroll;
+      overflow-x: scroll;
+  } */
+
+
+  .maindiv{
+    background: #FFFFFF;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+   /* width: 100%;
+   background-color: #fff;
+   border: 1px solid rgba(22,50,92,.09);
+  
+   position: relative;
+   cursor: pointer;  */
+
+
+/* 
+   text-shadow: none;
+   transition: color .1s linear 0s,background-color .1s linear 0s,opacity .2s linear 0s; */
+
+ }
+ 
+ .newtext{
+   color:#3247D5;
+   font-size:24px;
+   font-weight: bold;
+
+ }
+ .catcss{
+   color:#3247D5;
+ }
+ .spanclass{
+  color:#0C275A;
+ }
+ .btn{
+   background-color: #3247D5;;
+ }
+ 
+ .card{
+  background: #FFFFFF;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+ }
+ .Addbutton{
+  text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color: #3247d5;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 70%;
+  float: right;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+ }
