@@ -9,10 +9,6 @@ export class RecruitementService {
     throw new Error('Method not implemented.');
   }
   
- 
- 
-
- 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
  //  host = "http://103.133.214.197/CoreDigiRecuritmentAPI";
