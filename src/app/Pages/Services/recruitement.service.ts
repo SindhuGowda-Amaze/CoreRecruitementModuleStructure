@@ -446,6 +446,14 @@ export class RecruitementService {
    return this.http.post(this.url, data);
  }
 
+
+
+ public UpdateManpowerPlanningandBudgeting(data: any) {
+  debugger;
+  this.url = this.host + '/Master/UpdateManpowerPlanningandBudgeting';
+  return this.http.post(this.url, data);
+}
+
  public GetManpowerPlanningandBudgeting() {
 
    return this.http.get<any[]>(this.host + "/Announcement/GetManpowerPlanningandBudgeting");

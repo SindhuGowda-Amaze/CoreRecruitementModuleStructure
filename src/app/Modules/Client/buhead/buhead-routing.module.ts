@@ -7,6 +7,7 @@ import { ManpowerPlanningandBudgetingdashComponent } from './manpower-planningan
 const routes: Routes = [{ path: '', component: BUHeadComponent },
 {path:'ManpowerPlanningandBudgetingdash',component:ManpowerPlanningandBudgetingdashComponent},
 {path:'ManpowerPlanningandBudgeting',component:ManpowerPlanningandBudgetingComponent},
+{path:'ManpowerPlanningandBudgeting/:id',component:ManpowerPlanningandBudgetingComponent},
 ];
 
 @NgModule({

@@ -86,7 +86,8 @@
                                 <th>Approved Count</th>
                                 <th>Year</th>
                                 <th>Remarks</th>
-                                <th *ngIf="roleid==8">Action</th>
+                                <th *ngIf="roleid==10">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -98,10 +99,18 @@
                                 <td>{{holiday.headCount}}</td>
                                 <td>{{holiday.year}}</td>
                                 <td>{{holiday.remarks}}</td>
-                                <td *ngIf="roleid==8">
+                                <!-- <td *ngIf="roleid==10">
                                     <button style="height: fit-content;" type="button" class="upload"
                                         (click)="ApproveBudget(holiday)">
                                         Approve</button>
+                                </td> -->
+                                <td *ngIf="roleid==10">
+                                    <button style="height: fit-content;" type="button" class="upload"
+                                        (click)="edit(holiday.id)">
+                                        Edit</button>
+                                        <button style="height: fit-content;" type="button" class="upload"
+                                        (click)="Delete(holiday.id)">
+                                        Delete</button>
                                 </td>
                             </tr>
                         </tbody>
