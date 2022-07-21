@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as XLSX from 'xlsx';
+
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -150,12 +151,12 @@ export class AppliedCandidatesReportsComponent implements OnInit {
   exportexcel(): void {
     this.loader = false;
     /* table id is passed over here */
-    let element = document.getElementById('downloadaplication');
+    let element = document.getElementById('downloadapplication');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Applied Candidates');
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
