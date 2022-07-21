@@ -22,7 +22,7 @@
                                 <div class="col-md-3">
                                     <label>Email <span style="color: red;">*</span></label>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label>Phone No.<span style="color: red;">*</span></label>
                                 </div>
                             </div>
@@ -52,14 +52,15 @@
                                         formControlName="Name">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="Email" name="Email"
-                                        formControlName="Email">
-                                </div>
-                                <div class="col-md-2">
                         
                                     <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo"  max="11"
-                                        name="PhoneNo" formControlName="PhoneNo">
+                                      id="PhoneNo"  name="PhoneNo" formControlName="PhoneNo">
                                 </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control inputfield" [(ngModel)]="Email" name="Email"
+                                    id="Email"  formControlName="Email">
+                                </div>
+                               
 
                                 <!-- <div class="col-md-3">
                                     <input type="text" class="form-control inputfield" [(ngModel)]="Address"
