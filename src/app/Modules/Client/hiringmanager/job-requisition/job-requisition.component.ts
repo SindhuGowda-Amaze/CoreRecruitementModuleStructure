@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class JobRequisitionComponent implements OnInit {
   joblist: any;
+  awardlist1:any;
   jobno: any;
   public jobtitile: any;
   public skills: any;
@@ -48,7 +49,11 @@ export class JobRequisitionComponent implements OnInit {
         this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
         this.manager = this.hrlist1[0].id
         this.buHead = this.hrlist2[0].id
-
+       
+        this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
+          debugger;
+          this.awardlist1 = data;
+        });
 
 
       })
