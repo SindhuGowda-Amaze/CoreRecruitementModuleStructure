@@ -17,7 +17,7 @@ export class RescheduledInterviewComponent implements OnInit {
   timeid: any;
   notes: any; 
   slotslist : any
-  GetStaffID: any
+
 
 
   stafflist : any
@@ -264,6 +264,13 @@ public updatejoiningdate() {
       })
     }
 
+  }
+
+  public GetStaffID(even: any) {
+    debugger
+    this.staffid = even.target.value;
+    debugger
+    this.GetSlotsMaster();
   }
 
   emailattchementurl = [];
