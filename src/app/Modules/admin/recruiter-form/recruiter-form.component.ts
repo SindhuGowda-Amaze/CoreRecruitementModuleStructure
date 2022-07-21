@@ -19,6 +19,8 @@ export class RecruiterFormComponent implements OnInit {
   ID: any;
   roleList: any;
   roleid: any;
+  staffid : any
+  stafflist : any
  
  
 
@@ -27,7 +29,7 @@ export class RecruiterFormComponent implements OnInit {
   ngOnInit(): void {
     this.GetRecruiterMaster();
     this.GetRoleType();
-    this.roleid="";
+   
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
       if (this.ID != undefined && this.ID != null) {
@@ -42,7 +44,7 @@ export class RecruiterFormComponent implements OnInit {
     debugger
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe(
       data => {
-        this.recruiterlist = data
+        this.recruiterlist = data.filter(x=>x.id==this.ID)
         // this.RecruiterID = this.recruiterlist[0].recruiterName;
       
         this.Name = this.recruiterlist[0].name;
@@ -163,5 +165,11 @@ export class RecruiterFormComponent implements OnInit {
 
   cancel() {
     location.href = "#/admin/RecruiterStaffDashboard"
+  }
+  StaffID(even: any){
+    debugger
+    this.staffid = even.target.value;
+    debugger
+   this.GetRecruiterStaff()
   }
 }
