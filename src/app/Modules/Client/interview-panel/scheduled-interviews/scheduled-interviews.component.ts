@@ -74,7 +74,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       startOfWeek: 1
     };
 
-    this.roleid = localStorage.getItem('roledid');
+   
 
     if (this.selectedlanguage == '1') {
       this.selectedlanguage1 = 'en';

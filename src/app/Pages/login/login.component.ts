@@ -618,7 +618,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    else if (this.roleID == 5) {
+    else if (this.roleID == 55) {
 
       this.RecruitmentServiceService.GetUsersdetailsForFinanceLogin(this.userName, this.password).subscribe({
         next: data => {
