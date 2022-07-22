@@ -1006,6 +1006,16 @@ this.manPowerMenu=8;
     localStorage.setItem("clickname", "HELP")
   }
 
+  help1(){
+    this.menu = 333;
+    this.active = 'help'
+    this.home=false
+    this.jobstaff=false
+    this.recruitstaff=false
+    this.setup=false
+    localStorage.setItem("clickname", "HELP")
+  }
+
   public  SupportTickets() {
     this.menu=5;
     this.manPowerMenu=10;
@@ -1051,6 +1061,12 @@ this.manPowerMenu=8;
     this.active = 'offermanage'
     localStorage.setItem("clickname", "offermanage")
     this.router.navigate(['/OfferManagement']);
+  }
+
+  reschedule(){
+    this.active = 'reschedule'
+    localStorage.setItem("clickname", "offermanage")
+    this.router.navigate(['/InterviewPanel/ScheduledInterviews']);
   }
 
   public Description(){

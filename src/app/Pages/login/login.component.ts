@@ -113,7 +113,47 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'recruiter');
             sessionStorage.setItem('roleid', '6');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#hirignmanager/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Recruiter Staff');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+     })
+
+    }
+    else if (this.roleID == 8) {
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+        next: data => {
+          debugger
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          // this.loader = true;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'HR');
+            sessionStorage.setItem('roleid', '8');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -152,7 +192,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'Client');
             sessionStorage.setItem('roleid', '4');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#hirignmanager/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -174,7 +214,7 @@ export class LoginComponent implements OnInit {
         }
       })
     }
-    else if (this.roleID == 8) {
+    else if (this.roleID == 18) {
       sessionStorage.setItem('UserName', 'Anup');
       sessionStorage.setItem('userid', '1');
       sessionStorage.setItem('temp', '1');
