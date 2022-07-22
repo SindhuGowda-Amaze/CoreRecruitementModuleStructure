@@ -17,7 +17,7 @@
                         <form style="margin-left: 30px; margin-right: 30px;">
                             <div class="row leavereq">
                                 <div class="col-md-4">
-                                    <label>Role<span style="color: red;">*</span></label>
+                                    <label>Position<span style="color: red;">*</span></label>
                                 </div>
                                 
                                
@@ -31,7 +31,7 @@
                                 <div class="col-lg-4">
                                     <div class="dropdown">
                                         <select class="form-control" name="role_Id" id="role_Id" [(ngModel)]="role_Id">
-                                            <option value="">Select Role</option>
+                                            <option value="">Select Position</option>
                                             <option *ngFor="let User of roleList" value={{User.short}}>{{User.short}}
                                             </option>
                                         </select>
