@@ -84,8 +84,10 @@ export class LoginComponent implements OnInit {
 
   // }
   result1: any;
+  admin:any;
   public login() {
-    if (this.userName == 'admin' && this.password == '1') {
+    let adminCopy = this.admin.toLowerCase();
+    if (this.userName.toLowerCase().includes(adminCopy)  && this.password == 'welcome') {
       debugger
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');

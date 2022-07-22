@@ -224,7 +224,7 @@ export class ClientformComponent implements OnInit {
       'Logo': this.Company_logo,
       'Name': this.Name,
       'PhoneNo': this.PhoneNo,
-      'EmailID': this.email,
+      'Email': this.Email,
       'Address': this.Address,
     }
     this.RecruitmentServiceService.UpdateClientMaster(entity).subscribe({
