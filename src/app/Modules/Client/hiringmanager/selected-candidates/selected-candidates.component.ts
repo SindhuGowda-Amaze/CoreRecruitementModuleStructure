@@ -160,8 +160,8 @@ export class SelectedCandidatesComponent implements OnInit {
       next: (res: any) => {
         debugger
         this.Company_logo = res;
-        alert("ATTACHMENT UPLOADED");
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire("Attachment Uploaded");
+        // Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -489,27 +489,46 @@ public updatejoiningdate() {
       }
     })
   }
+ 
+
+
+
+  jobdescription:any;
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
-      next: data => {
-        debugger
-        this.staffdetails = data;
-        this.loader=false;
-        this.count=this.staffdetails.length;
-      }, error: (err: { error: { message: any; }; }) => {
+      next: (data) => {
+        debugger;
+        this.jobdescription = data;
+        this.loader = false;
+        this.count = this.staffdetails.length;
+      },
+      error: (err: { error: { message: any } }) => {
         Swal.fire('Getting Get Job Description Master ');
         // Insert error in Db Here//
         var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
+          (data) => {
+            debugger;
+          }
+        );
+      },
+    });
   }
+
+  jobdescriptionID:any;
+  public getjobdescription(even:any){
+    this.jobdescriptionID=even.target.value
+
+   
+
+
+
+
+
+
+
+}
 }
