@@ -16,6 +16,9 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
   awardlist: any;
   roleid: any;
   search : any
+  p : any
+  count1: any = 5;
+
   ngOnInit(): void {
 
     this.roleid = sessionStorage.getItem('roleid');

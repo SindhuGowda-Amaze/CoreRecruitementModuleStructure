@@ -91,7 +91,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let holiday of awardlist1">
+                            <tr *ngFor="let holiday of awardlist1 |paginate: { itemsPerPage: count1, currentPage: p }">
                                 <td>{{holiday.companyName}}</td>
                                 <td>{{holiday.department}}</td>
                                 <td>{{holiday.roletype}}</td>
@@ -116,6 +116,10 @@
                         </tbody>
 
                     </table>
+                    <div class="text-left">
+                        <br>
+                        <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                    </div> 
 
                 </div>
             </div>
