@@ -48,10 +48,11 @@ export class ShortListedComponent implements OnInit {
     this.searchbyctc = "";
     this.searchbynotice = "";
     this.hiringManager = "";
-    this.RecruitmentServiceService.GetClientStaff()
-      .subscribe(data => {
-        this.hrlist = data;
-      })
+   
+ this.RecruitmentServiceService.GetRecruiterStaff()
+ .subscribe(data => {
+   this.hrlist = data.filter(x=>x.role=="Hiring Manager");
+ })
     this.GetStaffType();
   
     this.userid = sessionStorage.getItem('userid')

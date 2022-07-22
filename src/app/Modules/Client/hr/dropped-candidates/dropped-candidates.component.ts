@@ -43,7 +43,7 @@ export class DroppedCandidatesComponent implements OnInit {
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
         this.hrlist = data.filter(x=>x.role=="Hiring Manager");

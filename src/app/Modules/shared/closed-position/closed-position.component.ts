@@ -189,7 +189,7 @@ export class ClosedPositionComponent implements OnInit {
         )
       }
     })
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
         this.hrlist = data.filter(x=>x.role=="Hiring Manager");
