@@ -67,13 +67,24 @@
                                 </div>
                                 <div class="col-md-2">
                                   
-                                    <input class="form-control inputfield" placeholder="Staff Name" name="staff_Name" id="staff_Name" 
-                                        [(ngModel)]="staff_Name">
+                                    <!-- <input class="form-control inputfield" placeholder="Staff Name" name="staff_Name" id="staff_Name" 
+                                        [(ngModel)]="staff_Name"> -->
+
+                                        <input class="form-control inputfield" id="staff_Name" name="staff_Name" [(ngModel)]="staff_Name"
+
+                            placeholder="staff_Name" onkeypress="return /[A-Z]/i.test(event.key)">
+
+
+
+
                                 </div>
                                 <div class="col-md-2">
                                    
-                                    <input class="form-control inputfield" placeholder="Phone Number" name="phone_Number" id="phone_Number" 
-                                        [(ngModel)]="phone_Number">
+                                    <!-- <input class="form-control inputfield" placeholder="Phone Number" name="phone_Number" id="phone_Number" 
+                                        [(ngModel)]="phone_Number"> -->
+
+                                        <input type="text" class="form-control inputfield" id="phone_Number" name="phone_Number" maxlength="11"
+                                                [(ngModel)]="phone_Number" onkeypress="return /[0-9]/i.test(event.key)" placeholder="phone_Number">
                                 </div>
                                 <div class="col-md-2">
                                    

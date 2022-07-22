@@ -144,7 +144,7 @@ export class ClientformComponent implements OnInit {
       next: data => {
         debugger
         this.Company_logo = data;
-        Swal.fire("ATTACHMENT UPLOADED");
+        Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//

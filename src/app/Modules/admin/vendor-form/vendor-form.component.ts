@@ -53,7 +53,7 @@ export class VendorFormComponent implements OnInit {
     .subscribe(res => {
       debugger
       this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+      Swal.fire("ATTACHMENT UPLOADED");
     })
   }
   Save() {
@@ -74,7 +74,7 @@ else{
       next: data => {
         debugger
         let id = data;
-      Swal.fire("Saved Sucessfully");
+      Swal.fire("Saved Successfully");
       location.href = "#/admin/VendorDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
