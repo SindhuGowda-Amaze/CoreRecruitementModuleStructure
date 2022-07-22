@@ -348,4 +348,8 @@ export class VendorJobOpeningsComponent implements OnInit {
 
 
 }
+
+close(){
+  location.href="#/recruiter/VendorJobOpenings"
+}
 }

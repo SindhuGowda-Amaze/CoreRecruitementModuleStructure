@@ -177,10 +177,10 @@ export class ClientformComponent implements OnInit {
 
   public Save() {
     debugger
-    //   if(this.Name==undefined||this.PhoneNo==undefined||this.Email==undefined||this.Address==undefined||this.Company_logo==undefined)
-    // {
-    //   alert("Please Fill All Fields to Save!!!")
-    // }
+      if(this.Name==undefined||this.PhoneNo==undefined||this.Email==undefined||this.Address==undefined||this.Company_logo==undefined)
+    {
+     
+    }
     if (this.RegForm.invalid) {
       Swal.fire("Please Fill All Fields to Save!!!")
     }

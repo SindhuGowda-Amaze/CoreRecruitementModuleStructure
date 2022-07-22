@@ -423,7 +423,7 @@ export class RecruitementService {
 
  public DeleteJobDescriptionMaster(ID: any) {
    return this.http.get<any[]>(
-     this.host + "/Master/DeleteSupportTickets?ID=" + ID);
+     this.host + "/Master/DeleteJobDescriptionMaster?ID=" + ID);
  }
 
 
