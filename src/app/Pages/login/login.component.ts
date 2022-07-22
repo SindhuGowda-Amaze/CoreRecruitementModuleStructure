@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
   showpassword: any;
   name: any;
   currentUrl: any
+  admin:any;
   constructor(public RecruitmentServiceService: RecruitementService, private router: Router) { }
   ngOnInit(): void {
+    this.admin="Admin"
     this.currentUrl = window.location.href;
     this.showpassword = 0;
     if (localStorage.getItem('temp') == '1') {
@@ -84,10 +86,9 @@ export class LoginComponent implements OnInit {
 
   // }
   result1: any;
-  admin:any;
   public login() {
     let adminCopy = this.admin.toLowerCase();
-    if (this.userName.toLowerCase().includes(adminCopy)  && this.password == 'welcome') {
+    if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1') {
       debugger
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
