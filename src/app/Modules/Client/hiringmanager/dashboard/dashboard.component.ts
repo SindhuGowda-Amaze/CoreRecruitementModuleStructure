@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
     this.RecruitmentServiceService.GetClientStaff().subscribe({
   next: data => {
     debugger
-    this.hrlist = data;
+    this.hrlist = data.filter(x=>x.role=="Hiring Manager");
 
     
     // Insert error in Db Here//
