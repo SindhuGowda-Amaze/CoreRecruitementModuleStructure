@@ -32,6 +32,9 @@ export class JobRequisitionComponent implements OnInit {
   files: any;
   manager: any;
   buHead:any;
+  staffdetails: any;
+  loader: any;
+  count: any;
   constructor(private RecruitmentServiceService: RecruitementService) { }
   editor: any;
   html: any;
@@ -295,4 +298,28 @@ export class JobRequisitionComponent implements OnInit {
   Cancel() {
     location.href = "#/hirignmanager/JobRecruitements";
   }
+
+  // public GetJobDescriptionMaster() {
+  //   this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+  //     next: data => {
+  //       debugger
+  //       this.staffdetails = data;
+  //       this.loader=false;
+  //       this.count=this.staffdetails.length;
+  //     }, error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire('Getting Get Job Description Master ');
+  //       // Insert error in Db Here//
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
+
+  // }
 }
