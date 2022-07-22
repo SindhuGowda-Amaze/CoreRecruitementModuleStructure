@@ -60,7 +60,7 @@ export class VendorFormComponent implements OnInit {
     debugger
     if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined || this.vendor_Name==""||this.phone_Number==""||this.email_ID==""||this.address==""||this.Company_logo=="")
     {
-      alert("Please Fill All Fields to Save!!!")
+      Swal.fire("Please Fill All Fields to Save!!!");
     }
 else{
   var json = {
@@ -145,10 +145,10 @@ else{
         next: data => {
           debugger
           let result = data;
-        Swal.fire("Update Sucessfully");
-        location.href = "#admin/VendorDashboard";
+        Swal.fire("Updated Successfully");
+        location.href = "#/admin/VendorDashboard";
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in  Update Vendor Dasboard');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -164,6 +164,6 @@ else{
   }
 
   cancel() {
-    location.href ='#admin/VendorDashboard';
+    location.href ='#/admin/VendorDashboard';
   }
 }
