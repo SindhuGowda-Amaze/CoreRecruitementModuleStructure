@@ -70,7 +70,7 @@ export class JobDescriptionFormComponent implements OnInit {
   }
   Save() {
     debugger;  
-    if(this.Role==undefined || this.Role==null ||
+    if(this.role_Id==undefined || this.role_Id==null ||
       this.Description==undefined || this.Description==null
       )
       {
@@ -88,7 +88,7 @@ export class JobDescriptionFormComponent implements OnInit {
             debugger
             let id = data;
             Swal.fire("Successfully saved!!")
-            location.href = "#/JobDescriptionDash"
+            location.href = "#/admin/JobDescriptionDash"
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');
             // Insert error in Db Here//
