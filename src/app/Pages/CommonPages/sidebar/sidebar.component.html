@@ -352,6 +352,7 @@
           />
           &nbsp;APPLIED CANDIDATES
         </a>
+
         <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)" [ngClass]="manPowerMenu==3? 'highlighting':''">
           <img
             *ngIf="manPowerMenu==3"
@@ -368,23 +369,16 @@
 
         <div  *ngIf="roleid=='6'">
           <a
-         
           (click)="RescheduledInterview()"
             routerLink="/recruiter/RescheduledInterview"
             class="nonactive"
-            (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >
-         
-            <img 
-          
+            (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >        
+            <img          
             src="assets/Images/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
 
-            <!-- <img
-            *ngIf="manPowerMenu!=4"
-              src="assets/Images/64 Blue/Vector.png"
-              style="width: 20px; margin-right: 17px"
-            />  -->
+          
             &nbsp;RescheduledInterview
           </a>
         </div>
@@ -788,16 +782,29 @@
       </div>
 
       <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a  *ngIf="roleid==6"
-          routerLink="/InterviewPanel/ScheduledInterviews"
-          class="nonactive"
-          (click)="openCity($event)">
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          &nbsp; RESCHEDULED INTERVIEWS
-        </a>
+      
+        <a
+        *ngIf="roleid==6"
+        class="tablinks"
+        (click)="highlight($event)"
+        (click)="reschedule()"
+      >
+        <img
+          src="assets/Images/64 Blue/Staff.png"
+          style="width: 13%; margin-right: 17px"
+          [ngClass]="active == 'reschedule' ? 'Active1' : 'Active2'"
+        />
+        <img
+          [ngClass]="active != 'reschedule' ? 'Active1' : 'Active2'"
+          src="assets/Images/64/Staff.png"
+          style="width: 13%; margin-right: 17px"
+        />
+        &nbsp;
+        <span [ngClass]="active == 'reschedule' ? 'Active1' : 'Active3'"
+          >RESCHEDULED INTERVIEWS</span
+        >
+        &nbsp;
+      </a>
       </div>
 
       <a

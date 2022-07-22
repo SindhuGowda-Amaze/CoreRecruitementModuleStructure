@@ -58,7 +58,7 @@ export class VendorStaffDashboardComponent implements OnInit {
 
   edit(id: any) {
     debugger
-    location.href = "#admin/VendorStaffForm/" + id;
+    location.href = "#/admin/VendorStaffForm/" + id;
   }
 
 
@@ -105,20 +105,20 @@ export class VendorStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You want Enable the Vendor Staff.',
+      text: 'You want Disable the Vendor Staff.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, Enable it',
+      confirmButtonText: 'Yes, Disable it',
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
         this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe({
           next: data => {
             debugger
-            Swal.fire('Updated successfully.');
+            Swal.fire('Disabled Successfully.');
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Disabling Vendor Staff');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -131,7 +131,6 @@ export class VendorStaffDashboardComponent implements OnInit {
             )
           }
         })
-
       }
     })
   }
@@ -144,20 +143,20 @@ export class VendorStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Disable it.',
+      text: 'You Want to Enable it.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, Disable it',
+      confirmButtonText: 'Yes, Enabled it',
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
         this.RecruitmentServiceService.EnableVendorStaff(eb).subscribe({
           next: data => {
             debugger
-            Swal.fire('Updated successfully.');
+            Swal.fire('Enabled successfully.');
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Getting Enable Vendor Staff');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -170,9 +169,7 @@ export class VendorStaffDashboardComponent implements OnInit {
             )
           }
         })
-
       }
     })
   }
-
 }

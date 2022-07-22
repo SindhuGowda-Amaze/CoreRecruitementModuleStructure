@@ -19,13 +19,15 @@ export class VendorFormComponent implements OnInit {
   address: any;
   result: any;
   id: any;
-  currentUrl:any
+  currentUrl:any;
+  show:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
       if (this.id != null && this.id != undefined) {
+        this.show=1;
         this.GetVendor_Dasboard();
       }
     })
@@ -51,14 +53,14 @@ export class VendorFormComponent implements OnInit {
     .subscribe(res => {
       debugger
       this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+      Swal.fire("ATTACHMENT UPLOADED");
     })
   }
   Save() {
     debugger
     if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined || this.vendor_Name==""||this.phone_Number==""||this.email_ID==""||this.address==""||this.Company_logo=="")
     {
-      alert("Please Fill All Fields to Save!!!")
+      Swal.fire("Please Fill All Fields to Save!!!");
     }
 else{
   var json = {
@@ -72,7 +74,7 @@ else{
       next: data => {
         debugger
         let id = data;
-      Swal.fire("Saved Sucessfully");
+      Swal.fire("Saved Successfully");
       location.href = "#/admin/VendorDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
@@ -90,7 +92,8 @@ else{
     })
 } 
   }
-
+  vendorLogo:any;
+  
   GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -102,6 +105,8 @@ else{
         this.phone_Number = this.result[0].phone_Number;
         this.email_ID = this.result[0].email_ID;
         this.address = this.result[0].address;
+        this.vendorLogo=this.result[0].vendor_Logo
+        this.Company_logo=this.result[0].logourl
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Getting vendor Dashboard');
         // Insert error in Db Here//
@@ -140,10 +145,10 @@ else{
         next: data => {
           debugger
           let result = data;
-        Swal.fire("Update Sucessfully");
-        location.href = "#admin/VendorDashboard";
+        Swal.fire("Updated Successfully");
+        location.href = "#/admin/VendorDashboard";
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in  Update Vendor Dasboard');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -159,6 +164,6 @@ else{
   }
 
   cancel() {
-    location.href ='#admin/VendorDashboard';
+    location.href ='#/admin/VendorDashboard';
   }
 }

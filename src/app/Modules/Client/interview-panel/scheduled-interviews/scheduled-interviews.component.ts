@@ -74,7 +74,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       startOfWeek: 1
     };
 
-    this.roleid = localStorage.getItem('roledid');
+   
 
     if (this.selectedlanguage == '1') {
       this.selectedlanguage1 = 'en';
@@ -432,30 +432,99 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }
 
-  public changeAnniversary() {
+  public filterByDate() {
     debugger;
 
-    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
-      next: data => {
-        debugger
-        // this.joblist = data.filter(x => x.tentativeDate == this.Date + "T00:00:00");
-        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
 
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+    if (this.staffid == undefined) {
+      this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.date >= this.Date && x.date && this.endDate);
+          // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+          debugger
+          this.jobListCopy = this.joblist
+          console.log("===", this.jobListCopy)
+          this.count = this.joblist.length;
+          this.buildcallender(this.joblist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    });
+      })
+
+    }
+
+    else if(this.roleid==6){
+      this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview==null && x.date >= this.Date && x.date && this.endDate);
+          this.count = this.joblist.length;
+          this.buildcallender(this.joblist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+    }
+
+
+    else {
+      this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview==null && x.date >= this.Date && x.date && this.endDate);
+          this.count = this.joblist.length;
+          this.buildcallender(this.joblist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+   
   }
   public Note() {
     this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({

@@ -20,12 +20,12 @@ export class VendorStaffFormComponent implements OnInit {
   vendor_Name: any;
   err: any;
   VendorStaffForm : any
-  VendorId: undefined;
-  Staff_Name: undefined;
-  Phone_Number: undefined;
-  Email_Id: undefined;
-  Signature: undefined;
-  Role: undefined;
+  VendorId: any;
+  staffName: any;
+  phoneNumber: any;
+  EmailID: any;
+  Signature: any;
+  Role: any;
 
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -35,8 +35,8 @@ export class VendorStaffFormComponent implements OnInit {
   currentUrl:any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.role_Id="";
-    this.vendor_Name="";
+    this.Role="";
+    this.VendorId="";
     this.GetRoleType();
     this.GetVendor_Dasboard();
     this.ActivatedRoute.params.subscribe(params => {
@@ -69,7 +69,7 @@ export class VendorStaffFormComponent implements OnInit {
     .subscribe(res => {
       debugger
       this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+      alert("Attachment Uploaded");
     })
   }
 
@@ -79,13 +79,13 @@ export class VendorStaffFormComponent implements OnInit {
           debugger
           this.result = data;
           this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-          this.vendor_Name = this.result[0].vendor_Name;
-          this.staff_Name = this.result[0].staff_Name;
-          this.Email_ID = this.result[0].email_Id;
-          this.phone_Number = this.result[0].phone_Number;
+          this.VendorId = this.result[0].vendorID;
+          this.staffName = this.result[0].staff_Name;
+          this.EmailID = this.result[0].email_Id;
+          this.phoneNumber = this.result[0].phone_Number;
           // this.Company_logo = this.result[0].signature;
-          // this.role_Id = this.result[0].role;
-          Swal.fire('Issue in Getting Expenses List Web');
+           this.Role= this.result[0].role;
+       
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -103,29 +103,28 @@ export class VendorStaffFormComponent implements OnInit {
   Save() {
     debugger;
     if( this.VendorId==undefined||this.VendorId==null|| 
-      this.Staff_Name==undefined||this.Staff_Name==null||
-      this.Phone_Number==undefined||this.Phone_Number==null||
-      this.Email_Id==undefined||this.Email_Id==null||
-      this.Signature==undefined||this.Signature==null||
+      this.staffName==undefined||this.staffName==null||
+      this.phoneNumber==undefined||this.phoneNumber==null||
+      this.EmailID==undefined||this.EmailID==null||
       this.Role==undefined||this.Role==null)
       {
       Swal.fire("Please fill all fields!!");
     }
     else{
       var json = {
-      "VendorId": this.vendor_Name,
-      "Staff_Name": this.staff_Name,
-      "Phone_Number": this.phone_Number,
-      "Email_Id": this.Email_ID,
+      "VendorId": this.VendorId,
+      "Staff_Name": this.staffName,
+      "Phone_Number": this.phoneNumber,
+      "Email_Id": this.EmailID,
       "Signature": this.Company_logo,
-      "Role": this.role_Id
+      "Role": this.Role
     };
     this.RecruitmentServiceService.InsertVendor_Staff(json).subscribe({
       next: data => {
         debugger
         let id = data;
-        Swal.fire('Saved Sucessfully..!');
-        location.href = "#admin/VendorStaffDashboard"
+        Swal.fire('Saved Successfully..!');
+        location.href = "#/admin/VendorStaffDashboard"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -153,7 +152,7 @@ export class VendorStaffFormComponent implements OnInit {
         debugger
         this.vendordetails = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Vendor Dasboard');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -196,20 +195,19 @@ export class VendorStaffFormComponent implements OnInit {
     debugger
     var json = {
       "ID": this.id,
-      "VendorID": this.vendor_Name,
-      "Staff_Name": this.staff_Name,
-      "Phone_Number": this.phone_Number,
-      "Email_ID": this.Email_ID,
-
+      "VendorId": this.VendorId,
+      "Staff_Name": this.staffName,
+      "Phone_Number": this.phoneNumber,
+      "Email_Id": this.EmailID,
       "Signature": this.Company_logo,
-      "Role": this.role_Id
+      "Role": this.Role
     };
     this.RecruitmentServiceService.UpdateVendor_Staff(json).subscribe({
       next: data => {
         debugger
-        Swal.fire('Updated Sucessfully');
+        Swal.fire('Updated Successfully');
         let id = data;
-        location.href = "#admin/VendorStaffDashboard";
+        location.href = "#/admin/VendorStaffDashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -227,7 +225,7 @@ export class VendorStaffFormComponent implements OnInit {
 
   }
   cancel(){
-    location.href = "#admin/VendorStaffDashboard";
+    location.href = "#/admin/VendorStaffDashboard";
   }
 }
 

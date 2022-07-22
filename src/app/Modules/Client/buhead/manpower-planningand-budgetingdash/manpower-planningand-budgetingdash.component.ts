@@ -16,6 +16,9 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
   awardlist: any;
   roleid: any;
   search : any
+  p : any
+  count1: any = 5;
+
   ngOnInit(): void {
 
     this.roleid = sessionStorage.getItem('roleid');
@@ -163,7 +166,7 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
     if (this.year == 0) {
       this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
         data => {
-          this.awardlist1 = data.filter(x => x.companyName == this.Subsidiary);
+          this.awardlist1 = data;
           let total: any = 0;
           this.awardlist1.forEach((element: { headCount: any; }) => {
             total += Number(element.headCount);
@@ -177,7 +180,7 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
     } else {
       this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
         data => {
-          this.awardlist1 = data.filter(x => x.year == this.year && x.companyName == this.Subsidiary);
+          this.awardlist1 = data.filter(x => x.year == this.year );
           let total: any = 0;
           this.awardlist1.forEach((element: { headCount: any; }) => {
             total += Number(element.headCount);

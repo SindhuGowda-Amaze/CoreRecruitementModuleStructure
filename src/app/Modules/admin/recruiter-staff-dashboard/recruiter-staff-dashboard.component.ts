@@ -64,7 +64,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'Do you want to Enable the Recruiter',
+      text: 'Do you want to Disable the Recruiter',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, Disable it',
@@ -74,7 +74,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
         this.RecruitmentServiceService.EnableCompanyStaff(eb).subscribe(
           data => {
             debugger
-            Swal.fire('Updated successfully.');
+            Swal.fire('Disabled Successfully.');
             location.reload();
           },
         )
@@ -100,7 +100,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
         this.RecruitmentServiceService.EnableCompanyStaff(eb).subscribe(
           data => {
             debugger
-            Swal.fire('Updated successfully.');
+            Swal.fire('Enabled Successfully.');
             location.reload();
           },
         )

@@ -38,10 +38,10 @@
 
       </div>
       <div class="col-lg-2">
-        <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
+        <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="getjobdescription($event)">
           <option value="">Select Job Title</option>
-          <option value="{{job.id}}" *ngFor="let job of staffdetails">
-            {{job.role}}
+          <option  *ngFor="let job of jobdescription" value="{{job.role}}">
+            {{job.role}}  
           </option>
         </select>
       </div>
@@ -168,7 +168,9 @@
             <label>Time : <span style="color: red;">*</span></label>
           </div>
           <div class="col-lg-6">
-            <select class="form-control" (change)="GetTimeID($event)">
+            <select class="form-control" (change)="GetTimeID($event) " 
+            [(ngModel)]="slotTime" name="slotTime" id="slotTime"
+            >
               <option value="">Select</option>
               <option *ngFor="let time of slotslist" value="{{time.id}}">{{time.slotTime}}</option>
             </select>

@@ -8,21 +8,11 @@
     <div class="card">
        
         <div class="row FilterClass">
-            <div class="col-lg-1">
+            <div class="col-lg-2">
                 <p>Filter By</p>
             </div>
-            <div class="col-lg-2">
-                <!-- <input type="date" class="form-control poppinns" (change)="GetDate($event)" name="Date" value="Date"
-                    [(ngModel)]="Date"> -->
-                <!-- <select name="Select" class="form-control">
-                          <option value="Select Notice Period">Select Notice Period</option>
-                          <option value="15 Days">15 Days</option>
-                          <option value="30 Days">30 Days</option>
-                          <option value="45 Days">45 Days</option>
-                          <option value="90 Days">90 Days</option>
-                        </select> -->
-                        
-                        <input type="date" style="color:#0C275A;" class="form-control poppinns"
+            <div class="col-lg-2">                    
+                       <input type="date" style="color:#0C275A;" class="form-control poppinns"
                         name="Date" value="Date" [(ngModel)]="Date">
             </div>
             <div class="col-lg-2">
@@ -37,28 +27,16 @@
                     <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails ">
                       {{vendor.role}}
                     </option>
-                  </select>
-      
-      
+                  </select>     
             </div>
 
             <div class="col-lg-2"  *ngIf="roleid==6" >
-                <!-- <select name="Select" class="form-control poppinns">
-                    <option style="color:#0C275A" value="Select CTC">Select CTC</option>
-                    <option style="color:#0C275A" value="30,000-50,000">30,000-50,000</option>
-                    <option style="color:#0C275A" value="50,000-1,00000">50,000-1,00000</option>
-                    <option style="color:#0C275A" value="1,00000-2,00000">1,00000-2,00000</option>
-                </select> -->
-
                 <select class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
                     <option value="">Select Hiring Manager</option>
                     <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
                   </select>
-            </div>
-            
-           
-            <div class="col-lg-4"></div> 
-            <div class="col-lg-1">
+            </div>           
+            <div class="col-lg-2">
                 <p class="Count Heading">Count:{{count}}</p>
             </div>
         </div> 

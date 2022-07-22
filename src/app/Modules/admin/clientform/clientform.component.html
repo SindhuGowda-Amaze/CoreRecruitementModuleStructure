@@ -35,6 +35,8 @@
                                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                         </ngx-dropzone-preview>
                                     </ngx-dropzone>
+                                    <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
+
                                 </div>
                                 <!-- <div class="col-md-2">
                                     <input type="text" class="form-control inputfield" [(ngModel)]="Role">
@@ -48,19 +50,32 @@
                                     </div>
                                 </div>  -->
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="Name" name="Name"
-                                        formControlName="Name">
-                                </div>
-                                <div class="col-md-3">
+                                    <!-- <input type="text" class="form-control inputfield" [(ngModel)]="Name" name="Name"
+                                        formControlName="Name"> -->
 
-                                    
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="Email"  max="11"
-                                      id="PhoneNo"  name="PhoneNo" formControlName="PhoneNo">
+                                        <input class="form-control inputfield" id="Name" name="GuardianName" [(ngModel)]="Name"
+
+                                        placeholder="Name" onkeypress="return /[A-Z]/i.test(event.key)">
+
+
+
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="Email"
-                                    id="Email"  formControlName="Email">
+                                    <input type="text" class="form-control inputfield" [(ngModel)]="Email"  max="11"
+                                      id="Email"  name="Email" formControlName="Email">
                                 </div>
+                                <div class="col-md-3">
+                                    <!-- <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"
+                                    id="PhoneNo"  formControlName="PhoneNo"> -->
+
+                                   
+                                    <input type="text" class="form-control inputfield" id="Mobile" name="PhoneNo" maxlength="11"  id="PhoneNo"
+                                            [(ngModel)]="PhoneNo" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Mobile">
+
+
+                                </div>
+                             
+                            
                                
 
                                 <!-- <div class="col-md-3">

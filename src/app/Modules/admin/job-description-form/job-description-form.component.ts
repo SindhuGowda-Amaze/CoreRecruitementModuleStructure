@@ -70,8 +70,8 @@ export class JobDescriptionFormComponent implements OnInit {
   }
   Save() {
     debugger;  
-    if(this.role_Id==undefined || this.role_Id==null ||
-      this.Description==undefined || this.Description==null
+    if(this.role_Id==undefined || this.role_Id==0 ||
+      this.Description==undefined || this.Description==""
       )
       {
         Swal.fire("Please fill all fields!!");

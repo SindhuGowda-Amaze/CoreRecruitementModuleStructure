@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
   showpassword: any;
   name: any;
   currentUrl: any
+  admin:any;
   constructor(public RecruitmentServiceService: RecruitementService, private router: Router) { }
   ngOnInit(): void {
+    this.admin="Admin"
     this.currentUrl = window.location.href;
     this.showpassword = 0;
     if (localStorage.getItem('temp') == '1') {
@@ -85,7 +87,8 @@ export class LoginComponent implements OnInit {
   // }
   result1: any;
   public login() {
-    if (this.userName == 'admin' && this.password == '1') {
+    let adminCopy = this.admin.toLowerCase();
+    if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1') {
       debugger
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
@@ -98,7 +101,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.email == this.userName || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           // this.loader = true;
@@ -109,7 +113,47 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'recruiter');
             sessionStorage.setItem('roleid', '6');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#hirignmanager/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
+            location.reload();
+          }
+          else {
+            Swal.fire('Username or Password is Invalid User is Disabled');
+            this.userName = "";
+            this.password = "";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Recruiter Staff');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+     })
+
+    }
+    else if (this.roleID == 8) {
+      this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+        next: data => {
+          debugger
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          this.result = temp[0];
+          debugger;
+          // this.loader = true;
+          if (this.result != undefined || this.result != null) {
+            sessionStorage.setItem('UserName', this.result.name);
+            sessionStorage.setItem('userid', this.result.id);
+            sessionStorage.setItem('temp', '1');
+            sessionStorage.setItem('role', 'HR');
+            sessionStorage.setItem('roleid', '8');
+            localStorage.setItem('Pagename', 'DASHBOARD')
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -137,7 +181,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetClientMaster().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -147,7 +192,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('role', 'Client');
             sessionStorage.setItem('roleid', '4');
             localStorage.setItem('Pagename', 'DASHBOARD')
-            location.href = "#hirignmanager/Dashboard";
+            location.href = "#/hirignmanager/Dashboard";
             location.reload();
           }
           else {
@@ -169,7 +214,7 @@ export class LoginComponent implements OnInit {
         }
       })
     }
-    else if (this.roleID == 8) {
+    else if (this.roleID == 18) {
       sessionStorage.setItem('UserName', 'Anup');
       sessionStorage.setItem('userid', '1');
       sessionStorage.setItem('temp', '1');
@@ -193,7 +238,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID.toLowerCase().includes(userNameCopy)) && x.password == this.password);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -229,9 +275,10 @@ export class LoginComponent implements OnInit {
 
     else if (this.roleID == 7) {
       debugger;
+      let userNameCopy = this.userName.toLowerCase();
       this.RecruitmentServiceService.GetVendor_Staff()
         .subscribe(data => {
-          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -451,7 +498,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           // let temp1:any =data.filter(x=>x.x.enable_Disable==true)
@@ -495,7 +543,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -533,7 +582,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -571,7 +621,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -607,11 +658,12 @@ export class LoginComponent implements OnInit {
 
     }
 
-    else if (this.roleID == 5) {
+    else if (this.roleID == 55) {
 
       this.RecruitmentServiceService.GetUsersdetailsForFinanceLogin(this.userName, this.password).subscribe({
         next: data => {
           debugger
+          
           this.result = data;
           if (this.result != undefined || this.result != null) {
             localStorage.setItem('managerID', this.result.id);

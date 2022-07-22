@@ -89,7 +89,7 @@ export class JobVacanciesComponent implements OnInit {
       this.relaventexp == null || this.relaventexp == undefined || this.relaventexp == 0 || this.city == null || this.city == undefined || this.city == 0
       || this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 || this.currentcompany == null || this.currentcompany == undefined || this.currentcompany == 0
       || this.noticeperiod == null || this.noticeperiod == undefined || this.noticeperiod == 0 || this.ctc == null || this.ctc == undefined || this.ctc == 0
-      || this.servingnotice == null || this.servingnotice == undefined || this.servingnotice == 0 || this.relocate == null || this.relocate == undefined || this.relocate == 0
+      || this.servingnotice == null || this.servingnotice == undefined || this.relocate == null || this.relocate == undefined 
       || this.Source == null || this.Source == undefined || this.Source == 0) {
       Swal.fire('Please Fill All Mandatory Fields ')
     }
@@ -194,7 +194,7 @@ export class JobVacanciesComponent implements OnInit {
       next: (res: any) => {
         debugger
         this.Company_logo = res;
-        alert("ATTACHMENT UPLOADED");
+        Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in ATTACHMENT ');
         // Insert error in Db Here//

@@ -39,14 +39,21 @@
                                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                         </ngx-dropzone-preview>
                                     </ngx-dropzone>
+                                    <br>
+
+                                    <img src="{{vendorLogo}}" *ngIf="show==1" style="width: 100px;height:100px">
                                 </div>
                                 <div class="col-md-2">
                                     <input class="form-control inputfield" placeholder="Vendor Name" name="vendor_Name"
                                         [(ngModel)]="vendor_Name">
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control inputfield" placeholder="Phone Number"name="phone_Number"
-                                        [(ngModel)]="phone_Number">
+                                    <!-- <input class="form-control inputfield" placeholder="Phone Number"name="phone_Number"
+                                        [(ngModel)]="phone_Number"> -->
+
+                                        <input type="text" class="form-control inputfield" id="phone_Number" name="Mobile" maxlength="11"
+
+                                        [(ngModel)]="phone_Number" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Mobile">
                                 </div>
                                 <div class="col-md-2">
                                     <input class="form-control inputfield" placeholder="Email ID"name="email_ID"
