@@ -53,7 +53,7 @@ export class VendorFormComponent implements OnInit {
     .subscribe(res => {
       debugger
       this.Company_logo = res;
-      Swal.fire("ATTACHMENT UPLOADED");
+      Swal.fire("Attachment Uploaded");
     })
   }
   Save() {
