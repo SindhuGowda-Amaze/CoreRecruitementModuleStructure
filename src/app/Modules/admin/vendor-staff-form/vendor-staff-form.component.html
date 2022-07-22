@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <div class="row">
             <div class="col-lg-11">
-                <a href="" class="Heading" style="color: #3247D5; font-family: 'Poppins';">Staff Details</a>
+                <a href="" class="Heading" style="color: #3247D5; font-family: 'Poppins';">Vendor Staff Details</a>
             </div>
         </div>
         <br>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="row leavereq">
                                 <div class="col-md-3">
-                                    <select name="Select" class="form-control" [(ngModel)]="vendor_Name" name="vendor_Name" id="vendor_Name">
+                                    <select name="Select" class="form-control" [(ngModel)]="VendorId" name="VendorId" id="VendorId">
                                         <option value="">Select Vendor</option>
                                         <option *ngFor="let vendor of vendordetails" value="{{vendor.id}}">
                                             {{vendor.vendor_Name}}</option>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="dropdown">
-                                        <select class="form-control" name="role_Id" id="role_Id" [(ngModel)]="role_Id" name="role_Id" id="role_Id">
+                                        <select class="form-control" name="Role" id="Role" [(ngModel)]="Role">
                                             <option value="">Select Role</option>
                                             <option *ngFor="let User of roleList" value={{User.id}}>{{User.short}}
                                             </option>
@@ -67,29 +67,18 @@
                                 </div>
                                 <div class="col-md-2">
                                   
-                                    <!-- <input class="form-control inputfield" placeholder="Staff Name" name="staff_Name" id="staff_Name" 
-                                        [(ngModel)]="staff_Name"> -->
-
-                                        <input class="form-control inputfield" id="staff_Name" name="staff_Name" [(ngModel)]="staff_Name"
-
-                            placeholder="staff_Name" onkeypress="return /[A-Z]/i.test(event.key)">
-
-
-
-
+                                    <input class="form-control inputfield" placeholder="Staff Name" name="staffName" id="staffName" 
+                                        [(ngModel)]="staffName">
                                 </div>
                                 <div class="col-md-2">
                                    
-                                    <!-- <input class="form-control inputfield" placeholder="Phone Number" name="phone_Number" id="phone_Number" 
-                                        [(ngModel)]="phone_Number"> -->
-
-                                        <input type="text" class="form-control inputfield" id="phone_Number" name="phone_Number" maxlength="11"
-                                                [(ngModel)]="phone_Number" onkeypress="return /[0-9]/i.test(event.key)" placeholder="phone_Number">
+                                    <input class="form-control inputfield" placeholder="Phone Number" name="phoneNumber" id="phoneNumber" 
+                                        [(ngModel)]="phoneNumber">
                                 </div>
                                 <div class="col-md-2">
                                    
-                                    <input class="form-control inputfield" placeholder="Email ID" name="Email_Id" id="Email_Id" 
-                                        [(ngModel)]="Email_ID">
+                                    <input class="form-control inputfield" placeholder="Email ID" name="EmailId" id="EmailId" 
+                                        [(ngModel)]="EmailID">
                                 </div>
                             </div><br>
                             <!-- <div class="row leavereq">
