@@ -69,7 +69,7 @@ export class VendorStaffFormComponent implements OnInit {
     .subscribe(res => {
       debugger
       this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+      alert("Attachment Uploaded");
     })
   }
 
@@ -123,7 +123,7 @@ export class VendorStaffFormComponent implements OnInit {
       next: data => {
         debugger
         let id = data;
-        Swal.fire('Saved Sucessfully..!');
+        Swal.fire('Saved Successfully..!');
         location.href = "#/admin/VendorStaffDashboard"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
@@ -152,7 +152,7 @@ export class VendorStaffFormComponent implements OnInit {
         debugger
         this.vendordetails = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Vendor Dasboard');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -205,7 +205,7 @@ export class VendorStaffFormComponent implements OnInit {
     this.RecruitmentServiceService.UpdateVendor_Staff(json).subscribe({
       next: data => {
         debugger
-        Swal.fire('Updated Sucessfully');
+        Swal.fire('Updated Successfully');
         let id = data;
         location.href = "#/admin/VendorStaffDashboard";
       }, error: (err: { error: { message: any; }; }) => {
