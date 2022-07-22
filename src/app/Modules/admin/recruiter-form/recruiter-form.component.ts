@@ -20,7 +20,9 @@ export class RecruiterFormComponent implements OnInit {
   roleList: any;
   roleid: any;
   staffid : any
-  stafflist : any
+  stafflist : any 
+  Logo: any
+  show : any
  
  
 
@@ -33,7 +35,8 @@ export class RecruiterFormComponent implements OnInit {
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
       if (this.ID != undefined && this.ID != null) {
-        this.GetRecruiterStaff();
+        this.GetRecruiterStaff()
+        this.show=1
       }
     })
     this.GetRoleType();
@@ -51,8 +54,9 @@ export class RecruiterFormComponent implements OnInit {
         this.PhoneNo = this.recruiterlist[0].phoneNo;
         this.Email = this.recruiterlist[0].email;
         this.Address = this.recruiterlist[0].address;
-        this.Signature = this.recruiterlist[0].signature;
+        this.Signature = this.recruiterlist[0].Logourl;
         this.roleid= this.recruiterlist[0].roleId
+        this.Logo = this.recruiterlist[0].logo
         // this.count = this.recruiterlist.length;
       })
 
@@ -158,7 +162,7 @@ export class RecruiterFormComponent implements OnInit {
       if (data != 0) {
         Swal.fire("Updated Recruiter Staff Successfully");
         // location.reload();
-        location.href = "/#admin/RecruiterStaffDashboard";
+        location.href = "#/admin/RecruiterStaffDashboard";
       }
     })
   }

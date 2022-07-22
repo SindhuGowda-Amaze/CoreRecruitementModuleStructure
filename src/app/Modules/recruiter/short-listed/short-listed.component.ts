@@ -37,6 +37,7 @@ export class ShortListedComponent implements OnInit {
   currentUrl: any;
   staffdetails:any
   Role: any
+  slotTime: any
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.currentUrl = window.location.href;

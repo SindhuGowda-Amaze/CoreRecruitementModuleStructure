@@ -57,8 +57,15 @@
                                         
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control inputfield" name="PhoneNo    " id="PhoneNo"
-                                        [(ngModel)]="PhoneNo">
+                                    <!-- <input type="text" class="form-control inputfield" name="PhoneNo    " id="PhoneNo"
+                                        [(ngModel)]="PhoneNo"> -->
+
+                                        <input type="text" class="form-control inputfield"id="PhoneNo" name="PhoneNo" maxlength="11"
+
+                            [(ngModel)]="PhoneNo" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Mobile">
+
+
+
                                 </div>
                                 <div class="col-md-2">
                                     <input type="text" class="form-control inputfield" name="Email" id="Email"
@@ -84,6 +91,9 @@
                                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                         </ngx-dropzone-preview>
                                     </ngx-dropzone>
+                                    <br>
+
+                                    <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
                                 </div>
                                 <div class="col-lg-7"></div>
                                 <div class="col-lg-1">
