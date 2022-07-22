@@ -38,6 +38,7 @@ export class AppliedCandidatesComponent implements OnInit {
   job: any;
   Role: any;
   staffdetails: any;
+
   ngOnInit(): void {
     this.GetJobDescription();
     this.Role = '';
@@ -388,11 +389,13 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
+
+  jobdescription:any;
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
         debugger;
-        this.staffdetails = data;
+        this.jobdescription = data;
         this.loader = false;
         this.count = this.staffdetails.length;
       },
@@ -412,6 +415,121 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
+
+  jobdescriptionID:any;
+  public getjobdescription(even:any){
+    this.jobdescriptionID=even.target.value
+
+
+
+  if (this.roleid == '3') {
+      debugger;
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+        next: (data) => {
+          debugger;
+          this.dummjoblist = data.filter(
+            (x) =>
+              x.accept == 0 &&
+              x.reject == 0 &&
+              x.source == 'Vendor' &&
+              x.vendorId == this.userid 
+            
+          );
+          this.joblist = data.filter(
+            (x) =>
+              x.accept == 0 &&
+              x.reject == 0 &&
+              x.source == 'Vendor' &&
+              x.vendorId == this.userid && 
+              x.jobTitle==this.jobdescriptionID
+            
+          );
+          this.noticeperiodlist = data.filter(
+            (x) =>
+              x.accept == 0 &&
+              x.reject == 0 &&
+              x.source == 'Vendor' &&
+              x.vendorId == this.userid 
+            
+          );
+          this.ctclist = data.filter(
+            (x) =>
+              x.accept == 0 &&
+              x.reject == 0 &&
+              x.source == 'Vendor' &&
+              x.vendorId == this.userid
+          );
+
+          this.count = this.joblist.length;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
+        },
+      });
+    } else if (this.roleid == 2) {
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+        next: (data) => {
+          debugger;
+          this.dummjoblist = data.filter((x) => x.accept == 0 && x.reject == 0);
+          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 &&  x.jobTitle==this.jobdescriptionID);
+          this.noticeperiodlist = data.filter(
+            (x) => x.accept == 0 && x.reject == 0
+          );
+          this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
+          this.count = this.joblist.length;
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
+        },
+      });
+    } else {
+      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+        next: (data) => {
+          debugger;
+          this.dummjoblist = data.filter((x) => x.accept == 0 && x.reject == 0);
+          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 &&  x.jobTitle==this.jobdescriptionID);
+          this.noticeperiodlist = data.filter(
+            (x) => x.accept == 0 && x.reject == 0
+          );
+          this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
+          this.count = this.joblist.length;
+
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: this.err.error.message,
+          };
+          Swal.fire('Issue in Getting Expenses List Web');
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
+        },
+      });
+    }
+
+  }
 
   public SendMailEmployee() {
 

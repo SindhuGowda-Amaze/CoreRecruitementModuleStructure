@@ -45,10 +45,10 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
+            <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="getjobdescription($event)">
               <option value="">Select Job Title</option>
-              <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
-                {{vendor.role}}
+              <option  *ngFor="let job of jobdescription" value="{{job.role}}">
+                {{job.role}}  
               </option>
             </select>
           </div>
