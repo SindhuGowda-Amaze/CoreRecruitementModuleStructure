@@ -373,12 +373,17 @@
             routerLink="/recruiter/RescheduledInterview"
             class="nonactive"
             (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >        
-            <img          
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-
           
+            <img
+            *ngIf="manPowerMenu==4"
+            src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+            style="width: 13%; margin-right: 17px"
+          />
+          <img
+          *ngIf="manPowerMenu!=4"
+          src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+          style="width: 13%; margin-right: 17px"
+        />
             &nbsp;RescheduledInterview
           </a>
         </div>
@@ -415,14 +420,14 @@
 
           &nbsp;SCHEDULED INTERVIEWS
         </a> -->
-        <a (click)="Scheduled()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==6?'highlighting': ''" *ngIf="roleid==5||roleid==6">
+        <a (click)="Scheduled()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==99?'highlighting': ''" *ngIf="roleid==5||roleid==6">
           <img
-            *ngIf="manPowerMenu!=6"
+            *ngIf="manPowerMenu!=99"
             src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
           <img
-            *ngIf="manPowerMenu==6"
+            *ngIf="manPowerMenu==99"
             src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
             style="width: 13%; margin-right: 17px"
           />
@@ -732,14 +737,22 @@
 
       <div id="userapplications4" class="collapse" style="padding-left: 7%">
         <a
+        (click)="scheduled1()"
           routerLink="/InterviewPanel/ScheduledInterviews"
           class="nonactive"
-          (click)="openCity($event)"
+          (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' " 
         >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
+        <img
+        *ngIf="manPowerMenu==11"
+        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+        style="width: 13%; margin-right: 17px"
+      />
+      <img
+      *ngIf="manPowerMenu!=11"
+      src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+      style="width: 13%; margin-right: 17px"
+    />
+
           &nbsp; SCHEDULED 
         </a>
       </div>
@@ -750,16 +763,16 @@
           routerLink="/hirignmanager/SelectedCandidates"
           class="nonactive"
           (click)="openCity1($event)"
-          [ngClass]="selected? 'highlighting' :'' "
+          [ngClass]="manPowerMenu==111? 'highlighting' :'' "
         >
           <img
-          *ngIf="!selected"
+          *ngIf="manPowerMenu!=111"
             src="assets/Images/64 Blue/Vector.png"
             style="width: 20px; margin-right: 17px"
           />
 
           <img
-          *ngIf="selected"
+          *ngIf="manPowerMenu==111"
           src="assets/Images/Vector.png"
           style="width: 20px; margin-right: 17px"
         />
