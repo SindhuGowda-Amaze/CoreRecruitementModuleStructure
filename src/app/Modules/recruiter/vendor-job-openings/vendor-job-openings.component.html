@@ -215,6 +215,9 @@
                     <div class="col-lg-2">
                         <label class="Text" style="font-weight: bold;">Notes :</label>
                     </div>
+                    <div class="col-lg-4">
+                        <input type="text" name="" id="" class="form-control">
+                    </div>
                     <div class="col-lg-10">
 
                         <ckeditor id="Notes"   name="Notes"  [(ngModel)]="Notes" data="<p>Write Here !</p>"></ckeditor>
@@ -229,12 +232,13 @@
                     <div class="col-lg-2">
                         <button class="form-control Save" (click)="UpdateVendor()">Assign</button>
                     </div>
+                   
                 </div>
             </div>
             <div class="modal-footer">
                 <hr>
                 <div class="col-lg-2">
-                    <button class="Button">Close</button>
+                    <button class="Button"  data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

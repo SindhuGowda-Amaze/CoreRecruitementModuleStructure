@@ -45,7 +45,7 @@
                     <table class="table" *ngIf="(ClientMasterlist | filter: search).length > 0; else noResults">
                         <!-- <thead> -->
                         <tr>
-                            <th>Client Logo</th>
+                            <th>Client Logo</th>                        
                             <th>Client Name</th>
                             <th>Email</th>
                             <th>Client Phone No.</th>
@@ -58,8 +58,8 @@
                         <tr *ngFor="let ClientMasterData of ClientMasterlist | filter:search">
                             <td style="width: 176px;"><img src="{{ClientMasterData.logo}}" style="width:65%;"></td>
                             <td>{{ClientMasterData.name}}</td>
-                            <td>{{ClientMasterData.phoneNo}}</td>
                             <td>{{ClientMasterData.email}}</td>
+                            <td>{{ClientMasterData.phoneNo}}</td>
                             <td>{{ClientMasterData.address}}</td>
                             <td></td>
                             <td><button class="Edit" (click)="edit(ClientMasterData.id)">Edit</button><br><br>
