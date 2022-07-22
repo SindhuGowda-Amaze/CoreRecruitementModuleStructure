@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -443,6 +444,7 @@ export class SidebarComponent implements OnInit {
   public SelectedCandidates() {
     debugger
     if (this.roleid == '5') {
+      this.manPowerMenu=111;
       this.active = 81;
       localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
       this.router.navigate(['/hiringmanager/SelectedCandidates']);
@@ -577,31 +579,32 @@ export class SidebarComponent implements OnInit {
 
 
   public Scheduled() {
+    this.manPowerMenu=99;
     localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
     this.router.navigate(['/InterviewPanel/ScheduledInterviews']);
-    this.scheduled = true
-    this.Jobrecruit = false
-    this.Vendorrecruit = false
-    this.home = false
-    this.applied = false
-    this.shortlist = false
+    // this.scheduled = true
+    // this.Jobrecruit = false
+    // this.Vendorrecruit = false
+    // this.home = false
+    // this.applied = false
+    // this.shortlist = false
 
-    this.Vendorrecruit = false
-    this.applied = false
-    this.shortlist = false
+    // this.Vendorrecruit = false
+    // this.applied = false
+    // this.shortlist = false
 
-    this.selected = false
-    this.offered = false
-    this.joined = false
-    this.dropped = false
-    this.vendorreport = false
-    this.appliedreport = false
-    this.shortlistedreport = false
-    this.selectedreport = false
-    this.offeredreport = false
-    this.Jobrecruitreport = false
-    this.joinedreport = false
-    this.droppedreport = false
+    // this.selected = false
+    // this.offered = false
+    // this.joined = false
+    // this.dropped = false
+    // this.vendorreport = false
+    // this.appliedreport = false
+    // this.shortlistedreport = false
+    // this.selectedreport = false
+    // this.offeredreport = false
+    // this.Jobrecruitreport = false
+    // this.joinedreport = false
+    // this.droppedreport = false
   }
 
 
@@ -1182,6 +1185,11 @@ this.menu=2
 
 
   }
+  scheduled1(){
+    debugger
+    this.manPowerMenu=11
 
+
+  }
 
 }

@@ -12,9 +12,6 @@
           <div class="col-lg-1" style="font-size: 15px;">
             <p>Filter By</p>
           </div>
-
-
-
           <div class="col-lg-2"  *ngIf="roleid!=2 && roleid!=3">
             <select   class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
                 <option value="">Select Hiring Manager</option>
@@ -55,13 +52,13 @@
          
           
           <div class="col-lg-2">
-            <p class="Count">Count: {{count}}</p>
+            <p class="Count">Count: {{(joblist | filter: search|filter:searchbyctc).length}}</p>
           </div>
         </div> 
       </div><br><br>
       <div class="row">
         <div class="col-lg-12"  style="height: 470px; overflow-y: scroll;">
-          <table class="table tablebordered" *ngIf="(joblist | filter: search).length > 0; else noResults">
+          <table class="table tablebordered" *ngIf="(joblist | filter: search|filter:searchbyctc).length > 0; else noResults">
             <thead>
               <tr>
                 <!-- <th>Vendor</th> -->

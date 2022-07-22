@@ -272,7 +272,7 @@
                             <ngx-dropzone-label (change)="onattachmentUpload($event)" >Drag and drop file here</ngx-dropzone-label>
                         </ngx-dropzone> -->
 
-                        <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                        <ngx-dropzone (change)="onSelect($event)" >
                             <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                             <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
