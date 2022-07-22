@@ -99,7 +99,7 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
     debugger;
     var entity = {
       CompanyName: this.CompanyName,
-      Department: this.Department,
+      Department_name: this.Department,
       Joborder: this.Joborder,
       HeadCount: this.HeadCount,
       Year: this.Year,
