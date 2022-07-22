@@ -19,13 +19,15 @@ export class VendorFormComponent implements OnInit {
   address: any;
   result: any;
   id: any;
-  currentUrl:any
+  currentUrl:any;
+  show:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
       if (this.id != null && this.id != undefined) {
+        this.show=1;
         this.GetVendor_Dasboard();
       }
     })
@@ -90,7 +92,8 @@ else{
     })
 } 
   }
-
+  vendorLogo:any;
+  
   GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -102,6 +105,8 @@ else{
         this.phone_Number = this.result[0].phone_Number;
         this.email_ID = this.result[0].email_ID;
         this.address = this.result[0].address;
+        this.vendorLogo=this.result[0].vendor_Logo
+        this.Company_logo=this.result[0].logourl
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Getting vendor Dashboard');
         // Insert error in Db Here//

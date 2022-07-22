@@ -33,6 +33,7 @@ export class ClientformComponent implements OnInit {
   Email: any;
   Address: any;
   result: any;
+  show : any
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -46,6 +47,7 @@ export class ClientformComponent implements OnInit {
         if (this.id != null && this.id != undefined) {
           this.GetClientMaster();
           this.showButton = 1;
+          this.show=1
         }
         else {
           this.showButton = 2;
@@ -54,6 +56,7 @@ export class ClientformComponent implements OnInit {
       })
 
   }
+  Logo : any
 
   GetClientMaster() {
     this.RecruitmentServiceService.GetClientMaster().subscribe({
@@ -62,11 +65,12 @@ export class ClientformComponent implements OnInit {
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
         this.ID = this.result[0].id;
-        this.Company_logo = this.result[0].company_logo;
+        this.Company_logo = this.result[0].Logourl;
         this.Name = this.result[0].name;
         this.PhoneNo = this.result[0].phoneNo;
         this.Email = this.result[0].email;
         this.Address = this.result[0].address;
+        this.Logo = this.result[0].logo
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
