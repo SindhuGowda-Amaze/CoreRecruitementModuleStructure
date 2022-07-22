@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class JobRequisitionComponent implements OnInit {
   joblist: any;
-  awardlist1:any;
+  awardlist1: any;
   jobno: any;
   public jobtitile: any;
   public skills: any;
@@ -31,7 +31,7 @@ export class JobRequisitionComponent implements OnInit {
   currentUrl: any
   files: any;
   manager: any;
-  buHead:any;
+  buHead: any;
   staffdetails: any;
   loader: any;
   count: any;
@@ -39,8 +39,8 @@ export class JobRequisitionComponent implements OnInit {
   editor: any;
   html: any;
   Department: any;
-  hrlist1:any;
-  hrlist2:any;
+  hrlist1: any;
+  hrlist2: any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
@@ -52,7 +52,7 @@ export class JobRequisitionComponent implements OnInit {
         this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
         this.manager = this.hrlist1[0].id
         this.buHead = this.hrlist2[0].id
-       
+
         this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
           debugger;
           this.awardlist1 = data;
@@ -151,16 +151,16 @@ export class JobRequisitionComponent implements OnInit {
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'gmrmadhavreddy416@gmail.com'
-            var desc =  'Hiring manager to Manager'
-                        'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
-                        'Thank You!'             
+            var desc = 'Hiring manager to Manager'
+            'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+            'Thank You!'
             this.SendMailEmployee(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'sindhugowda.amazeinc@gmail.com'
-            var desc =   'Hiring manager to SBU'
-                          'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
-                          'Thank You!'
+            var desc = 'Hiring manager to SBU'
+            'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+            'Thank You!'
             this.SendMailEmployee(sub, desc, email);
 
             this.InsertNotificationSBU();
@@ -189,35 +189,41 @@ export class JobRequisitionComponent implements OnInit {
 
   public Getjobno(event: any) {
     debugger
-    this.jobtitile="";
+    this.jobtitile = "";
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting()
       .subscribe(data => {
         let temp: any = data.filter(x => x.id == event.target.value);
         this.Department = temp[0].department;
         this.noofpositions = temp[0].headCount;
         this.jobtitile = temp[0].roletype;
+        this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+          next: data => {
+            debugger
+            let temp: any = data.filter(x => x.role == this.jobtitile);
+            if (temp.length == 0) {
+              this.jobdescription = '';
+            } else {
+              this.jobdescription = temp[0].description;
+            }
+            
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Expenses List Web');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
       })
 
 
-    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
-      next: data => {
-        debugger
-        let temp: any = data.filter(x => x.department == this.Department);
-        this.jobdescription = temp[0].description;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+
   }
 
   public SendMailEmployee(sub: any, desc: any, email: any) {
@@ -228,7 +234,7 @@ export class JobRequisitionComponent implements OnInit {
       'emailsubject': sub,
       'emailbody': desc,
       'attachmenturl': [],
-      'cclist':[],
+      'cclist': [],
       'bcclist': [],
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
@@ -271,7 +277,7 @@ export class JobRequisitionComponent implements OnInit {
     debugger
     var event: any = 'Job Post';
 
-    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.manager, 'Your HR Posted new Job,waiting for your approval')
+    this.RecruitmentServiceService.InsertNotificationSBU(event, this.manager, 'Your HR Posted new Job,waiting for your approval')
       .subscribe({
         next: data => {
           debugger
