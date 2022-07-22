@@ -194,7 +194,7 @@ export class JobVacanciesComponent implements OnInit {
       next: (res: any) => {
         debugger
         this.Company_logo = res;
-        alert("ATTACHMENT UPLOADED");
+        Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in ATTACHMENT ');
         // Insert error in Db Here//
