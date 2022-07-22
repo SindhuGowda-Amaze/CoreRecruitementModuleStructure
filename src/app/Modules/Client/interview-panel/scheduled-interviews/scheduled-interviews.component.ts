@@ -604,7 +604,9 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
   }
 
-
+public mynotes(){
+  Swal.fire('Saved Sucessfully')
+}
 
 
 

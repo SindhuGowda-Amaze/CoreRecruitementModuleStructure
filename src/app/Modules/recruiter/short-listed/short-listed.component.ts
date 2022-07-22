@@ -212,7 +212,7 @@ export class ShortListedComponent implements OnInit {
         debugger
         this.stafflist = data.filter(x=>x.role=="Interview Panel");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        // Swal.fire('Issue in Getting Expenses List Web');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -236,7 +236,7 @@ export class ShortListedComponent implements OnInit {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Slots Master ');       
+        // Swal.fire('Issue in Getting Slots Master ');       
          var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
