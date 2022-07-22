@@ -101,7 +101,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.email == this.userName || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           // this.loader = true;
@@ -140,7 +141,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetClientMaster().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -196,7 +198,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID.toLowerCase().includes(userNameCopy)) && x.password == this.password);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -232,9 +235,10 @@ export class LoginComponent implements OnInit {
 
     else if (this.roleID == 7) {
       debugger;
+      let userNameCopy = this.userName.toLowerCase();
       this.RecruitmentServiceService.GetVendor_Staff()
         .subscribe(data => {
-          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phone_Number == this.userName || x.email_ID.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -454,7 +458,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           // let temp1:any =data.filter(x=>x.x.enable_Disable==true)
@@ -498,7 +503,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -536,7 +542,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -574,7 +581,8 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
         next: data => {
           debugger
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let userNameCopy = this.userName.toLowerCase();
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -615,6 +623,7 @@ export class LoginComponent implements OnInit {
       this.RecruitmentServiceService.GetUsersdetailsForFinanceLogin(this.userName, this.password).subscribe({
         next: data => {
           debugger
+          
           this.result = data;
           if (this.result != undefined || this.result != null) {
             localStorage.setItem('managerID', this.result.id);
