@@ -51,7 +51,7 @@ export class ShortListedComponent implements OnInit {
         this.hrlist = data;
       })
     this.GetStaffType();
-    this.roleid = sessionStorage.getItem('roleid');
+  
     this.userid = sessionStorage.getItem('userid')
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
@@ -201,16 +201,14 @@ export class ShortListedComponent implements OnInit {
   staffid: any;
 
   public GetStaffID(even: any) {
-    debugger
     this.staffid = even.target.value;
-    debugger
     this.GetSlotsMaster();
   }
   public GetStaffType() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data.filter(x=>x.role=='Interview Panel');
+        this.stafflist = data;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         var obj = {
@@ -229,7 +227,6 @@ export class ShortListedComponent implements OnInit {
     this.timeid = even.target.value;
     this.GetSlotsMaster();
   }
-
   public GetSlotsMaster() {
     debugger
     this.RecruitmentServiceService.GetSlotsMasterByStaffID(this.date, this.staffid).subscribe({
@@ -237,8 +234,8 @@ export class ShortListedComponent implements OnInit {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Slots Master ');        
-        var obj = {
+        Swal.fire('Issue in Getting Slots Master ');       
+         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
@@ -250,7 +247,6 @@ export class ShortListedComponent implements OnInit {
       }
     })
   }
-  
   candidateid: any;
 
   public GetCandidateID(candidateid: any) {
