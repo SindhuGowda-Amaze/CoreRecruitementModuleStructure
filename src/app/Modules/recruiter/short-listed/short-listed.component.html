@@ -168,7 +168,9 @@
             <label>Time : <span style="color: red;">*</span></label>
           </div>
           <div class="col-lg-6">
-            <select class="form-control" (change)="GetTimeID($event)">
+            <select class="form-control" (change)="GetTimeID($event) " 
+            [(ngModel)]="slotTime" name="slotTime" id="slotTime"
+            >
               <option value="">Select</option>
               <option *ngFor="let time of slotslist" value="{{time.id}}">{{time.slotTime}}</option>
             </select>
