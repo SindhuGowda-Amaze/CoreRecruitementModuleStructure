@@ -52,40 +52,63 @@ err:any
     })
 
   }
-public Ondelete(id: any) {
-    debugger
+// public Ondelete(id: any) {
+//     debugger
 
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You Want to delete it.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, Delete it!',
-      cancelButtonText: 'No, keep it'
-    }).then((result) => {
-      if (result.value == true) {
-        this.RecruitmentServiceService.DeleteJobDescriptionMaster(id).subscribe({
-  next: data => {
-    debugger
-    this.GetJobDescriptionMaster();
-    Swal.fire('Deleted');
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
+//     Swal.fire({
+//       title: 'Are you sure?',
+//       text: 'You Want to delete it.',
+//       icon: 'warning',
+//       showCancelButton: true,
+//       confirmButtonText: 'Yes, Delete it!',
+//       cancelButtonText: 'No, keep it'
+//     }).then((result) => {
+//       if (result.value == true) {
+//         this.RecruitmentServiceService.DeleteJobDescriptionMaster(id).subscribe({
+//   next: data => {
+//     debugger
+//     this.GetJobDescriptionMaster();
+//     Swal.fire('Deleted');
+//   }, error: (err: { error: { message: any; }; }) => {
+//     Swal.fire('Issue in Getting Expenses List Web');
+//     // Insert error in Db Here//
+//     var obj = {
+//       'PageName': this.currentUrl,
+//       'ErrorMessage': err.error.message
+//     }
+//     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+//       data => {
+//         debugger
+//       },
+//     )
+//   }
+// })
+//       }
+//     })
+//   }
+
+public Ondelete(id: any) {
+  debugger
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You Want to delete it.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, Delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.value == true) {
+      this.RecruitmentServiceService.DeleteJobDescriptionMaster(id).subscribe({
+next: data => {
+  debugger
+  this.GetJobDescriptionMaster();
+  Swal.fire('Deleted');
+}
 })
-      }
-    })
-  }
+    }
+  })
+}
 
   edit(id: any) {
     debugger
