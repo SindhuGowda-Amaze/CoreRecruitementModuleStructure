@@ -48,8 +48,12 @@
                                         [(ngModel)]="vendor_Name">
                                 </div>
                                 <div class="col-md-2">
-                                    <input class="form-control inputfield" placeholder="Phone Number"name="phone_Number"
-                                        [(ngModel)]="phone_Number">
+                                    <!-- <input class="form-control inputfield" placeholder="Phone Number"name="phone_Number"
+                                        [(ngModel)]="phone_Number"> -->
+
+                                        <input type="text" class="form-control inputfield" id="phone_Number" name="Mobile" maxlength="11"
+
+                                        [(ngModel)]="phone_Number" onkeypress="return /[0-9]/i.test(event.key)" placeholder="Mobile">
                                 </div>
                                 <div class="col-md-2">
                                     <input class="form-control inputfield" placeholder="Email ID"name="email_ID"
