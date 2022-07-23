@@ -45,7 +45,8 @@ export class SidebarComponent implements OnInit {
   droppedreport: any
   closed:any;
   select:any;
-  menu:number | undefined;
+  menu:any;
+  interview:any;
   manPowerMenu:number |undefined;
   reportmenu:number | undefined;
 
@@ -488,30 +489,32 @@ export class SidebarComponent implements OnInit {
 
 
   public VendorRecruitment(){
-    this.Vendorrecruit=true
-    this.Jobrecruit=false
-   this.manpower=false
-    this.home=false
-    this.applied=false
-    this.shortlist=false
-    this.scheduled=false
+
+    this.manPowerMenu=22
+  //   this.Vendorrecruit=true
+  //   this.Jobrecruit=false
+  //  this.manpower=false
+  //   this.home=false
+  //   this.applied=false
+  //   this.shortlist=false
+  //   this.scheduled=false
   
-    this.applied=false
-    this.shortlist=false
-    this.scheduled=false
-    this.selected=false
-    this.offered=false
-    this.joined=false
-    this.dropped=false
-    this.vendorreport=false
-    this.appliedreport=false
-    this.shortlistedreport=false
-    this.selectedreport=false
-    this.offeredreport=false
-    this.Jobrecruitreport=false
-    this.joinedreport=false
-    this.droppedreport=false
-    this.jobstaff=false
+  //   this.applied=false
+  //   this.shortlist=false
+  //   this.scheduled=false
+  //   this.selected=false
+  //   this.offered=false
+  //   this.joined=false
+  //   this.dropped=false
+  //   this.vendorreport=false
+  //   this.appliedreport=false
+  //   this.shortlistedreport=false
+  //   this.selectedreport=false
+  //   this.offeredreport=false
+  //   this.Jobrecruitreport=false
+  //   this.joinedreport=false
+  //   this.droppedreport=false
+  //   this.jobstaff=false
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
     this.router.navigate(['/recruiter/VendorJobOpenings']);
 
@@ -546,6 +549,7 @@ export class SidebarComponent implements OnInit {
     // this.droppedreport = false
   }
 
+  
 
   public Shortlisted() {
     localStorage.setItem('Pagename', 'SHORTLISTED CANDIDATES')
@@ -1084,7 +1088,8 @@ this.manPowerMenu=8;
     this.jobstaff=false
     this.recruitstaff=false
     this.client=false
-    this.vendo=false
+    this.vendo=false;
+    this.menu=false
     localStorage.setItem("clickname", "Description")
     this.router.navigate(['admin/JobDescriptionDash']);
   }
