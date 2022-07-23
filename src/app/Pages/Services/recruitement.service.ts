@@ -19,7 +19,7 @@ export class RecruitementService {
  //DigiOfficeBSINTAPI
 // private host = "http://localhost:1807/";
  //  private host = localStorage.getItem('apiurl');
- public host1="https://support.amazeone.co/SupportAPI/";
+ public host1="https://asticom.digiofficeapp.com/SupportAPI";
  private url: string = "";
  showvid: any;
  URL: any;

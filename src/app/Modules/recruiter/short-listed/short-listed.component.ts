@@ -41,6 +41,7 @@ export class ShortListedComponent implements OnInit {
   err: any;
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
+    debugger
     this.currentUrl = window.location.href;
    
     this.Role=""
@@ -58,9 +59,11 @@ export class ShortListedComponent implements OnInit {
     this.userid = sessionStorage.getItem('userid')
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
+    debugger
     if (this.roleid == '3') {
       debugger;
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+        
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
@@ -90,7 +93,8 @@ export class ShortListedComponent implements OnInit {
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
+          // this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
@@ -111,7 +115,7 @@ export class ShortListedComponent implements OnInit {
       })
     }
     else {
-
+debugger
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
@@ -298,8 +302,9 @@ export class ShortListedComponent implements OnInit {
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
+
   hiringManager: any;
-  public GetJobRequirements() {
+  public filterbyHirirngManager() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
@@ -348,7 +353,7 @@ export class ShortListedComponent implements OnInit {
       next: (res: any) => {
         debugger
         this.interviewGuid = res;
-        alert("ATTACHMENT UPLOADED");
+        alert("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Upload Images');
         var obj = {
@@ -505,7 +510,7 @@ export class ShortListedComponent implements OnInit {
 
       'emailsubject': 'Recruiter Scheduled Interview',
 
-      'emailbody': 'Dear Interviewer Interview is Scheduled for candidate',
+      'emailbody': 'Dear Interviewer, Your Recruiter has Scheduled and Interviw with the candidate,please login to the recruitement portal for more details',
       'attachmenturl': [],
 
       'cclist': [],
