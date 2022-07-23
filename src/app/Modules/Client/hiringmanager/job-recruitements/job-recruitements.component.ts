@@ -384,15 +384,14 @@ window.location.reload();
         if (this.roleid == 11) {
           var entity = {
             "ID": data,
-
             "Status": 'Manager Approved BU Pending',
-
           }
           this.RecruitmentServiceService.UpdateJobRequirementStatus(entity).subscribe({
             next: data => {
               debugger
               Swal.fire('Approved Successfully')
               location.reload();
+              this.InsertNotificationhr();
             }, error: (err: { error: { message: any; }; }) => {
               Swal.fire('Issue in Getting Expenses List Web');
               // Insert error in Db Here//
@@ -419,6 +418,7 @@ window.location.reload();
               debugger
               Swal.fire('Approved Successfully')
               location.reload();
+              this.InsertNotificationhr();
               Swal.fire('Issue in Getting Expenses List Web');
               // Insert error in Db Here//
               var obj = {
@@ -461,6 +461,7 @@ window.location.reload();
             debugger
             Swal.fire('Rejected Successfully')
             location.reload();
+            this.InsertNotificationhr();
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');
             // Insert error in Db Here//
@@ -506,5 +507,33 @@ window.location.reload();
 
   }
 
+
+   
+  public InsertNotificationhr() {
+    debugger
+    var event: any = 'Recruiter Applied for the job';
+
+    this.RecruitmentServiceService.InsertNotificationSBU(event,  '', '')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
 
 }

@@ -541,33 +541,20 @@ export class AppliedCandidatesComponent implements OnInit {
 
       // 'emailto': 'divyashree@amazeinc.in',
 
-      'emailsubject': 'Dear HiringManager Shortlisted Candidate',
+      'emailsubject': 'Shortlisted Candidates',
 
-      'emailbody': '',
+      'emailbody': 'Dear Applicant,<br>Congratulation!!<br> Your Resume has been Shortlisted for futher Rounds of Interviews.<br>Thanks',
 
       'attachmenturl': [],
 
       'cclist': [],
 
       'bcclist': [],
-
     }
-
-
-
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
-
       debugger;
-
-
-
       // Swal.fire('Letter Generated and Sent Successfully');
-
       Swal.fire('Email Sent');
-
     })
-
-
-
   }
 }
