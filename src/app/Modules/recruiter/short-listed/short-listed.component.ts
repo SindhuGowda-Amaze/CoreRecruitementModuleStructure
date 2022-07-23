@@ -211,7 +211,7 @@ export class ShortListedComponent implements OnInit {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data.filter(x=>x.role=="Hiring Manager");
+        this.stafflist = data.filter(x=>x.role=="Interview Panel");
       }, error: (err: { error: { message: any; }; }) => {
         // Swal.fire('Issue in Getting Expenses List Web');
         var obj = {
