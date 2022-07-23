@@ -519,10 +519,42 @@ public updatejoiningdate() {
   }
 
   jobdescriptionID:any;
-  public getjobdescription(even:any){
+  public filterByJD(even:any){
     this.jobdescriptionID=even.target.value
 
-   
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2) {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle==this.jobdescriptionID );
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.count = this.joblist.length;
+          this.loader = false;
+        }
+        else {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle==this.jobdescriptionID );
+          this.jobListCopy = this.joblist;
+          this.dummjoblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.dummjoblist1 = data.filter(x => x.interviewSelected != 1 && x.offered != 0);
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.loader = false;
+          this.count = this.joblist.length;
+        }
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
 
 

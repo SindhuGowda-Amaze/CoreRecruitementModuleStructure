@@ -550,7 +550,7 @@ public updatejoiningdate() {
         'StaffID': this.staffid,
         'Date': this.date,
         'TimeID': this.timeid,
-        'Notes': this.notes
+        'Notes': this.notes,
       }
       this.RecruitmentServiceService.UpdateCandidateInterviewSchedule(entity).subscribe({
         next: data => {
@@ -572,7 +572,10 @@ public updatejoiningdate() {
           )
         }
       })
+
     }
+
+    
   }
 
   public GetTimeID(even: any) {

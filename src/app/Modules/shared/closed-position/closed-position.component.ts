@@ -25,7 +25,7 @@ export class ClosedPositionComponent implements OnInit {
   roleid: any;
   jobListCopy: any;
   p: any = 1;
-  count1: any = 5;
+  entry: any = 5;
   dropdownSettings1: any = {};
   dropdownList1: any = [];
   selectedItems1: any = [];
@@ -45,6 +45,7 @@ export class ClosedPositionComponent implements OnInit {
   count4:any;
   joblist12:any;
   count5:any;
+  count1:any
   jobRefernceID:any;
   ngOnInit(): void {
     debugger;

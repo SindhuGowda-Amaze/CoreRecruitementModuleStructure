@@ -37,7 +37,7 @@
                   </select>
             </div>           
             <div class="col-lg-2">
-                <p class="Count Heading">Count:{{count}}</p>
+                <p class="Count Heading">Count:{{joblist.length}}</p>
             </div>
         </div> 
     </div> 
@@ -64,7 +64,7 @@
                         <!-- <th class="heading">Recruiter Comments</th> -->
                     </tr>
                 </thead>
-                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }" >
+                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: entry, currentPage: p }" >
                     <td>{{job.jobRefernceID}}</td>
                     <td><span style="width: 10px;">{{job.date}}</span></td>
                     <td>{{job.jobTitle}}</td>

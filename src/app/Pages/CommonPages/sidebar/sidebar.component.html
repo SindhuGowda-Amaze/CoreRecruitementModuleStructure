@@ -1,14 +1,14 @@
 <div class="container-fluid background">
-  <!-- *ngIf="login==1"  -->
-  <div class="row side-height">
-    <div class="col-lg-12 negative-padding">
-      <!-- <p class="side-anchr">Welcome, Amulya Bijur</p> -->
-      <hr class="HrLine" />
-      <!-- <p>
+    <!-- *ngIf="login==1"  -->
+    <div class="row side-height">
+        <div class="col-lg-12 negative-padding">
+            <!-- <p class="side-anchr">Welcome, Amulya Bijur</p> -->
+            <hr class="HrLine" />
+            <!-- <p>
                 <span routerLink="/Dashboard" class="side-anchr ">Dashboard</span>
             </p> -->
-      <p>
-        <!-- <div class="dropdown"> 
+            <p>
+                <!-- <div class="dropdown"> 
                 <button data-toggle="collapse" class="togglebtn button" data-target="#recruite">Job
                     Recruitement</button>
                 <div id="recruite" class="collapse manPowerMenu">
@@ -46,10 +46,10 @@
                         </a>
                 </div>
             </div> -->
-      </p>
+            </p>
 
-      <p>
-        <!-- <div class="dropdown">
+            <p>
+                <!-- <div class="dropdown">
                 <button data-toggle="collapse" class="togglebtn button" data-target="#reports">Reports</button>
                 <div id="reports" class="collapse manPowerMenu">
                     <p><a class="tablinks manPowerMenu" routerLink="/JobRecruitementReport">
@@ -83,9 +83,9 @@
                       
                 </div>
             </div> -->
-      </p>
+            </p>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- <div class="container-fluid">
@@ -101,69 +101,40 @@
 </div> -->
 
 <div class="container-fluid" *ngIf="temp == '1'">
-  <div class="row">
-    <div
-      class="col-md-2 sidenav"
-      style="height: 100vh; margin-top: 75px; position: fixed"
-    >
-      <a
-        (click)="admin()"
-        class="nonactive"
-        (click)="openCity($event)"
-        *ngIf="roleid != 5"
-        [ngClass]="menu==1?'highlighting':''"
-      >
-        <img
-          *ngIf="menu!=1"
-          src="assets/Images/64/home.png"
-          style="width: 13%; margin-right: 17px"
-        />&nbsp;
-        <img
-          *ngIf="menu==1"
-          src="assets/Images/64 Blue/home.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        <!-- <i class="fa fa-dashcube" style="width: 20px; font-size: 20px;   margin-right: 17px;"></i>-->
-        &nbsp; Dashboard
-      </a>
+    <div class="row">
+        <div class="col-md-2 sidenav" style="height: 100vh; margin-top: 75px; position: fixed">
+            <a (click)="admin()" class="nonactive" (click)="openCity($event)" *ngIf="roleid != 5"
+                [ngClass]="menu==1?'highlighting':''">
+                <img *ngIf="menu!=1" src="assets/Images/64/home.png" style="width: 13%; margin-right: 17px" />&nbsp;
+                <img *ngIf="menu==1" src="assets/Images/64 Blue/home.png" style="width: 13%; margin-right: 17px" />
+                <!-- <i class="fa fa-dashcube" style="width: 20px; font-size: 20px;   margin-right: 17px;"></i>-->
+                &nbsp; Dashboard
+            </a>
 
-      <!-- <a  (click)="admin()" class="nonactive" (click)="openCity($event)">
+            <!-- <a  (click)="admin()" class="nonactive" (click)="openCity($event)">
                 <img *ngIf="home" src="assets/Images/64 Blue/home.png" style="width: 13%;  margin-right: 17px;" />
                 <img *ngIf="!home" src="assets/Images/64/home.png" style="width: 13%;  margin-right: 17px;">&nbsp;
                 &nbsp; Dashboard
             </a> -->
 
-      <a
-        *ngIf="roleid == '1'"
-        data-toggle="collapse"
-        class="togglebtn button nonactive"
-        data-target="#userapplications"
-        [ngClass]="menu==6?'highlighting':''"
-        (click)="activeSetup()"
-      >
-        <i
-          class="fa fa-gears icon28" [ngClass]="menu==6?'highlighting':''"
-          style="width: 15%; margin-right: 17px"
-        ></i>
-        &nbsp; SETUP
-        <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
-      </a>
+            <a *ngIf="roleid == '1'" data-toggle="collapse" class="togglebtn button nonactive"
+                data-target="#userapplications" [ngClass]="menu==6?'highlighting':''" (click)="activeSetup()">
+                <i class="fa fa-gears icon28" [ngClass]="menu==6?'highlighting':''"
+                    style="width: 15%; margin-right: 17px"></i>
+                &nbsp; SETUP
+                <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
+            </a>
 
-      <div id="userapplications" class="collapse" style="padding-left: 7%">
-        <a (click)="Client()" class="nonactive" (click)="openCity($event)" [ngClass]="client==true?'highlighting':''">
-          <img
-            *ngIf="client"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Employee Job History.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="!client"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Employee Job History.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp; CLIENT
-        </a>
-        <!-- <a (click)="Clientstaff()" class="nonactive" (click)="openCity($event)">
+            <div id="userapplications" class="collapse" style="padding-left: 7%">
+                <a (click)="Client()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="client==true?'highlighting':''">
+                    <img *ngIf="client" src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Employee Job History.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="!client" src="assets/Images/64/ATTENDANCE/Report/masters/Employee Job History.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; CLIENT
+                </a>
+                <!-- <a (click)="Clientstaff()" class="nonactive" (click)="openCity($event)">
                     <img *ngIf="!clientstaff" src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
                         style="width: 13%;    margin-right: 17px;" />
                     <img *ngIf="clientstaff" src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
@@ -171,53 +142,34 @@
                     &nbsp; CLIENT
                     STAFF `
                 </a> -->
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="Recruitstaff()"
-          [ngClass]="recruitstaff==true?'highlighting':''"
-        >
-          <img
-            *ngIf="recruitstaff"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Country_master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="!recruitstaff"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Country_master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;COMPANY STAFF
-        </a>
-        <a class="nonactive" (click)="openCity($event)" (click)="vendor()" [ngClass]="vendo==true?'highlighting':''">
-          <img
-            *ngIf="!vendo"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Deniminis _master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="vendo"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Deniminis _master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;VENDOR
-        </a>
-        <a class="nonactive" (click)="openCity($event)" (click)="vendorstaff()"  [ngClass]="vendorstaf==true?'highlighting':''">
-          <img
-            *ngIf="vendorstaf"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="!vendorstaf"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
-            style="width: 13%; margin-right: 17px"
-          />
+                <a class="nonactive" (click)="openCity($event)" (click)="Recruitstaff()"
+                    [ngClass]="recruitstaff==true?'highlighting':''">
+                    <img *ngIf="recruitstaff" src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Country_master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="!recruitstaff" src="assets/Images/64/ATTENDANCE/Report/masters/Country_master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;COMPANY STAFF
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="vendor()"
+                    [ngClass]="vendo==true?'highlighting':''">
+                    <img *ngIf="!vendo" src="assets/Images/64/ATTENDANCE/Report/masters/Deniminis _master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="vendo" src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Deniminis _master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;VENDOR
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="vendorstaff()"
+                    [ngClass]="vendorstaf==true?'highlighting':''">
+                    <img *ngIf="vendorstaf"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="!vendorstaf" src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
+                        style="width: 13%; margin-right: 17px" />
 
-          &nbsp;VENDOR STAFF
-        </a>
+                    &nbsp;VENDOR STAFF
+                </a>
 
-        <!-- <a class="nonactive" (click)="openCity($event)" (click)="Description()" routerLink="/JobDescriptionDash">
+                <!-- <a class="nonactive" (click)="openCity($event)" (click)="Description()" routerLink="/JobDescriptionDash">
                     <img *ngIf="vendorstaf"
                         src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
                         style="width: 13%;  margin-right: 17px;" />
@@ -228,267 +180,154 @@
 
                 </a> -->
 
-        <a
-          *ngIf="roleid == 1"
-          class="tablinks"
-          (click)="highlight($event)"
-          (click)="Description()"
-          routerLink="admin/JobDescriptionDash"
-        >
-          <img
-            src="assets/Images/64 Blue/Staff.png"
-            style="width: 13%; margin-right: 17px"
-            [ngClass]="active == 'Description' ? 'Active1' : 'Active2'"
-          />
-          <img
-            [ngClass]="active != 'Description' ? 'Active1' : 'Active2'"
-            src="assets/Images/64/Staff.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;
-          <span [ngClass]="active == 'Description' ? 'Active1' : 'Active3'"
-            >JOB DESCRIPTION</span
-          >
-          &nbsp;
-        </a>
+                <a *ngIf="roleid == 1" class="tablinks" (click)="highlight($event)" (click)="Description()"
+                    routerLink="admin/JobDescriptionDash">
+                    <img src="assets/Images/64 Blue/Staff.png" style="width: 13%; margin-right: 17px"
+                        [ngClass]="active == 'Description' ? 'Active1' : 'Active2'" />
+                    <img [ngClass]="active != 'Description' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;
+                    <span [ngClass]="active == 'Description' ? 'Active1' : 'Active3'">JOB DESCRIPTION</span>
+                    &nbsp;
+                </a>
 
-        <a class="nonactive" (click)="openCity($event)" (click)="JOBAPPROVAL()" [ngClass]="jobstaff==true?'highlighting':''">
-          <img
-            *ngIf="jobstaff"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="!jobstaff"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
-            style="width: 13%; margin-right: 17px"
-          />
+                <a class="nonactive" (click)="openCity($event)" (click)="JOBAPPROVAL()"
+                    [ngClass]="jobstaff==true?'highlighting':''">
+                    <img *ngIf="jobstaff"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="!jobstaff" src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
+                        style="width: 13%; margin-right: 17px" />
 
-          &nbsp;JOB APPROVAL CONFIG
-        </a>
-      </div>
+                    &nbsp;JOB APPROVAL CONFIG
+                </a>
+            </div>
 
-      <a
-      (click)="Manpower()"
-        *ngIf="roleid != 1 && roleid != 5"
-        data-toggle="collapse"
-        class="togglebtn button"
-        data-target="#userapplications1"
-        class="nonactive"
-        (click)="openCity($event)"
-        [ngClass]="menu==2?'highlighting':''"
-      >
-        <img
-          src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-          style="width: 13%; margin-right: 17px"
-          *ngIf="menu!=2"
-        />
+            <a (click)="Manpower()" *ngIf="roleid != 1 && roleid != 5" data-toggle="collapse" class="togglebtn button"
+                data-target="#userapplications1" class="nonactive" (click)="openCity($event)"
+                [ngClass]="menu==2?'highlighting':''">
+                <img src="assets/Images/64/ATTENDANCE/Report/Employee Report.png" style="width: 13%; margin-right: 17px"
+                    *ngIf="menu!=2" />
 
-        <img
-        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-        style="width: 13%; margin-right: 17px"
-        *ngIf="menu==2"
-      />
-        &nbsp; Manpower Requisition
-        <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
-      </a>
+                <img src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                    style="width: 13%; margin-right: 17px" *ngIf="menu==2" />
+                &nbsp; Manpower Requisition
+                <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
+            </a>
 
-      <div id="userapplications1" class="collapse" style="padding-left: 7%">
-        <a
-          (click)="JobRecruitment()"
-          class="nonactive"
-          (click)="openCity($event)"
-          *ngIf="roleid != '3' && roleid != 6"
-          [ngClass]="manPowerMenu==1?'highlighting':''"
+            <div id="userapplications1" class="collapse" style="padding-left: 7%">
+                <a (click)="JobRecruitment()" class="nonactive" (click)="openCity($event)"
+                    *ngIf="roleid != '3' && roleid != 6" [ngClass]="manPowerMenu==1?'highlighting':''">
+                    <img src="assets/Images/64 Blue/Staff.png" *ngIf="manPowerMenu==1"
+                        style="width: 20px; margin-right: 17px" />
 
-        >
-          <img
-            src="assets/Images/64 Blue/Staff.png"
-            *ngIf="manPowerMenu==1"
-            style="width: 20px; margin-right: 17px"
-          />
+                    <img *ngIf="manPowerMenu!=1" src="assets/Images/64/Staff.png"
+                        style="width: 20px; margin-right: 17px" />
+                    &nbsp; JOB Requisition
+                </a>
+                <a (click)="VendorRecruitment()" *ngIf="roleid == '3' || roleid == '6'" class="nonactive"
+                    (click)="openCity($event)" [ngClass]="manPowerMenu==22?'highlighting':''">
+                    <img *ngIf="manPowerMenu==22" src="assets/Images/64 Blue/Staff.png"
+                        style="width: 20px; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=22" src="assets/Images/64/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; Open Positions
+                </a>
+                <a (click)="Appliedcandidates()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==2?'highlighting':''">
+                    <img *ngIf="manPowerMenu!=2" src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu==2" src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;APPLIED CANDIDATES
+                </a>
 
-          <img
-            *ngIf="manPowerMenu!=1"
-            src="assets/Images/64/Staff.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          &nbsp; JOB Requisition
-        </a>
-        <a
-          (click)="VendorRecruitment()"
-          *ngIf="roleid == '3' || roleid == '6'"
-          class="nonactive"
-          (click)="openCity($event)"
-          [ngClass]="manPowerMenu==22?'highlighting':''"
-        >
-          <img
-          *ngIf="manPowerMenu==22"
-            src="assets/Images/64 Blue/Staff.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          <img
-          *ngIf="manPowerMenu!=22"
-            src="assets/Images/64/Staff.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp; Open Positions
-        </a>
-        <a
-          (click)="Appliedcandidates()"
-          class="nonactive"
-          (click)="openCity($event)"
-          [ngClass]="manPowerMenu==2?'highlighting':''"
-        >
-          <img
-            *ngIf="manPowerMenu!=2"
-            src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu==2"
-            src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;APPLIED CANDIDATES
-        </a>
+                <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==3? 'highlighting':''">
+                    <img *ngIf="manPowerMenu==3" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=3" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;SHORTLISTED
+                </a>
 
-        <a (click)="Shortlisted()" class="nonactive" (click)="openCity($event)" [ngClass]="manPowerMenu==3? 'highlighting':''">
-          <img
-            *ngIf="manPowerMenu==3"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu!=3"
-            src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;SHORTLISTED
-        </a>
+                <div *ngIf="roleid=='6'">
+                    <a (click)="RescheduledInterview()" routerLink="/recruiter/RescheduledInterview" class="nonactive"
+                        (click)="openCity1($event)" [ngClass]="manPowerMenu==4? 'highlighting' : '' ">
 
-        <div  *ngIf="roleid=='6'">
-          <a
-          (click)="RescheduledInterview()"
-            routerLink="/recruiter/RescheduledInterview"
-            class="nonactive"
-            (click)="openCity1($event)"  [ngClass]="manPowerMenu==4? 'highlighting' : '' " >        
-          
-            <img
-            *ngIf="manPowerMenu==4"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-          *ngIf="manPowerMenu!=4"
-          src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        
-            &nbsp;RescheduledInterview
-            <br>
-            <br>
-          </a>
-        </div>
-     
-        
-     
+                        <img *ngIf="manPowerMenu==4" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                            style="width: 13%; margin-right: 17px" />
+                        <img *ngIf="manPowerMenu!=4" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                            style="width: 13%; margin-right: 17px" />
+
+                        &nbsp;Rescheduled Interview
+                        <br>
+                        <br>
+                    </a>
+                </div>
+
+                <a (click)="scheduled1()" routerLink="/InterviewPanel/ScheduledInterviews" class="nonactive"
+                    (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' " *ngIf="roleid=='6'||roleid=='5'">
+                    <img *ngIf="manPowerMenu==11" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=11" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; SCHEDULED Interview
+                </a>
 
 
-     
+                <a (click)="Selected()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==6?'highlighting': ''">
+                    <img *ngIf="manPowerMenu!=6" src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu==6" src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
+                        style="width: 13%; margin-right: 17px" />
 
-        <a
-        (click)="scheduled1()"
-          routerLink="/InterviewPanel/ScheduledInterviews"
-          class="nonactive"
-          (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' " 
-        >
-        <img
-        *ngIf="manPowerMenu==11"
-        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-        style="width: 13%; margin-right: 17px"
-      />
-      <img
-      *ngIf="manPowerMenu!=11"
-      src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-      style="width: 13%; margin-right: 17px"
-    />
-          &nbsp; SCHEDULED 
-        </a>
+                    &nbsp;SELECTED CANDIDATES
+                </a>
+                <a (click)="Offered()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==7? 'highlighting':''">
+                    <img *ngIf="manPowerMenu==7"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=7" src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;OFFERED CANDIDATES
+                </a>
+
+                <a (click)="Joined()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==8?'highlighting':''">
+                    <img *ngIf="manPowerMenu==8"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=8" src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;JOINED CANDIDATES
+                </a>
+                <a (click)="Dropped()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==9? 'highlighting':''">
+                    <img *ngIf="manPowerMenu==9"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png "
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=9"
+                        src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;DROPPED CANDIDATES
+                </a>
 
 
-        <a (click)="Selected()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==6?'highlighting': ''" >
-          <img
-            *ngIf="manPowerMenu!=6"
-            src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu==6"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
 
-          &nbsp;SELECTED CANDIDATES
-        </a>
-        <a (click)="Offered()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==7? 'highlighting':''">
-          <img
-            *ngIf="manPowerMenu==7"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu!=7"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;OFFERED CANDIDATES
-        </a>
-        <a (click)="Joined()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==8?'highlighting':''">
-          <img
-            *ngIf="manPowerMenu==8"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu!=8"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;JOINED CANDIDATES
-        </a>
-        <a (click)="Dropped()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==9? 'highlighting':''">
-          <img
-            *ngIf="manPowerMenu==9"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png "
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu!=9"
-            src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;DROPPED CANDIDATES
-        </a>
-       
-       
-       
-        <a  (click)="SupportTickets()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==10?'highlighting':''"    >
-            <img
-              *ngIf="manPowerMenu==10"
-              src="assets/Images/64 Blue/Staff.png"
-              style="width: 13%; margin-right: 17px"
-            />
-            <img
-              *ngIf="manPowerMenu!=10"
-              src="assets/Images/64/Staff.png"
-              style="width: 13%; margin-right: 17px"
-            />
-            &nbsp;CLOSED POSITION
-          </a>
-       
-       
-        <!-- <a
+                <a (click)="SupportTickets()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="manPowerMenu==10?'highlighting':''">
+                    <img *ngIf="manPowerMenu==10" src="assets/Images/64 Blue/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=10" src="assets/Images/64/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;CLOSED POSITION
+                </a>
+
+
+                <!-- <a
           routerLink="/shared/ClosedPosition"
           class="tablinks"
           (click)="highlight($event)"
@@ -510,383 +349,194 @@
           >
           &nbsp;
         </a> -->
-      </div>
-      <!-- <a (click)="JobRecruitment()" *ngIf="roleid==11" class="nonactive" (click)="openCity($event)">
+            </div>
+            <!-- <a (click)="JobRecruitment()" *ngIf="roleid==11" class="nonactive" (click)="openCity($event)">
                 <img src="assets/Images/64 Blue/Staff.png" style="width: 20px;    margin-right: 17px;" />
             <img *ngIf="Jobrecruit==false" src="assets/Images/64/Staff.png"
                     style="width: 20px;    margin-right: 17px;" />  &nbsp; JOB RECRUITMENT
             </a> -->
 
-      <a
-      (click)="Reports()"
-        *ngIf="roleid != 1 && roleid != 5"
-        data-toggle="collapse"
-        class="togglebtn button nonactive"
-        data-target="#userapplications2"
-        [ngClass]="menu==3? 'highlighting':''"
+            <a (click)="Reports()" *ngIf="roleid != 1 && roleid != 5" data-toggle="collapse"
+                class="togglebtn button nonactive" data-target="#userapplications2"
+                [ngClass]="menu==3? 'highlighting':''">
+                <img src="assets/Images/64 Blue/ATTENDANCE/Report/Timesheet_repoorts.png" *ngIf="menu==3"
+                    style="width: 13%; margin-right: 17px" />
+                <img src="assets/Images/64/ATTENDANCE/Report/Timesheet_repoorts.png" *ngIf="menu!=3"
+                    style="width: 13%; margin-right: 17px" />
+                &nbsp; Reports
+                <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
+            </a>
 
-      >
-        <img
-          src="assets/Images/64 Blue/ATTENDANCE/Report/Timesheet_repoorts.png"
-        *ngIf="menu==3"
-          style="width: 13%; margin-right: 17px"
-        />
-  <img
-          src="assets/Images/64/ATTENDANCE/Report/Timesheet_repoorts.png"
-          *ngIf="menu!=3"
-          style="width: 13%; margin-right: 17px"
-        />
-        &nbsp; Reports
-        <!-- <img src="assets/images/downarrow.png" style="width: 20px;margin-left: 104px;"> -->
-      </a>
-
-      <div id="userapplications2" class="collapse" style="padding-left: 7%">
-        <a
-          (click)="JobRecruitReport()"
-          *ngIf="roleid != '3' || roleid != '6'"
-          class="nonactive"
-          (click)="openCity($event)"
-          [ngClass]="reportmenu==1? 'highlighting':''"
-        >
-          <img
-            *ngIf="reportmenu==1"
-            src="assets/Images/64 Blue/Staff.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=1"
-            src="assets/Images/64/Staff.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp; JOB RECRUITMENT
-        </a>
-        <!-- <a (click)="VendorReport()" *ngIf="roleid=='3' || roleid=='6'" class="nonactive"
+            <div id="userapplications2" class="collapse" style="padding-left: 7%">
+                <a (click)="JobRecruitReport()" *ngIf="roleid != '3' || roleid != '6'" class="nonactive"
+                    (click)="openCity($event)" [ngClass]="reportmenu==1? 'highlighting':''">
+                    <img *ngIf="reportmenu==1" src="assets/Images/64 Blue/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=1" src="assets/Images/64/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; JOB RECRUITMENT
+                </a>
+                <!-- <a (click)="VendorReport()" *ngIf="roleid=='3' || roleid=='6'" class="nonactive"
                     (click)="openCity($event)">
                     <img *ngIf="vendorreport" src="assets/Images/64 Blue/Staff.png"
                         style="width: 13%;  margin-right: 17px;" />
                     <img *ngIf="!vendorreport" src="assets/Images/64/Staff.png"
                         style="width: 13%;  margin-right: 17px;" /> &nbsp; JOB RECRUITMENT
                 </a> -->
-        <a
-          (click)="AppliedReport()"
-          class="nonactive"
-          (click)="openCity($event)"
-          [ngClass]="reportmenu==2? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==2"
-            src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=2"
-            src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;APPLIED CANDIDATES
-        </a>
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="Shortlistedreport()"
-          
-          [ngClass]="reportmenu==3? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==3"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=3"
-            src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;SHORTLISTED
-        </a>
-  
-  
-        <a
-          *ngIf="roleid == 8"
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="ScheduledReport()"
-          [ngClass]="shortlistedreport? 'highlighting' :'' "
-        >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-            *ngIf="selectedreport"
-          />
+                <a (click)="AppliedReport()" class="nonactive" (click)="openCity($event)"
+                    [ngClass]="reportmenu==2? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==2" src="assets/Images/64 Blue/ATTENDANCE/OVER TIME DETAILS.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=2" src="assets/Images/64/ATTENDANCE/OVER TIME DETAILS.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;APPLIED CANDIDATES
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="Shortlistedreport()"
+                    [ngClass]="reportmenu==3? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==3" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=3" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;SHORTLISTED
+                </a>
 
-          <img
-          src="assets/Images/Vector.png"
-          style="width: 20px; margin-right: 17px"
-          *ngIf="selectedreport"
-        />
-          &nbsp;SCHEDULED INTERVIEWS
-        </a>
-    
-    
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="SelectedReport()"
-          [ngClass]="reportmenu==4? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==4"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=4"
-            src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;SELECTED CANDIDATES
-        </a>
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="OfferedReport()"
-          [ngClass]="reportmenu==5? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==5"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=5"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
-            style="width: 13%; margin-right: 17px"
-          />&nbsp;OFFERED CANDIDATES
-        </a>
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="JoinedReport()"
-          [ngClass]="reportmenu==6? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==6"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=6"
-            src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;JOINED CANDIDATES
-        </a>
-        <a
-          class="nonactive"
-          (click)="openCity($event)"
-          (click)="DroppedReport()"
-          [ngClass]="reportmenu==7? 'highlighting' :'' "
-        >
-          <img
-            *ngIf="reportmenu==7"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="reportmenu!=7"
-            src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          &nbsp;DROPPED CANDIDATES
-        </a>
-      </div>
 
-      <a
-        *ngIf="roleid == 5"
-        data-toggle="collapse"
-        class="togglebtn button nonactive"
-        data-target="#userapplications4"
-      >
-        <i
-          class="fa fa-gears icon28"
-          style="width: 20px; margin-right: 17px"
-          *ngIf="roleid != 8"
-        ></i>
-        &nbsp;INTERVIEWS
-       
-      </a>
+                <a *ngIf="roleid == 8" class="nonactive" (click)="openCity($event)" (click)="ScheduledReport()"
+                    [ngClass]="shortlistedreport? 'highlighting' :'' ">
+                    <img src="assets/Images/Vector.png" style="width: 20px; margin-right: 17px"
+                        *ngIf="selectedreport" />
 
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
-        (click)="scheduled1()"
-          routerLink="/InterviewPanel/ScheduledInterviews"
-          class="nonactive"
-          (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' " 
-        >
-        <img
-        *ngIf="manPowerMenu==11"
-        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-        style="width: 13%; margin-right: 17px"
-      />
-      <img
-      *ngIf="manPowerMenu!=11"
-      src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-      style="width: 13%; margin-right: 17px"
-    />
-          &nbsp; SCHEDULED 
-        </a>
-      </div>
+                    <img src="assets/Images/Vector.png" style="width: 20px; margin-right: 17px"
+                        *ngIf="selectedreport" />
+                    &nbsp;SCHEDULED INTERVIEWS
+                </a>
 
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
-        (click)="SelectedCANDIDATES()"
-          routerLink="/hirignmanager/SelectedCandidates"
-          class="nonactive"
-          (click)="openCity1($event)"
-          [ngClass]="manPowerMenu==111? 'highlighting' :'' "
-        >
-          <img
-          *ngIf="manPowerMenu!=111"
-            src="assets/Images/64 Blue/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
 
-          <img
-          *ngIf="manPowerMenu==111"
-          src="assets/Images/Vector.png"
-          style="width: 20px; margin-right: 17px"
-        />
-          &nbsp; SELECTED CANDIDATES
-        </a>
-      </div>
+                <a class="nonactive" (click)="openCity($event)" (click)="SelectedReport()"
+                    [ngClass]="reportmenu==4? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==4" src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=4" src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;SELECTED CANDIDATES
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="OfferedReport()"
+                    [ngClass]="reportmenu==5? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==5"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Grievance Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=5" src="assets/Images/64/ATTENDANCE/Report/masters/Grievance Master.png"
+                        style="width: 13%; margin-right: 17px" />&nbsp;OFFERED CANDIDATES
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="JoinedReport()"
+                    [ngClass]="reportmenu==6? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==6"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Department Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=6" src="assets/Images/64/ATTENDANCE/Report/masters/Department Master.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;JOINED CANDIDATES
+                </a>
+                <a class="nonactive" (click)="openCity($event)" (click)="DroppedReport()"
+                    [ngClass]="reportmenu==7? 'highlighting' :'' ">
+                    <img *ngIf="reportmenu==7"
+                        src="assets/Images/64 Blue/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="reportmenu!=7"
+                        src="assets/Images/64/ATTENDANCE/Report/masters/employee_benefits_mapping.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;DROPPED CANDIDATES
+                </a>
+            </div>
 
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-        <a
-          routerLink="/InterviewPanel/Rejected"
-          class="nonactive"
-          (click)="openCity2($event)"
-        >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px; margin-right: 17px"
-          />
-          &nbsp; REJECTED CANDIDATES
-        </a>
-      </div>
+            <a *ngIf="roleid == 5" data-toggle="collapse" class="togglebtn button nonactive"
+                data-target="#userapplications4">
+                <i class="fa fa-gears icon28" style="width: 20px; margin-right: 17px" *ngIf="roleid != 8"></i>
+                &nbsp;INTERVIEWS
 
-      <div id="userapplications4" class="collapse" style="padding-left: 7%">
-      
-        <a
-        *ngIf="roleid==6"
-        class="tablinks"
-        (click)="highlight($event)"
-        (click)="reschedule()"
-      >
-        <img
-          src="assets/Images/64 Blue/Staff.png"
-          style="width: 13%; margin-right: 17px"
-          [ngClass]="active == 'reschedule' ? 'Active1' : 'Active2'"
-        />
-        <img
-          [ngClass]="active != 'reschedule' ? 'Active1' : 'Active2'"
-          src="assets/Images/64/Staff.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        &nbsp;
-        <span [ngClass]="active == 'reschedule' ? 'Active1' : 'Active3'"
-          >RESCHEDULED INTERVIEWS</span
-        >
-        &nbsp;
-      </a>
-      </div>
+            </a>
 
-      <a
-        routerLink="/shared/Help"
-        class="tablinks"
-        (click)="highlight($event)"
-        (click)="help()"
-      >
-        <img
-          src="assets/Images/64 Blue/leaves.png"
-          style="width: 13%; margin-right: 17px"
-          *ngIf="menu==4 "
-        />
-        <img
-          *ngIf="menu!=4 "
-          src="assets/Images/64/leaves.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        &nbsp;
-        <span [ngClass]="menu==4? 'Active1' : 'Active3'">HELP</span>
-        &nbsp;
-      </a>
+            <div id="userapplications4" class="collapse" style="padding-left: 7%">
+                <a (click)="scheduled1()" routerLink="/InterviewPanel/ScheduledInterviews" class="nonactive"
+                    (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' ">
+                    <img *ngIf="manPowerMenu==11" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=11" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; SCHEDULED
+                </a>
+            </div>
 
-      <a
-       
-        class="tablinks"
-        (click)="highlight($event)"
-        (click)="Supporttickets()"
-        [ngClass]="menu==5?'highlighting':''" 
-      >
-        <img
-          src="assets/Images/64 Blue/Staff.png"
-          style="width: 13%; margin-right: 17px"
-          *ngIf="menu==5"
-        />
-        <img
-        *ngIf="menu!=5"
-          src="assets/Images/64/Staff.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        &nbsp;
-        <span [ngClass]="menu==5 ? 'Active1' : 'Active3'"
-          >SUPPORT TICKETS</span
-        >
-        &nbsp;
-      </a>
+            <div id="userapplications4" class="collapse" style="padding-left: 7%">
+                <a (click)="SelectedCANDIDATES()" routerLink="/hirignmanager/SelectedCandidates" class="nonactive"
+                    (click)="openCity1($event)" [ngClass]="manPowerMenu==111? 'highlighting' :'' ">
+                    <img *ngIf="manPowerMenu!=111" src="assets/Images/64 Blue/Vector.png"
+                        style="width: 20px; margin-right: 17px" />
 
-      <a
-        *ngIf="roleid == 10 || roleid == 11"
-        class="tablinks"
-        (click)="highlight($event)"
-        (click)="offermanage()"
-      >
-        <img
-          src="assets/Images/64 Blue/Staff.png"
-          style="width: 13%; margin-right: 17px"
-          [ngClass]="active == 'offermanage' ? 'Active1' : 'Active2'"
-        />
-        <img
-          [ngClass]="active != 'offermanage' ? 'Active1' : 'Active2'"
-          src="assets/Images/64/Staff.png"
-          style="width: 13%; margin-right: 17px"
-        />
-        &nbsp;
-        <span [ngClass]="active == 'offermanage' ? 'Active1' : 'Active3'"
-          >Offer Management</span
-        >
-        &nbsp;
-      </a>
+                    <img *ngIf="manPowerMenu==111" src="assets/Images/Vector.png"
+                        style="width: 20px; margin-right: 17px" />
+                    &nbsp; SELECTED CANDIDATES
+                </a>
+            </div>
 
-      <a
-        class="nonactive"
-        (click)="openCity($event)"
-        (click)="ManpowerPlanning()"
-        *ngIf="roleid == 10"
-      >
-        <img
-          *ngIf="ManpowerPlanning1"
-          src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
-          style="width: 13%; margin-right: 17px"
-        />
-        <img
-          *ngIf="!ManpowerPlanning1"
-          src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
-          style="width: 13%; margin-right: 17px"
-        />
+            <div id="userapplications4" class="collapse" style="padding-left: 7%">
+                <a routerLink="/InterviewPanel/Rejected" class="nonactive" (click)="openCity2($event)">
+                    <img src="assets/Images/Vector.png" style="width: 20px; margin-right: 17px" />
+                    &nbsp; REJECTED CANDIDATES
+                </a>
+            </div>
 
-        &nbsp; Manpower Planning
-      </a>
+            <div id="userapplications4" class="collapse" style="padding-left: 7%">
+
+                <a *ngIf="roleid==6" class="tablinks" (click)="highlight($event)" (click)="reschedule()">
+                    <img src="assets/Images/64 Blue/Staff.png" style="width: 13%; margin-right: 17px"
+                        [ngClass]="active == 'reschedule' ? 'Active1' : 'Active2'" />
+                    <img [ngClass]="active != 'reschedule' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp;
+                    <span [ngClass]="active == 'reschedule' ? 'Active1' : 'Active3'">RESCHEDULED INTERVIEWS</span>
+                    &nbsp;
+                </a>
+            </div>
+
+            <a routerLink="/shared/Help" class="tablinks" (click)="highlight($event)" (click)="help()">
+                <img src="assets/Images/64 Blue/leaves.png" style="width: 13%; margin-right: 17px" *ngIf="menu==4 " />
+                <img *ngIf="menu!=4 " src="assets/Images/64/leaves.png" style="width: 13%; margin-right: 17px" />
+                &nbsp;
+                <span [ngClass]="menu==4? 'Active1' : 'Active3'">HELP</span>
+                &nbsp;
+            </a>
+
+            <a class="tablinks" (click)="highlight($event)" (click)="Supporttickets()"
+                [ngClass]="menu==5?'highlighting':''">
+                <img src="assets/Images/64 Blue/Staff.png" style="width: 13%; margin-right: 17px" *ngIf="menu==5" />
+                <img *ngIf="menu!=5" src="assets/Images/64/Staff.png" style="width: 13%; margin-right: 17px" />
+                &nbsp;
+                <span [ngClass]="menu==5 ? 'Active1' : 'Active3'">SUPPORT TICKETS</span>
+                &nbsp;
+            </a>
+
+            <a *ngIf="roleid == 10 || roleid == 11" class="tablinks" (click)="highlight($event)"
+                (click)="offermanage()">
+                <img src="assets/Images/64 Blue/Staff.png" style="width: 13%; margin-right: 17px"
+                    [ngClass]="active == 'offermanage' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active != 'offermanage' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
+                    style="width: 13%; margin-right: 17px" />
+                &nbsp;
+                <span [ngClass]="active == 'offermanage' ? 'Active1' : 'Active3'">Offer Management</span>
+                &nbsp;
+            </a>
+
+            <a class="nonactive" (click)="openCity($event)" (click)="ManpowerPlanning()" *ngIf="roleid == 10">
+                <img *ngIf="ManpowerPlanning1"
+                    src="assets/Images/64 Blue/ATTENDANCE/Report/masters/Shift Master Trainer.png "
+                    style="width: 13%; margin-right: 17px" />
+                <img *ngIf="!ManpowerPlanning1"
+                    src="assets/Images/64/ATTENDANCE/Report/masters/Shift Master Trainer.png"
+                    style="width: 13%; margin-right: 17px" />
+
+                &nbsp; Manpower Planning
+            </a>
+        </div>
     </div>
-  </div>
 </div>

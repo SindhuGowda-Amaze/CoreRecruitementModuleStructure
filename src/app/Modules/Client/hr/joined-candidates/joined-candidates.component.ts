@@ -266,7 +266,7 @@ data: any
         }
         else
         {
-          this.joblist = data.filter(x => x.offerAcceptreject == 1 );
+          this.joblist = data.filter(x => x.offerAcceptreject == 1  && x.jobTitle==this.jobdescriptionID);
           this.jobListCopy = this.joblist
         }
   
