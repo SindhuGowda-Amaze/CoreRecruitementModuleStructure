@@ -34,6 +34,7 @@ export class ClientformComponent implements OnInit {
   Address: any;
   result: any;
   show : any
+  logo: any;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -64,13 +65,15 @@ export class ClientformComponent implements OnInit {
         debugger
         this.result = data;
         this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-        this.ID = this.result[0].id;
-        this.Company_logo = this.result[0].Logourl;
+        this.ID = this.result[0].id;  
+       
+        this.Company_logo = this.result[0].logourl;   
         this.Name = this.result[0].name;
         this.PhoneNo = this.result[0].phoneNo;
         this.Email = this.result[0].email;
-        this.Address = this.result[0].address;
-        this.Logo = this.result[0].logo
+        this.Address = this.result[0].address;       
+        this.Logo= this.result[0].logo
+       
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//

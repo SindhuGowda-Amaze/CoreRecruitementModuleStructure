@@ -50,7 +50,7 @@ export class ClientStaffFormComponent implements OnInit {
         this.RoleList = data
         this.count = this.RoleList.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting RoleType');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -84,7 +84,7 @@ export class ClientStaffFormComponent implements OnInit {
         debugger
         this.ClientList=data ;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting ClientMaster');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -177,7 +177,7 @@ export class ClientStaffFormComponent implements OnInit {
           Swal.fire("Successfully Submitted...!!");
           location.href = "#admin/ClientStaffDashBoard"
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Inserting ClientStaff');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -209,7 +209,7 @@ this.files.splice(this.files.indexOf(event),1);
         this.Signature = res;
       alert("Signature Uploaded...!");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Uploading Signature ');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

@@ -34,7 +34,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       this.loader=false;
       this.count = this.ClientStaffList.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting ClientStaff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -75,7 +75,7 @@ export class ClientStaffDashboardComponent implements OnInit {
             Swal.fire('Deleted Successfully')
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Deleting ClientStaff');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -113,7 +113,7 @@ export class ClientStaffDashboardComponent implements OnInit {
             Swal.fire('Disable successfully.');
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue Enable ClientStaff');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -151,7 +151,7 @@ export class ClientStaffDashboardComponent implements OnInit {
             Swal.fire('Updated successfully.');
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Updating  Enable ClientStaff');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
