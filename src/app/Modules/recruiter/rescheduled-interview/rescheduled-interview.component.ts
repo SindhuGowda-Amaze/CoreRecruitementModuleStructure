@@ -590,7 +590,7 @@ public updatejoiningdate() {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Slots Master ');        var obj = {
+             var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
@@ -606,7 +606,7 @@ public updatejoiningdate() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data;
+        this.stafflist = data.filter(x=>x.role=="Interview Panel");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         var obj = {

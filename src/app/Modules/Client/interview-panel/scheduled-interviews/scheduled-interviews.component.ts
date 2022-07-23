@@ -599,7 +599,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     }
     this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any) => {
       debugger
-      Swal.fire('cancle sucessfully')
+      Swal.fire('Cancle Sucessfully')
 
     })
   }

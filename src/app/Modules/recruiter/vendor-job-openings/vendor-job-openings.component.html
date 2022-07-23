@@ -34,8 +34,8 @@
       
                 <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
                     <option value="">Select Job Title</option>
-                    <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
-                      {{vendor.role}}
+                    <option value="{{Job.id}}" *ngFor="let Job of jobdescription">
+                      {{Job.role}}
                     </option>
                   </select>
       

@@ -234,7 +234,7 @@ export class ClientformComponent implements OnInit {
     this.RecruitmentServiceService.UpdateClientMaster(entity).subscribe({
       next: data => {
         debugger
-        Swal.fire("Updated Sucessfully...");
+        Swal.fire("Updated Successfully...");
         debugger
         location.href ="#admin/Clientdashboard";
       }, error: (err: { error: { message: any; }; }) => {
@@ -257,7 +257,7 @@ export class ClientformComponent implements OnInit {
     location.href = "#/admin/Clientdashboard";
   }
 
-  // Update() {
+  // Update() { 
   //   debugger
   //   var json = {
   //     "Logo": this.Company_logo,

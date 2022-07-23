@@ -189,10 +189,10 @@ export class ClosedPositionComponent implements OnInit {
         )
       }
     })
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.hrlist = data;
+        this.hrlist = data.filter(x=>x.role=="Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Client Staff');
         var obj = {
