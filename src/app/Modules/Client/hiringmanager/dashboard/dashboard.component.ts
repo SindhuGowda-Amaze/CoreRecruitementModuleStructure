@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
     this.NewJoinee = false;
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
     this.roleid = sessionStorage.getItem('roleid');
-    this.vendorid = sessionStorage.getItem('vendorid');
+    this.vendorid = sessionStorage.getItem('role');
     this.username = sessionStorage.getItem('UserName');
 
 
@@ -239,7 +239,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist4 = data.filter(x =>  x.accept == 0 && x.reject == 0 && x.vendor == this.username);
+      this.joblist4 = data.filter(x =>  x.accept == 0 && x.reject == 0 && x.source == this.vendorid);
       this.count1 = this.joblist4.length;
     }
     else{
@@ -285,7 +285,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.vendor == this.username);
+      this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
       this.joblist5 = data.slice(0, 3);
     }
     else{
@@ -319,7 +319,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.vendor == this.username);
+      this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.source == this.vendorid);
       this.joblist6 = this.joblist6.slice(0, 3);
       this.count2 = this.joblist6.length;
     }
@@ -353,7 +353,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.vendor == this.username);
+      this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
       this.joblist7 = this.joblist7.slice(0, 3);
     }
     else{
@@ -387,7 +387,7 @@ export class DashboardComponent implements OnInit {
 
     }
     else if(this.roleid==3){
-      this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.vendor == this.username);
+      this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
       this.count3 = this.joblist8.length;
     }
     else{
@@ -420,7 +420,7 @@ export class DashboardComponent implements OnInit {
     
     }
     else if(this.roleid==3){
-      this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username);
+      this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
       this.joblist9 = this.joblist9.slice(0, 3);
     }
     else{
@@ -453,7 +453,7 @@ export class DashboardComponent implements OnInit {
     
     }
     else if(this.roleid==3){
-      this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username);
+      this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
       this.count4 = this.joblist10.length;
     }
     else{
@@ -488,7 +488,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.vendor == this.username);
+      this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
       this.joblist11 = this.joblist11.slice(0, 3);
     }
     else{
@@ -520,7 +520,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.vendor == this.username);
+      this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
       this.count5 = this.joblist12.length;
     }
     else{
@@ -551,7 +551,7 @@ export class DashboardComponent implements OnInit {
       this.count9 = this.joblist20.length;
     }
     else if(this.roleid==3){
-      this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.vendor == this.username);
+      this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
       this.count9 = this.joblist20.length;
     }
     else{
@@ -583,7 +583,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.vendor == this.username);
+      this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
       this.joblist13 = this.joblist13.slice(0, 3);
     }
     else{
@@ -616,7 +616,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
     else if(this.roleid==3){
-      this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.vendor == this.username);
+      this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
       this.count6 = this.joblist14.length;
     }
     else{

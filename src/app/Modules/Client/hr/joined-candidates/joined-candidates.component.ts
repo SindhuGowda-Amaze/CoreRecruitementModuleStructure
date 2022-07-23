@@ -244,23 +244,49 @@ data: any
 
   }
 
-
+  jobdescription:any;
   public GetJobDescription() {
 
     this.RecruitServiceService.GetJobDescriptionMaster().subscribe(data=>{
-      this.staffdetails=data;
+      this.jobdescription=data;
     })
-    debugger
-    // this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe((data: any)=>{
-    //   this.staffdetails=data;
-    //   debugger
-    //   console.log("staff",this.staffdetails)
-    // })
-
   }
 
 
+ 
+  jobdescriptionID:any;
+  public filterjobdescription(even:any){
+    this.jobdescriptionID=even.target.value
 
+    this.RecruitServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if(this.roleid==2){
+          this.joblist = data.filter(x=>x.hiringManager==this.username && x.offerAcceptreject == 1 && x.jobTitle==this.jobdescriptionID );
+        }
+        else
+        {
+          this.joblist = data.filter(x => x.offerAcceptreject == 1 );
+          this.jobListCopy = this.joblist
+        }
+  
+        this.loader=false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
 
   
 

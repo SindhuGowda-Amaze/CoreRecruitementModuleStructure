@@ -137,7 +137,7 @@ export class ShortListedComponent implements OnInit {
     }
 
 
-    this.CandidateRegistration();
+  
     this.GetJobDescription();
   }
   public changeoption() {
@@ -373,18 +373,6 @@ export class ShortListedComponent implements OnInit {
   // }
 
 
-
-  public CandidateRegistration () {
-    debugger;
-
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-
-      this.joblist = data
-    });
-  }
-
-
-
  
   jobdescription:any;
   public GetJobDescription() {
@@ -413,7 +401,7 @@ export class ShortListedComponent implements OnInit {
 
   
   jobdescriptionID:any;
-  public getjobdescription(even:any){
+  public filterjobdescription(even:any){
     this.jobdescriptionID=even.target.value
 
     if (this.roleid == '3') {
@@ -422,7 +410,7 @@ export class ShortListedComponent implements OnInit {
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid &&  x.jobTitle==this.jobdescriptionID));
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid && x.jobTitle==this.jobdescriptionID));
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
@@ -448,7 +436,7 @@ export class ShortListedComponent implements OnInit {
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username &&  x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle==this.jobdescriptionID);
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
@@ -474,7 +462,7 @@ export class ShortListedComponent implements OnInit {
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 &&  x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle==this.jobdescriptionID);
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
@@ -531,7 +519,7 @@ export class ShortListedComponent implements OnInit {
       debugger;
       // Swal.fire('Letter Generated and Sent Successfully');
     Swal.fire('Email Sent');
-
+location.reload();
     })
 
 
