@@ -37,7 +37,7 @@ err:any
         this.loader=false;
         this.count=this.staffdetails.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Get Job Description Master ');
+        Swal.fire(' Issue in Getting  Job Description Master ');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -128,7 +128,7 @@ next: data => {
     Swal.fire('Updated successfully.');
         location.reload();
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Enable VendorStaff');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -153,7 +153,7 @@ next: data => {
     debugger
     Swal.fire('Updated successfully.');
     location.reload();
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Enable VendorStaff');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,

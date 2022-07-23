@@ -77,7 +77,7 @@ else{
       Swal.fire("Saved Successfully");
       location.href = "#/admin/VendorDashboard";
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Inserting Vendor Dasboard');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
