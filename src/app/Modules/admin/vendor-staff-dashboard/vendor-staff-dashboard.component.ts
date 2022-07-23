@@ -156,7 +156,7 @@ export class VendorStaffDashboardComponent implements OnInit {
             Swal.fire('Enabled successfully.');
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Enable Vendor Staff');
+            Swal.fire('Issue in ');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,

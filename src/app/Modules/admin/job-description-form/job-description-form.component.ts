@@ -90,7 +90,7 @@ export class JobDescriptionFormComponent implements OnInit {
             Swal.fire("Successfully Saved!!")
             location.href = "#/admin/JobDescriptionDash"
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in  Inserting JobDescriptionMaster');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -117,7 +117,7 @@ export class JobDescriptionFormComponent implements OnInit {
     debugger
     this.vendordetails = data;
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Getting Vendor Dasboard');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -140,7 +140,7 @@ export class JobDescriptionFormComponent implements OnInit {
     debugger
     this.roleList = data
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Getting Role Type');
+    Swal.fire('  Issue in Getting Role Type');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -171,7 +171,7 @@ export class JobDescriptionFormComponent implements OnInit {
         location.href = "#admin/JobDescriptionDash";
 
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Updating Job Description Master');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
