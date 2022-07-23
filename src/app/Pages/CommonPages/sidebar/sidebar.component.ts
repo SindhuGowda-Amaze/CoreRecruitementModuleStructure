@@ -52,6 +52,7 @@ export class SidebarComponent implements OnInit {
 
   jobstaff: boolean | undefined;
   setup: boolean | undefined;
+  interviewmenu: any;
   constructor(public router: Router) { }
 
   ngOnInit(): void {
@@ -175,13 +176,14 @@ export class SidebarComponent implements OnInit {
   public ManpowerPlanning() {
     localStorage.setItem('Pagename', 'Manpower Planning')
     this.router.navigate(['/BUHead/ManpowerPlanningandBudgetingdash']);
-    this.vendo = false;
-    this.client = false
-    this.clientstaff = false
-    this.home = false
-    this.recruitstaff = false
-    this.vendorstaf = false
-    this.ManpowerPlanning1 = true;
+    this.menu=18;
+    // this.vendo = false;
+    // this.client = false
+    // this.clientstaff = false
+    // this.home = false
+    // this.recruitstaff = false
+    // this.vendorstaf = false
+    // this.ManpowerPlanning1 = true;
   }
 
   public vendorstaff() {
@@ -445,7 +447,7 @@ export class SidebarComponent implements OnInit {
   public SelectedCandidates() {
     debugger
     if (this.roleid == '5') {
-      this.manPowerMenu=111;
+      this.manPowerMenu=33;
       this.active = 81;
       localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
       this.router.navigate(['/hiringmanager/SelectedCandidates']);
@@ -1068,7 +1070,7 @@ this.manPowerMenu=8;
   }
 
   offermanage(){
-    this.active = 'offermanage'
+    this.menu = 17;
     localStorage.setItem("clickname", "offermanage")
     this.router.navigate(['/OfferManagement']);
   }
@@ -1103,6 +1105,13 @@ this.manPowerMenu=8;
     
   }
 
+  Interview(){
+this.menu=100;
+
+
+
+  }
+
   Rescheduled(){
     
   }
@@ -1117,7 +1126,7 @@ this.manpower=false
 
   }
   SelectedCANDIDATES(){
-    this.selected=true
+    this.manPowerMenu=33;
 
 
   }
@@ -1193,9 +1202,16 @@ this.menu=2
 
 
   }
+
   scheduled1(){
     debugger
     this.manPowerMenu=11
+
+
+  }
+  REJECTEDCANDIDATES(){
+    debugger
+    this.manPowerMenu=56
 
 
   }
