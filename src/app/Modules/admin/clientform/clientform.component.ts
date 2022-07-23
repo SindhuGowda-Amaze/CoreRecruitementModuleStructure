@@ -75,7 +75,7 @@ export class ClientformComponent implements OnInit {
         this.Logo= this.result[0].logo
        
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting ClientMaster');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -119,7 +119,7 @@ export class ClientformComponent implements OnInit {
         debugger
         location.href = "#admin/ClientDashBoard"
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Inserting ClientMaster');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -149,7 +149,7 @@ export class ClientformComponent implements OnInit {
         this.Company_logo = data;
         Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Uploading Images');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -207,7 +207,7 @@ export class ClientformComponent implements OnInit {
           location.href ="#admin/Clientdashboard"
         
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Inserting ClientMaster');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -241,7 +241,7 @@ export class ClientformComponent implements OnInit {
         debugger
         location.href ="#admin/Clientdashboard";
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Updating ClientMaster');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

@@ -244,7 +244,7 @@ this.files.splice(this.files.indexOf(event),1);
           Swal.fire("Updated Sucessfully...");
           location.href = "#admin/ClientStaffDashBoard";
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Updating ClientStaff');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
