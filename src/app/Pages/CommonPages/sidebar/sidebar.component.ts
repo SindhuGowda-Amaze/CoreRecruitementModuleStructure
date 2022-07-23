@@ -433,7 +433,7 @@ export class SidebarComponent implements OnInit {
 
   public ScheduledInterviews() {
     if (this.roleid == '5'||this.roleid=='6') {
-      this.active = 80;
+      this.active = 99;
       localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
       this.router.navigate(['/Interviewpanel/ScheduledInterviews']);
     }

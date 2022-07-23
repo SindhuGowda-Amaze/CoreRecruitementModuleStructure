@@ -397,45 +397,23 @@
 
      
 
-      <!-- <div id="userapplications4" class="collapse" style="padding-left: 7%">
         <a
+        (click)="scheduled1()"
           routerLink="/InterviewPanel/ScheduledInterviews"
           class="nonactive"
-          (click)="openCity($event)"
+          (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' " 
         >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 20px;"
-          />&nbsp; SCHEDULED INTERVIEWS
-        
-        </a>
-      </div>        -->
-        <!-- <a
-          (click)="Scheduled()"
-          *ngIf="roleid == 8 && roleid==5"
-          class="nonactive"
-          (click)="openCity($event)"
-        >
-          <img
-            src="assets/Images/Vector.png"
-            style="width: 13%; margin-right: 17px"
-          />
-
-          &nbsp;SCHEDULED INTERVIEWS
-        </a> -->
-        <a (click)="Scheduled()" class="nonactive" (click)="openCity($event)"  [ngClass]="manPowerMenu==99?'highlighting': ''" *ngIf="roleid==5 || roleid==6">
-          <img
-            *ngIf="manPowerMenu!=99"
-            src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
-          <img
-            *ngIf="manPowerMenu==99"
-            src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
-            style="width: 13%; margin-right: 17px"
-          />
-
-          &nbsp;Scheduled
+        <img
+        *ngIf="manPowerMenu==11"
+        src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+        style="width: 13%; margin-right: 17px"
+      />
+      <img
+      *ngIf="manPowerMenu!=11"
+      src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+      style="width: 13%; margin-right: 17px"
+    />
+          &nbsp; SCHEDULED 
         </a>
 
 
@@ -755,7 +733,6 @@
       src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
       style="width: 13%; margin-right: 17px"
     />
-
           &nbsp; SCHEDULED 
         </a>
       </div>

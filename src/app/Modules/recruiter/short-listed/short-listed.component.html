@@ -18,7 +18,7 @@
       </div>
       <div class="col-lg-2">
         <select *ngIf="roleid!=2" class="form-control form-select poppinns" [(ngModel)]="hiringManager"
-          (change)="GetJobRequirements()">
+          (change)="filterbyHirirngManager()">
           <option value="">Select Hiring Manager</option>
           <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
         </select>
