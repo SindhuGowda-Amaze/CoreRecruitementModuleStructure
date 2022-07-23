@@ -87,7 +87,7 @@ export class JobDescriptionFormComponent implements OnInit {
           next: data => {
             debugger
             let id = data;
-            Swal.fire("Successfully saved!!")
+            Swal.fire("Successfully Saved!!")
             location.href = "#/admin/JobDescriptionDash"
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');

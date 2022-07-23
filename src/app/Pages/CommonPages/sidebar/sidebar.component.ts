@@ -579,9 +579,12 @@ export class SidebarComponent implements OnInit {
 
 
   public Scheduled() {
-    this.manPowerMenu=99;
-    localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
-    this.router.navigate(['/InterviewPanel/ScheduledInterviews']);
+    if(this.roleid=='5' || this.roleid=='5'){
+      this.manPowerMenu=99;
+      localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS')
+      this.router.navigate(['/InterviewPanel/ScheduledInterviews']);
+    }
+   
     // this.scheduled = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
