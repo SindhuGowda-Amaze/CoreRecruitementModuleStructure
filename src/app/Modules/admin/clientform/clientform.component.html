@@ -35,6 +35,7 @@
                                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                         </ngx-dropzone-preview>
                                     </ngx-dropzone>
+                                    <br>
                                     <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
 
                                 </div>
@@ -65,7 +66,7 @@
                                       id="Email"  name="Email" formControlName="Email">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"
+                                    <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"  maxlength="11"
                                     id="PhoneNo"  formControlName="PhoneNo"  onkeypress="return /[0-9]/i.test(event.key)">
 
                                    
