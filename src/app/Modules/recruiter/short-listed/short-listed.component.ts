@@ -48,10 +48,11 @@ export class ShortListedComponent implements OnInit {
     this.searchbyctc = "";
     this.searchbynotice = "";
     this.hiringManager = "";
-    this.RecruitmentServiceService.GetClientStaff()
-      .subscribe(data => {
-        this.hrlist = data;
-      })
+   
+ this.RecruitmentServiceService.GetRecruiterStaff()
+ .subscribe(data => {
+   this.hrlist = data.filter(x=>x.role=="Hiring Manager");
+ })
     this.GetStaffType();
   
     this.userid = sessionStorage.getItem('userid')
@@ -210,7 +211,7 @@ export class ShortListedComponent implements OnInit {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data.filter(x=>x.role=="Interview Panel");
+        this.stafflist = data.filter(x=>x.role=="Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
         // Swal.fire('Issue in Getting Expenses List Web');
         var obj = {

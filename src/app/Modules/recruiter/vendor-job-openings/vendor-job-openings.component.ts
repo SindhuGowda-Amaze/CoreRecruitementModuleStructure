@@ -45,10 +45,10 @@ export class VendorJobOpeningsComponent implements OnInit {
     this.vendorid = sessionStorage.getItem('vendorid');
     this.username = sessionStorage.getItem('UserName')
     this.roleid = sessionStorage.getItem("roleid")
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.hrlist = data;
+        this.hrlist = data.filter(x=>x.role=="Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Client Staff');
         var obj = {
