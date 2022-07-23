@@ -49,7 +49,7 @@ export class ClientdashboardComponent implements OnInit {
 
   edit(id: any){
     debugger
-    location.href= "#admin/Clientform/ "+ id;
+    location.href= "#/admin/Clientform/ "+ id;
     }
     public delete(details: any) {
       debugger

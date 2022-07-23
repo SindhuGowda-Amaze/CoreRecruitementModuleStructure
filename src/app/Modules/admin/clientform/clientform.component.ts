@@ -58,34 +58,6 @@ export class ClientformComponent implements OnInit {
   }
   Logo : any
 
-  GetClientMaster() {
-    this.RecruitmentServiceService.GetClientMaster().subscribe({
-      next: data => {
-        debugger
-        this.result = data;
-        this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-        this.ID = this.result[0].id;
-        this.Company_logo = this.result[0].Logourl;
-        this.Name = this.result[0].name;
-        this.PhoneNo = this.result[0].phoneNo;
-        this.Email = this.result[0].email;
-        this.Address = this.result[0].address;
-        this.Logo = this.result[0].logo
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
 
 
 
@@ -114,7 +86,7 @@ export class ClientformComponent implements OnInit {
     this.RecruitmentServiceService.InsertClientMaster(json).subscribe({
       next: data => {
         debugger
-        location.href = "#admin/ClientDashBoard"
+        location.href = "#/admin/ClientDashBoard"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -200,8 +172,8 @@ export class ClientformComponent implements OnInit {
         next: data => {
           debugger
           let id = data;
-          Swal.fire("Successfully Submitted...!!");
-          location.href ="#admin/Clientdashboard"
+          Swal.fire("Saved Successfully!!");
+          location.href ="#/admin/Clientdashboard"
         
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
@@ -221,6 +193,36 @@ export class ClientformComponent implements OnInit {
     }
 
   }
+
+  
+  GetClientMaster() {
+    this.RecruitmentServiceService.GetClientMaster().subscribe({
+      next: data => {
+        debugger
+        this.result = data;
+        this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
+        this.ID = this.result[0].id;
+        this.Company_logo = this.result[0].logourl;
+        this.Name = this.result[0].name;
+        this.PhoneNo = this.result[0].phoneNo;
+        this.Email = this.result[0].email;
+        this.Address = this.result[0].address;
+        this.Logo = this.result[0].logo
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
   public Update() {
     debugger;
     var entity = {
@@ -236,7 +238,7 @@ export class ClientformComponent implements OnInit {
         debugger
         Swal.fire("Updated Successfully...");
         debugger
-        location.href ="#admin/Clientdashboard";
+        location.href ="#/admin/Clientdashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//

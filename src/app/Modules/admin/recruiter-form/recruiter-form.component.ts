@@ -54,9 +54,9 @@ export class RecruiterFormComponent implements OnInit {
         this.PhoneNo = this.recruiterlist[0].phoneNo;
         this.Email = this.recruiterlist[0].email;
         this.Address = this.recruiterlist[0].address;
-        this.Signature = this.recruiterlist[0].Logourl;
+        this.Signature = this.recruiterlist[0].logourl;
         this.roleid= this.recruiterlist[0].roleId
-        this.Logo = this.recruiterlist[0].logo
+        this.Logo = this.recruiterlist[0].signature
         // this.count = this.recruiterlist.length;
       })
 

@@ -29,8 +29,8 @@ export class OfferedCandidatesComponent implements OnInit {
   endDate: any
   staffdetails: any
   vendor: any
-  Role1:any
-  GetJobDescription:any
+  Role1: any
+
 
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
@@ -43,7 +43,7 @@ export class OfferedCandidatesComponent implements OnInit {
   public todaydate = new Date().getDate();
   public options1: any;
   currentUrl: any
- 
+
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
   ngOnInit(): void {
 
@@ -52,8 +52,8 @@ export class OfferedCandidatesComponent implements OnInit {
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.GetCandidateReg()
-    this.GetJobDescription1()
-    this.Role1=""
+    this.GetJobDescription();
+    this.Role1 = ""
 
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
@@ -61,7 +61,7 @@ export class OfferedCandidatesComponent implements OnInit {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.hrlist = data.filter(x=>x.role=="Hiring Manager");
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Client Staff');
@@ -177,6 +177,45 @@ export class OfferedCandidatesComponent implements OnInit {
     })
 
   }
+
+  jobdescriptionID: any;
+  public filterbyJD(even: any) {
+    this.jobdescriptionID = even.target.value
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2) {
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 && x.jobTitle == this.jobdescriptionID);
+          this.buildcallender(this.joblist);
+        }
+        else {
+          this.joblist = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0 && x.jobTitle == this.jobdescriptionID);
+          this.jobListCopy = this.joblist
+          this.buildcallender(this.joblist);
+        }
+
+        this.loader = false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+  }
+
+
 
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
@@ -388,12 +427,12 @@ export class OfferedCandidatesComponent implements OnInit {
     });
   }
 
-  public Role(){
-    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data=>{
-      this.staffdetails=data
+  public Role() {
+    this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data => {
+      this.staffdetails = data
     })
-     
-   
+
+
 
   }
 
@@ -424,15 +463,15 @@ export class OfferedCandidatesComponent implements OnInit {
 
   // }
 
-  
 
-  public GetJobDescription1() {
+
+  public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: data => {
         debugger
         this.staffdetails = data;
-        this.loader=false;
-        this.count=this.staffdetails.length;
+        this.loader = false;
+        this.count = this.staffdetails.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Get Job Description Master ');
         // Insert error in Db Here//
