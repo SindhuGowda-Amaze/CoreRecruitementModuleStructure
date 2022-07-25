@@ -1,3 +1,12 @@
+// Product : DigiCoreRecrcitment System 1.0 
+// Date : 28 Jan, 2022
+// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
+// Description :this procedure Gets the active records of CandidateRegistration Table
+// Last Modified Date : 25 July , 2022
+// Last Modified Changes :   Added comments
+// Last Modified By : Madhava
+// Copyrights : AmazeINC-Bangalore-2022 
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -9,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./client-staff-form.component.css']
 })
 export class ClientStaffFormComponent implements OnInit {
+  //variable Declaration
   currentUrl: any;
   res: any
   id: any;
@@ -35,6 +45,7 @@ export class ClientStaffFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //variable initialisation
     this.currentUrl = window.location.href;
     this.GetRoleType();
     this.GetClientMaster();
@@ -47,7 +58,8 @@ export class ClientStaffFormComponent implements OnInit {
         }
       })
   }
-
+// Default Method calls
+//// Method to display data  from RoleType Table
   public GetRoleType() {
     debugger
     this.RecruitmentServiceService.GetRoleType().subscribe({
@@ -70,7 +82,7 @@ export class ClientStaffFormComponent implements OnInit {
       }
     })
   }
-
+// Method to display data  from ClientMaster Table
   public GetClientMaster() {
     debugger
     this.RecruitmentServiceService.GetClientMaster().subscribe({
@@ -94,7 +106,7 @@ export class ClientStaffFormComponent implements OnInit {
     })
   }
 
-
+// Method to display data  from ClientStaff Table
   GetClientStaff1() {
     this.RecruitmentServiceService.GetClientStaff().subscribe(
       data => {
@@ -138,6 +150,7 @@ export class ClientStaffFormComponent implements OnInit {
       "Address": this.Address,
       "Signature": this.Signature,
     };
+    // Method to insert data  from ClientStaff Table
     this.RecruitmentServiceService.InsertClientStaff(json).subscribe({
       next: data => {
         debugger
@@ -166,7 +179,7 @@ export class ClientStaffFormComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
+// Method to display image  from ClientStaff Table
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -202,7 +215,7 @@ export class ClientStaffFormComponent implements OnInit {
       "Address": this.Address,
       "Signature": this.Signature,
     };
-
+// Method to update  data  in ClientStaff Table
     this.RecruitmentServiceService.UpdateClientStaff(json).subscribe({
       next: data => {
         debugger

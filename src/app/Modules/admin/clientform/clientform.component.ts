@@ -1,3 +1,12 @@
+// Product : DigiCoreRecrcitment System 1.0 
+// Date : 28 Jan, 2022
+// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
+// Description :this procedure Gets the active records of CandidateRegistration Table
+// Last Modified Date : 25 July , 2022
+// Last Modified Changes :   Added comments
+// Last Modified By : Madhava
+// Copyrights : AmazeINC-Bangalore-2022 
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -11,6 +20,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./clientform.component.css']
 })
 export class ClientformComponent implements OnInit {
+  //varaiable Declaration
   RegForm = new FormGroup({
     // Company_logo: new FormControl('', Validators.required),
     Name: new FormControl('', Validators.required),
@@ -41,6 +51,7 @@ export class ClientformComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+     //variable initialisation
     this.currentUrl = window.location.href;
     this.ActivatedRoute.params
       .subscribe(params => {
@@ -65,7 +76,8 @@ export class ClientformComponent implements OnInit {
     this.uploadattachments();
     console.log("content", this.files);
   }
-
+//Default Method Calls 
+//Method to insert data in ClientMaster Table
   public InsertClientMaster() {
     debugger
     var json = {
@@ -102,7 +114,7 @@ export class ClientformComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
+//Method to Display Image in UploadImages Table
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -125,7 +137,7 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
-
+//Method to insert data from ClientMaster Table
   public Save() {
     debugger
     if (this.Name == undefined || this.PhoneNo == undefined || this.Email == undefined || this.Address == undefined || this.Company_logo == undefined) {
@@ -166,7 +178,7 @@ export class ClientformComponent implements OnInit {
     }
 
   }
-
+//Method to Display data from ClientMaster table 
   GetClientMaster() {
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {

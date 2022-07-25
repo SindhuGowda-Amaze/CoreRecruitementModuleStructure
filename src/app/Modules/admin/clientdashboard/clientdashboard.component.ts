@@ -1,3 +1,12 @@
+// Product : DigiCoreRecrcitment System 1.0 
+// Date : 28 Jan, 2022
+// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
+// Description :this procedure Gets the active records of CandidateRegistration Table
+// Last Modified Date : 25 July , 2022
+// Last Modified Changes :   Added comments
+// Last Modified By : Madhava
+// Copyrights : AmazeINC-Bangalore-2022 
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,20 +18,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./clientdashboard.component.css']
 })
 export class ClientdashboardComponent implements OnInit {
+  //variable Declaration
   Job: any;
   count: any;
   search: any;
   loader: any;
   currentUrl: any
+  ClientMasterlist: any
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+        //variable initialisation
+
     this.currentUrl = window.location.href;
     this.GetClientMaster()
     this.loader = true;
   }
 
-  ClientMasterlist: any
+// Default Method calls
+// Method to display data  from ClientMaster Table 
   public GetClientMaster() {
     debugger
     this.RecruitmentServiceService.GetClientMaster().subscribe({
@@ -46,11 +60,12 @@ export class ClientdashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to edit data  in ClientMaster Table 
   edit(id: any) {
     debugger
     location.href = "#/admin/Clientform/ " + id;
   }
+ // Method to delete  data  in ClientMaster Table  
   public delete(details: any) {
     debugger
     var json = {

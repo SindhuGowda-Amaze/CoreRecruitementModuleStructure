@@ -6,6 +6,8 @@
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Madhava
 // --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +21,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  // variable declaration
+
   currentUrl: any;
   clientlist: any;
   clientlist1: any;
@@ -40,9 +45,16 @@ export class AdminDashboardComponent implements OnInit {
   constructor(public router: Router, private datePipe: DatePipe,
     private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    // variable initialisation
     this.currentUrl = window.location.href;
     this.temp = sessionStorage.getItem('temp')
+    
+
+
+// Default Method calls
+// Method to display Count  from ClientMaster Table
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {
         debugger
@@ -64,7 +76,7 @@ export class AdminDashboardComponent implements OnInit {
         )
       }
     })
-
+// Method to display Count  from ClientStaff Table
     this.RecruitmentServiceService.GetClientStaff().subscribe({
       next: data => {
         debugger
@@ -87,6 +99,7 @@ export class AdminDashboardComponent implements OnInit {
       }
     })
 
+// Method to display Count  from Vendor Dasboard Table
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
@@ -108,7 +121,7 @@ export class AdminDashboardComponent implements OnInit {
         )
       }
     })
-
+// Method to display Count  from RecruiterStaff Table
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
@@ -131,7 +144,7 @@ export class AdminDashboardComponent implements OnInit {
         )
       }
     })
-
+// Method to display Count  from Vendor_Staff Table
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
       next: data => {
         debugger

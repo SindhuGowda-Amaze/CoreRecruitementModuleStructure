@@ -6,6 +6,8 @@
 // Last Modified Changes :   Added comments
 // Last Modified By : Madhava
 // Copyrights : AmazeINC-Bangalore-2022 
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +19,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./client-staff-dashboard.component.css']
 })
 export class ClientStaffDashboardComponent implements OnInit {
+   // variable declaration
   Job:any;
   count: any;
   search:any;
@@ -27,11 +30,14 @@ export class ClientStaffDashboardComponent implements OnInit {
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+        // variable initialisation
     this.currentUrl = window.location.href;
    this.GetClientStaff();
    this.loader=true;
   }
 
+// Default Method calls
+// Method to display data  from ClientStaff Table
   public GetClientStaff() {
     debugger
     this.RecruitmentServiceService.GetClientStaff().subscribe({
@@ -55,13 +61,13 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to update the  data  from ClientStaff Table
   edit(details: any){
     debugger
     location.href="#/admin/ClientStaffForm/"+ details;
     }
 
-
+// Method to delete  the  data  from ClientStaff Table
   public delete(details: any) {
     debugger
     var json={
@@ -98,7 +104,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to EnableStaff from ClientStaff
   public DisableStaff(id: any) {
     debugger
     var eb = {
@@ -136,7 +142,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to DisableStaff from ClientStaff
   public DisableStaff1(id: any) {
     debugger
     var eb = {
