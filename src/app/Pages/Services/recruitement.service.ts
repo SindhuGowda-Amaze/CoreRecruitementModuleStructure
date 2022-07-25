@@ -471,6 +471,13 @@ export class RecruitementService {
 
   }
 
+  public GetExceptionLogs() {
+    return this.http.get<any[]>(
+      this.host + "/Master/GetExceptionLogs"
+
+    );
+  }
+
   public GetClosedJobRequirement() {
     return this.http.get<any[]>(this.host + "/Master/GetClosedJobRequirement");
   }

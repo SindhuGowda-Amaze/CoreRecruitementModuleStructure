@@ -498,11 +498,28 @@ export class AppliedCandidatesComponent implements OnInit {
 
   }
 
+
+  public SendJobMail(sub: any, desc: any, email: any) {
+    debugger
+    var entity3 = {
+      'emailto': email,
+      'emailsubject': sub,
+      'emailbody': desc,
+      'attachmenturl': [],
+      'cclist': [],
+      'bcclist': [],
+    }
+    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+      debugger;
+      Swal.fire('Emails Sent');
+    })
+  }
+
+  
   public SendMailEmployee() {
     debugger
     var entity3 = {
       'emailto': 'sindhugowda.amazeinc@gmail.com',
-      // 'emailto': 'divyashree@amazeinc.in',
       'emailsubject': 'Shortlisted Candidates',
       'emailbody': 'Dear Applicant,<br>Congratulation!!<br> Your Resume has been Shortlisted for futher Rounds of Interviews.<br>Thanks',
       'attachmenturl': [],
@@ -511,7 +528,6 @@ export class AppliedCandidatesComponent implements OnInit {
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
-      // Swal.fire('Letter Generated and Sent Successfully');
       Swal.fire('Email Sent');
     })
   }
