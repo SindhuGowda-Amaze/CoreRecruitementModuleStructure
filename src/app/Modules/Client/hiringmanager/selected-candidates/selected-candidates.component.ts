@@ -14,7 +14,7 @@ export class SelectedCandidatesComponent implements OnInit {
   err: any;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-
+  hiringManager: any;
   DeminimisList: any;
   deminimis: any;
   joblist: any;
@@ -43,22 +43,35 @@ export class SelectedCandidatesComponent implements OnInit {
   ctc: any;
   netsalary: any;
   currentUrl: any
-  staffdetails:any
-  Role:any
-  data : any
-  
+  staffdetails: any
+  Role: any
+  data: any
+  recruiter: any
+  emailattchementurl = [];
+  public email: any;
+  public doctorname: any;
+  dummjoblist1: any;
+  candidateid: any;
+  candidatename: any;
+  Date: any;
+  userid: any;
+  endDate: any
+  demenisamt: any;
+  id: any;
+  jobdescriptionID: any;
+  jobdescription: any;
 
   ngOnInit(): void {
     this.GetJobDescription()
-    this.Role=""
+    this.Role = ""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
     this.hiringManager = "";
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.hrlist = data;
-
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
+        this.recruiter = data.filter(x => x.role == "Recruiter");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -74,17 +87,12 @@ export class SelectedCandidatesComponent implements OnInit {
       }
     })
 
-
-
-
-
-
     this.GetCandidateReg()
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
   }
-  dummjoblist1: any;
+
   public GetCandidateReg() {
     debugger
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -121,16 +129,17 @@ export class SelectedCandidatesComponent implements OnInit {
       }
     })
   }
-  candidateid: any;
-  candidatename: any;
+
   public GetOfferID(id: any, job: any) {
     this.candidateid = id;
     this.candidatename = job.candidateName,
       this.email = job.email
   }
+
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
+
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
@@ -149,11 +158,13 @@ export class SelectedCandidatesComponent implements OnInit {
       Swal.fire("Please Add Pdf Format");
     }
   }
+
   onRemove(event: any) {
     debugger
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -175,7 +186,8 @@ export class SelectedCandidatesComponent implements OnInit {
       }
     })
   }
- public updatedetails() {
+
+  public updatedetails() {
 
     if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
       this.offernotes == null || this.offernotes == undefined || this.offernotes == 0 ||
@@ -196,6 +208,7 @@ export class SelectedCandidatesComponent implements OnInit {
           debugger
           Swal.fire("Candidate Offered Successfully");
           this.sendmail()
+          this.InsertNotificationRecruiter();
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
           // Insert error in Db Here//
@@ -213,7 +226,8 @@ export class SelectedCandidatesComponent implements OnInit {
       location.reload();
     }
   }
-public updatejoiningdate() {
+
+  public updatejoiningdate() {
     if (this.date == null || this.date == undefined || this.date == 0 ||
       this.joiningbonus == null || this.joiningbonus == undefined || this.joiningbonus == 0 ||
       this.noticeperiodbythen == null || this.noticeperiodbythen == undefined || this.noticeperiodbythen == 0 ||
@@ -253,10 +267,6 @@ public updatejoiningdate() {
 
   }
 
-  emailattchementurl = [];
-  public email: any;
-  public doctorname: any;
-
   public sendmail() {
 
     var entity = {
@@ -268,12 +278,37 @@ public updatejoiningdate() {
       'bcclist': 0
     }
     this.RecruitmentServiceService.sendemail(entity).subscribe(data => {
+    })
+  }
+
+
+  public InsertNotificationRecruiter() {
+    debugger
+    var event: any = 'Candidate Selected';
+    this.RecruitmentServiceService.InsertNotificationSBU(event, this.recruiter, 'Your Candidate ' + this.candidatename + ' Selected')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
 
-  Date: any;
-  userid: any;
-  endDate:any
+
+
   // public GetDate(event:any) {
   //   if(this.Date==0){
   //     debugger
@@ -319,32 +354,6 @@ public updatejoiningdate() {
         debugger
         // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
         this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
-
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    }) ;
-  }
-
-  public changeoption() {
-    debugger;
-
-    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => (x.interviewSelected == 1 && x.offered == 0) && (x.noticePeriod == this.searchbynotice));
-
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -361,10 +370,30 @@ public updatejoiningdate() {
     });
   }
 
-  hiringManager: any;
+  public changeoption() {
+    debugger;
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => (x.interviewSelected == 1 && x.offered == 0) && (x.noticePeriod == this.searchbynotice));
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    });
+  }
+
+
   public GetJobRequirements() {
-
-
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
@@ -391,7 +420,7 @@ public updatejoiningdate() {
   GetJobDeminimis() {
 
   }
-  demenisamt: any;
+
 
 
   getid(even: any) {
@@ -410,11 +439,9 @@ public updatejoiningdate() {
         this.netsalary = this.basicsalary + this.demenisamt;
         this.ctc = this.netsalary * 12;
         this.currentlevel = temp[0].level;
-
-
       })
   }
-  id: any;
+
   public ApproveId() {
     Swal.fire({
       title: 'Are you sure?',
@@ -452,6 +479,8 @@ public updatejoiningdate() {
       }
     })
   }
+
+
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -489,11 +518,7 @@ public updatejoiningdate() {
       }
     })
   }
- 
 
-
-
-  jobdescription:any;
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -518,21 +543,21 @@ public updatejoiningdate() {
     });
   }
 
-  jobdescriptionID:any;
-  public filterByJD(even:any){
-    this.jobdescriptionID=even.target.value
+
+  public filterByJD(even: any) {
+    this.jobdescriptionID = even.target.value
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
         if (this.roleid == 2) {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle==this.jobdescriptionID );
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle == this.jobdescriptionID);
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.count = this.joblist.length;
           this.loader = false;
         }
         else {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle==this.jobdescriptionID );
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.jobTitle == this.jobdescriptionID);
           this.jobListCopy = this.joblist;
           this.dummjoblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.dummjoblist1 = data.filter(x => x.interviewSelected != 1 && x.offered != 0);
@@ -555,12 +580,5 @@ public updatejoiningdate() {
         )
       }
     })
-
-
-
-
-
-
-
-}
+  }
 }
