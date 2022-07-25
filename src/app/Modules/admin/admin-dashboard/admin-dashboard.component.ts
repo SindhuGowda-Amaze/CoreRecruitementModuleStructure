@@ -12,36 +12,36 @@ import Swal from 'sweetalert2';
 })
 export class AdminDashboardComponent implements OnInit {
   currentUrl: any;
-
+  clientlist: any;
+  clientlist1: any;
+  count: any;
+  clientstafflist: any;
+  clientstafflist1: any;
+  count1: any;
+  Vendorlist: any;
+  Vendorlist1: any;
+  count2: any;
+  CompanyStaffList: any;
+  CompanyStaffList1: any;
+  count3: any;
+  vendorstafflist: any;
+  vendorstafflist1: any;
+  count4: any;
+  temp: any;
+  err: any
   constructor(public router: Router, private datePipe: DatePipe,
     private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-    clientlist:any;
-    clientlist1:any;
-    count:any;
-    clientstafflist:any;
-    clientstafflist1:any;
-    count1:any;
-    Vendorlist:any;
-    Vendorlist1:any;
-    count2:any;
-    CompanyStaffList:any;
-    CompanyStaffList1:any;
-    count3:any;
-    vendorstafflist:any;
-    vendorstafflist1:any;
-    count4:any;
-    temp:any;
-    err:any
+
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.temp=sessionStorage.getItem('temp')
+    this.temp = sessionStorage.getItem('temp')
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {
         debugger
         this.clientlist = data;
-      // this.clientlist1 = this.clientlist.slice(0, 4);
-      this.count = this.clientlist.length
-      debugger
+        // this.clientlist1 = this.clientlist.slice(0, 4);
+        this.count = this.clientlist.length
+        debugger
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Getting Client Master ');
         // Insert error in Db Here//
@@ -59,11 +59,11 @@ export class AdminDashboardComponent implements OnInit {
 
     this.RecruitmentServiceService.GetClientStaff().subscribe({
       next: data => {
-        debugger        
- this.clientstafflist = data;
- this.clientstafflist1 = this.clientstafflist.slice(0, 4);
- this.count1 = this.clientstafflist.length
- debugger
+        debugger
+        this.clientstafflist = data;
+        this.clientstafflist1 = this.clientstafflist.slice(0, 4);
+        this.count1 = this.clientstafflist.length
+        debugger
       }, error: (err) => {
         Swal.fire('Issue in Getting Client Master ');
         // Insert error in Db Here//
@@ -108,7 +108,7 @@ export class AdminDashboardComponent implements OnInit {
         this.CompanyStaffList1 = this.CompanyStaffList.slice(0, 4);
         this.count3 = this.CompanyStaffList.length
         debugger
-       
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -128,9 +128,9 @@ export class AdminDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.vendorstafflist = data;
-      this.vendorstafflist1 = this.vendorstafflist.slice(0, 4);
-      this.count4 = this.vendorstafflist.length
-      debugger
+        this.vendorstafflist1 = this.vendorstafflist.slice(0, 4);
+        this.count4 = this.vendorstafflist.length
+        debugger
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Expenses List Web');
         // Insert error in Db Here//
@@ -148,33 +148,31 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-  public Regularization() {
+  public GoToClientdashboard() {
     debugger
     this.router.navigate(['/admin/Clientdashboard']);
   }
 
-  public Regularization1() {
+  public GoToClientStaffDashBoard() {
     debugger
     this.router.navigate(['/admin/ClientStaffDashBoard']);
   }
 
-  public Regularization2() {
+  public GoToVendorDashboard() {
     debugger
     this.router.navigate(['/admin/VendorDashboard']);
-    
+
   }
 
-  public Regularization3() {
+  public GoToVendorStaffDashboard() {
     debugger
     this.router.navigate(['/admin/VendorStaffDashboard']);
   }
 
-  public Regularization4() {
+  public GoToRecruiterStaffDashboard() {
     debugger
     this.router.navigate(['/admin/RecruiterStaffDashboard']);
   }
-
-  
 
   public flip(event: { currentTarget: any; }) {
     debugger
@@ -189,7 +187,6 @@ export class AdminDashboardComponent implements OnInit {
     }
   };
 
-
   public flip1(event: { currentTarget: any; }) {
     debugger
     var element = event.currentTarget;
@@ -202,6 +199,4 @@ export class AdminDashboardComponent implements OnInit {
       }
     }
   };
-
-
 }

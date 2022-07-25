@@ -33,14 +33,15 @@ export class ClientformComponent implements OnInit {
   Email: any;
   Address: any;
   result: any;
-  show : any
+  show: any
   logo: any;
+  Logo: any
+  files: File[] = [];
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-
     this.ActivatedRoute.params
       .subscribe(params => {
         debugger
@@ -48,21 +49,15 @@ export class ClientformComponent implements OnInit {
         if (this.id != null && this.id != undefined) {
           this.GetClientMaster();
           this.showButton = 1;
-          this.show=1
+          this.show = 1
         }
         else {
           this.showButton = 2;
           this.GetClientMaster();
         }
       })
-
   }
-  Logo : any
 
-
-
-
-  files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -74,14 +69,11 @@ export class ClientformComponent implements OnInit {
   public InsertClientMaster() {
     debugger
     var json = {
-
-
       "Logo": this.Company_logo,
       "Name": this.Name,
       "PhoneNo": this.PhoneNo,
       "Email": this.Email,
       "Address": this.Address,
-
     };
 
     this.RecruitmentServiceService.InsertClientMaster(json).subscribe({
@@ -102,7 +94,7 @@ export class ClientformComponent implements OnInit {
         )
       }
     })
-  alert("Mentioned PhoneNo is " + this.PhoneNo)
+    alert("Mentioned PhoneNo is " + this.PhoneNo)
   }
 
   onRemove(event: any) {
@@ -133,30 +125,10 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
- // Save() {
-  //   debugger
-  //   var json = {
-  //     "Logo": this.Company_logo,
-  //     "Name": this.Name,
-  //     "PhoneNo": this.PhoneNo,
-  //     "Email": this.Email,
-  //     "Address": this.Address,
-  //   };
-  //   this.RecruitmentServiceService.InsertClientMaster(json).subscribe(
-  //     data => {
-  //       debugger
-  //       let id = data;
-  //       alert("Successfully Submitted...!!")
-  //       location.href = "/ClientDashBoard"
-  //     })
-  // }
-
 
   public Save() {
     debugger
-      if(this.Name==undefined||this.PhoneNo==undefined||this.Email==undefined||this.Address==undefined||this.Company_logo==undefined)
-    {
-     
+    if (this.Name == undefined || this.PhoneNo == undefined || this.Email == undefined || this.Address == undefined || this.Company_logo == undefined) {
     }
     if (this.RegForm.invalid) {
       Swal.fire("Please Fill All Fields to Save!!!")
@@ -174,8 +146,8 @@ export class ClientformComponent implements OnInit {
           debugger
           let id = data;
           Swal.fire("Saved Successfully!!");
-          location.href ="#/admin/Clientdashboard"
-        
+          location.href = "#/admin/Clientdashboard"
+
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Inserting ClientMaster');
           // Insert error in Db Here//
@@ -195,7 +167,6 @@ export class ClientformComponent implements OnInit {
 
   }
 
-  
   GetClientMaster() {
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {
@@ -224,6 +195,7 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
+
   public Update() {
     debugger;
     var entity = {
@@ -239,7 +211,7 @@ export class ClientformComponent implements OnInit {
         debugger
         Swal.fire("Updated Successfully...");
         debugger
-        location.href ="#/admin/Clientdashboard";
+        location.href = "#/admin/Clientdashboard";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Updating ClientMaster');
         // Insert error in Db Here//
@@ -259,24 +231,5 @@ export class ClientformComponent implements OnInit {
   cancel() {
     location.href = "#/admin/Clientdashboard";
   }
-
-  // Update() { 
-  //   debugger
-  //   var json = {
-  //     "Logo": this.Company_logo,
-  //     "Name": this.Name,
-  //     "PhoneNo": this.PhoneNo,
-  //     "Email": this.Email,
-  //     "Address": this.Address,
-  //   };
-
-  //   this.RecruitmentServiceService.UpdateClientMaster(json).subscribe(
-  //     data => {
-  //       debugger
-  //       let result = data;
-  //       Swal.fire("Updated Sucessfully...");
-  //       location.href = "/ClientDashBoard";
-  //     })
-  // }
 
 }

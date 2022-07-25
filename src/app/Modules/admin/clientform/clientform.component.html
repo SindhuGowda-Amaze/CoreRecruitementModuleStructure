@@ -11,38 +11,38 @@
             <div class="col-lg-12">
                 <div class="card">
                     <br>
-                        <form [formGroup]="RegForm" style="margin-left: 30px; margin-right: 30px;">
-                            <div class="row leavereq">
-                                <div class="col-md-3">
-                                    <label>Client Logo<span style="color: red;">*</span></label>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Client Name<span style="color: red;">*</span></label>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Email <span style="color: red;">*</span></label>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Phone No.<span style="color: red;">*</span></label>
-                                </div>
+                    <form [formGroup]="RegForm" style="margin-left: 30px; margin-right: 30px;">
+                        <div class="row leavereq">
+                            <div class="col-md-3">
+                                <label>Client Logo<span style="color: red;">*</span></label>
                             </div>
-                            <div class="row leavereq">
-                                <div class="col-md-3">
-                                    <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
-                                        <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
-                                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
-                                            (removed)="onRemove(f)">
-                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                        </ngx-dropzone-preview>
-                                    </ngx-dropzone>
-                                    <br>
-                                    <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
+                            <div class="col-md-3">
+                                <label>Client Name<span style="color: red;">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Email <span style="color: red;">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Phone No.<span style="color: red;">*</span></label>
+                            </div>
+                        </div>
+                        <div class="row leavereq">
+                            <div class="col-md-3">
+                                <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                    <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+                                        (removed)="onRemove(f)">
+                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                    </ngx-dropzone-preview>
+                                </ngx-dropzone>
+                                <br>
+                                <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
 
-                                </div>
-                                <!-- <div class="col-md-2">
+                            </div>
+                            <!-- <div class="col-md-2">
                                     <input type="text" class="form-control inputfield" [(ngModel)]="Role">
                                 </div> -->
-                                <!-- <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                     <div class="dropdown">
                                         <select class="form-control" name="Role" Id="Role" [(ngModel)]="Role">
                                             <option value="">Select </option>
@@ -50,77 +50,53 @@
                                         </select>
                                     </div>
                                 </div>  -->
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="Name" name="Name"
-                                        formControlName="Name" onkeypress="return /[A-Z]/i.test(event.key)">
-
-                                        <!-- <input class="form-control inputfield" id="Name" name="Name" [(ngModel)]="Name"
-
-                                        placeholder="Name" onkeypress="return /[A-Z]/i.test(event.key)"> -->
-
-
-
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="Email"  max="11"
-                                      id="Email"  name="Email" formControlName="Email">
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"  maxlength="11"
-                                    id="PhoneNo"  formControlName="PhoneNo"  onkeypress="return /[0-9]/i.test(event.key)">
-
-                                   
-                                    <!-- <input type="text" class="form-control inputfield" id="Mobile" name="PhoneNo" maxlength="11"  id="PhoneNo"
-                                            [(ngModel)]="PhoneNo" onkeypress="return /[0-9]/i.test(event.key)" placeholder="PhoneNo"> -->
-
-
-                                </div>
-                             
-                            
-                               
-
-                                <!-- <div class="col-md-3">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control inputfield" [(ngModel)]="Name" name="Name"
+                                    formControlName="Name" onkeypress="return /[A-Z]/i.test(event.key)">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control inputfield" [(ngModel)]="Email" max="11"
+                                    id="Email" name="Email" formControlName="Email">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"
+                                    maxlength="11" id="PhoneNo" formControlName="PhoneNo"
+                                    onkeypress="return /[0-9]/i.test(event.key)">
+                            </div>
+                            <!-- <div class="col-md-3">
                                     <input type="text" class="form-control inputfield" [(ngModel)]="Address"
                                         name="Address" formControlName="Address">
                                 </div> -->
-                                <!-- <div class="col-md-2">
+                            <!-- <div class="col-md-2">
                                     <input type="text" class="form-control inputfield" [(ngModel)]="Signature">
                                 </div> -->
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Address<span style="color: red;">*</span></label>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label>Address<span style="color: red;">*</span></label>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <textarea type="text" class="form-control inputfield" [(ngModel)]="Address" rows="4"
+                                    name="Address" formControlName="Address"></textarea>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <textarea type="text" class="form-control inputfield" [(ngModel)]="Address" rows="4"
-                                        name="Address" formControlName="Address"></textarea>
-                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-10"></div>
+                            <div class="col-lg-1">
+                                <button class="form-control Edit" (click)="cancel()">Cancel</button>
                             </div>
-
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-10"></div>
-                                <div class="col-lg-1">
-                                    <!-- <button class="form-control CancelBTN" (click)="cancel()">Cancel</button> -->
-                                    <button class="form-control Edit" (click)="cancel()">Cancel</button>
-                                </div>
-                                <div class="col-lg-1">
-                                    <!-- <button type="button" class="form-control SubmitBTN" *ngIf="showButton==2"
-                                        [disabled]="!RegForm.valid" (click)="Save()">Save</button>
-                                    <button type="button" class="form-control SubmitBTN" *ngIf="showButton==1"
-                                        (click)="Update()">Update</button> -->
-                                    <button type="button" class="form-control Edit" *ngIf="showButton==2"
-                                       (click)="Save()">Save</button>
-                                    <button type="button" class="form-control Edit" *ngIf="showButton==1"
-                                        (click)="Update()">Update</button>
-                                </div>
+                            <div class="col-lg-1">
+                                <button type="button" class="form-control Edit" *ngIf="showButton==2"
+                                    (click)="Save()">Save</button>
+                                <button type="button" class="form-control Edit" *ngIf="showButton==1"
+                                    (click)="Update()">Update</button>
                             </div>
-                        </form>
-                
-
+                        </div>
+                    </form>
                 </div>
             </div>
         </div><br>

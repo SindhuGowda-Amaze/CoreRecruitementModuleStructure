@@ -11,10 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AppliedCandidatesComponent implements OnInit {
   err: any;
 
-  constructor(
-    private RecruitmentServiceService: RecruitementService,
-    private ActivatedRoute: ActivatedRoute
-  ) {}
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   joblist: any;
   count: any;
   DropJobList: any;
@@ -38,6 +35,8 @@ export class AppliedCandidatesComponent implements OnInit {
   job: any;
   Role: any;
   staffdetails: any;
+  jobdescription: any;
+  jobdescriptionID: any;
 
   ngOnInit(): void {
     this.GetJobDescription();
@@ -48,30 +47,14 @@ export class AppliedCandidatesComponent implements OnInit {
     this.searchbyctc = '';
 
     this.roleid = sessionStorage.getItem('roleid');
-
     this.userid = sessionStorage.getItem('userid');
     this.username = sessionStorage.getItem('UserName');
 
-    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
-      next: (data) => {
-        debugger;
-        this.hrlist = data.filter(x=>x. role=="Hiring Manager");
-      },
-      error: (err: { error: { message: any } }) => {
-        Swal.fire('Getting Client Staff');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          (data) => {
-            debugger;
-          }
-        );
-      },
-    });
+    this.GetRecruiterStaff();
+    this.GetCandidateReg();
+  }
 
+  public GetCandidateReg() {
     if (this.roleid == '3') {
       debugger;
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -175,32 +158,28 @@ export class AppliedCandidatesComponent implements OnInit {
       });
     }
 
-    // this.GetCandidateReg();
   }
 
-  // public GetCandidateReg() {
-
-  //   this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  //     this.dummjoblist = data.filter(x => x.accept == 0 && x.reject == 0 )
-  //     this.joblist = data.filter(x => x.accept == 0 && x.reject == 0);
-
-  //     this.count = this.joblist.length;
-  //   })
-
-  //   this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-  //     this.DropJobList = data;
-
-  //   })
-
-  // }
-  public Ondelete(id: any) {
-    // this.DigipayrollServiceService.DeleteBanks(id).subscribe(
-    //   data => {
-    //     debugger
-    Swal.fire('Deleted');
-    //     this.GetBanks();
-    //   }
-    // )
+  public GetRecruiterStaff() {
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+      next: (data) => {
+        debugger;
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Getting Client Staff');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          (data) => {
+            debugger;
+          }
+        );
+      },
+    });
   }
 
   public Accept(id: any, shortlistionNotes: any) {
@@ -230,12 +209,9 @@ export class AppliedCandidatesComponent implements OnInit {
               'Candidate has been shortlisted',
               'success'
             );
+
             this.SendMailEmployee()
-          
             this.GetJobDescription();
-
-            debugger;
-
             this.loader = false;
           },
           (error) => {
@@ -308,7 +284,6 @@ export class AppliedCandidatesComponent implements OnInit {
 
   public changeoption() {
     debugger;
-
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: (data) => {
         debugger;
@@ -336,14 +311,12 @@ export class AppliedCandidatesComponent implements OnInit {
 
   public changectc() {
     debugger;
-
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: (data) => {
         debugger;
         this.joblist = data.filter(
           (x) => x.accept == 0 && x.reject == 0 && x.ctc == this.searchbyctc
         );
-
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
@@ -370,7 +343,6 @@ export class AppliedCandidatesComponent implements OnInit {
             x.hiringManager == this.hiringManager
         );
         // this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.hiringManager);
-
         this.count = this.joblist.length;
       },
       error: (err: { error: { message: any } }) => {
@@ -389,8 +361,6 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
-
-  jobdescription:any;
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -416,13 +386,10 @@ export class AppliedCandidatesComponent implements OnInit {
   }
 
 
-  jobdescriptionID:any;
-  public getjobdescription(even:any){
-    this.jobdescriptionID=even.target.value
+  public getjobdescription(even: any) {
+    this.jobdescriptionID = even.target.value
 
-
-
-  if (this.roleid == '3') {
+    if (this.roleid == '3') {
       debugger;
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
         next: (data) => {
@@ -432,25 +399,25 @@ export class AppliedCandidatesComponent implements OnInit {
               x.accept == 0 &&
               x.reject == 0 &&
               x.source == 'Vendor' &&
-              x.vendorId == this.userid 
-            
+              x.vendorId == this.userid
+
           );
           this.joblist = data.filter(
             (x) =>
               x.accept == 0 &&
               x.reject == 0 &&
               x.source == 'Vendor' &&
-              x.vendorId == this.userid && 
-              x.jobTitle==this.jobdescriptionID
-            
+              x.vendorId == this.userid &&
+              x.jobTitle == this.jobdescriptionID
+
           );
           this.noticeperiodlist = data.filter(
             (x) =>
               x.accept == 0 &&
               x.reject == 0 &&
               x.source == 'Vendor' &&
-              x.vendorId == this.userid 
-            
+              x.vendorId == this.userid
+
           );
           this.ctclist = data.filter(
             (x) =>
@@ -481,7 +448,7 @@ export class AppliedCandidatesComponent implements OnInit {
         next: (data) => {
           debugger;
           this.dummjoblist = data.filter((x) => x.accept == 0 && x.reject == 0);
-          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 &&  x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 && x.jobTitle == this.jobdescriptionID);
           this.noticeperiodlist = data.filter(
             (x) => x.accept == 0 && x.reject == 0
           );
@@ -507,7 +474,7 @@ export class AppliedCandidatesComponent implements OnInit {
         next: (data) => {
           debugger;
           this.dummjoblist = data.filter((x) => x.accept == 0 && x.reject == 0);
-          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 &&  x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter((x) => x.accept == 0 && x.reject == 0 && x.jobTitle == this.jobdescriptionID);
           this.noticeperiodlist = data.filter(
             (x) => x.accept == 0 && x.reject == 0
           );
@@ -531,29 +498,36 @@ export class AppliedCandidatesComponent implements OnInit {
 
   }
 
-  public SendMailEmployee() {
 
+  public SendJobMail(sub: any, desc: any, email: any) {
     debugger
-
     var entity3 = {
-
-      'emailto': 'sindhugowda.amazeinc@gmail.com',
-
-      // 'emailto': 'divyashree@amazeinc.in',
-
-      'emailsubject': 'Shortlisted Candidates',
-
-      'emailbody': 'Dear Applicant,<br>Congratulation!!<br> Your Resume has been Shortlisted for futher Rounds of Interviews.<br>Thanks',
-
+      'emailto': email,
+      'emailsubject': sub,
+      'emailbody': desc,
       'attachmenturl': [],
-
       'cclist': [],
-
       'bcclist': [],
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
-      // Swal.fire('Letter Generated and Sent Successfully');
+      Swal.fire('Emails Sent');
+    })
+  }
+
+  
+  public SendMailEmployee() {
+    debugger
+    var entity3 = {
+      'emailto': 'sindhugowda.amazeinc@gmail.com',
+      'emailsubject': 'Shortlisted Candidates',
+      'emailbody': 'Dear Applicant,<br>Congratulation!!<br> Your Resume has been Shortlisted for futher Rounds of Interviews.<br>Thanks',
+      'attachmenturl': [],
+      'cclist': [],
+      'bcclist': [],
+    }
+    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+      debugger;
       Swal.fire('Email Sent');
     })
   }

@@ -25,9 +25,6 @@ export class RecruiterStaffDashboardComponent implements OnInit {
       })
   }
 
-
-
-
   public delete(id: any) {
     debugger
 

@@ -11,12 +11,11 @@
         <div class="row FilterClass">
             <div class="col-lg-12">
                 <div class="card">
-                   
                     <div class="row">
-                        <div class="col-lg-1" >
+                        <div class="col-lg-1">
                             <p>Filter By</p>
                         </div>
-                        <div class="col-lg-4" >
+                        <div class="col-lg-4">
                             <input class="form-control poppinns" type="search" placeholder="Search" [(ngModel)]="search"
                                 name="search">
                         </div>
@@ -25,7 +24,6 @@
                             <p class="Count">Count: {{count}}</p>
                         </div>
                     </div>
-                 
                 </div>
             </div>
         </div><br>
@@ -58,14 +56,12 @@
                                 <!-- <td><img style="width:40% ; text-align:center;" src="{{vendor.signature}}"> </td> -->
                                 <td><button class="Edit" (click)="edit(vendor.id)">Edit</button> <br> <br>
                                     <button class="Edit" (click)="Ondelete(vendor.id)">Delete</button><br><br>
-
                                     <img src="assets/Images/activate.png" style="width:30%"
                                         *ngIf="vendor.enable_Disable==0 || vendor.enable_Disable==null "
                                         (click)="DisableStaff(vendor.id)"> <br />
 
                                     <img src="assets/Images/deactivate.png" *ngIf="vendor.enable_Disable==1"
                                         (click)="DisableStaff1(vendor.id)" style="width:30%">
-
                                 </td>
                             </tr>
                         </thead>

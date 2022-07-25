@@ -15,25 +15,36 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
   awardlist1: any
   awardlist: any;
   roleid: any;
-  search : any
-  p : any
+  search: any
+  p: any
   count1: any = 5;
+  Grandtotal: any;
+  fromlogin: any;
+  exceldata: any;
+  arrayBuffer: any;
+  filetype: any;
+  file: any;
+  Department: any;
+  year: any;
+  Departmentlist: any;
+  term: any;
+  Subsidiary: any;
 
   ngOnInit(): void {
-
     this.roleid = sessionStorage.getItem('roleid');
+    this.Subsidiary = '';
+    this.Department = '';
+    this.year = 0;
+    this.GetManpowerPlanningandBudgeting();
+    this.GetDepartment();
+  }
 
+  public GetDepartment() {
     this.DigipayrollServiceService1.GetDepartment().subscribe(data => {
       debugger
       this.Departmentlist = data;
     });
-    this.GetManpowerPlanningandBudgeting();
-    this.Subsidiary = '';
-    this.Department = '';
-    this.year = 0;
   }
-
-  Grandtotal: any
   public GetManpowerPlanningandBudgeting() {
     debugger
     this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
@@ -44,16 +55,11 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
           total += Number(element.headCount);
         });
         this.Grandtotal = total.toLocaleString();
-
-
-
-      }
-    )
+      })
   }
 
   public delete(id: any) {
     debugger
-
     Swal.fire({
       title: 'Are You Sure ',
       text: "Do you want to delete the Selected Record",
@@ -74,16 +80,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
         Swal.fire('Deleted Successfully...!')
         this.ngOnInit();
       }
-
     });
   }
-
-
-  fromlogin: any;
-  exceldata: any;
-  arrayBuffer: any;
-  filetype: any;
-  file: any;
 
   incomingfile(event: any) {
     debugger;
@@ -108,26 +106,16 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
         this.exceldata = XLSX.utils.sheet_to_json(worksheet, { raw: true });
       };
       fileReader.readAsArrayBuffer(this.file);
-
-
-
     } else {
       Swal.fire("Imported file format not supported.");
     }
   }
 
-
-
   public Upload_file() {
     debugger
-
     Swal.fire('Uploaded successfully');
-
   }
-  Department: any;
-  year: any;
-  Departmentlist: any;
-  term: any
+
   public filterByDepartment() {
     debugger
     if (this.Department == '') {
@@ -139,9 +127,6 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     } else {
@@ -153,16 +138,13 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     }
   }
+
   public filterByYear() {
     debugger
-
     if (this.year == 0) {
       this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
         data => {
@@ -172,28 +154,22 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     } else {
       this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
         data => {
-          this.awardlist1 = data.filter(x => x.year == this.year );
+          this.awardlist1 = data.filter(x => x.year == this.year);
           let total: any = 0;
           this.awardlist1.forEach((element: { headCount: any; }) => {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     }
   }
-  Subsidiary: any;
+
   public filterBySubsidiary() {
     debugger
     if (this.Subsidiary == '') {
@@ -205,9 +181,6 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     } else {
@@ -219,35 +192,21 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
             total += Number(element.headCount);
           });
           this.Grandtotal = total.toLocaleString();
-
-
-
         }
       )
     }
-
   }
 
   public edit(id: any) {
     debugger;
     this.router.navigate(['/BUHead/ManpowerPlanningandBudgeting/' + id]);
-    
   }
 
-  
-  Delete(id:any){
+  Delete(id: any) {
     debugger
     this.DigipayrollServiceService1.DeleteManpowerPlanningandBudgeting(id).subscribe(data => {
       Swal.fire('Deleted Sucessfully..!')
       location.reload()
     })
-
-
-
-
   }
-
-
-
-
 }

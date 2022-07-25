@@ -36,9 +36,10 @@
                             <div class="row leavereq">
                                 <div class="col-md-2">
                                     <div class="dropdown">
-                                        <select class="form-control"  name="client" id="client"  [(ngModel)]="client">
+                                        <select class="form-control" name="client" id="client" [(ngModel)]="client">
                                             <option value="">Select </option>
-                                            <option *ngFor="let Client of ClientList" value="{{Client.id}}">{{Client.name}}
+                                            <option *ngFor="let Client of ClientList" value="{{Client.id}}">
+                                                {{Client.name}}
                                             </option>
                                         </select>
                                     </div>
@@ -53,16 +54,20 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control inputfield" name="Name" id="Name" [(ngModel)]="Name">
+                                    <input type="text" class="form-control inputfield" name="Name" id="Name"
+                                        [(ngModel)]="Name">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control inputfield" name="Email" id="Email" [(ngModel)]="Email">
+                                    <input type="text" class="form-control inputfield" name="Email" id="Email"
+                                        [(ngModel)]="Email">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control inputfield" name="PhoneNo" id="PhoneNo" [(ngModel)]="PhoneNo">
+                                    <input type="text" class="form-control inputfield" name="PhoneNo" id="PhoneNo"
+                                        [(ngModel)]="PhoneNo">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control inputfield" name="Address" id="Address" [(ngModel)]="Address">
+                                    <input type="text" class="form-control inputfield" name="Address" id="Address"
+                                        [(ngModel)]="Address">
                                 </div>
                             </div>
                             <br>
@@ -84,14 +89,9 @@
                                 <div class="col-md-8">
                                 </div>
                                 <div class="col-lg-1">
-                                    <!-- <button class="form-control CancelBTN" (click)="cancel()">Cancel</button> -->
                                     <button class="form-control Edit" (click)="cancel()">Cancel</button>
                                 </div>
                                 <div class="col-lg-1">
-                                    <!-- <button type="button" class="form-control SubmitBTN" *ngIf="id==null || id==undefined"
-                                    (click)="Save()">Save</button>
-                                <button type="button" class="form-control SubmitBTN" *ngIf="id!=null || id!=undefined"
-                                    (click)="Update()">Update</button> -->
                                     <button type="button" class="form-control Edit" *ngIf="id==null || id==undefined"
                                         (click)="Save()">Save</button>
                                     <button type="button" class="form-control Edit" *ngIf="id!=null || id!=undefined"
@@ -104,88 +104,5 @@
                 </div>
             </div>
         </div>
-
-
-
-        <!-- <div class="card BOXCARD">
-            <div class="row leavereq">
-                <div class="col-md-2">
-                    <label>Client Name<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-md-2">
-                    <label>Role<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-md-2">
-                    <label>Client Staff Name<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-md-2">
-                    <label>Email<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-md-2">
-                    <label>Phone No.<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-md-2">
-                    <label>Address<span style="color: red;">*</span></label>
-                </div>
-            </div>
-            <div class="row leavereq">
-                <div class="col-md-2">
-                    <div class="dropdown">
-                        <select class="form-control" [(ngModel)]="Staff">
-                            <option value="">Select </option>
-                            <option *ngFor="let Staff of StaffList" value={{Staff.id}}>{{Staff.name}} </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="dropdown">
-                        <select class="form-control" name="Role" Id="Role" [(ngModel)]="Role">
-                            <option value="">Select </option>
-                            <option *ngFor="let Client of ClientList" value={{Client.id}}>{{Client.short}} </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control inputfield" [(ngModel)]="Name">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control inputfield" [(ngModel)]="Email">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control inputfield" [(ngModel)]="Address">
-                </div>
-            </div>
-            <br>
-            <div class="row leavereq">
-                <div class="col-md-2">
-                    <label>Signature</label>
-                </div>
-            </div>
-            <div class="row leavereq">
-                <div class="col-md-2">
-                    <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
-                        <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
-                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                        </ngx-dropzone-preview>
-                    </ngx-dropzone>
-                </div>
-                <div class="col-md-8">
-                </div>
-                <div class="col-lg-1">
-                    <button class="form-control CancelBTN" (click)="cancel()">Cancel</button>
-                </div>
-                <div class="col-lg-1">
-                    <button type="button" class="form-control SubmitBTN" *ngIf="id==null || id==undefined"
-                        (click)="Save()">Save</button>
-                    <button type="button" class="form-control SubmitBTN" *ngIf="id!=null || id!=undefined"
-                        (click)="Update()">Update</button>
-                </div>
-            </div>
-            <br>
-        </div><br> -->
     </div>
 </div>

@@ -28,18 +28,14 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
   name: any;
   submit: any;
   awardlist1: any;
-  constructor(
-    private DigipayrollServiceService: RecruitementService,
-    private ActivatedRoute: ActivatedRoute
-  ) {}
+
+  constructor(private DigipayrollServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-   
-
     this.ActivatedRoute.params.subscribe((params: any) => {
       this.id = params['id'];
       debugger;
-      if (this.id != undefined) {
+      if (this.id != undefined && this.id != null) {
         this.showButton = 1;
         this.GetManpowerPlanningandBudgeting();
         this.submit = 'Update';
@@ -49,22 +45,14 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
       }
     });
 
+    this.GetRoleType();
+  }
+
+  public GetRoleType() {
     this.DigipayrollServiceService.GetRoleType().subscribe((data) => {
       debugger;
       this.awardlist1 = data;
-    });
-
-
-    this.DigipayrollServiceService.GetRoleType().subscribe((data) => {
-      debugger;
       this.Departmentlist = data;
-    });
-
-
-    this.ActivatedRoute.params.subscribe((params) => {
-      this.id = params['id'];
-      if (this.id != undefined && this.id != null) {
-      }
     });
   }
 

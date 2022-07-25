@@ -1,92 +1,94 @@
 .SubmitBTN {
-    background-color: #21a4da;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  .SubmitBTN:hover {
-    background-color: #28a745;
-  }
-  
-  .CancelBTN {
-    color: black;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  th {
-    background-color: #e4e5e6;
-  }
-  .dropdown-toggle {
-    text-align: left;
-  }
-  .LocDashboard {
-    padding-top: 10px;
-    margin: 0px;
-    background-color: #e4e5e6;
-    margin-top: -20px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 15px;
-    font-weight: bold;
-  }
-  
-  .FormHeadText {
-    color: #212529;
-    font-size: 20px !important;
-    font-family: "DIN Bold";
-    font-weight: bold;
-    margin-left: 5px;
-    margin-top: 25px;
-    margin-bottom: 0px;
-  }
-  
-  body {
-    color: #494949 !important;
-  }
-  .inputfield {
-    background-color: #f2f2f2;
-  }
-  
-  .Heading {
-    padding-left: 15px;
-    color: #212529;
-    font-size: 20px !important;
-    font-family: "DIN Bold";
-    font-weight: bold;
-  }
-  
-  .leavereq {
-    color: #0c275a;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-  }
-  
-  .Edit {
-    text-transform: uppercase;
-    font-weight: initial;
-    text-shadow: initial;
-    letter-spacing: 0.5px;
-    background-color: #3247d5;
-    color: #ffffff;
-    border-radius: 5px;
-    border: none;
-    padding: 5px;
-    margin-left: 10px;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  
-  .card {
-    background: #ffffff;
-    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    width: 98%;
-    margin-left: 10px;
-  }
-  
+  background-color: #21a4da;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.SubmitBTN:hover {
+  background-color: #28a745;
+}
+
+.CancelBTN {
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+th {
+  background-color: #e4e5e6;
+}
+
+.dropdown-toggle {
+  text-align: left;
+}
+
+.LocDashboard {
+  padding-top: 10px;
+  margin: 0px;
+  background-color: #e4e5e6;
+  margin-top: -20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.FormHeadText {
+  color: #212529;
+  font-size: 20px !important;
+  font-family: "DIN Bold";
+  font-weight: bold;
+  margin-left: 5px;
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+
+body {
+  color: #494949 !important;
+}
+
+.inputfield {
+  background-color: #f2f2f2;
+}
+
+.Heading {
+  padding-left: 15px;
+  color: #212529;
+  font-size: 20px !important;
+  font-family: "DIN Bold";
+  font-weight: bold;
+}
+
+.leavereq {
+  color: #0c275a;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.Edit {
+  text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color: #3247d5;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  width: 98%;
+  margin-left: 10px;
+}

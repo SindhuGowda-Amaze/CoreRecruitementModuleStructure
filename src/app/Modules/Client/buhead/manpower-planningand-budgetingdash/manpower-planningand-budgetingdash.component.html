@@ -8,7 +8,6 @@
                 </div>
             </div>
             <br>
-
             <br>
             <div class="card filtercard">
                 <div class="row">
@@ -53,7 +52,6 @@
             </div>
             <br>
 
-
             <div class="row" *ngIf="roleid==10">
                 <!-- <div class="col-md-8">
                     <p class="show3res">SHOWING <span style="color: #3247D5;"> </span>RESULTS</p>
@@ -63,7 +61,6 @@
                     <a href="#/BUHead/ManpowerPlanningandBudgeting"><button class="AddButton">Add</button> </a>
                     <button class="AddButton" data-toggle="modal" data-target="#import">Import Excel
                     </button>
-
                 </div>
             </div>
             <br>
@@ -87,7 +84,6 @@
                                 <th>Year</th>
                                 <th>Remarks</th>
                                 <th *ngIf="roleid==10">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -108,24 +104,23 @@
                                     <button style="height: fit-content;" type="button" class="upload"
                                         (click)="edit(holiday.id)">
                                         Edit</button>
-                                        <button style="height: fit-content;" type="button" class="upload"
+                                    <button style="height: fit-content;" type="button" class="upload"
                                         (click)="Delete(holiday.id)">
                                         Delete</button>
                                 </td>
                             </tr>
                         </tbody>
-
                     </table>
                     <div class="text-left">
                         <br>
                         <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
-                    </div> 
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <div id="import" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
