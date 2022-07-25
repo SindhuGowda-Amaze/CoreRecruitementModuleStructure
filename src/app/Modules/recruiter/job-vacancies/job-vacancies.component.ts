@@ -56,7 +56,7 @@ export class JobVacanciesComponent implements OnInit {
           this.joblist = data.filter(x => x.id == this.ID);
 
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
+          Swal.fire('Issue in Getting Job Requirements');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -124,7 +124,7 @@ export class JobVacanciesComponent implements OnInit {
           location.href='#/recruiter/VendorJobOpenings'
 
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Applied');
+          Swal.fire('Issue in Inserting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -139,9 +139,7 @@ export class JobVacanciesComponent implements OnInit {
       })
       // location.reload();
     }
-  }
-
-  
+  } 
   public InsertNotificationhr() {
     debugger
     var event: any = 'Recruiter Applied for the job';
@@ -168,7 +166,6 @@ export class JobVacanciesComponent implements OnInit {
         }
       })
   }
-
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
@@ -187,7 +184,6 @@ export class JobVacanciesComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -196,7 +192,7 @@ export class JobVacanciesComponent implements OnInit {
         this.Company_logo = res;
         Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in ATTACHMENT ');
+        Swal.fire('Issue in Uploading Images ');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -210,9 +206,6 @@ export class JobVacanciesComponent implements OnInit {
       }
     })
   }
-
-
-
   public SendMailEmployee() {
     debugger
     var entity3 = {
@@ -230,12 +223,7 @@ export class JobVacanciesComponent implements OnInit {
       Swal.fire('Email sent');
 
     })
-
-
-
   }
-
-
   Cancle(){
     location.href = "#/recruiter/VendorJobOpenings";
   }

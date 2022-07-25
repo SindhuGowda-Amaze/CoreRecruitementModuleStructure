@@ -36,7 +36,7 @@ export class SelectedCandidatesReportsComponent implements OnInit {
         debugger
         this.hrlist = data;
       }, error: (err) => {
-        Swal.fire('Issue in Get ClientStaff');
+        Swal.fire('Issue in Getting  ClientStaff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

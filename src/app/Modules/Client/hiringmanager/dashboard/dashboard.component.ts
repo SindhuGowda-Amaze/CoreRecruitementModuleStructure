@@ -71,20 +71,20 @@ export class DashboardComponent implements OnInit {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
   next: data => {
     debugger
-    this.hrlist = data.filter(x=>x.role=="Hiring Manager");
-
-    
+    this.hrlist = data.filter(x=>x.role=="Hiring Manager");   
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Recruiter Staff');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
+      'ErrorMessage': err.error.message
     }
-    Swal.fire('Issue in Getting Expenses List Web');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
       },
     )
+
   }
 })
 
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
     this.deptlist = data;
 
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Department');
+    Swal.fire(' issue in Getting Department');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
      
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Job Requirements  ');
+    Swal.fire(' Issue in Getting Job Requirements  ');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -169,7 +169,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage':this. err.error.message
     }
-    Swal.fire('Getting Job Requirements  ');
+    Swal.fire(' Issue in Getting Job Requirements  ');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -214,7 +214,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -255,7 +255,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage':this. err.error.message
     }
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -294,7 +294,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -330,7 +330,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -369,7 +369,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -396,7 +396,7 @@ export class DashboardComponent implements OnInit {
   
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -429,7 +429,7 @@ export class DashboardComponent implements OnInit {
 
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -469,7 +469,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -497,7 +497,7 @@ export class DashboardComponent implements OnInit {
       debugger
     };
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -529,7 +529,7 @@ export class DashboardComponent implements OnInit {
       debugger
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -559,7 +559,7 @@ export class DashboardComponent implements OnInit {
       this.count9 = this.joblist20.length;
     }
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -593,7 +593,7 @@ export class DashboardComponent implements OnInit {
     }
   
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -631,7 +631,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' issue in Getting Candidate Registration');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -678,7 +678,7 @@ export class DashboardComponent implements OnInit {
       'PageName': this.currentUrl,
       'ErrorMessage': this.err.error.message
     }
-    Swal.fire('Getting Job Requirements');
+    Swal.fire(' issue in Getting Job Requirements');
     this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
       data => {
         debugger
@@ -693,7 +693,7 @@ export class DashboardComponent implements OnInit {
     this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.hiringManager);
     this.count1 = this.joblist4.length;
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -715,7 +715,7 @@ export class DashboardComponent implements OnInit {
 
     this.count9 = this.joblist20.length;
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -736,7 +736,7 @@ export class DashboardComponent implements OnInit {
     this.count3 = this.joblist8.length;
     debugger
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -757,7 +757,7 @@ export class DashboardComponent implements OnInit {
       this.count4 = this.joblist10.length;
       debugger
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire('Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -778,7 +778,7 @@ export class DashboardComponent implements OnInit {
       this.count5 = this.joblist12.length;
       debugger
   }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Getting Candidate Registration');
+    Swal.fire(' Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,

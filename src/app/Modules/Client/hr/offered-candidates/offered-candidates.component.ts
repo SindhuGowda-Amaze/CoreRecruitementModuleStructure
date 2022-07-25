@@ -64,7 +64,7 @@ export class OfferedCandidatesComponent implements OnInit {
         this.hrlist = data.filter(x => x.role == "Hiring Manager");
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Client Staff');
+        Swal.fire(' Issue in Getting Client Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -131,7 +131,6 @@ export class OfferedCandidatesComponent implements OnInit {
   GetJobDescriptionMaster() {
     throw new Error('Method not implemented.');
   }
-
   showorhidecontent: any;
 
   changeStatus(evn: any) {
@@ -142,9 +141,7 @@ export class OfferedCandidatesComponent implements OnInit {
     else {
       this.showorhidecontent = true;
     }
-
   }
-
   public GetCandidateReg() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -162,7 +159,7 @@ export class OfferedCandidatesComponent implements OnInit {
         this.loader = false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -175,9 +172,7 @@ export class OfferedCandidatesComponent implements OnInit {
         )
       }
     })
-
   }
-
   jobdescriptionID: any;
   public filterbyJD(even: any) {
     this.jobdescriptionID = even.target.value
@@ -198,7 +193,7 @@ export class OfferedCandidatesComponent implements OnInit {
         this.loader = false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -211,12 +206,7 @@ export class OfferedCandidatesComponent implements OnInit {
         )
       }
     })
-
-
   }
-
-
-
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
@@ -238,7 +228,7 @@ export class OfferedCandidatesComponent implements OnInit {
 
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -272,7 +262,7 @@ export class OfferedCandidatesComponent implements OnInit {
             )
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in  Accepting RejectOffer');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -296,8 +286,6 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
-
-
   public Reject(id: any, comments: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -328,8 +316,6 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
-
-
   hiringManager: any;
   public GetJobRequirements() {
 
@@ -341,7 +327,7 @@ export class OfferedCandidatesComponent implements OnInit {
 
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -431,14 +417,7 @@ export class OfferedCandidatesComponent implements OnInit {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data => {
       this.staffdetails = data
     })
-
-
-
   }
-
-
-
-
   // public GetJobDescriptionMaster() {
   //   this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
   //     next: data => {
@@ -462,9 +441,6 @@ export class OfferedCandidatesComponent implements OnInit {
   //   })
 
   // }
-
-
-
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: data => {
@@ -473,7 +449,7 @@ export class OfferedCandidatesComponent implements OnInit {
         this.loader = false;
         this.count = this.staffdetails.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Get Job Description Master ');
+        Swal.fire('Issue in Getting Get Job Description Master ');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -488,16 +464,5 @@ export class OfferedCandidatesComponent implements OnInit {
     })
 
   }
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -48,7 +48,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
       debugger
       this.hrlist = data;
     }, error: (err) => {
-      Swal.fire('Issue in GetClient Staff');
+      Swal.fire('Issue in Getting Client Staff');
       // Insert error in Db Here//
       var obj = {
         'PageName': this.currentUrl,
@@ -79,7 +79,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
         this.loader=false;
         this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidate Registration');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -135,7 +135,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
       this.count = this.joblist.length;
    
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidate Registration');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

@@ -45,7 +45,7 @@ data: any
         this.hrlist = data;
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Client Staff');
+        Swal.fire(' Issue in Getting Client Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -76,7 +76,7 @@ data: any
         this.loader=false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire('Issue in  Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -112,7 +112,7 @@ data: any
 
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -146,7 +146,7 @@ data: any
             )
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Accepting RejectOffer');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -191,7 +191,7 @@ data: any
             )
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Accepting RejectOffer');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -228,7 +228,7 @@ data: any
         this.count = this.joblist.length;
      
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -273,7 +273,7 @@ data: any
         this.loader=false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -287,12 +287,5 @@ data: any
       }
     })
   }
-
-  
-
-
-
-
-
-  
+ 
 }

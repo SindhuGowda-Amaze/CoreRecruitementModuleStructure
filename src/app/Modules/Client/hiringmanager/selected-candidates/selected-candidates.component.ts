@@ -60,7 +60,7 @@ export class SelectedCandidatesComponent implements OnInit {
         this.hrlist = data;
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Client Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -107,7 +107,7 @@ export class SelectedCandidatesComponent implements OnInit {
         }
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in GettingCandidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -161,18 +161,20 @@ export class SelectedCandidatesComponent implements OnInit {
         debugger
         this.Company_logo = res;
         Swal.fire("Attachment Uploaded");
-        // Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
+      },error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Uploading Images');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
+      
     })
   }
  public updatedetails() {
@@ -197,7 +199,7 @@ export class SelectedCandidatesComponent implements OnInit {
           Swal.fire("Candidate Offered Successfully");
           this.sendmail()
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Updating Offer Letter');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -236,7 +238,7 @@ public updatejoiningdate() {
           this.joiningbonus = "";
           this
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Updating Candidate JoiningDate');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -322,7 +324,7 @@ public updatejoiningdate() {
 
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in GettingCandidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -346,7 +348,7 @@ public updatejoiningdate() {
         this.joblist = data.filter(x => (x.interviewSelected == 1 && x.offered == 0) && (x.noticePeriod == this.searchbynotice));
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -373,7 +375,7 @@ public updatejoiningdate() {
 
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -436,7 +438,7 @@ public updatejoiningdate() {
             Swal.fire('Approved Successfully')
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Updating Canditate Budget Status');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -542,7 +544,7 @@ public updatejoiningdate() {
         }
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

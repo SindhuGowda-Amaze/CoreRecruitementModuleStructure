@@ -66,7 +66,7 @@ export class JobRequisitionComponent implements OnInit {
         this.joblist = data.filter(x => x.department == sessionStorage.getItem('Department'));
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Manpower Planning and Budgeting');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -167,7 +167,7 @@ export class JobRequisitionComponent implements OnInit {
             // location.href = "#/hirignmanager/JobRecruitements";
           }
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Inserting Job Requirements');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -204,7 +204,7 @@ export class JobRequisitionComponent implements OnInit {
             }
             
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Getting Manpower Planning and Budgeting');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,

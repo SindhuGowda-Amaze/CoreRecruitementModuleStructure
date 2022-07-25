@@ -58,7 +58,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
           this.DropJobList = data.filter(x => (x.source == "Vendor" && x.vendorId == this.userid));
         this.loader = false;
         }, error: (err) => {
-          Swal.fire('Issue in GetJob_Requirements');
+          Swal.fire('Issue in Getting Job Requirements');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -82,7 +82,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
           this.DropJobList = data;
           this.loader = false;
         }, error: (err) => {
-          Swal.fire('Issue in GetJob_Requirements');
+          Swal.fire('Issue in Getting Job Requirements');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -107,7 +107,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         debugger
         this.hrlist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetClient Staff');
+        Swal.fire('Issue in Getting Client Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -207,24 +207,17 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
       this.GetCandidateReg();
     }
   }
-
- 
-
   public GetStaffID(even: any) {
     this.staffid = even.target.value;
     this.GetSlotsMaster();
   }
-
-
   public GetStaffType() {
-    this.RecruitementService.GetStaffs()
-    
-    .subscribe({
+    this.RecruitementService.GetStaffs().subscribe({
       next: data => {
         debugger
         this.stafflist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetStaffs');
+        Swal.fire('Issue in Getting Staffs');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -239,14 +232,9 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     })
     
   }
-    
-
-
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
   }
-
-
   public GetSlotsMaster() {
     debugger
     this.RecruitementService.GetSlotsMasterByStaffID(this.date, this.staffid)
@@ -255,7 +243,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         debugger
         this.slotslist = data;
       }, error: (err) => {
-        Swal.fire('Issue in Get Slots Master ByS taffID');
+        Swal.fire('Issue in Get Slots Master By StaffID');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -293,7 +281,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         Swal.fire("Interview Scheduled Successfully");
         this.GetCandidateReg();
       }, error: (err) => {
-        Swal.fire('Issue in UpdateCandidate InterviewSchedule');
+        Swal.fire('Issue in Update Candidate InterviewSchedule');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -342,7 +330,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
 
         this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in Getting CandidateRegistration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

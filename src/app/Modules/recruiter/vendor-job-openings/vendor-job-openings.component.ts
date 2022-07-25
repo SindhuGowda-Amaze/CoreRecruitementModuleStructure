@@ -51,7 +51,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         debugger
         this.hrlist = data.filter(x=>x.role=="Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Client Staff');
+        Swal.fire(' Issue in Getting Client Staff');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message

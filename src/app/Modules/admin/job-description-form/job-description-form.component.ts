@@ -53,7 +53,7 @@ export class JobDescriptionFormComponent implements OnInit {
         this.Description = this.result[0].description;
         this.role_Id = this.result[0].role;
   }, error: (err) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Getting Job DescriptionMaster');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
