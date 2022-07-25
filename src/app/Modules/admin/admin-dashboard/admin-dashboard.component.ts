@@ -1,3 +1,11 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
+// --Description :this procedure Gets the active records of CandidateRegistration Table
+// --Last Modified Date : 25 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Madhava
+// --Copyrights : AmazeINC-Bangalore-2022
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -110,7 +118,7 @@ export class AdminDashboardComponent implements OnInit {
         debugger
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting RecruiterStaff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -132,7 +140,7 @@ export class AdminDashboardComponent implements OnInit {
         this.count4 = this.vendorstafflist.length
         debugger
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Vendor_Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

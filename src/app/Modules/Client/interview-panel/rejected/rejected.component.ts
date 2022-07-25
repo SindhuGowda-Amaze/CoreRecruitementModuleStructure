@@ -35,7 +35,7 @@ export class RejectedComponent implements OnInit {
         this.loader = false;
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -74,7 +74,7 @@ export class RejectedComponent implements OnInit {
             )
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Accepting RejectOffer');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -119,7 +119,7 @@ export class RejectedComponent implements OnInit {
             )
             this.GetCandidateReg()
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Accepting RejectOffer');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -163,7 +163,7 @@ export class RejectedComponent implements OnInit {
           this.dummjoblist = data;
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

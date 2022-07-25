@@ -128,7 +128,7 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
       this.count = this.joblist.length;
    
   }, error: (err) => {
-    Swal.fire('Issue in GetCandidateRegistration');
+    Swal.fire('Issue in Getting Candidate Registration');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,

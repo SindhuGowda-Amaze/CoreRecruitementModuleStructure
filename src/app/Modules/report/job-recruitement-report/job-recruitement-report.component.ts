@@ -54,7 +54,7 @@ export class JobRecruitementReportComponent implements OnInit {
         debugger
         this.hrlist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetClientStaff');
+        Swal.fire('Issue in Getting ClientStaff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -89,7 +89,7 @@ GetJob_Requirements()
         this.count = this.joblist.length;
       }
     }, error: (err) => {
-      Swal.fire('Issue in GetJob_Requirements');
+      Swal.fire('Issue in Getting Job Requirements');
       // Insert error in Db Here//
       var obj = {
         'PageName': this.currentUrl,
@@ -156,7 +156,7 @@ GetJob_Requirements()
         this.count = this.joblist.length;
      
       }, error: (err) => {
-        Swal.fire('Issue in GetJob_Requirements');
+        Swal.fire('Issue in Getting Job Requirements');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

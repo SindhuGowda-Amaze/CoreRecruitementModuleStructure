@@ -40,7 +40,7 @@ export class VendorStaffDashboardComponent implements OnInit {
         this.loader = false;
         this.count = this.staffdetails.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting Vendor Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

@@ -174,17 +174,19 @@ export class RescheduledInterviewComponent implements OnInit {
         debugger
         this.Company_logo = res;
         alert("ATTACHMENT UPLOADED");
-        Swal.fire('Issue in Uploading Images');
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting UploadImages');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
+          'ErrorMessage': err.error.message
         }
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
         )
+      
       }
     })
   }
@@ -532,8 +534,6 @@ public updatejoiningdate() {
     })
 
   }
-
-
   public GetCandidateID(candidateid: any) {
     this.candidateid = candidateid;
   }
@@ -593,6 +593,8 @@ public updatejoiningdate() {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Interview Scheduled');
+
              var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message

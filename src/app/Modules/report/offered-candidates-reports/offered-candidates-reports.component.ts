@@ -35,7 +35,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
         debugger
         this.hrlist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetClientStaff');
+        Swal.fire('Issue in Get ClientStaff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -59,7 +59,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
     
         this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in GetCandidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -73,10 +73,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
       }
     })
 
-
 }
-
-
 
   refresh(){
     location.reload();
@@ -100,7 +97,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
         this.loader=false;
         this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in GetCandidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -164,7 +161,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
      
       this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

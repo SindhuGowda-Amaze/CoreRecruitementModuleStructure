@@ -1,3 +1,11 @@
+// Product : DigiCoreRecrcitment System 1.0 
+// Date : 28 Jan, 2022
+// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
+// Description :this procedure Gets the active records of CandidateRegistration Table
+// Last Modified Date : 25 July , 2022
+// Last Modified Changes :   Added comments
+// Last Modified By : Madhava
+// Copyrights : AmazeINC-Bangalore-2022 
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';

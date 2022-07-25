@@ -448,7 +448,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire('Issue in Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -472,7 +472,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire('Issue in Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -487,8 +487,6 @@ export class ScheduledInterviewsComponent implements OnInit {
       })
 
     }
-
-
     else {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
@@ -497,7 +495,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -512,19 +510,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       })
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-   
+ 
   }
   public Note() {
     this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
@@ -538,7 +524,7 @@ export class ScheduledInterviewsComponent implements OnInit {
         //this.SendMailEmployee()
         //this.GetCandidateReg()
       }, error: (err: { error: { message: any; }; }) => {
-        //Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Rejecting Interview');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -553,9 +539,6 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
 
   }
-
-
-
   public GetJobDescription1() {
     this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data => {
       this.staffdetails = data

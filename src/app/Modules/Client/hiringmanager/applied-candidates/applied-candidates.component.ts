@@ -144,17 +144,18 @@ export class AppliedCandidatesComponent implements OnInit {
           this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
           this.count = this.joblist.length;
 
-          // Insert error in Db Here//
-          var obj = {
-            PageName: this.currentUrl,
-            ErrorMessage: this.err.error.message,
-          };
-          Swal.fire('Issue in Getting Expenses List Web');
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            (data) => {
-              debugger;
-            }
-          );
+          },error: (err: { error: { message: any } }) => {
+            Swal.fire(' Issue in Getting Candidate Registration');
+            // Insert error in Db Here//
+            var obj = {
+              PageName: this.currentUrl,
+              ErrorMessage: err.error.message,
+            };
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              (data) => {
+                debugger;
+              }
+            );
         },
       });
     }
@@ -169,7 +170,7 @@ export class AppliedCandidatesComponent implements OnInit {
         this.recruiter=data.filter(x=>x.role=="Recruiter")
       },
       error: (err: { error: { message: any } }) => {
-        Swal.fire('Getting Client Staff');
+        Swal.fire(' Issue in Getting Recruiter Staff');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
@@ -224,7 +225,7 @@ export class AppliedCandidatesComponent implements OnInit {
           (error) => {
             this.loader = false;
             console.log('Error', error);
-            Swal.fire('Issue in Getting Expenses List Web');
+            Swal.fire('Issue in Updating Candidate Registration Accept/Reject');
             // Insert error in Db Here//
             var obj = {
               PageName: this.currentUrl,
@@ -377,7 +378,7 @@ export class AppliedCandidatesComponent implements OnInit {
         this.count = this.staffdetails.length;
       },
       error: (err: { error: { message: any } }) => {
-        Swal.fire('Getting Get Job Description Master ');
+        Swal.fire(' Issue in Getting  Job Description Master ');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
@@ -437,7 +438,7 @@ export class AppliedCandidatesComponent implements OnInit {
           this.count = this.joblist.length;
         },
         error: (err: { error: { message: any } }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
@@ -463,7 +464,7 @@ export class AppliedCandidatesComponent implements OnInit {
           this.count = this.joblist.length;
         },
         error: (err: { error: { message: any } }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue Getting Candidate Registration');
           // Insert error in Db Here//
           var obj = {
             PageName: this.currentUrl,
@@ -488,18 +489,19 @@ export class AppliedCandidatesComponent implements OnInit {
           this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
           this.count = this.joblist.length;
 
-          // Insert error in Db Here//
-          var obj = {
-            PageName: this.currentUrl,
-            ErrorMessage: this.err.error.message,
-          };
-          Swal.fire('Issue in Getting Expenses List Web');
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            (data) => {
-              debugger;
-            }
-          );
-        },
+          },error: (err: { error: { message: any } }) => {
+            Swal.fire(' Issue in Getting Candidate Registration');
+            // Insert error in Db Here//
+            var obj = {
+              PageName: this.currentUrl,
+              ErrorMessage: err.error.message,
+            };
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              (data) => {
+                debugger;
+              }
+            );
+          },
       });
     }
 

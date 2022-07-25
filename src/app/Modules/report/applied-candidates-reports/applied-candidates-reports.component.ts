@@ -50,7 +50,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
       debugger
       this.hrlist = data;
     }, error: (err) => {
-      Swal.fire('Issue in GetClientStaff');
+      Swal.fire('Issue in Getting ClientStaff');
       // Insert error in Db Here//
       var obj = {
         'PageName': this.currentUrl,
@@ -97,7 +97,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
   
      
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -112,14 +112,11 @@ export class AppliedCandidatesReportsComponent implements OnInit {
     })
     
   
-    this.RecruitementService.GetJob_Requirements()
-    
-    
-.subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
   next: data => {
     this.DropJobList = data;
   }, error: (err) => {
-    Swal.fire('Issue in Getting Expenses List Web');
+    Swal.fire('Issue in Getting Job Requirements');
     // Insert error in Db Here//
     var obj = {
       'PageName': this.currentUrl,
@@ -177,7 +174,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
   
         this.count = this.joblist.length;
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

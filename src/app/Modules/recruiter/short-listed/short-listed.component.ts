@@ -74,7 +74,7 @@ export class ShortListedComponent implements OnInit {
           this.loader = false;
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message

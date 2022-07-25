@@ -152,18 +152,20 @@ export class JobDescriptionDashComponent implements OnInit {
         debugger
         Swal.fire('Updated successfully.');
         location.reload();
-        Swal.fire('Issue in Enable VendorStaff');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
+      },error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Enable Vendor Staff');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
       }
-    })
+    )
   }
 }

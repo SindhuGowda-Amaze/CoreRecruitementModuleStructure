@@ -69,19 +69,21 @@ export class JobRecruitementsComponent implements OnInit {
         debugger
         this.dropdownList1 = data;
    
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
-         
+      },
+      error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        Swal.fire('Getting Vendor Dasboard');
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
+      
     })
 
 
@@ -107,19 +109,19 @@ export class JobRecruitementsComponent implements OnInit {
         this.loader = false;
         debugger
         this.count = this.joblist.length;
-       
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
-        }
-        Swal.fire('Getting Job Requirements');
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
+      },error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Job Requirements');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }    
     })
 
 
@@ -151,7 +153,7 @@ export class JobRecruitementsComponent implements OnInit {
         debugger
         this.Userlist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Vendor Dasboard');
+        Swal.fire(' Issue in Getting Vendor Dasboard');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -184,9 +186,6 @@ export class JobRecruitementsComponent implements OnInit {
     this.skills = job.skills
   }
 
-
-
-
   UpdateJobPost() {
     debugger
     var entity = {
@@ -199,17 +198,18 @@ export class JobRecruitementsComponent implements OnInit {
         debugger
         Swal.fire('Job Unposted Successfully');
         location.reload();
-        //Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
+      },error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Updating JobPost');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )     
       }
     })
   }
@@ -355,18 +355,18 @@ window.location.reload();
         debugger
         this.joblist = data.filter(x => x.vendor == null && x.hiringManager == this.hiringManager);
         this.count = this.joblist.length;
-     
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': this.err.error.message
-        }
-        Swal.fire('Getting Job Requirements');
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
+      },error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )       
       }
     })
   }
@@ -419,11 +419,12 @@ window.location.reload();
               Swal.fire('Approved Successfully')
               location.reload();
               this.InsertNotificationhr();
-              Swal.fire('Issue in Getting Expenses List Web');
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Updating JobRequirement Status');
               // Insert error in Db Here//
               var obj = {
                 'PageName': this.currentUrl,
-                'ErrorMessage': this.err.error.message
+                'ErrorMessage': err.error.message
               }
               this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
                 data => {
@@ -431,10 +432,9 @@ window.location.reload();
                 },
               )
             }
+            
           })
         }
-
-
       }
     })
   }
