@@ -11,26 +11,25 @@ import Swal from 'sweetalert2';
 })
 export class VendorDashboardComponent implements OnInit {
   err: any;
+  vendordetails: any;
+  vendor_Logo: any;
+  vendor_Name: any;
+  phone_Number: any;
+  email_Id: any;
+  address: any;
+  search: any;
+  count: any;
+  loader: any;
+  Job: any;
+  currentUrl: any
 
-  constructor(private RecruitmentServiceService:RecruitementService,private ActivatedRoute:ActivatedRoute) { }
-  vendordetails:any;
-  vendor_Logo:any;
-  vendor_Name:any;
-  phone_Number:any;
-  email_Id:any;
-  address:any;
-  search:any;
-  count:any;
-  loader:any;
-  Job:any;
- 
-  currentUrl:any
-  
- ngOnInit(): void {
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
+
+  ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.GetVendor_Dasboard(); 
-    this.loader=true;
- 
+    this.GetVendor_Dasboard();
+    this.loader = true;
   }
 
   public GetVendor_Dasboard() {
@@ -38,8 +37,8 @@ export class VendorDashboardComponent implements OnInit {
       next: data => {
         debugger
         this.vendordetails = data;
-        this.loader=false;
-        this.count = this.vendordetails.length;    
+        this.loader = false;
+        this.count = this.vendordetails.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Getting vendor Dashboard');
         // Insert error in Db Here//
@@ -54,11 +53,11 @@ export class VendorDashboardComponent implements OnInit {
         )
       }
     })
-
   }
-  edit(id: any){
+
+  edit(id: any) {
     debugger
-   location.href="#admin/VendorForm/"+ id;
+    location.href = "#/admin/VendorForm/" + id;
   }
 
   public Ondelete(id: any) {
@@ -73,24 +72,24 @@ export class VendorDashboardComponent implements OnInit {
     }).then((result) => {
       if (result.value == true) {
         this.RecruitmentServiceService.DeleteVendor_Dasboard(id).subscribe({
-  next: data => {
-    debugger
-    this. GetVendor_Dasboard();
-    swal.fire('Deleted Sucessfully');
-   
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})  
-   }
+          next: data => {
+            debugger
+            this.GetVendor_Dasboard();
+            swal.fire('Deleted Sucessfully');
+
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': this.err.error.message
+            }
+            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+      }
     })
   }
 }

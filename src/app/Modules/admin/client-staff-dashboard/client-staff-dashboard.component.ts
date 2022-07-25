@@ -14,7 +14,8 @@ export class ClientStaffDashboardComponent implements OnInit {
   search:any;
   loader:any;
   currentUrl: any;
-
+  ClientStaffList:any
+  
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -23,8 +24,6 @@ export class ClientStaffDashboardComponent implements OnInit {
    this.loader=true;
   }
 
-  ClientStaffList:any
-  
   public GetClientStaff() {
     debugger
     this.RecruitmentServiceService.GetClientStaff().subscribe({
@@ -51,7 +50,7 @@ export class ClientStaffDashboardComponent implements OnInit {
 
   edit(details: any){
     debugger
-    location.href="#admin/ClientStaffForm/"+ details;
+    location.href="#/admin/ClientStaffForm/"+ details;
     }
 
 

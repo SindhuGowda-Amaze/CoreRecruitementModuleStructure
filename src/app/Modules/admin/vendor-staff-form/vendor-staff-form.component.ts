@@ -19,24 +19,28 @@ export class VendorStaffFormComponent implements OnInit {
   role_Id: any;
   vendor_Name: any;
   err: any;
-  VendorStaffForm : any
+  VendorStaffForm: any
   VendorId: any;
   staffName: any;
   phoneNumber: any;
   EmailID: any;
   Signature: any;
   Role: any;
-
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   result: any;
   Actions: any;
   id: any;
-  currentUrl:any
+  currentUrl: any;
+  Company_logo: any;
+  files: File[] = [];
+  vendordetails: any;
+  roleList: any;
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-    this.Role="";
-    this.VendorId="";
+    this.Role = "";
+    this.VendorId = "";
     this.GetRoleType();
     this.GetVendor_Dasboard();
     this.ActivatedRoute.params.subscribe(params => {
@@ -44,13 +48,10 @@ export class VendorStaffFormComponent implements OnInit {
       this.id = params["id"];
       if (this.id != null && this.id != undefined) {
         this.GetVendor_Staff();
-
       }
     })
-
   }
-  Company_logo: any;
-  files: File[] = [];
+
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -58,79 +59,39 @@ export class VendorStaffFormComponent implements OnInit {
     this.uploadattachments();
     console.log("content", this.files);
   }
+
   onRemove(event: any) {
     debugger
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files)
-    .subscribe(res => {
-      debugger
-      this.Company_logo = res;
-      alert("Attachment Uploaded");
-    })
+      .subscribe(res => {
+        debugger
+        this.Company_logo = res;
+        alert("Attachment Uploaded");
+      })
   }
 
   GetVendor_Staff() {
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
-        next: data => {
-          debugger
-          this.result = data;
-          this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
-          this.VendorId = this.result[0].vendorID;
-          this.staffName = this.result[0].staff_Name;
-          this.EmailID = this.result[0].email_Id;
-          this.phoneNumber = this.result[0].phone_Number;
-          // this.Company_logo = this.result[0].signature;
-           this.Role= this.result[0].role;
-       
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': this.err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-
-  }
-  Save() {
-    debugger;
-    if( this.VendorId==undefined||this.VendorId==null|| 
-      this.staffName==undefined||this.staffName==null||
-      this.phoneNumber==undefined||this.phoneNumber==null||
-      this.EmailID==undefined||this.EmailID==null||
-      this.Role==undefined||this.Role==null)
-      {
-      Swal.fire("Please fill all fields!!");
-    }
-    else{
-      var json = {
-      "VendorId": this.VendorId,
-      "Staff_Name": this.staffName,
-      "Phone_Number": this.phoneNumber,
-      "Email_Id": this.EmailID,
-      "Signature": this.Company_logo,
-      "Role": this.Role
-    };
-    this.RecruitmentServiceService.InsertVendor_Staff(json).subscribe({
       next: data => {
         debugger
-        let id = data;
-        Swal.fire('Saved Successfully..!');
-        location.href = "#/admin/VendorStaffDashboard"
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        this.result = data;
+        this.result = this.result.filter((x: { id: any; }) => x.id == Number(this.id));
+        this.VendorId = this.result[0].vendorID;
+        this.staffName = this.result[0].staff_Name;
+        this.EmailID = this.result[0].email_Id;
+        this.phoneNumber = this.result[0].phone_Number;
+        // this.Company_logo = this.result[0].signature;
+        this.Role = this.result[0].role;
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+          'ErrorMessage': this.err.error.message
         }
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           data => {
@@ -139,13 +100,49 @@ export class VendorStaffFormComponent implements OnInit {
         )
       }
     })
-      
-    }
-    
- 
-
   }
-  vendordetails: any;
+
+  Save() {
+    debugger;
+    if (this.VendorId == undefined || this.VendorId == null ||
+      this.staffName == undefined || this.staffName == null ||
+      this.phoneNumber == undefined || this.phoneNumber == null ||
+      this.EmailID == undefined || this.EmailID == null ||
+      this.Role == undefined || this.Role == null) {
+      Swal.fire("Please fill all fields!!");
+    }
+    else {
+      var json = {
+        "VendorId": this.VendorId,
+        "Staff_Name": this.staffName,
+        "Phone_Number": this.phoneNumber,
+        "Email_Id": this.EmailID,
+        "Signature": this.Company_logo,
+        "Role": this.Role
+      };
+      this.RecruitmentServiceService.InsertVendor_Staff(json).subscribe({
+        next: data => {
+          debugger
+          let id = data;
+          Swal.fire('Saved Successfully..!');
+          location.href = "#/admin/VendorStaffDashboard"
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+  }
+
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -165,9 +162,8 @@ export class VendorStaffFormComponent implements OnInit {
         )
       }
     })
-
   }
-  roleList:any;
+
   public GetRoleType() {
     debugger
     this.RecruitmentServiceService.GetRoleType().subscribe({
@@ -188,7 +184,6 @@ export class VendorStaffFormComponent implements OnInit {
         )
       }
     })
-
   }
 
   Update() {
@@ -222,9 +217,9 @@ export class VendorStaffFormComponent implements OnInit {
         )
       }
     })
-
   }
-  cancel(){
+
+  cancel() {
     location.href = "#/admin/VendorStaffDashboard";
   }
 }

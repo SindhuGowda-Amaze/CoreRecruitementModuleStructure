@@ -23,8 +23,7 @@ export class RecruiterFormComponent implements OnInit {
   stafflist : any 
   Logo: any
   show : any
- 
- 
+  files: File[] = [];
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -42,7 +41,6 @@ export class RecruiterFormComponent implements OnInit {
     this.GetRoleType();
   }
 
-
   public GetRecruiterStaff() {
     debugger
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe(
@@ -59,7 +57,6 @@ export class RecruiterFormComponent implements OnInit {
         this.Logo = this.recruiterlist[0].signature
         // this.count = this.recruiterlist.length;
       })
-
   }
 
 
@@ -70,13 +67,10 @@ export class RecruiterFormComponent implements OnInit {
         this.roleList = data
         this.count = this.roleList.length;
       })
-
   }
 
 
-
-
-  files: File[] = [];
+  
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -109,7 +103,6 @@ export class RecruiterFormComponent implements OnInit {
         this.recruiterlist = data.filter(x => x.id == this.ID)
         this.count = this.recruiterlist.length;
       })
-
   }
 
   public insertdetails() {
@@ -132,7 +125,6 @@ export class RecruiterFormComponent implements OnInit {
         'address': this.Address,
         "signature": this.Signature,
         "roleId": this.roleid
-  
       }
       this.RecruitmentServiceService.InsertRecruiterStaff(entity).subscribe(data => {
         if (data != 0) {
@@ -141,7 +133,6 @@ export class RecruiterFormComponent implements OnInit {
         }
       })
     }
-  
   }
 
 
@@ -156,7 +147,6 @@ export class RecruiterFormComponent implements OnInit {
       'address': this.Address,
       "signature": this.Signature,
       "roleId": this.roleid
-
     }
     this.RecruitmentServiceService.UpdateRecruiterStaff(entity).subscribe(data => {
       if (data != 0) {
@@ -170,6 +160,7 @@ export class RecruiterFormComponent implements OnInit {
   cancel() {
     location.href = "#/admin/RecruiterStaffDashboard"
   }
+  
   StaffID(even: any){
     debugger
     this.staffid = even.target.value;

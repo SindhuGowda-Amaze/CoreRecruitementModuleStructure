@@ -99,12 +99,10 @@ export class JobRequisitionComponent implements OnInit {
       this.skills == null || this.skills == undefined || this.skills == 0 ||
       this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
       this.yearsofrelavantexp == null || this.yearsofrelavantexp == undefined || this.yearsofrelavantexp == 0 ||
-
       this.joblocation == null || this.joblocation == undefined || this.joblocation == 0 ||
       this.noofpositions == null || this.noofpositions == undefined || this.noofpositions == 0 ||
       // this.companyname==null || this.companyname==undefined || this.companyname==0 ||
       this.package == null || this.package == undefined || this.package == 0 ||
-
       this.otherreqconditions == null || this.otherreqconditions == undefined || this.otherreqconditions == 0)
     // this.resourcemanager==null || this.resourcemanager==undefined || this.resourcemanager==0 
     {
@@ -148,20 +146,19 @@ export class JobRequisitionComponent implements OnInit {
               cancelButtonAriaLabel: 'Thumbs down'
             })
 
-
             var sub = 'Hiring Manager has Posted the job'
             var email = 'gmrmadhavreddy416@gmail.com'
             var desc = 'Hiring manager to Manager'
             'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
             'Thank You!'
-            this.SendMailEmployee(sub, desc, email);
+            this.SendJobMail(sub, desc, email);
 
             var sub = 'Hiring Manager has Posted the job'
             var email = 'sindhugowda.amazeinc@gmail.com'
             var desc = 'Hiring manager to SBU'
             'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
             'Thank You!'
-            this.SendMailEmployee(sub, desc, email);
+            this.SendJobMail(sub, desc, email);
 
             this.InsertNotificationSBU();
             this.InsertNotificationManager();
@@ -221,16 +218,12 @@ export class JobRequisitionComponent implements OnInit {
           }
         })
       })
-
-
-
   }
 
-  public SendMailEmployee(sub: any, desc: any, email: any) {
+  public SendJobMail(sub: any, desc: any, email: any) {
     debugger
     var entity3 = {
       'emailto': email,
-      // 'emailto': 'divyashree@amazeinc.in',
       'emailsubject': sub,
       'emailbody': desc,
       'attachmenturl': [],
@@ -239,22 +232,18 @@ export class JobRequisitionComponent implements OnInit {
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
-      // Swal.fire('Letter Generated and Sent Successfully');
       Swal.fire('Emails Sent');
     })
   }
 
-
   public InsertNotificationSBU() {
     debugger
     var event: any = 'Job Post';
-
     this.RecruitmentServiceService.InsertNotificationSBU(event, this.buHead, 'Your HR Posted new Job,waiting for your approval')
       .subscribe({
         next: data => {
           debugger
           if (data != 0) {
-
           }
         }, error: (err) => {
           Swal.fire('Issue in Inserting Notification');
@@ -267,8 +256,7 @@ export class JobRequisitionComponent implements OnInit {
             data => {
               debugger
             },
-          )
-        }
+          )}
       })
   }
 
@@ -276,13 +264,11 @@ export class JobRequisitionComponent implements OnInit {
   public InsertNotificationManager() {
     debugger
     var event: any = 'Job Post';
-
     this.RecruitmentServiceService.InsertNotificationSBU(event, this.manager, 'Your HR Posted new Job,waiting for your approval')
       .subscribe({
         next: data => {
           debugger
           if (data != 0) {
-
           }
         }, error: (err) => {
           Swal.fire('Issue in Inserting Notification');
@@ -295,37 +281,11 @@ export class JobRequisitionComponent implements OnInit {
             data => {
               debugger
             },
-          )
-        }
+          )}
       })
   }
-
 
   Cancel() {
     location.href = "#/hirignmanager/JobRecruitements";
   }
-
-  // public GetJobDescriptionMaster() {
-  //   this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
-  //     next: data => {
-  //       debugger
-  //       this.staffdetails = data;
-  //       this.loader=false;
-  //       this.count=this.staffdetails.length;
-  //     }, error: (err: { error: { message: any; }; }) => {
-  //       Swal.fire('Getting Get Job Description Master ');
-  //       // Insert error in Db Here//
-  //       var obj = {
-  //         'PageName': this.currentUrl,
-  //         'ErrorMessage': err.error.message
-  //       }
-  //       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-  //         data => {
-  //           debugger
-  //         },
-  //       )
-  //     }
-  //   })
-
-  // }
 }
