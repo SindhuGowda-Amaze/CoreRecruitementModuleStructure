@@ -72,7 +72,7 @@ export class VendorJobOpeningsComponent implements OnInit {
           this.joblist = data.filter(x => x.vendor == this.username );
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
+          Swal.fire(' Issue in Getting Job Requirements');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -93,7 +93,7 @@ export class VendorJobOpeningsComponent implements OnInit {
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
+          Swal.fire(' Issue in Getting Job Requirements');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -121,7 +121,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         debugger
         this.dropdownList1 = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Vendor Dasboard');
+        Swal.fire(' Issue in Getting Vendor Dasboard');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -180,7 +180,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         Swal.fire('Updated successfully');
         location.reload();
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Getting Update Vendor');
+        Swal.fire(' Issue in Updating Vendor');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -200,7 +200,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         debugger
         this.Userlist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Getting Update Vendor');
+        Swal.fire('  Issue in  Updating Vendor');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -223,7 +223,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         this.selectedItems1 = data.filter(x => x.id == this.vendorid);
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Getting Update Vendor');
+        Swal.fire('  Issue in  Updating  Vendor');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -252,7 +252,7 @@ export class VendorJobOpeningsComponent implements OnInit {
           this.joblist = data.filter(x => x.recruiter == this.userid);
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
+          Swal.fire(' Issue in Getting Job Requirements');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -274,7 +274,7 @@ export class VendorJobOpeningsComponent implements OnInit {
           debugger
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
+          Swal.fire(' Issue in Getting Job Requirements');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -298,7 +298,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         this.count = this.joblist.length;
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Job Requirements');
+        Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -358,7 +358,7 @@ public GetJobDescription() {
       this.count = this.staffdetails.length;
     },
     error: (err: { error: { message: any } }) => {
-      Swal.fire('Getting Get Job Description Master ');
+      Swal.fire('Issue in Getting Job Description Master ');
       // Insert error in Db Here//
       var obj = {
         PageName: this.currentUrl,
@@ -387,7 +387,7 @@ public getjobdescription(even:any){
         this.joblist = data.filter(x => x.vendor == this.username && x.jobTitle==this.jobdescriptionID);
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Job Requirements');
+        Swal.fire(' Issue Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -408,7 +408,7 @@ public getjobdescription(even:any){
         this.jobListCopy = this.joblist
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Job Requirements');
+        Swal.fire(' issue in Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -429,7 +429,7 @@ public getjobdescription(even:any){
         this.joblist = data.filter(x => x.recruiter == this.userid && x.jobTitle==this.jobdescriptionID);
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Job Requirements');
+        Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -451,7 +451,7 @@ public getjobdescription(even:any){
         debugger
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Job Requirements');
+        Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message

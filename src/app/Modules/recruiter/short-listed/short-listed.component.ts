@@ -101,7 +101,7 @@ export class ShortListedComponent implements OnInit {
           this.loader = false;
           this.count = this.joblist.length;;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -127,7 +127,7 @@ debugger
           this.loader = false;
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -154,7 +154,7 @@ debugger
         this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.noticePeriod == this.searchbynotice));
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -177,7 +177,7 @@ debugger
           this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.ctc == this.searchbyctc));
 
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
+          Swal.fire('Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -311,7 +311,7 @@ debugger
         this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.hiringManager);
         this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
+        Swal.fire(' Issue in Getting Candidate Registration');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -423,7 +423,7 @@ debugger
           this.loader = false;
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -449,7 +449,7 @@ debugger
           this.loader = false;
           this.count = this.joblist.length;;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -475,7 +475,7 @@ debugger
           this.loader = false;
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Candidate Registration');
+          Swal.fire(' Issue in Getting Candidate Registration');
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message

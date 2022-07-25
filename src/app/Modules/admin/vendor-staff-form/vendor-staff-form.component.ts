@@ -126,7 +126,7 @@ export class VendorStaffFormComponent implements OnInit {
         Swal.fire('Saved Successfully..!');
         location.href = "#/admin/VendorStaffDashboard"
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Inserting Vendor Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -175,7 +175,7 @@ export class VendorStaffFormComponent implements OnInit {
         debugger
         this.roleList = data
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Getting RoleType');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -209,7 +209,7 @@ export class VendorStaffFormComponent implements OnInit {
         let id = data;
         location.href = "#/admin/VendorStaffDashboard";
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in Updating Vendor Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
