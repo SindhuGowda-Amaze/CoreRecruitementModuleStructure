@@ -63,18 +63,6 @@ export class DroppedCandidatesComponent implements OnInit {
       }
     })
 
-
-
-
-
-
-
-
-
-
-
-
-
     this.GetCandidateReg()
   }
   GetJobDescriptionMaster() {
@@ -150,19 +138,7 @@ export class DroppedCandidatesComponent implements OnInit {
       }
     })
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ;
+ ;
   }
 
   public changeoption() {
@@ -187,16 +163,7 @@ export class DroppedCandidatesComponent implements OnInit {
         )
       }
     })
-
-    
-    
-    
-    
-    
-    
-    
-    
-    ;
+  ;
   }
 
 
@@ -235,11 +202,6 @@ export class DroppedCandidatesComponent implements OnInit {
             )
           }
         })
-
-
-
-
-
 
 
         // For more information about handling dismissals please visit
@@ -326,10 +288,6 @@ export class DroppedCandidatesComponent implements OnInit {
       }
     })
 
-  
-   
-  
-  
   }
 
   public GetJobDescription() {
@@ -355,16 +313,6 @@ export class DroppedCandidatesComponent implements OnInit {
     })
 
   }
-
-
-
-
-
-
-
-
-
-
 
 }
 

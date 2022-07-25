@@ -491,13 +491,6 @@ debugger
 
 
   }
-
-
-
-
-
-
-
   public SendMailEmployee() {
 
     debugger
@@ -518,9 +511,6 @@ debugger
       'bcclist':[],
 
     }
-
-
-
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
       // Swal.fire('Letter Generated and Sent Successfully');

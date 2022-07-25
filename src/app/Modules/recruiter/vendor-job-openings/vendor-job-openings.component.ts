@@ -468,12 +468,6 @@ public getjobdescription(even:any){
 
 
 }
-
-
-
-
-
-
 close(){
   location.href="#/recruiter/VendorJobOpenings"
 }
