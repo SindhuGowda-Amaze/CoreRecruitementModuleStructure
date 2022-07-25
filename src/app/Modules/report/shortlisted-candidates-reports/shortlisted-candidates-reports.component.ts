@@ -100,7 +100,6 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     }
 }
 
-
   GetClientStaff(){
     this.RecruitementService.GetClientStaff()
     .subscribe({
@@ -108,7 +107,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         debugger
         this.hrlist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetClientStaff');
+        Swal.fire('Issue in GetClient Staff');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -180,7 +179,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         debugger
         this.noticeperiodlist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.noticePeriod == this.searchbynotice));
       }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
+        Swal.fire('Issue in GetCandidate Registration');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -256,7 +255,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         debugger
         this.slotslist = data;
       }, error: (err) => {
-        Swal.fire('Issue in GetSlotsMasterByStaffID');
+        Swal.fire('Issue in Get Slots Master ByS taffID');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -294,7 +293,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         Swal.fire("Interview Scheduled Successfully");
         this.GetCandidateReg();
       }, error: (err) => {
-        Swal.fire('Issue in UpdateCandidateInterviewSchedule');
+        Swal.fire('Issue in UpdateCandidate InterviewSchedule');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

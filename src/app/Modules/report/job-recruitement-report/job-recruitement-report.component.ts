@@ -89,7 +89,7 @@ GetJob_Requirements()
         this.count = this.joblist.length;
       }
     }, error: (err) => {
-      Swal.fire('Issue in GetJob_Requirements');
+      Swal.fire('Issue in GetJob Requirements');
       // Insert error in Db Here//
       var obj = {
         'PageName': this.currentUrl,
@@ -156,7 +156,7 @@ GetJob_Requirements()
         this.count = this.joblist.length;
      
       }, error: (err) => {
-        Swal.fire('Issue in GetJob_Requirements');
+        Swal.fire('Issue in GetJob Requirements');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
