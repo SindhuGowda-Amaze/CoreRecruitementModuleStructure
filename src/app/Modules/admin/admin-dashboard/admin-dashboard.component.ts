@@ -1,11 +1,12 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
-// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// --Description :this procedure Gets the active records of CandidateRegistration Table
-// --Last Modified Date : 25 July , 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Get methods from ClientMaster,Client Staff,Recruiter Staff,Vender_Dashboard and Vender_Staff Table
+// --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Madhava
 // --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +20,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  //Variable Declerations// 
+
   currentUrl: any;
   clientlist: any;
   clientlist1: any;
@@ -37,12 +41,29 @@ export class AdminDashboardComponent implements OnInit {
   count4: any;
   temp: any;
   err: any
+
   constructor(public router: Router, private datePipe: DatePipe,
     private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    //Variable Initialisation and Default Method Calls//
+
     this.currentUrl = window.location.href;
     this.temp = sessionStorage.getItem('temp')
+
+    this.GetClientMaster();
+    this.GetClientStaff();
+    this.GetVendor_Dasboard();
+    this.GetRecruiterStaff();
+    this.GetVendor_Staff();
+
+  }
+
+
+// Methods to get Count of Staff from ClientMaster,Client Staff,Recruiter Staff,Vender_Dashboard and Vender_Staff Table//
+
+  public GetClientMaster(){
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {
         debugger
@@ -64,7 +85,9 @@ export class AdminDashboardComponent implements OnInit {
         )
       }
     })
+  }
 
+  public GetClientStaff(){
     this.RecruitmentServiceService.GetClientStaff().subscribe({
       next: data => {
         debugger
@@ -87,6 +110,9 @@ export class AdminDashboardComponent implements OnInit {
       }
     })
 
+  }
+
+  public GetVendor_Dasboard(){
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
@@ -108,7 +134,9 @@ export class AdminDashboardComponent implements OnInit {
         )
       }
     })
+  }
 
+  public GetRecruiterStaff(){
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
@@ -132,6 +160,9 @@ export class AdminDashboardComponent implements OnInit {
       }
     })
 
+  }
+
+  public GetVendor_Staff(){
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
       next: data => {
         debugger
@@ -156,6 +187,8 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+
+//Methods to Route to Respective Pages//
   public GoToClientdashboard() {
     debugger
     this.router.navigate(['/admin/Clientdashboard']);
@@ -181,6 +214,8 @@ export class AdminDashboardComponent implements OnInit {
     debugger
     this.router.navigate(['/admin/RecruiterStaffDashboard']);
   }
+
+//Methods to flip the card//
 
   public flip(event: { currentTarget: any; }) {
     debugger
