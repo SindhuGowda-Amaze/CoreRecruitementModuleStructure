@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from   GetRecruiterStaff,DeleteRecruiterStaff,EnableCompanyStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -7,6 +16,7 @@ import { RecruitementService } from 'src/app/Pages/Services/recruitement.service
   styleUrls: ['./recruiter-staff-dashboard.component.css']
 })
 export class RecruiterStaffDashboardComponent implements OnInit {
+//Variable Declerations//
 
   stafflist: any;
   count: any;
@@ -15,8 +25,15 @@ export class RecruiterStaffDashboardComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService) { }
 
   ngOnInit(): void {
+
+    //Variable Initialisation and Default Method Calls//
+
     this.GetRecruiterStaff();
   }
+  
+  
+  // Methods to get Count of GetRecruiterStaff,DeleteRecruiterStaff,EnableCompanyStaff
+
   public GetRecruiterStaff() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe(
       data => {

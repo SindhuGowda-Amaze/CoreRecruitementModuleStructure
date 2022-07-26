@@ -1,3 +1,14 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,GetDepartment,GetJob_Requirements,
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +22,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
+  //Variable Declerations//
 
   showback: any;
   showfront: any;
@@ -48,11 +62,36 @@ export class DashboardComponent implements OnInit {
   department:any;
   currentUrl:any
   err: any;
-  constructor(public router: Router, private datePipe: DatePipe,
-    private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   username: any;
   deptlist:any;
+  Anniversery: any
+  Birthday: any;
+  NewJoinee: any;
+
+
+  constructor(public router: Router, private datePipe: DatePipe, private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
+      
+    //Variable Initialisation and Default Method Calls//
+
+    this.GetRecruiterStaff();
+    this.GetDepartment();
+    this.GetJob_Requirements1();
+    this.GetJob_Requirements2();
+    this.GetCandidateRegistration1();
+    this.GetCandidateRegistration2();
+    this.GetCandidateRegistration3();
+    this.GetCandidateRegistration4();
+    this.GetCandidateRegistration5();
+    this.GetCandidateRegistration6();
+    this.GetCandidateRegistration7();
+    this.GetCandidateRegistration8();
+    this.GetCandidateRegistration9();
+    this.GetCandidateRegistration10();
+    this.GetCandidateRegistration11();
+    this.GetCandidateRegistration12();
+    this.GetCandidateRegistration13();
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.department="";
@@ -66,52 +105,70 @@ export class DashboardComponent implements OnInit {
     this.vendorid = sessionStorage.getItem('role');
     this.username = sessionStorage.getItem('UserName');
 
+  }
 
+   // Methods to get Count of GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,GetDepartment,GetJob_Requirements,
+
+  GetRecruiterStaff(){
 
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
-  next: data => {
-    debugger
-    this.hrlist = data.filter(x=>x.role=="Hiring Manager");   
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting Recruiter Staff');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
+      next: data => {
+       debugger
+       this.hrlist = data.filter(x=>x.role=="Hiring Manager");   
+      }, error: (err: { error: { message: any; }; }) => {
+       Swal.fire('Issue in Getting Recruiter Staff');
+       // Insert error in Db Here//
+       var obj = {
+         'PageName': this.currentUrl,
+         'ErrorMessage': err.error.message
+       }
+       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+         data => {
+           debugger
+         },
+       )
+   
+      }
+      })
+   
+
+
+
+
+
 
   }
-})
+
+  GetDepartment(){
 
 
-  this.RecruitmentServiceService.GetDepartment().subscribe({
-  next: data => {
-    debugger
-    this.deptlist = data;
+    this.RecruitmentServiceService.GetDepartment().subscribe({
+      next: data => {
+       debugger
+       this.deptlist = data;
+   
+      }, error: (err: { error: { message: any; }; }) => {
+       Swal.fire(' issue in Getting Department');
+       // Insert error in Db Here//
+       var obj = {
+         'PageName': this.currentUrl,
+         'ErrorMessage': err.error.message
+       }
+       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+         data => {
+           debugger
+         },
+       )
+       }
+      })
+   
 
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' issue in Getting Department');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
+
   }
-})
 
-
-  this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-  next: data => {
+  GetJob_Requirements1(){
+      this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+   next: data => {
     debugger
     if (this.roleid == 2) {
       this.joblist = data.filter(x => x.hiringManager == this.username);
@@ -128,7 +185,7 @@ export class DashboardComponent implements OnInit {
       this.joblist1 = this.joblist.slice(0, 3);
      
     }
-  }, error: (err: { error: { message: any; }; }) => {
+   }, error: (err: { error: { message: any; }; }) => {
     Swal.fire(' Issue in Getting Job Requirements  ');
     // Insert error in Db Here//
     var obj = {
@@ -139,526 +196,539 @@ export class DashboardComponent implements OnInit {
       data => {
         debugger
       },
-    )
+     )
+    }
+    })
+
+
   }
-})
 
+  GetJob_Requirements2(){
 
-
-  this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2 ){
-      this.joblist = data.filter(x => x.hiringManager == this.username);
+    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+      next: data => {
+       debugger
+       if (this.roleid == 2 ){
+         this.joblist = data.filter(x => x.hiringManager == this.username);
+         
+         this.count = this.joblist.length;
+       }
+       else if(this.roleid==3){
+         this.joblist = data.filter(x => x.vendor == this.username);
+         this.count = this.joblist.length;
+       }
+       else{
+         this.joblist = data
+         this.count = this.joblist.length;
+       
+       }
+   
       
-      this.count = this.joblist.length;
-    }
-    else if(this.roleid==3){
-      this.joblist = data.filter(x => x.vendor == this.username);
-      this.count = this.joblist.length;
-    }
-    else{
-      this.joblist = data
-      this.count = this.joblist.length;
-    
-    }
+       // Insert error in Db Here//
+       var obj = {
+         'PageName': this.currentUrl,
+         'ErrorMessage':this. err.error.message
+       }
+       Swal.fire(' Issue in Getting Job Requirements  ');
+       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+         data => {
+           debugger
+         },
+        )
+       }
+      })
 
+
+
+
+
+  }
+
+  GetCandidateRegistration1(){
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+      debugger
+      if (this.roleid == 2){
+        this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.username);
+        this.joblist3 = this.joblist3.slice(0, 3);
+        debugger
+      }
+      else if(this.roleid==3){
+        this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0 && x.vendor == this.username);
+        this.joblist3 = this.joblist3.slice(0, 3);
+      }
+      else{
+        this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0);
+        this.joblist3 = this.joblist3.slice(0, 3);
+        debugger
+      }
+     }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire(' Issue in Getting Candidate Registration');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+     }
+     })
+
+  }
+
+  GetCandidateRegistration2(){
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+       debugger
+       if (this.roleid == 2){
+         this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0  && x.hiringManager == this.username);
+         this.count1 = this.joblist4.length;
    
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage':this. err.error.message
-    }
-    Swal.fire(' Issue in Getting Job Requirements  ');
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
-
-
-
-    // this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-    //   debugger
-
-    //   if (this.roleid == 2) {
-    //     this.joblist2 = data.filter(x => x.hiringManager == x.UserName);
-    //     this.count = this.joblist2.length;
-    //   }
-    //   else{
-    //     this.joblist2 = data;
-    //     this.count = this.joblist2.length;
-    //   }
-
-    //   debugger
-    // })
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.username);
-      this.joblist3 = this.joblist3.slice(0, 3);
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0 && x.vendor == this.username);
-      this.joblist3 = this.joblist3.slice(0, 3);
-    }
-    else{
-      this.joblist3 = data.filter(x => x.accept == 0 && x.reject == 0);
-      this.joblist3 = this.joblist3.slice(0, 3);
-      debugger
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0  && x.hiringManager == this.username);
-      this.count1 = this.joblist4.length;
-
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist4 = data.filter(x =>  x.accept == 0 && x.reject == 0 && x.source == this.vendorid);
-      this.count1 = this.joblist4.length;
-    }
-    else{
-      this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0);
-      this.count1 = this.joblist4.length;
-
-      debugger
+         debugger
+       }
+       else if(this.roleid==3){
+         this.joblist4 = data.filter(x =>  x.accept == 0 && x.reject == 0 && x.source == this.vendorid);
+         this.count1 = this.joblist4.length;
+       }
+       else{
+         this.joblist4 = data.filter(x => x.accept == 0 && x.reject == 0);
+         this.count1 = this.joblist4.length;
+   
+         debugger
+         
+       }
       
-    }
-   
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage':this. err.error.message
-    }
-    Swal.fire(' Issue in Getting Candidate Registration');
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
+       // Insert error in Db Here//
+       var obj = {
+         'PageName': this.currentUrl,
+         'ErrorMessage':this. err.error.message
+       }
+       Swal.fire(' Issue in Getting Candidate Registration');
+       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+         data => {
+           debugger
+         },
+       )
+       }
+      })
+
+
   }
-})
-
-    // this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-    //   debugger
-    //   this.joblist4 = data.filter(x => x.vendorId == this.vendorid);
-    //   debugger
-    //   if(this.roleid==7){ 
-    //     this.count1 = this.joblist4.length;
-    //     this.joblist1 = this.joblist1.slice(0, 3);
-    //   }
-    // })
-
-
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.hiringManager == this.username);
-      this.joblist5 = data.slice(0, 3);
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
-      this.joblist5 = data.slice(0, 3);
-    }
-    else{
-      this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0);
-      this.joblist5 = data.slice(0, 3);
-      debugger
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+  GetCandidateRegistration3(){
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.hiringManager == this.username);
+          this.joblist5 = data.slice(0, 3);
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
+          this.joblist5 = data.slice(0, 3);
+        }
+        else{
+          this.joblist5 = data.filter(x => x.accept == 1 && x.scheduled == 0);
+          this.joblist5 = data.slice(0, 3);
+          debugger
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': this.err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
   }
-})
-
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
-      this.joblist6 = this.joblist6.slice(0, 3);
-      this.count2 = this.joblist6.length;
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.source == this.vendorid);
-      this.joblist6 = this.joblist6.slice(0, 3);
-      this.count2 = this.joblist6.length;
-    }
-    else{
-      this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0);
-      this.joblist6 = this.joblist6.slice(0, 3);
-      this.count2 = this.joblist6.length;
-      debugger
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+  GetCandidateRegistration4(){
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
-  }
-})
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.hiringManager == this.username);
-      this.joblist7 = this.joblist7.slice(0, 3);
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
-      this.joblist7 = this.joblist7.slice(0, 3);
-    }
-    else{
-      this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
-      this.joblist7 = this.joblist7.slice(0, 3);
-      debugger
+        if (this.roleid == 2){
+          this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
+          this.joblist6 = this.joblist6.slice(0, 3);
+          this.count2 = this.joblist6.length;
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.source == this.vendorid);
+          this.joblist6 = this.joblist6.slice(0, 3);
+          this.count2 = this.joblist6.length;
+        }
+        else{
+          this.joblist6 = data.filter(x => x.accept == 1 && x.scheduled == 0);
+          this.joblist6 = this.joblist6.slice(0, 3);
+          this.count2 = this.joblist6.length;
+          debugger
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
     
-    }
-   
+
+
+  }
+  GetCandidateRegistration5(){
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.hiringManager == this.username);
+          this.joblist7 = this.joblist7.slice(0, 3);
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
+          this.joblist7 = this.joblist7.slice(0, 3);
+        }
+        else{
+          this.joblist7 = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.joblist7 = this.joblist7.slice(0, 3);
+          debugger
+        
+        }
+       
+        
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': this.err.error.message
+        }
+        Swal.fire(' Issue in Getting Candidate Registration');
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
+
+  GetCandidateRegistration6(){
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.hiringManager == this.username);
+          this.count3 = this.joblist8.length;
     
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    Swal.fire(' Issue in Getting Candidate Registration');
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.hiringManager == this.username);
-      this.count3 = this.joblist8.length;
-
-    }
-    else if(this.roleid==3){
-      this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
-      this.count3 = this.joblist8.length;
-    }
-    else{
-      this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
-      this.count3 = this.joblist8.length;
-  
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
-      this.joblist9 = this.joblist9.slice(0, 3);
+        }
+        else if(this.roleid==3){
+          this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0  && x.source == this.vendorid);
+          this.count3 = this.joblist8.length;
+        }
+        else{
+          this.joblist8 = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.count3 = this.joblist8.length;
+      
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
     
-    }
-    else if(this.roleid==3){
-      this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
-      this.joblist9 = this.joblist9.slice(0, 3);
-    }
-    else{
-      this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-      this.joblist9 = this.joblist9.slice(0, 3);
 
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
   }
-})
 
+  GetCandidateRegistration7(){
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
-      this.count4 = this.joblist10.length;
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        if (this.roleid == 2){
+          this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
+          this.joblist9 = this.joblist9.slice(0, 3);
+        
+        }
+        else if(this.roleid==3){
+          this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
+          this.joblist9 = this.joblist9.slice(0, 3);
+        }
+        else{
+          this.joblist9 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+          this.joblist9 = this.joblist9.slice(0, 3);
     
-    }
-    else if(this.roleid==3){
-      this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
-      this.count4 = this.joblist10.length;
-    }
-    else{
-      this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-      this.count4 = this.joblist10.length;
-     
-  
-    }
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
+  }
 
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    Swal.fire(' Issue in Getting Candidate Registration');
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+  GetCandidateRegistration8(){
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username);
+          this.count4 = this.joblist10.length;
+        
+        }
+        else if(this.roleid==3){
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.source == this.vendorid);
+          this.count4 = this.joblist10.length;
+        }
+        else{
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
+          this.count4 = this.joblist10.length;
+         
+      
+        }
+    
+    
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': this.err.error.message
+        }
+        Swal.fire(' Issue in Getting Candidate Registration');
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+
   }
-})
+  GetCandidateRegistration9(){
 
-
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.hiringManager == this.username);
-      this.joblist11 = this.joblist11.slice(0, 3);
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
-      this.joblist11 = this.joblist11.slice(0, 3);
-    }
-    else{
-      this.joblist11 = data.filter(x => x.offerAcceptreject == 1);
-      this.joblist11 = this.joblist11.slice(0, 3);
-      debugger
-    };
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' Issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
-  }
-})
+        if (this.roleid == 2){
+          this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.hiringManager == this.username);
+          this.joblist11 = this.joblist11.slice(0, 3);
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist11 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
+          this.joblist11 = this.joblist11.slice(0, 3);
+        }
+        else{
+          this.joblist11 = data.filter(x => x.offerAcceptreject == 1);
+          this.joblist11 = this.joblist11.slice(0, 3);
+          debugger
+        };
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.hiringManager == this.username);
-      this.count5 = this.joblist12.length;
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
-      this.count5 = this.joblist12.length;
-    }
-    else{
-      this.joblist12 = data.filter(x => x.offerAcceptreject == 1);
-      this.count5 = this.joblist12.length;
-      debugger
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+
+  }
+
+  GetCandidateRegistration10(){
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.hiringManager == this.username);
+          this.count5 = this.joblist12.length;
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1  && x.source == this.vendorid);
+          this.count5 = this.joblist12.length;
+        }
+        else{
+          this.joblist12 = data.filter(x => x.offerAcceptreject == 1);
+          this.count5 = this.joblist12.length;
+          debugger
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+    
   }
-})
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.hiringManager == this.username);
-      this.count9 = this.joblist20.length;
-    }
-    else if(this.roleid==3){
-      this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
-      this.count9 = this.joblist20.length;
-    }
-    else{
-      this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0);
-      this.count9 = this.joblist20.length;
-    }
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+  GetCandidateRegistration11(){
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.hiringManager == this.username);
+          this.count9 = this.joblist20.length;
+        }
+        else if(this.roleid==3){
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0  && x.source == this.vendorid);
+          this.count9 = this.joblist20.length;
+        }
+        else{
+          this.joblist20 = data.filter(x => x.accept == 1 && x.scheduled == 0);
+          this.count9 = this.joblist20.length;
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
+
   }
-})
 
+  GetCandidateRegistration12(){
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.hiringManager == this.username);
-      this.joblist13 = this.joblist13.slice(0, 3);
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
-      this.joblist13 = this.joblist13.slice(0, 3);
-    }
-    else{
-      this.joblist13 = data.filter(x => x.offerAcceptreject == 2);
-      this.joblist13 = this.joblist13.slice(0, 3);
-      debugger
-    }
-  
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire(' issue in Getting Candidate Registration');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.hiringManager == this.username);
+          this.joblist13 = this.joblist13.slice(0, 3);
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist13 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
+          this.joblist13 = this.joblist13.slice(0, 3);
+        }
+        else{
+          this.joblist13 = data.filter(x => x.offerAcceptreject == 2);
+          this.joblist13 = this.joblist13.slice(0, 3);
+          debugger
+        }
+      
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' issue in Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
-})
 
-  this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-  next: data => {
-    debugger
-    if (this.roleid == 2){
-      this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.hiringManager == this.username);
-      this.count6 = this.joblist14.length;
-      debugger
-    }
-    else if(this.roleid==3){
-      this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
-      this.count6 = this.joblist14.length;
-    }
-    else{
-      this.joblist14 = data.filter(x => x.offerAcceptreject == 2);
-      this.count6 = this.joblist14.length;
-      debugger
-   
-    }
+  GetCandidateRegistration13(){
 
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': this.err.error.message
-    }
-    Swal.fire(' issue in Getting Candidate Registration');
-    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-      data => {
+
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
         debugger
-      },
-    )
+        if (this.roleid == 2){
+          this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.hiringManager == this.username);
+          this.count6 = this.joblist14.length;
+          debugger
+        }
+        else if(this.roleid==3){
+          this.joblist14 = data.filter(x => x.offerAcceptreject == 2  && x.source == this.vendorid);
+          this.count6 = this.joblist14.length;
+        }
+        else{
+          this.joblist14 = data.filter(x => x.offerAcceptreject == 2);
+          this.count6 = this.joblist14.length;
+          debugger
+       
+        }
+    
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': this.err.error.message
+        }
+        Swal.fire(' issue in Getting Candidate Registration');
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
-})
-
-  }
-  // hiringManager: any;
-  // public GetJobRequirements() {
 
 
-  //   this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  //     debugger
-
-  //     this.joblist = data.filter(x => x.vendor == null && x.hiringManager == this.hiringManager);
-
-  //     this.count = this.joblist.length;
+ // Methods to get Count of GetJob_Requirements,GetCandidateRegistration
 
 
-  //   })
-
-
-
-
-  // }
 
   changedepartment(){
 
@@ -816,9 +886,6 @@ export class DashboardComponent implements OnInit {
 
 
 
-  Anniversery: any
-  Birthday: any;
-  NewJoinee: any;
 
 
   public changebirthday() {

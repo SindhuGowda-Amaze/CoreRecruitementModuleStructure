@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,10 +21,11 @@ import Swal from 'sweetalert2';
 })
 export class SelectedCandidatesComponent implements OnInit {
 
+   
+  //Variable Declerations//
+
   roleid: any
   err: any;
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   hiringManager: any;
   DeminimisList: any;
   deminimis: any;
@@ -61,12 +73,27 @@ export class SelectedCandidatesComponent implements OnInit {
   jobdescriptionID: any;
   jobdescription: any;
 
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.GetJobDescription()
+
+  
+    //Variable Initialisation and Default Method Calls//
+
+    this.GetCandidateReg();
+    this.GetRecruiterStaff();
+    this.GetJobDescription();
     this.Role = ""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
     this.hiringManager = "";
+    this.roleid = sessionStorage.getItem('roleid');
+    this.loader = true;
+    this.username = sessionStorage.getItem('UserName');
+  }
+
+  GetRecruiterStaff(){
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
@@ -87,11 +114,14 @@ export class SelectedCandidatesComponent implements OnInit {
       }
     })
 
-    this.GetCandidateReg()
-    this.roleid = sessionStorage.getItem('roleid');
-    this.loader = true;
-    this.username = sessionStorage.getItem('UserName');
   }
+
+ // Methods to get Count of GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,  sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
+
+
+
+
+
 
   public GetCandidateReg() {
     debugger

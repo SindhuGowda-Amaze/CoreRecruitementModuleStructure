@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetJobDescriptionMaster,DeleteJobDescriptionMaster,EnableVendorStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -9,6 +18,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobDescriptionDashComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
+  //Variable Declerations//
+
   vendor_Name: any;
   staff_Name: any;
   email_Id: any;
@@ -23,11 +35,19 @@ export class JobDescriptionDashComponent implements OnInit {
   search: any;
   currentUrl: any
   err: any
+  
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+  
+    //Variable Initialisation and Default Method Calls//
     this.GetJobDescriptionMaster();
+
+    this.currentUrl = window.location.href;
+    
     this.loader = true;
   }
+
+// Methods to get Count of GetJobDescriptionMaster,DeleteJobDescriptionMaster,EnableVendorStaff//
+
 
   public GetJobDescriptionMaster() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({

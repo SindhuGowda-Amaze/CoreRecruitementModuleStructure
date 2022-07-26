@@ -1,3 +1,13 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetVendor_Staff,InsertVendor_Staff,GetVendor_Dasboard,GetRoleType,UpdateVendor_Staff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -10,6 +20,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./vendor-staff-form.component.css']
 })
 export class VendorStaffFormComponent implements OnInit {
+
+    
+  //Variable Declerations//
 
   signature: any;
   staff_Name: any;
@@ -38,11 +51,13 @@ export class VendorStaffFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+         //Variable Initialisation and Default Method Calls//
+    this.GetRoleType();
+   this.GetVendor_Dasboard();
     this.currentUrl = window.location.href;
     this.Role = "";
     this.VendorId = "";
-    this.GetRoleType();
-    this.GetVendor_Dasboard();
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
@@ -51,6 +66,9 @@ export class VendorStaffFormComponent implements OnInit {
       }
     })
   }
+
+  
+   // Methods to get Count of GetVendor_Staff,InsertVendor_Staff,GetVendor_Dasboard,GetRoleType,UpdateVendor_Staff
 
   onSelect(event: { addedFiles: any; }) {
     debugger

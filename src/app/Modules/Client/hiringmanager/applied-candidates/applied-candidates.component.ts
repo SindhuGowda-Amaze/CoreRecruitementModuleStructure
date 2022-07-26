@@ -1,3 +1,14 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -9,9 +20,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./applied-candidates.component.css'],
 })
 export class AppliedCandidatesComponent implements OnInit {
-  err: any;
 
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+    
+  //Variable Declerations//
+
+  err: any;
   joblist: any;
   count: any;
   DropJobList: any;
@@ -39,7 +52,13 @@ export class AppliedCandidatesComponent implements OnInit {
   jobdescriptionID: any;
   recruiter:any;
 
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+ 
+
   ngOnInit(): void {
+
+       //Variable Initialisation and Default Method Calls//
+
     this.GetJobDescription();
     this.Role = '';
     this.currentUrl = window.location.href;
@@ -55,6 +74,7 @@ export class AppliedCandidatesComponent implements OnInit {
     this.GetCandidateReg();
   }
 
+   // Methods to get Count of GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
   public GetCandidateReg() {
     if (this.roleid == '3') {
       debugger;
@@ -301,7 +321,7 @@ export class AppliedCandidatesComponent implements OnInit {
             x.reject == 0 &&
             x.noticePeriod == this.searchbynotice
         );
-
+        }, error: (err: { error: { message: any } }) => {
         Swal.fire('Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
@@ -325,12 +345,14 @@ export class AppliedCandidatesComponent implements OnInit {
         this.joblist = data.filter(
           (x) => x.accept == 0 && x.reject == 0 && x.ctc == this.searchbyctc
         );
+      }, error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
           ErrorMessage: this.err.error.message,
         };
-        Swal.fire('Issue in Getting Expenses List Web');
+     
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           (data) => {
             debugger;

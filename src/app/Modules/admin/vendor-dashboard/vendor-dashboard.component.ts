@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetVendor_Dasboard,DeleteVendor_Dasboard
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import swal from 'sweetalert2';
@@ -10,6 +19,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vendor-dashboard.component.css']
 })
 export class VendorDashboardComponent implements OnInit {
+ 
+  //Variable Declerations//
+
   err: any;
   vendordetails: any;
   vendor_Logo: any;
@@ -27,10 +39,14 @@ export class VendorDashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+    
+    //Variable Initialisation and Default Method Calls//
     this.GetVendor_Dasboard();
+    this.currentUrl = window.location.href;
     this.loader = true;
   }
+
+   // Methods to get Count of GetVendor_Dasboard,DeleteVendor_Dasboard
 
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({

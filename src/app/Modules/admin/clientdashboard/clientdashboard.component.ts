@@ -1,3 +1,13 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from   GetClientMaster,DeleteClientMaster
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,20 +19,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./clientdashboard.component.css']
 })
 export class ClientdashboardComponent implements OnInit {
+
+  //Variable Declerations// 
+
   Job: any;
   count: any;
   search: any;
   loader: any;
-  currentUrl: any
+  currentUrl: any;
+  ClientMasterlist: any;
+
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+  
+    //Variable Initialisation and Default Method Calls//
+
     this.GetClientMaster()
+    this.currentUrl = window.location.href;
     this.loader = true;
   }
 
-  ClientMasterlist: any
+// Methods to get Count of GetClientMaster,DeleteClientMaster//
+
   public GetClientMaster() {
     debugger
     this.RecruitmentServiceService.GetClientMaster().subscribe({

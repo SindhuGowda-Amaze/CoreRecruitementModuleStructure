@@ -1,3 +1,13 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetClientStaff,GetManpowerPlanningandBudgeting,sendemailattachements,InsertNotificationSBU
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,10 +20,11 @@ import Swal from 'sweetalert2';
 })
 export class JobRecruitementsComponent implements OnInit {
 
+  
+  //Variable Declerations//
+
   jobListCopy: any;
   err: any;
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, public router: Router,) { }
   joblist: any;
   search: any;
   count: any;
@@ -32,9 +43,21 @@ export class JobRecruitementsComponent implements OnInit {
   username: any;
   currentUrl: any
   staffdetails:any
-  Role: any
+  Role: any;
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, public router: Router,) { }
+
   ngOnInit(): void {
-    this.GetJobDescription()
+   
+//Variable Initialisation and Default Method Calls//
+
+    this.GetClientStaff();
+    this.GetVendor_Dasboard();
+    this.GetJob_Requirements();
+    this.GetRecruiterStaff();
+    this.GetUserslist();
+    this.GetJobDescription();
+
     this.Role=""
     this.currentUrl = window.location.href;
     this.show = 0;
@@ -43,8 +66,25 @@ export class JobRecruitementsComponent implements OnInit {
     this.username = sessionStorage.getItem('UserName');
     this.loader = true;
 
-    this.GetRecruiterStaff();
-    this.GetUserslist();
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'vendor_Name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 20,
+      allowSearchFilter: true,
+
+    };
+
+  }
+
+
+// Methods to get Count of GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU,
+
+
+  GetClientStaff(){
+
     this.RecruitmentServiceService.GetClientStaff().subscribe({
       next: data => {
         debugger
@@ -63,6 +103,12 @@ export class JobRecruitementsComponent implements OnInit {
         )
       }
     })
+
+
+
+  }
+
+  GetVendor_Dasboard(){
 
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -86,6 +132,11 @@ export class JobRecruitementsComponent implements OnInit {
       
     })
 
+
+
+  }
+
+  GetJob_Requirements(){
 
     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
       next: data => {
@@ -125,20 +176,9 @@ export class JobRecruitementsComponent implements OnInit {
     })
 
 
-    this.dropdownSettings1 = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'vendor_Name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 20,
-      allowSearchFilter: true,
-
-    };
-
-
-
   }
+
+
 
   public Filterjobs() {
     debugger

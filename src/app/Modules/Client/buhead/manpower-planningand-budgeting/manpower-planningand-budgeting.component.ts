@@ -1,3 +1,15 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetRoleType,GetManpowerPlanningandBudgeting,InsertManpowerPlanningandBudgeting,UpdateManpowerPlanningandBudgeting
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -8,6 +20,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./manpower-planningand-budgeting.component.css'],
 })
 export class ManpowerPlanningandBudgetingComponent implements OnInit {
+    //Variable Declerations//
+
   CompanyName: any;
   roletype: any;
   showButton: any;
@@ -32,6 +46,9 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
   constructor(private DigipayrollServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+        
+    //Variable Initialisation and Default Method Calls//
+
     this.ActivatedRoute.params.subscribe((params: any) => {
       this.id = params['id'];
       debugger;
@@ -47,6 +64,8 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
 
     this.GetRoleType();
   }
+
+ // Methods to get Count of GetRoleType,GetManpowerPlanningandBudgeting,InsertManpowerPlanningandBudgeting,UpdateManpowerPlanningandBudgeting
 
   public GetRoleType() {
     this.DigipayrollServiceService.GetRoleType().subscribe((data) => {

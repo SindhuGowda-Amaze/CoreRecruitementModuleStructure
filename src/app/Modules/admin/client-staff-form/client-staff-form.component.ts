@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetRoleType,GetClientMaster,GetClientStaff,InsertClientStaff,UpdateClientStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -9,6 +20,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./client-staff-form.component.css']
 })
 export class ClientStaffFormComponent implements OnInit {
+
+  //Variable Declerations// 
+ 
   currentUrl: any;
   res: any
   id: any;
@@ -35,9 +49,12 @@ export class ClientStaffFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+
+      //Variable Initialisation and Default Method Calls//
+   
     this.GetRoleType();
     this.GetClientMaster();
+    this.currentUrl = window.location.href;
     this.ActivatedRoute.params
       .subscribe(params => {
         debugger
@@ -47,6 +64,9 @@ export class ClientStaffFormComponent implements OnInit {
         }
       })
   }
+
+// Methods to get Count of GetRoleType,GetClientMaster,GetClientStaff,InsertClientStaff,UpdateClientStaff//
+
 
   public GetRoleType() {
     debugger
