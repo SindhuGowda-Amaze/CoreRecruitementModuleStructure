@@ -398,7 +398,6 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
-
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -426,8 +425,6 @@ export class SelectedCandidatesComponent implements OnInit {
   GetJobDeminimis() {
 
   }
-
-
 
   getid(even: any) {
     debugger
