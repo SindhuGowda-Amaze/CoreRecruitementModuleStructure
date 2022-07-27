@@ -38,16 +38,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
 </div>
     
     <br> <br>
@@ -69,7 +59,7 @@
                         <th>Total Years of Experience</th>
                         <th>Relevant Experience</th>
                         <th>Offer Letter</th>
-                        <th>Offer Comments</th>
+                        <!-- <th>Offer Comments</th> -->
                     </tr>
                     <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
@@ -88,9 +78,7 @@
                             <img src="assets/Images/pdf.png" style="width: 30px;"
                                 (click)="GetOfferLetter(job.offerLetter)">
                         </td>
-                        <td>
-                            {{job.offerComments}}
-                        </td>
+                        <!-- <td>{{job.offerComments}}</td> -->
                     </tr>
                 </thead>
             </table>

@@ -209,7 +209,7 @@ export class ShortListedComponent implements OnInit {
 
   public GetStaffID(even: any) {
     this.staffid = even.target.value;
-    this.GetSlotsMaster();
+  //  this.GetSlotsMaster();
 
   }
   public GetStaffType() {
@@ -242,7 +242,7 @@ export class ShortListedComponent implements OnInit {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        // Swal.fire('Issue in Getting Slots Master ');       
+         Swal.fire('Issue in Getting Slots Master ');       
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -290,6 +290,7 @@ export class ShortListedComponent implements OnInit {
           'Thank You!'
           this.SendJobMail(sub, desc, email);
           this.InsertNotificationInterviewpanel();
+          this.ngOnInit();
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Interview Scheduled');
           // Insert error in Db Here//

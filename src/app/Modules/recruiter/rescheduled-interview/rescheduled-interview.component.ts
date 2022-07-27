@@ -272,7 +272,7 @@ public updatejoiningdate() {
     debugger
     this.staffid = even.target.value;
     debugger
-    this.GetSlotsMaster();
+ //   this.GetSlotsMaster();
   }
 
   emailattchementurl = [];
@@ -581,6 +581,7 @@ public updatejoiningdate() {
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
   }
+
   public GetDate(even: any) {
     this.date = even.target.value;
     this.GetSlotsMaster();
@@ -593,7 +594,7 @@ public updatejoiningdate() {
         debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Interview Scheduled');
+        Swal.fire('Issue in Getting Slots');
 
              var obj = {
           'PageName': this.currentUrl,

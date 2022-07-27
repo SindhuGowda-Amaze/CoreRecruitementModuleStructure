@@ -84,7 +84,7 @@
                   <th>Relevant Experience</th>
                   <th>Resume</th>
                   <th>Comments</th>
-                  <th>Interview Guid</th>
+                  <th>Interview Guide</th>
                   <th *ngIf="roleid==5">Actions</th>
                   <!-- <th></th> -->
                 </tr>
@@ -104,7 +104,7 @@
                     <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter(job.resumeUrl)">
                   </td>
                   <!-- <td>{{job.comments}}</td> -->
-                  <td>Select based on Relevant Experience</td>
+                  <td>{{job.notes}}</td>
                   <td>
                     <img class="resume" src="assets/Images/pdf.png"
                       (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
