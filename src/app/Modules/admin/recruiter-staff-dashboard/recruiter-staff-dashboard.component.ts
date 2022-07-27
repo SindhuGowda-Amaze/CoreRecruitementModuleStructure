@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from   GetRecruiterStaff,DeleteRecruiterStaff,EnableCompanyStaff
+// --Description :This page contains To Displaying Company Staff Details,Delete the Data from CompanyStaff,EnableCompanyStaff
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -32,7 +32,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
   }
   
   
-  // Methods to get Count of GetRecruiterStaff,DeleteRecruiterStaff,EnableCompanyStaff
+  // Methods to get Count of Company Staff//
 
   public GetRecruiterStaff() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe(
@@ -41,6 +41,8 @@ export class RecruiterStaffDashboardComponent implements OnInit {
         this.count = this.stafflist.length;
       })
   }
+
+  // Method to delete  the  data  from RecruiterStaff Table//
 
   public delete(id: any) {
     debugger
@@ -64,10 +66,13 @@ export class RecruiterStaffDashboardComponent implements OnInit {
     })
   }
 
+  // Method to Get Routing with Respect of URL//
 
   Update(staff: any) {
     location.href = "#/admin/RecruiterForm/" + staff.id
   }
+ 
+  //Method to EnableStaff from CompanyrStaff//
 
 
   public DisableStaff(id: any) {
@@ -95,6 +100,8 @@ export class RecruiterStaffDashboardComponent implements OnInit {
       }
     })
   }
+
+    //Method to DisableStaff from CompanyrStaff//
 
   public DisableStaff1(id: any) {
     debugger

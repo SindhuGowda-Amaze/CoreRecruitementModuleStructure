@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetVendor_Dasboard,DeleteVendor_Dasboard
+// --Description :This page contains Displaying Count of Vendor Details,Delete the Vendor details,routing With respect of URL
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -46,8 +46,7 @@ export class VendorDashboardComponent implements OnInit {
     this.loader = true;
   }
 
-   // Methods to get Count of GetVendor_Dasboard,DeleteVendor_Dasboard
-
+   // Methods to Get Count of Vendor Details
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -70,11 +69,12 @@ export class VendorDashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to Get  routing With respect of URL//
   edit(id: any) {
     debugger
     location.href = "#/admin/VendorForm/" + id;
   }
+// Methgod to Delete the Data in Vendor_DashBoard Table//
 
   public Ondelete(id: any) {
     debugger

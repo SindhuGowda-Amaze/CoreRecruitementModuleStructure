@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetRoleType,GetManpowerPlanningandBudgeting,InsertManpowerPlanningandBudgeting,UpdateManpowerPlanningandBudgeting
+// --Description :This page contains  To get count role tittle,Search the ManpowerPlanningandBudgeting Details,Insert & Update ManpowerPlanningandBudgeting, Routing the URL.
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -65,7 +65,7 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
     this.GetRoleType();
   }
 
- // Methods to get Count of GetRoleType,GetManpowerPlanningandBudgeting,InsertManpowerPlanningandBudgeting,UpdateManpowerPlanningandBudgeting
+ // Methods to get Count of Role Tittle//
 
   public GetRoleType() {
     this.DigipayrollServiceService.GetRoleType().subscribe((data) => {
@@ -84,6 +84,8 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
     }
   }
 
+// Method to Search the ManpowerPlanningandBudgeting//
+
   GetManpowerPlanningandBudgeting() {
     debugger;
     this.DigipayrollServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
@@ -101,6 +103,8 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
         (this.Remarks = temp[0].remarks);
     });
   }
+
+  // Method to Insert the Data  ManpowerPlanningandBudgeting//
 
   insert() {
     debugger;
@@ -121,6 +125,9 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
     });
   }
 
+  
+  // Method to Update the Data  ManpowerPlanningandBudgeting//
+
   Update() {
     var entity = {
       ID: this.id,
@@ -139,7 +146,7 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
       location.href = '#/BUHead/ManpowerPlanningandBudgetingdash';
     });
   }
-
+// Method to Get Routing with Respect to URL//
   cancel() {
     location.href = '#/BUHead/ManpowerPlanningandBudgetingdash';
   }

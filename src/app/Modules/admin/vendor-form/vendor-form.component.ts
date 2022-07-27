@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  InsertVendor_Dasboard,GetVendor_Dasboard,UpdateVendor_Dasboard
+// --Description :This page contains Attch & Remove files,Upload the Imges, Insert & Update the values in Vendor_Dashboard,Search the Vendor Details,Routing the URL
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -22,7 +22,7 @@ export class VendorFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   //Variable Declerations//
-
+  vendorLogo:any;
   vendor_Logo: any;
   vendor_Name: any;
   phone_Number: any;
@@ -50,7 +50,7 @@ export class VendorFormComponent implements OnInit {
 
   }
 
-   // Methods to get Count of InsertVendor_Dasboard,GetVendor_Dasboard,UpdateVendor_Dasboard
+   // Method to Get Attchments of Files//
  
   onSelect(event: { addedFiles: any; }) {
     debugger
@@ -59,11 +59,15 @@ export class VendorFormComponent implements OnInit {
     this.uploadattachments();
     console.log("content", this.files);
   }
+
+  // Method  to Get Remove the files// 
   onRemove(event: any) {
     debugger
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
+  // Method To Get Upload the Imges// 
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files)
@@ -73,6 +77,8 @@ export class VendorFormComponent implements OnInit {
       Swal.fire("Attachment Uploaded");
     })
   }
+
+  //Method to Insert the values in Vendor_Dasboard in Table//
   Save() {
     debugger
     if(this.vendor_Name==undefined||this.phone_Number==undefined||this.email_ID==undefined||this.address==undefined||this.Company_logo==undefined || this.vendor_Name==""||this.phone_Number==""||this.email_ID==""||this.address==""||this.Company_logo=="")
@@ -109,9 +115,10 @@ else{
     })
 } 
   }
-  vendorLogo:any;
-  
-  GetVendor_Dasboard() {
+ 
+  // Method to Search the Vendor Details// 
+
+public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
@@ -147,6 +154,8 @@ else{
 
   }
 
+  // Method to update the values in Vendor_Dashboard table//
+
   Update() {
     debugger
     var json = {
@@ -179,7 +188,7 @@ else{
         }
       })
   }
-
+// Method to Routing With Respect to URL
   cancel() {
     location.href ='#/admin/VendorDashboard';
   }
