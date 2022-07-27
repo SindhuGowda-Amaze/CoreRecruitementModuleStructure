@@ -40,7 +40,7 @@ export class ClientStaffDashboardComponent implements OnInit {
    this.loader=true;
   }
 
-  // Methods to get Count of Staff from GetClientStaff,DeleteClientStaff,EnableClientStaff//
+  // Methods to Get Client Satff Count//
 
   public GetClientStaff() {
     debugger

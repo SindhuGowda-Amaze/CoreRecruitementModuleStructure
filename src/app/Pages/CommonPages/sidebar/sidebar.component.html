@@ -403,12 +403,12 @@
 
 
                 <a *ngIf="roleid == 8" class="nonactive" (click)="openCity($event)" (click)="ScheduledReport()"
-                    [ngClass]="shortlistedreport? 'highlighting' :'' ">
+                    [ngClass]="reportmenu==111? 'highlighting' :'' ">
                     <img src="assets/Images/Vector.png" style="width: 20px; margin-right: 17px"
                         *ngIf="selectedreport" />
 
                     <img src="assets/Images/Vector.png" style="width: 20px; margin-right: 17px"
-                        *ngIf="selectedreport" />
+                        *ngIf="reportmenu!=111" />
                     &nbsp;SCHEDULED INTERVIEWS
                 </a>
 

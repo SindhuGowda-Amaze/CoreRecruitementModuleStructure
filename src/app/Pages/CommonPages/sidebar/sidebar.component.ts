@@ -396,6 +396,9 @@ export class SidebarComponent implements OnInit {
   
   public JobRecruitment() {
     this.manPowerMenu=1;
+this.menu=2;
+this.reportmenu=0;
+
     // this.Jobrecruit = true
     // this.Vendorrecruit = false
     // this.home = false
@@ -491,7 +494,8 @@ export class SidebarComponent implements OnInit {
 
 
   public VendorRecruitment(){
-
+    this.menu=2;
+    this.reportmenu=0;
     this.manPowerMenu=22
   //   this.Vendorrecruit=true
   //   this.Jobrecruit=false
@@ -526,6 +530,8 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES')
     this.router.navigate(['hirignmanager/AppliedCandidates']);
     this.manPowerMenu=2
+    this.menu=2;
+    this.reportmenu=0;
     // this.applied = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -562,7 +568,8 @@ export class SidebarComponent implements OnInit {
     // this.Vendorrecruit = false
     // this.home = false
     this.manPowerMenu=3;
-
+this.menu=2;
+this.reportmenu=0;
 
     this.scheduled = false
     this.Vendorrecruit = false
@@ -623,6 +630,8 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
     this.router.navigate(['hirignmanager/SelectedCandidates']);
     this.manPowerMenu=6;
+    this.menu=2;
+    this.reportmenu=0;
     this.selected = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -653,6 +662,8 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('Pagename', 'OFFERED CANDIDATES')
     this.router.navigate(['/hr/OfferedCandidates']);
     this.manPowerMenu=7;
+    this.menu=2;
+    this.reportmenu=0;
     // this.offered = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -683,6 +694,8 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/hr/JoinedCandidates']);
 
 this.manPowerMenu=8;
+this.menu=2;
+this.reportmenu=0;
 
     // this.joined = true
     // this.Jobrecruit = false
@@ -714,6 +727,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES')
     this.router.navigate(['/hr/DroppedCandidates']);
     this.manPowerMenu=9
+    this.menu=2;
+    this.reportmenu=0;
 //     this.dropped = true
 //     this.Jobrecruit = false
 //     this.Vendorrecruit = false
@@ -772,6 +787,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'APPLIED CANDIDATES REPORT')
     this.router.navigate(['/report/AppliedCandidatesReports']);
     this.reportmenu=2;
+    this.manPowerMenu=0;
+    this.menu=3;
     // this.appliedreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -801,7 +818,9 @@ this.manPowerMenu=8;
   public Shortlistedreport() {
     localStorage.setItem('Pagename', 'SHORTLISTED CANDIDATES REPORT')
     this.router.navigate(['/report/ShortlistedCandidatesReports']);
-    this.reportmenu=3
+    this.reportmenu=3;
+    this.manPowerMenu=0;
+    this.menu=3;
     // this.shortlistedreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -832,6 +851,11 @@ this.manPowerMenu=8;
     debugger
     localStorage.setItem('Pagename', 'SCHEDULED INTERVIEWS REPORT')
     this.router.navigate(['/ScheduledInterviewsReports']);
+    this.reportmenu=111;
+    this.manPowerMenu=0;
+    this.menu=3;
+
+
     this.scheduledreport = true
     this.Jobrecruit = false
     this.Vendorrecruit = false
@@ -862,6 +886,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'SELECTED CANDIDATES REPORT')
     this.router.navigate(['/report/SelectedCandidatesReports']);
     this.reportmenu=4;
+    this.manPowerMenu=0;
+    this.menu=3;
     // this.selectedreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -892,6 +918,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
     this.router.navigate(['/report/OfferedCandidatesReports']);
     this.reportmenu=502;
+    this.manPowerMenu=0;
+    this.menu=3
     // this.offeredreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -921,7 +949,8 @@ this.manPowerMenu=8;
   public JobRecruitReport() {
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
     this.router.navigate(['/report/JobRecruitementReport']);
-     this.reportmenu=1
+     this.reportmenu=1;
+     this.manPowerMenu=0;
     // this.Jobrecruitreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -952,6 +981,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'JOINED CANDIDATES REPORT')
     this.router.navigate(['/report/JoinedCandidatesReport']);
     this.reportmenu=6;
+    this.manPowerMenu=0;
+    this.menu=3;
     // this.joinedreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -982,6 +1013,8 @@ this.manPowerMenu=8;
     localStorage.setItem('Pagename', 'DROPPED CANDIDATES REPORT')
     this.router.navigate(['/report/DroppedCandiadtesReports']);
     this.reportmenu=7;
+    this.manPowerMenu=0;
+    this.menu=3;
     // this.droppedreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false
@@ -1030,6 +1063,7 @@ this.manPowerMenu=8;
 
   public  SupportTickets() {
     this.menu=5;
+    this.reportmenu=0;
     this.manPowerMenu=10;
     this.setup=false;
     localStorage.setItem('Pagename', 'CLOSED POSITION')
@@ -1120,8 +1154,9 @@ this.menu=100;
 
   Reports(){
 this.menu=3;
-   this.report=true
-this.manpower=false
+this.manPowerMenu=0;
+//    this.report=true
+// this.manpower=false
 
 
   }
@@ -1131,37 +1166,40 @@ this.manpower=false
 
   }
   Manpower(){
-this.menu=2
-    this.manpower=true
-    this.home=false
-    this.rescheduled=false
-    this.applied = false
-    this.Jobrecruit = false
-    this.Vendorrecruit = false
-    this.home = false
+this.menu=2;
+this.reportmenu=0;
 
-    this.shortlist = false
-    this.scheduled = false
-    this.Vendorrecruit = false
+    //this.manpower=true
+    // this.home=false
+    // this.rescheduled=false
+    // this.applied = false
+    // this.Jobrecruit = false
+    // this.Vendorrecruit = false
+    // this.home = false
 
-    this.shortlist = false
-    this.scheduled = false
-    this.selected = false
-    this.offered = false
-    this.joined = false
-    this.dropped = false
-    this.vendorreport = false
-    this.appliedreport = false
-    this.shortlistedreport = false
-    this.selectedreport = false
-    this.offeredreport = false
-    this.Jobrecruitreport = false
-    this.joinedreport = false
-    this.droppedreport = false
+    // this.shortlist = false
+    // this.scheduled = false
+    // this.Vendorrecruit = false
+
+    // this.shortlist = false
+    // this.scheduled = false
+    // this.selected = false
+    // this.offered = false
+    // this.joined = false
+    // this.dropped = false
+    // this.vendorreport = false
+    // this.appliedreport = false
+    // this.shortlistedreport = false
+    // this.selectedreport = false
+    // this.offeredreport = false
+    // this.Jobrecruitreport = false
+    // this.joinedreport = false
+    // this.droppedreport = false
 
   }
   RescheduledInterview(){
-
+this.menu=2;
+this.reportmenu=0;
     this.manPowerMenu=4
 
 
@@ -1205,6 +1243,8 @@ this.menu=2
 
   scheduled1(){
     debugger
+    this.menu=2;
+    this.reportmenu=0;
     this.manPowerMenu=11
 
 
