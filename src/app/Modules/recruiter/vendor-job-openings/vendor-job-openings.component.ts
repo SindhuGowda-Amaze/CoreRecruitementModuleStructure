@@ -35,6 +35,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   data :any
   Role: any
   staffdetails: any
+  even : any
   ngOnInit(): void {
     debugger;
 
@@ -347,6 +348,7 @@ FilterByDate(){
         debugger
         this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
         this.count = this.joblist.length;
+        this.getjobdescription(this.even)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
@@ -368,6 +370,7 @@ FilterByDate(){
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved'&& x.date >= this.Date && x.date <= this.endDate);
         this.jobListCopy = this.joblist
         this.count = this.joblist.length;
+        this.getjobdescription(this.even)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
