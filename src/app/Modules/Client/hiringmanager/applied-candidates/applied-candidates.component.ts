@@ -1,3 +1,14 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -9,9 +20,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./applied-candidates.component.css'],
 })
 export class AppliedCandidatesComponent implements OnInit {
-  err: any;
 
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+    
+  //Variable Declerations//
+
+  err: any;
   joblist: any;
   count: any;
   DropJobList: any;
@@ -37,8 +50,15 @@ export class AppliedCandidatesComponent implements OnInit {
   staffdetails: any;
   jobdescription: any;
   jobdescriptionID: any;
+  recruiter:any;
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+ 
 
   ngOnInit(): void {
+
+       //Variable Initialisation and Default Method Calls//
+
     this.GetJobDescription();
     this.Role = '';
     this.currentUrl = window.location.href;
@@ -54,6 +74,7 @@ export class AppliedCandidatesComponent implements OnInit {
     this.GetCandidateReg();
   }
 
+   // Methods to get Count of GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
   public GetCandidateReg() {
     if (this.roleid == '3') {
       debugger;
@@ -166,6 +187,7 @@ export class AppliedCandidatesComponent implements OnInit {
       next: (data) => {
         debugger;
         this.hrlist = data.filter(x => x.role == "Hiring Manager");
+        this.recruiter=data.filter(x=>x.role=="Recruiter")
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire(' Issue in Getting Recruiter Staff');
@@ -210,8 +232,13 @@ export class AppliedCandidatesComponent implements OnInit {
               'Candidate has been shortlisted',
               'success'
             );
-
-            this.SendMailEmployee()
+            var sub = 'Hiring Manager Shortlisted Candidates'
+            var email = 'sindhugowda.amazeinc@gmail.com'
+            var desc = 
+            'Hello Recruiter,I hope you are doing great!<br>We are Happy to inform you that Your Resumes have been shortlisted.Please Login to Recruitment portal for futher Info and will update the further information soon! Please let me know if you have any query!'
+            'Thank You!'
+            this.SendJobMail(sub, desc, email);
+            this.InsertNotificationRecruiter();
             this.GetJobDescription();
             this.loader = false;
           },
@@ -294,7 +321,7 @@ export class AppliedCandidatesComponent implements OnInit {
             x.reject == 0 &&
             x.noticePeriod == this.searchbynotice
         );
-
+        }, error: (err: { error: { message: any } }) => {
         Swal.fire('Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
@@ -318,12 +345,14 @@ export class AppliedCandidatesComponent implements OnInit {
         this.joblist = data.filter(
           (x) => x.accept == 0 && x.reject == 0 && x.ctc == this.searchbyctc
         );
+      }, error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
           ErrorMessage: this.err.error.message,
         };
-        Swal.fire('Issue in Getting Expenses List Web');
+     
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           (data) => {
             debugger;
@@ -517,20 +546,29 @@ export class AppliedCandidatesComponent implements OnInit {
     })
   }
 
-  
-  public SendMailEmployee() {
+
+
+  public InsertNotificationRecruiter() {
     debugger
-    var entity3 = {
-      'emailto': 'sindhugowda.amazeinc@gmail.com',
-      'emailsubject': 'Shortlisted Candidates',
-      'emailbody': 'Dear Applicant,<br>Congratulation!!<br> Your Resume has been Shortlisted for futher Rounds of Interviews.<br>Thanks',
-      'attachmenturl': [],
-      'cclist': [],
-      'bcclist': [],
-    }
-    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
-      debugger;
-      Swal.fire('Email Sent');
-    })
+    var event: any = 'Resume Shortlisted';
+    this.RecruitmentServiceService.InsertNotificationSBU(event, this.recruiter, 'Your Uploaded Resume has been Shortlisted')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )}
+      })
   }
 }

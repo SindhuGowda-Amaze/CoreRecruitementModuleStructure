@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import swal from 'sweetalert2';
@@ -11,6 +20,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./job-requisition.component.css']
 })
 export class JobRequisitionComponent implements OnInit {
+ 
+  //Variable Declerations//
+
   joblist: any;
   awardlist1: any;
   jobno: any;
@@ -35,31 +47,56 @@ export class JobRequisitionComponent implements OnInit {
   staffdetails: any;
   loader: any;
   count: any;
-  constructor(private RecruitmentServiceService: RecruitementService) { }
   editor: any;
   html: any;
   Department: any;
   hrlist1: any;
   hrlist2: any;
+
+  constructor(private RecruitmentServiceService: RecruitementService) { }
+
   ngOnInit(): void {
+
+       
+//Variable Initialisation and Default Method Calls//
+
+    this.GetClientStaff();
+    this.GetManpowerPlanningandBudgeting1();
+    this.GetManpowerPlanningandBudgeting();
     this.currentUrl = window.location.href;
-
     this.username = sessionStorage.getItem('UserName');
+ 
+   
+  }
+
+
+
+
+  // Methods to get Count of GetClientStaff,GetManpowerPlanningandBudgeting,sendemailattachements,InsertNotificationSBU
+
+  GetClientStaff(){
     this.RecruitmentServiceService.GetClientStaff()
-      .subscribe(data => {
-        this.hrlist = data;
-        this.hrlist1 = data.filter((x: { role: string; }) => x.role == 'Manager');
-        this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
-        this.manager = this.hrlist1[0].id
-        this.buHead = this.hrlist2[0].id
+    .subscribe(data => {
+      this.hrlist = data;
+      this.hrlist1 = data.filter((x: { role: string; }) => x.role == 'Manager');
+      this.hrlist2 = data.filter((x: { role: string; }) => x.role == 'BU Head');
+      this.manager = this.hrlist1[0].id
+      this.buHead = this.hrlist2[0].id
+    })
 
-        this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
-          debugger;
-          this.awardlist1 = data;
-        });
+  }
+
+  
+  GetManpowerPlanningandBudgeting1(){
+    this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
+      debugger;
+      this.awardlist1 = data;
+    });
 
 
-      })
+  }
+
+ public  GetManpowerPlanningandBudgeting(){
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe({
       next: data => {
         debugger
@@ -79,7 +116,11 @@ export class JobRequisitionComponent implements OnInit {
         )
       }
     })
+
   }
+
+
+
 
   public GetHrName(even: any) {
     this.hiringmanager = even.target.value;

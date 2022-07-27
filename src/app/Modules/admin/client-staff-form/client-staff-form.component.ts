@@ -1,11 +1,13 @@
-// Product : DigiCoreRecrcitment System 1.0 
-// Date : 28 Jan, 2022
-// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// Description :this procedure Gets the active records of CandidateRegistration Table
-// Last Modified Date : 25 July , 2022
-// Last Modified Changes :   Added comments
-// Last Modified By : Madhava
-// Copyrights : AmazeINC-Bangalore-2022 
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetRoleType,GetClientMaster,GetClientStaff,InsertClientStaff,UpdateClientStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -18,7 +20,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./client-staff-form.component.css']
 })
 export class ClientStaffFormComponent implements OnInit {
-  //variable Declaration
+
+  //Variable Declerations// 
+ 
   currentUrl: any;
   res: any
   id: any;
@@ -45,10 +49,12 @@ export class ClientStaffFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //variable initialisation
-    this.currentUrl = window.location.href;
+
+      //Variable Initialisation and Default Method Calls//
+   
     this.GetRoleType();
     this.GetClientMaster();
+    this.currentUrl = window.location.href;
     this.ActivatedRoute.params
       .subscribe(params => {
         debugger
@@ -58,8 +64,10 @@ export class ClientStaffFormComponent implements OnInit {
         }
       })
   }
-// Default Method calls
-//// Method to display data  from RoleType Table
+
+// Methods to get Count of GetRoleType,GetClientMaster,GetClientStaff,InsertClientStaff,UpdateClientStaff//
+
+
   public GetRoleType() {
     debugger
     this.RecruitmentServiceService.GetRoleType().subscribe({

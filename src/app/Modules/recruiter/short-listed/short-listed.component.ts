@@ -35,7 +35,7 @@ export class ShortListedComponent implements OnInit {
   title: any;
   Date: any;
   currentUrl: any;
-  staffdetails:any
+  staffdetails: any
   Role: any
   slotTime: any
   err: any;
@@ -43,19 +43,19 @@ export class ShortListedComponent implements OnInit {
   ngOnInit(): void {
     debugger
     this.currentUrl = window.location.href;
-   
-    this.Role=""
+
+    this.Role = ""
     this.loader = true;
     this.searchbyctc = "";
     this.searchbynotice = "";
     this.hiringManager = "";
-   
- this.RecruitmentServiceService.GetRecruiterStaff()
- .subscribe(data => {
-   this.hrlist = data.filter(x=>x.role=="Hiring Manager");
- })
+
+    this.RecruitmentServiceService.GetRecruiterStaff()
+      .subscribe(data => {
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
+      })
     this.GetStaffType();
-  
+
     this.userid = sessionStorage.getItem('userid')
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
@@ -63,7 +63,7 @@ export class ShortListedComponent implements OnInit {
     if (this.roleid == '3') {
       debugger;
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-        
+
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
@@ -115,7 +115,7 @@ export class ShortListedComponent implements OnInit {
       })
     }
     else {
-debugger
+      debugger
       this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
@@ -142,7 +142,7 @@ debugger
     }
 
 
-  
+
     this.GetJobDescription();
   }
   public changeoption() {
@@ -210,12 +210,13 @@ debugger
   public GetStaffID(even: any) {
     this.staffid = even.target.value;
     this.GetSlotsMaster();
+
   }
   public GetStaffType() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data.filter(x=>x.role=="Interview Panel");
+        this.stafflist = data.filter(x => x.role == "Interview Panel");
       }, error: (err: { error: { message: any; }; }) => {
         // Swal.fire('Issue in Getting Expenses List Web');
         var obj = {
@@ -242,7 +243,7 @@ debugger
         this.slotslist = data;
       }, error: (err: { error: { message: any; }; }) => {
         // Swal.fire('Issue in Getting Slots Master ');       
-         var obj = {
+        var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
@@ -281,8 +282,14 @@ debugger
         next: data => {
           debugger
           Swal.fire("Interview Scheduled Successfully");
-          this.SendMailEmployee()
 
+          var sub = 'Your Recruiter Scheduled An Interview to You'
+          var email = 'sindhugowda.amazeinc@gmail.com'
+          var desc =
+            'Dear Interview Panel,<br>I hope you are doing great!<br>This inform you that We have Scheduled an Interview to you.<br>Please Login to Recruitment portal for futher Info about the Interviw and Candidate and will update the further information soon!<br> Please let me know if you have any query!<br>'
+          'Thank You!'
+          this.SendJobMail(sub, desc, email);
+          this.InsertNotificationInterviewpanel();
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Interview Scheduled');
           // Insert error in Db Here//
@@ -324,8 +331,7 @@ debugger
       }
     })
   }
-  checkschedule() {
-  }
+
   files: File[] = [];
   onSelect(event: { addedFiles: any; }) {
     debugger
@@ -369,18 +375,7 @@ debugger
     })
   }
 
-  
-  // public jobTitle() {
-  //   debugger;
-
-  //   this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
-  //     this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
-  //   });
-  // }
-
-
- 
-  jobdescription:any;
+  jobdescription: any;
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -405,10 +400,10 @@ debugger
     });
   }
 
-  
-  jobdescriptionID:any;
-  public filterjobdescription(even:any){
-    this.jobdescriptionID=even.target.value
+
+  jobdescriptionID: any;
+  public filterjobdescription(even: any) {
+    this.jobdescriptionID = even.target.value
 
     if (this.roleid == '3') {
       debugger;
@@ -416,7 +411,7 @@ debugger
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid && x.jobTitle==this.jobdescriptionID));
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid && x.jobTitle == this.jobdescriptionID));
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
@@ -442,7 +437,7 @@ debugger
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle == this.jobdescriptionID);
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
@@ -468,7 +463,7 @@ debugger
         next: data => {
           debugger
           this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle==this.jobdescriptionID);
+          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.jobTitle == this.jobdescriptionID);
           this.jobListCopy = this.joblist
           this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
           this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
@@ -491,37 +486,45 @@ debugger
 
 
   }
-  public SendMailEmployee() {
 
+
+  public SendJobMail(sub: any, desc: any, email: any) {
     debugger
-
     var entity3 = {
-
-      'emailto': 'sindhugowda.amazeinc@gmail.com',
-
-      // 'emailto': 'divyashree@amazeinc.in',
-
-      'emailsubject': 'Recruiter Scheduled Interview',
-
-      'emailbody': 'Dear Interviewer, Your Recruiter has Scheduled and Interviw with the candidate,please login to the recruitement portal for more details',
+      'emailto': email,
+      'emailsubject': sub,
+      'emailbody': desc,
       'attachmenturl': [],
-
       'cclist': [],
-
-      'bcclist':[],
-
+      'bcclist': [],
     }
     this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
       debugger;
-      // Swal.fire('Letter Generated and Sent Successfully');
-    Swal.fire('Email Sent');
-location.reload();
+      Swal.fire('Emails Sent');
     })
-
-
-
   }
 
-
-
+  public InsertNotificationInterviewpanel() {
+    debugger
+    var event: any = 'Scheduled Interview';
+    this.RecruitmentServiceService.InsertNotificationSBU(event,this.staffid, 'New Interview Scheduled to you')
+      .subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting Notification');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )}
+      })
+  }
 }

@@ -1,11 +1,12 @@
-// Product : DigiCoreRecrcitment System 1.0 
-// Date : 28 Jan, 2022
-// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// Description :this procedure Gets the active records of CandidateRegistration Table
-// Last Modified Date : 25 July , 2022
-// Last Modified Changes :   Added comments
-// Last Modified By : Madhava
-// Copyrights : AmazeINC-Bangalore-2022 
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  InsertClientMaster,GetClientMaster,UpdateClientMaster
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -20,15 +21,8 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./clientform.component.css']
 })
 export class ClientformComponent implements OnInit {
-  //varaiable Declaration
-  RegForm = new FormGroup({
-    // Company_logo: new FormControl('', Validators.required),
-    Name: new FormControl('', Validators.required),
-    PhoneNo: new FormControl('', Validators.required),
-    Email: new FormControl('', Validators.required),
-    Address: new FormControl('', Validators.required),
-  })
-
+ 
+  //Variable Declerations// 
   count: any;
   recruiterlist: any;
   showButton: any;
@@ -47,12 +41,21 @@ export class ClientformComponent implements OnInit {
   logo: any;
   Logo: any
   files: File[] = [];
+  
+  RegForm = new FormGroup({
+    // Company_logo: new FormControl('', Validators.required),
+    Name: new FormControl('', Validators.required),
+    PhoneNo: new FormControl('', Validators.required),
+    Email: new FormControl('', Validators.required),
+    Address: new FormControl('', Validators.required),
+  })
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-     //variable initialisation
-    this.currentUrl = window.location.href;
+ 
+    //Variable Initialisation and Default Method Calls//
+    this.GetClientMaster() 
     this.ActivatedRoute.params
       .subscribe(params => {
         debugger
@@ -67,6 +70,7 @@ export class ClientformComponent implements OnInit {
           this.GetClientMaster();
         }
       })
+      this.currentUrl = window.location.href;
   }
 
   onSelect(event: { addedFiles: any; }) {
@@ -76,8 +80,8 @@ export class ClientformComponent implements OnInit {
     this.uploadattachments();
     console.log("content", this.files);
   }
-//Default Method Calls 
-//Method to insert data in ClientMaster Table
+// Methods to get Count of InsertClientMaster,GetClientMaster,UpdateClientMaster//
+
   public InsertClientMaster() {
     debugger
     var json = {

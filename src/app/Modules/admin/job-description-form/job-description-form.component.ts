@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetJobDescriptionMaster,InsertJobDescriptionMaster,GetVendor_Dasboard,GetRoleType,UpdateJobDescriptionMaster
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -11,6 +22,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobDescriptionFormComponent implements OnInit {
 
+  //Variable Declerations//
+
   signature: any;
   staff_Name: any;
   phone_Number: any;
@@ -19,20 +32,23 @@ export class JobDescriptionFormComponent implements OnInit {
   role_Id: any;
   vendor_Name: any;
   Role: undefined;
-
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   result: any;
   Actions: any;
   id: any;
   Description:any;
-  currentUrl:any
+  currentUrl:any;
+  vendordetails: any;
+  roleList:any;
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
   ngOnInit(): void {
+   //Variable Initialisation and Default Method Calls//
+   this.GetRoleType();
+   this.GetVendor_Dasboard();
     this.currentUrl = window.location.href;
     this.role_Id="";
     this.vendor_Name="";
-    this.GetRoleType();
-    this.GetVendor_Dasboard();
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
@@ -43,6 +59,8 @@ export class JobDescriptionFormComponent implements OnInit {
     })
 
   }
+
+// Methods to get Count of GetJobDescriptionMaster,InsertJobDescriptionMaster,GetVendor_Dasboard,GetRoleType,UpdateJobDescriptionMaster
 
   GetVendor_Staff() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
@@ -110,7 +128,7 @@ export class JobDescriptionFormComponent implements OnInit {
   
 
   }
-  vendordetails: any;
+
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
   next: data => {
@@ -132,7 +150,7 @@ export class JobDescriptionFormComponent implements OnInit {
 })
 
   }
-  roleList:any;
+ 
   public GetRoleType() {
     debugger
     this.RecruitmentServiceService.GetRoleType().subscribe({

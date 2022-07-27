@@ -1,10 +1,10 @@
 // Product : DigiCoreRecrcitment System 1.0 
 // Date : 28 Jan, 2022
 // Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// Description :this procedure Gets the active records of CandidateRegistration Table
+// Description :This page contains methods GetClientStaff,DeleteClientStaff,EnableClientStaff
 // Last Modified Date : 25 July , 2022
 // Last Modified Changes :   Added comments
-// Last Modified By : Madhava
+// Last Modified By : Manikanta
 // Copyrights : AmazeINC-Bangalore-2022 
 
 
@@ -19,7 +19,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./client-staff-dashboard.component.css']
 })
 export class ClientStaffDashboardComponent implements OnInit {
-   // variable declaration
+
+//Variable Declerations//
+
   Job:any;
   count: any;
   search:any;
@@ -30,14 +32,16 @@ export class ClientStaffDashboardComponent implements OnInit {
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-        // variable initialisation
-    this.currentUrl = window.location.href;
+
+ //Variable Initialisation and Default Method Calls// 
+
    this.GetClientStaff();
+   this.currentUrl = window.location.href;
    this.loader=true;
   }
 
-// Default Method calls
-// Method to display data  from ClientStaff Table
+  // Methods to get Count of Staff from GetClientStaff,DeleteClientStaff,EnableClientStaff//
+
   public GetClientStaff() {
     debugger
     this.RecruitmentServiceService.GetClientStaff().subscribe({

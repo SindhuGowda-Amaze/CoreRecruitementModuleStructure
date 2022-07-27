@@ -1,3 +1,19 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetDepartment,GetManpowerPlanningandBudgeting,DeleteManpowerPlanningandBudgeting
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,35 +25,45 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./manpower-planningand-budgetingdash.component.css']
 })
 export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
+    
+  //Variable Declerations//
+
+     awardlist1: any
+     awardlist: any;
+     roleid: any;
+     search: any
+     p: any
+     count1: any = 5;
+     Grandtotal: any;
+     fromlogin: any;
+     exceldata: any;
+     arrayBuffer: any;
+     filetype: any;
+     file: any;
+     Department: any;
+     year: any;
+     Departmentlist: any;
+     term: any;
+     Subsidiary: any;
+   
 
   constructor(private DigipayrollServiceService1: RecruitementService, private router: Router) { }
 
-  awardlist1: any
-  awardlist: any;
-  roleid: any;
-  search: any
-  p: any
-  count1: any = 5;
-  Grandtotal: any;
-  fromlogin: any;
-  exceldata: any;
-  arrayBuffer: any;
-  filetype: any;
-  file: any;
-  Department: any;
-  year: any;
-  Departmentlist: any;
-  term: any;
-  Subsidiary: any;
 
   ngOnInit(): void {
+      
+    //Variable Initialisation and Default Method Calls//
+    
+    this.GetManpowerPlanningandBudgeting();
+    this.GetDepartment();
     this.roleid = sessionStorage.getItem('roleid');
     this.Subsidiary = '';
     this.Department = '';
     this.year = 0;
-    this.GetManpowerPlanningandBudgeting();
-    this.GetDepartment();
+
   }
+
+   // Methods to get Count of GetDepartment,GetManpowerPlanningandBudgeting,DeleteManpowerPlanningandBudgeting
 
   public GetDepartment() {
     this.DigipayrollServiceService1.GetDepartment().subscribe(data => {

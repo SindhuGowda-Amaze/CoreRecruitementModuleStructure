@@ -1,11 +1,12 @@
-// Product : DigiCoreRecrcitment System 1.0 
-// Date : 28 Jan, 2022
-// Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// Description :this procedure Gets the active records of CandidateRegistration Table
-// Last Modified Date : 25 July , 2022
-// Last Modified Changes :   Added comments
-// Last Modified By : Madhava
-// Copyrights : AmazeINC-Bangalore-2022 
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from   GetClientMaster,DeleteClientMaster
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
 
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -18,25 +19,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./clientdashboard.component.css']
 })
 export class ClientdashboardComponent implements OnInit {
-  //variable Declaration
+
+  //Variable Declerations// 
+
   Job: any;
   count: any;
   search: any;
   loader: any;
-  currentUrl: any
-  ClientMasterlist: any
+  currentUrl: any;
+  ClientMasterlist: any;
+
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-        //variable initialisation
+  
+    //Variable Initialisation and Default Method Calls//
 
-    this.currentUrl = window.location.href;
     this.GetClientMaster()
+    this.currentUrl = window.location.href;
     this.loader = true;
   }
 
-// Default Method calls
-// Method to display data  from ClientMaster Table 
+// Methods to get Count of GetClientMaster,DeleteClientMaster//
+
   public GetClientMaster() {
     debugger
     this.RecruitmentServiceService.GetClientMaster().subscribe({

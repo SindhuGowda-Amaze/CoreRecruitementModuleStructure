@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetRecruiterStaff,GetRoleType,GetRecruiterMaster,InsertRecruiterStaff,UpdateRecruiterStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -8,6 +19,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./recruiter-form.component.css']
 })
 export class RecruiterFormComponent implements OnInit {
+
+ 
+//Variable Declerations//
+
   Signature: any;
   recruiterlist: any;
   count: any;
@@ -28,9 +43,11 @@ export class RecruiterFormComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+   //Variable Initialisation and Default Method Calls//
+
     this.GetRecruiterMaster();
     this.GetRoleType();
-   
     this.ActivatedRoute.params.subscribe(params => {
       this.ID = params['id'];
       if (this.ID != undefined && this.ID != null) {
@@ -40,6 +57,10 @@ export class RecruiterFormComponent implements OnInit {
     })
     this.GetRoleType();
   }
+
+
+  
+// Methods to get Count of GetRecruiterStaff,GetRoleType,GetRecruiterMaster,InsertRecruiterStaff,UpdateRecruiterStaff
 
   public GetRecruiterStaff() {
     debugger
