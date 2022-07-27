@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
   result1: any;
   public login() {
     let adminCopy = this.admin.toLowerCase();
-    if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1') {
+    if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1' && this.roleID == 1) {
       debugger
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false && x.roleId==25);
           this.result = temp[0];
           debugger;
           // this.loader = true;
@@ -142,7 +142,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.email.toLowerCase().includes(userNameCopy) || x.phoneNo == this.userName) && x.password == this.password && x.enable_Disable == false&& x.roleId==31);
           this.result = temp[0];
           debugger;
           // this.loader = true;
@@ -499,7 +499,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false && x.roleId==29);
           this.result = temp[0];
           debugger;
           // let temp1:any =data.filter(x=>x.x.enable_Disable==true)
@@ -544,7 +544,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false && x.roleId==18);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -583,7 +583,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false&& x.roleId==28);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {
@@ -622,7 +622,7 @@ export class LoginComponent implements OnInit {
         next: data => {
           debugger
           let userNameCopy = this.userName.toLowerCase();
-          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false);
+          let temp: any = data.filter(x => (x.phoneNo == this.userName || x.email.toLowerCase().includes(userNameCopy)) && x.password == this.password && x.enable_Disable == false&& x.roleId==27);
           this.result = temp[0];
           debugger;
           if (this.result != undefined || this.result != null) {

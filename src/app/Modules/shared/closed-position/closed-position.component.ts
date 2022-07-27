@@ -41,12 +41,18 @@ export class ClosedPositionComponent implements OnInit {
   staffdetails: any;
   joblist20:any;
   count9:any;
+  count10 : any
   joblist10:any;
   count4:any;
   joblist12:any;
   count5:any;
   count1:any
+  noofCVs : any
+  OfferedCandidates : any
+  selectedCandidates : any
+  joinedCandidates: any
   jobRefernceID:any;
+  cv:any;
   ngOnInit(): void {
     debugger;
   
@@ -63,19 +69,16 @@ export class ClosedPositionComponent implements OnInit {
       next: data => {
         debugger
         if (this.roleid == 2){
-          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username && x.jobRefernceID==this.jobRefernceID);
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username );
           this.count4 = this.joblist10.length;
-        
         }
         else if(this.roleid==3){
-          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username);
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username );
           this.count4 = this.joblist10.length;
         }
         else{
           this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-          this.count4 = this.joblist10.length;
-         
-      
+          this.count4 = this.joblist10.length;     
         }
     
     
@@ -208,32 +211,33 @@ export class ClosedPositionComponent implements OnInit {
       }
     })
 
-    if (this.roleid == '3') {
-      debugger;
-      this.RecruitmentServiceService.GetClosedJobRequirement().subscribe({
-        next: (data: any[]) => {
-          debugger
-          this.joblist = data.filter(x => x.vendor == this.username);
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    else {
+    // if (this.roleid == '3') {
+    //   debugger;
+    //   this.RecruitmentServiceService.GetClosedJobRequirement().subscribe({
+    //     next: (data: any[]) => {
+    //       debugger
+    //       this.joblist = data.filter(x => x.vendor == this.username);
+    //       this.count = this.joblist.length;
+    //     }, error: (err: { error: { message: any; }; }) => {
+    //       Swal.fire('Getting Job Requirements');
+    //       var obj = {
+    //         'PageName': this.currentUrl,
+    //         'ErrorMessage': err.error.message
+    //       }
+    //       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+    //         data => {
+    //           debugger
+    //         },
+    //       )
+    //     }
+    //   })
+    // }
+ 
       this.RecruitmentServiceService.GetJob_Requirements().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
+          this.joblist = data;
+          this.cv= this.joblist[0].noofCVs
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
@@ -249,7 +253,7 @@ export class ClosedPositionComponent implements OnInit {
           )
         }
       })
-    }
+    
     this.dropdownSettings1 = {
       singleSelection: false,
       idField: 'id',

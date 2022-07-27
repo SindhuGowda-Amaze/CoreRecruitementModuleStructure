@@ -110,8 +110,9 @@
                         <td>{{job.date|date}}</td>
                         <td>{{job.source}}</td>
                         <!-- <td>{{job.slotTime}}</td> -->
-                        <td *ngIf="roleid!=5">{{job.staffname}}</td>
                         <td *ngIf="roleid!=2">{{job.hiringManager}}</td>
+                        <td *ngIf="roleid!=5">{{job.staffname}}</td>
+                    
                         <td>{{job.jobTitle}}</td>
                         <td>{{job.candidateName}}</td>
                         <td>{{job.phoneNo}}</td>

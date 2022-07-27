@@ -1,4 +1,4 @@
- <!-- <div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="row ">
         <div class="col-lg-2">
             <img src="../../assets/Images/digiRecruitment_250_100.png" class="logo" alt="logo">
@@ -134,8 +134,9 @@
 
     <div class="row">
         <div class="col-lg-2">
-           
-            <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard"  style="    height: 57px;
+
+            <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard"
+                style="    height: 57px;
             margin-top: 3px;
             width: 176px;">
         </div>
@@ -146,7 +147,7 @@
 px
 ;">
             <div class="time">
-                <p class="time1">{{hh}}  </p>
+                <p class="time1">{{hh}} </p>
             </div>
             <div class="time">
                 <p class="time1">{{mm}} </p>
@@ -167,7 +168,8 @@ px
                     <img src="assets/Images/notification.png" style="width: 30px;margin-right: -7px; margin-top: 8px;
 ">
                 </a>
-                <span style="color: red;padding-bottom: 30px;padding-right: 40px;     padding: 10px; padding-bottom: 40px;">
+                <span
+                    style="color: red;padding-bottom: 30px;padding-right: 40px;     padding: 10px; padding-bottom: 40px;">
                     <div class="card" style="padding: 3px;border-radius: 20px;"><b>{{notificationCount}}</b></div>
                 </span>
                 <ul class="dropdown dropdown-menu" style="overflow-y: auto;
@@ -191,13 +193,13 @@ px
                                 {{item.date|date}} {{item.time}}<br><br><br>
 
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8" (click)="changecolor(item.id)">
                                 <!-- <h6>{{item.message}}</h6> -->
 
-                                <h6 (click)="changecolor(item.id)">
+                                <h6>
 
-                                    <p *ngIf="item.readBit!=null">{{item.message}}</p>
-                                    <p *ngIf="item.readBit==null" style="background-color: rgb(145, 188, 145)">
+                                    <p *ngIf="item.readBit!=0">{{item.message}}</p>
+                                    <p *ngIf="item.readBit==0" style="background-color: rgb(145, 188, 145)">
                                         {{item.message}}</p>
                                 </h6>
 
@@ -218,17 +220,18 @@ px
 
 
 
-       
-        <!-- <div class="col-lg-1" style="margin-left: 100px;">
+
+                <!-- <div class="col-lg-1" style="margin-left: 100px;">
             <img src="assets/Images/noti.png" style="    width: 26%;
             margin-top: 20px;" > -->
-            <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" class="logout" style="width: 30px">
-        </div>
-        <div class="col-lg-4">
-            <img src="assets/Images/usr.png" style="width: 25px;
+                <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" class="logout"
+                    style="width: 30px">
+            </div>
+            <div class="col-lg-4">
+                <img src="assets/Images/usr.png" style="width: 25px;
             margin-top: 30px;">
-            <p class="user">Hi {{UserName}}</p>
-          
+                <p class="user">Hi {{UserName}}</p>
+
+            </div>
         </div>
     </div>
-</div> 

@@ -280,7 +280,7 @@ export class AppliedCandidatesComponent implements OnInit {
       text: 'You want Reject this!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, Accept it!',
+      confirmButtonText: 'Yes, Reject it!',
       cancelButtonText: 'No, keep it',
     }).then((result) => {
       if (result.isConfirmed) {
