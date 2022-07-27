@@ -1,3 +1,15 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  GetVendor_Staff,DeleteVendor_Staff,EnableVendorStaff
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -11,6 +23,9 @@ import { ActivatedRoute } from '@angular/router';
 export class VendorStaffDashboardComponent implements OnInit {
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
+  //Variable Declerations//
+
   vendor_Name: any;
   staff_Name: any;
   email_Id: any;
@@ -26,11 +41,14 @@ export class VendorStaffDashboardComponent implements OnInit {
   currentUrl: any
  
   ngOnInit(): void {
+       //Variable Initialisation and Default Method Calls//
+     this.GetVendor_Staff();
     this.currentUrl = window.location.href;
-    this.GetVendor_Staff();
     this.loader = true;
   }
 
+
+   // Methods to get Count of GetVendor_Staff,DeleteVendor_Staff,EnableVendorStaff
 
   public GetVendor_Staff() {
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({

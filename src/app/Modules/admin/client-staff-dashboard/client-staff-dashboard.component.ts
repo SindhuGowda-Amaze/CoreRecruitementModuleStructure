@@ -1,11 +1,13 @@
 // Product : DigiCoreRecrcitment System 1.0 
 // Date : 28 Jan, 2022
 // Author :Prasanth,Praveen,Sindhu,Anusha,Madhava
-// Description :this procedure Gets the active records of CandidateRegistration Table
+// Description :This page contains methods GetClientStaff,DeleteClientStaff,EnableClientStaff
 // Last Modified Date : 25 July , 2022
 // Last Modified Changes :   Added comments
-// Last Modified By : Madhava
+// Last Modified By : Manikanta
 // Copyrights : AmazeINC-Bangalore-2022 
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +19,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./client-staff-dashboard.component.css']
 })
 export class ClientStaffDashboardComponent implements OnInit {
+
+//Variable Declerations//
+
   Job:any;
   count: any;
   search:any;
@@ -27,10 +32,15 @@ export class ClientStaffDashboardComponent implements OnInit {
   constructor( private RecruitmentServiceService: RecruitementService, private ActivatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+
+ //Variable Initialisation and Default Method Calls// 
+
    this.GetClientStaff();
+   this.currentUrl = window.location.href;
    this.loader=true;
   }
+
+  // Methods to get Count of Staff from GetClientStaff,DeleteClientStaff,EnableClientStaff//
 
   public GetClientStaff() {
     debugger
@@ -55,13 +65,13 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to update the  data  from ClientStaff Table
   edit(details: any){
     debugger
     location.href="#/admin/ClientStaffForm/"+ details;
     }
 
-
+// Method to delete  the  data  from ClientStaff Table
   public delete(details: any) {
     debugger
     var json={
@@ -98,7 +108,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to EnableStaff from ClientStaff
   public DisableStaff(id: any) {
     debugger
     var eb = {
@@ -136,7 +146,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to DisableStaff from ClientStaff
   public DisableStaff1(id: any) {
     debugger
     var eb = {

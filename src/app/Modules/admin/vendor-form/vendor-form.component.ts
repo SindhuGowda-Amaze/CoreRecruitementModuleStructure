@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from  InsertVendor_Dasboard,GetVendor_Dasboard,UpdateVendor_Dasboard
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -12,6 +21,8 @@ export class VendorFormComponent implements OnInit {
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
+  //Variable Declerations//
+
   vendor_Logo: any;
   vendor_Name: any;
   phone_Number: any;
@@ -21,7 +32,12 @@ export class VendorFormComponent implements OnInit {
   id: any;
   currentUrl:any;
   show:any;
+  Company_logo: any;
+  files: File[] = [];
   ngOnInit(): void {
+
+     //Variable Initialisation and Default Method Calls//
+
     this.currentUrl = window.location.href;
     this.ActivatedRoute.params.subscribe(params => {
       debugger
@@ -33,8 +49,9 @@ export class VendorFormComponent implements OnInit {
     })
 
   }
-  Company_logo: any;
-  files: File[] = [];
+
+   // Methods to get Count of InsertVendor_Dasboard,GetVendor_Dasboard,UpdateVendor_Dasboard
+ 
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);

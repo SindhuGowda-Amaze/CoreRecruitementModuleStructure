@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,10 +21,11 @@ import Swal from 'sweetalert2';
 })
 export class SelectedCandidatesComponent implements OnInit {
 
+   
+  //Variable Declerations//
+
   roleid: any
   err: any;
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   hiringManager: any;
   DeminimisList: any;
   deminimis: any;
@@ -61,13 +73,27 @@ export class SelectedCandidatesComponent implements OnInit {
   jobdescriptionID: any;
   jobdescription: any;
   maxdate: any;
+  files: File[] = [];
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.GetJobDescription();
+
+    //Variable Initialisation and Default Method Calls//
     this.maxdate = new Date().toISOString().split("T")[0];
+    this.GetCandidateReg();
+    this.GetRecruiterStaff();
+    this.GetJobDescription();
     this.Role = ""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
     this.hiringManager = "";
+    this.roleid = sessionStorage.getItem('roleid');
+    this.loader = true;
+    this.username = sessionStorage.getItem('UserName');
+  }
+
+  GetRecruiterStaff(){
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
@@ -88,12 +114,9 @@ export class SelectedCandidatesComponent implements OnInit {
       }
     })
 
-    this.GetCandidateReg()
-    this.roleid = sessionStorage.getItem('roleid');
-    this.loader = true;
-    this.username = sessionStorage.getItem('UserName');
   }
 
+ // Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     debugger
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -131,22 +154,31 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+  //Method to get OfferID //
   public GetOfferID(id: any, job: any) {
     this.candidateid = id;
     this.candidatename = job.candidateName,
       this.email = job.email
   }
 
+
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
 
+
+  //Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
-  files: File[] = [];
+
+
+
+//Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
     if (event.addedFiles[0].type == "application/pdf") {
@@ -190,6 +222,10 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+
+
+//Method to  Upload offer letter and update tentative DOJ with notes//
   public updatedetails() {
 
     if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
@@ -230,6 +266,8 @@ export class SelectedCandidatesComponent implements OnInit {
     }
   }
 
+
+  //Method to update Joining Date with notes//
   public updatejoiningdate() {
     if (this.date == null || this.date == undefined || this.date == 0 ||
       this.joiningbonus == null || this.joiningbonus == undefined || this.joiningbonus == 0 ||
@@ -270,8 +308,9 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
-  public sendmail() {
 
+  //Method to Send Email//
+  public sendmail() {
     var entity = {
       'emailto': this.email,
       'emailsubject': "Amaze Inc Offer Letter",
@@ -285,6 +324,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
+  //Method to Send Notification/
   public InsertNotificationRecruiter() {
     debugger
     var event: any = 'Candidate Selected';
@@ -311,7 +351,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
-
+//Method to filter the data by Dates//
   public FilterByDate() {
     debugger;
 
@@ -347,6 +387,8 @@ export class SelectedCandidatesComponent implements OnInit {
     }) ;
   }
 
+
+  
   public changeoption() {
     debugger;
 
