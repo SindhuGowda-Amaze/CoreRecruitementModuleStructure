@@ -41,11 +41,16 @@ export class ClosedPositionComponent implements OnInit {
   staffdetails: any;
   joblist20:any;
   count9:any;
+  count10 : any
   joblist10:any;
   count4:any;
   joblist12:any;
   count5:any;
   count1:any
+  noofCVs : any
+  OfferedCandidates : any
+  selectedCandidates : any
+  joinedCandidates: any
   jobRefernceID:any;
   ngOnInit(): void {
     debugger;
@@ -63,19 +68,16 @@ export class ClosedPositionComponent implements OnInit {
       next: data => {
         debugger
         if (this.roleid == 2){
-          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username && x.jobRefernceID==this.jobRefernceID);
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.hiringManager == this.username );
           this.count4 = this.joblist10.length;
-        
         }
         else if(this.roleid==3){
-          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username);
+          this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0  && x.vendor == this.username );
           this.count4 = this.joblist10.length;
         }
         else{
           this.joblist10 = data.filter(x => x.offered == 1 && x.offerAcceptreject == 0);
-          this.count4 = this.joblist10.length;
-         
-      
+          this.count4 = this.joblist10.length;     
         }
     
     

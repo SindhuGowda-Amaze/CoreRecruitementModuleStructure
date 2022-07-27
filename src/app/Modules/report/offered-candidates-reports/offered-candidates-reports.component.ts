@@ -20,7 +20,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
-    this.exportexcel()
+ 
     this.hiringManager="";
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
