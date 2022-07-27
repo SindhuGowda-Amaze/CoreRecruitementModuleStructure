@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  methods from GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -9,10 +20,11 @@ import swal from 'sweetalert2';
   styleUrls: ['./dropped-candidates.component.css']
 })
 export class DroppedCandidatesComponent implements OnInit {
+  
+    
+  //Variable Declerations//
+
   title: any;
-
-  constructor(private RecruitmentServiceService:RecruitementService) { }
-
   OfferComments: any;
   joblist: any;
   count: any;
@@ -33,8 +45,14 @@ export class DroppedCandidatesComponent implements OnInit {
   vendor: any
   role:any
   Role: any
+
+  constructor(private RecruitmentServiceService:RecruitementService) { }
+
   
   ngOnInit(): void {
+
+   //Variable Initialisation and Default Method Calls//
+
     this.role="";
     this.GetJobDescription();
     this.Role="";
@@ -43,6 +61,12 @@ export class DroppedCandidatesComponent implements OnInit {
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
+ 
+    this.GetCandidateReg()
+  }
+
+  GetRecruiterStaff(){
+
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
@@ -63,11 +87,15 @@ export class DroppedCandidatesComponent implements OnInit {
       }
     })
 
-    this.GetCandidateReg()
+
+
+
+
+
   }
-  GetJobDescriptionMaster() {
-    throw new Error('Method not implemented.');
-  }
+  // GetJobDescriptionMaster() {
+  //   throw new Error('Method not implemented.');
+  // }
 
 
   public GetCandidateReg() {

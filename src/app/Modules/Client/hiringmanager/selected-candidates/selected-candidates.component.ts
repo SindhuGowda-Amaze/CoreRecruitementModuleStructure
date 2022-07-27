@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Description :This page contains  methods from GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -94,7 +94,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
   GetRecruiterStaff(){
-    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
         this.hrlist = data.filter(x => x.role == "Hiring Manager");
@@ -116,7 +116,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
- // Methods to get Count of GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,  sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
+ // Methods to get Count of GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
 
 
 
