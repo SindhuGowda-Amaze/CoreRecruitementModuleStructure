@@ -1,7 +1,8 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Description :This page contains Recruiter Details,Job Description, Send Email and Notification function, Approve and Reject Budget Planning(Hirirng Manager),
+// and filter code 
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -326,7 +327,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
-  //Method to Send Notification/
+  //Method to Send Notification//
   public InsertNotificationRecruiter() {
     debugger
     var event: any = 'Candidate Selected';
