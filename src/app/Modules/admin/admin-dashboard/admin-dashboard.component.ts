@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains Get methods from ClientMaster,Client Staff,Recruiter Staff,Vender_Dashboard and Vender_Staff Table
+// --Description :This page contains Client Details & Count, Vendor Count Vendor staff Count, Recruiter Count, Route to Respective Pages,flip the cards
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Madhava
@@ -61,7 +61,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
-// Methods to get Count of Staff from ClientMaster,Client Staff,Recruiter Staff,Vender_Dashboard and Vender_Staff Table//
+// Methods to Get Client Staff Data //
 
   public GetClientMaster(){
     this.RecruitmentServiceService.GetClientMaster().subscribe({
@@ -86,6 +86,8 @@ export class AdminDashboardComponent implements OnInit {
       }
     })
   }
+
+  // Methods to Get Client Count Data //
 
   public GetClientStaff(){
     this.RecruitmentServiceService.GetClientStaff().subscribe({
@@ -112,6 +114,9 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+  
+  // Methods to Get Vendor Count Data //
+
   public GetVendor_Dasboard(){
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -135,6 +140,8 @@ export class AdminDashboardComponent implements OnInit {
       }
     })
   }
+   
+  // Methods to Get Recruiter Staff Count Data 
 
   public GetRecruiterStaff(){
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
@@ -161,6 +168,9 @@ export class AdminDashboardComponent implements OnInit {
     })
 
   }
+
+   
+  // Methods to Get Vendor Staff Count Data 
 
   public GetVendor_Staff(){
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
