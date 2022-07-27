@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetRecruiterStaff,GetRoleType,GetRecruiterMaster,InsertRecruiterStaff,UpdateRecruiterStaff
+// --Description :This page contains  methods from   Serach the Staff Details,Displaying the Role Tittle,Displaying the Company Details,Insert & Update RecruiterStaff Details,Routing with Respect of URL,Upload the imges & Files
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -60,7 +60,7 @@ export class RecruiterFormComponent implements OnInit {
 
 
   
-// Methods to get Count of GetRecruiterStaff,GetRoleType,GetRecruiterMaster,InsertRecruiterStaff,UpdateRecruiterStaff
+// Methods to Get Serach the Recruiter Staff Details//
 
   public GetRecruiterStaff() {
     debugger
@@ -80,6 +80,7 @@ export class RecruiterFormComponent implements OnInit {
       })
   }
 
+  // Methods to Displaying Role Tittle//
 
   public GetRoleType() {
     debugger
@@ -91,7 +92,8 @@ export class RecruiterFormComponent implements OnInit {
   }
 
 
-  
+    // Methods to Upload The files/
+
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -101,11 +103,15 @@ export class RecruiterFormComponent implements OnInit {
   }
 
 
+    // Methods to remove The files/
+
   onRemove(event: any) {
     debugger
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
+   // Methods to Upload The Images/
 
   public uploadattachments() {
     debugger
@@ -116,6 +122,8 @@ export class RecruiterFormComponent implements OnInit {
     })
   }
 
+  
+// Methods to Get Count the Recruiter Staff Details//
 
   public GetRecruiterMaster() {
     debugger
@@ -125,6 +133,10 @@ export class RecruiterFormComponent implements OnInit {
         this.count = this.recruiterlist.length;
       })
   }
+
+  
+  
+// Methods to Insert the Data in RecruiterStaff table//
 
   public insertdetails() {
     debugger
@@ -155,7 +167,7 @@ export class RecruiterFormComponent implements OnInit {
       })
     }
   }
-
+// Methods to Update the Data in RecruiterStaff table//
 
   public Update() {
     debugger
@@ -178,6 +190,7 @@ export class RecruiterFormComponent implements OnInit {
     })
   }
 
+  //Method to Get Routing with Respect OF URL//
   cancel() {
     location.href = "#/admin/RecruiterStaffDashboard"
   }

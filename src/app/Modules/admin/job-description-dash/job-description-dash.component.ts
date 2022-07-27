@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetJobDescriptionMaster,DeleteJobDescriptionMaster,EnableVendorStaff
+// --Description :This page contains methods GetJobDescriptionMaster,DeleteJobDescriptionMaster,EnableVendorStaff
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -46,8 +46,8 @@ export class JobDescriptionDashComponent implements OnInit {
     this.loader = true;
   }
 
-// Methods to get Count of GetJobDescriptionMaster,DeleteJobDescriptionMaster,EnableVendorStaff//
 
+  // Methods to Get  Satff Count//
 
   public GetJobDescriptionMaster() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
@@ -107,6 +107,11 @@ export class JobDescriptionDashComponent implements OnInit {
   //     })
   //   }
 
+
+
+   
+
+// Method to delete  the  data  from JobDescriptionMaster Table
   public Ondelete(id: any) {
     debugger
     Swal.fire({
@@ -129,11 +134,14 @@ export class JobDescriptionDashComponent implements OnInit {
     })
   }
 
+  // Method to update the  data  from JobDescriptionMaster Table
+
   edit(id: any) {
     debugger
     location.href = "#/admin/JobDescriptionForm/" + id;
   }
 
+  //Method to EnableStaff from VendorStaff
 
   public DisableStaff(id: any) {
     var eb = {
@@ -162,6 +170,8 @@ export class JobDescriptionDashComponent implements OnInit {
     })
   }
   
+  //Method to DisableStaff from VendorStaff
+
   public DisableStaff1(id: any) {
     var eb = {
       'ID': id,

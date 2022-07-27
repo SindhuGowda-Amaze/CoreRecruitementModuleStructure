@@ -1,14 +1,11 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetVendor_Staff,DeleteVendor_Staff,EnableVendorStaff
+// --Description :This page contains  To get Count Vendor_Staff,Delete the Data in Vendor_Staff Details,EnableVendorStaff
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
 // --Copyrights : AmazeINC-Bangalore-2022
-
-
-
 
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -48,7 +45,7 @@ export class VendorStaffDashboardComponent implements OnInit {
   }
 
 
-   // Methods to get Count of GetVendor_Staff,DeleteVendor_Staff,EnableVendorStaff
+   // Methods to get Count of vendor Satff Details//
 
   public GetVendor_Staff() {
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
@@ -73,12 +70,13 @@ export class VendorStaffDashboardComponent implements OnInit {
     })
 
   }
-
+// Method to get Routing with Respect of URL//
   edit(id: any) {
     debugger
     location.href = "#/admin/VendorStaffForm/" + id;
   }
 
+  // Method to Delete the data in Vendor_Staff table//
 
   public Ondelete(id: any) {
     debugger
@@ -115,6 +113,8 @@ export class VendorStaffDashboardComponent implements OnInit {
       }
     })
   }
+ //Method to DisableStaff from VendorStaff//
+
  public DisableStaff(id: any) {
     debugger
     var eb = {
@@ -153,6 +153,8 @@ export class VendorStaffDashboardComponent implements OnInit {
     })
   }
 
+
+ //Method to EnableStaff from VendorStaff//
   public DisableStaff1(id: any) {
     debugger
     var eb = {

@@ -2,7 +2,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetVendor_Staff,InsertVendor_Staff,GetVendor_Dasboard,GetRoleType,UpdateVendor_Staff
+// --Description :This page contains attch the files & Remove files,Upload the imges,search the vendor dashboard details,Insert & Update Vendor Staff Details, displaying Role Tittle,
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -68,7 +68,7 @@ export class VendorStaffFormComponent implements OnInit {
   }
 
   
-   // Methods to get Count of GetVendor_Staff,InsertVendor_Staff,GetVendor_Dasboard,GetRoleType,UpdateVendor_Staff
+   // Methods to attch the files//
 
   onSelect(event: { addedFiles: any; }) {
     debugger
@@ -78,11 +78,16 @@ export class VendorStaffFormComponent implements OnInit {
     console.log("content", this.files);
   }
 
+   // Methods to Remove the files//
+
   onRemove(event: any) {
     debugger
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
+  
+   // Methods to Upload the Image//
 
   public uploadattachments() {
     debugger
@@ -93,6 +98,8 @@ export class VendorStaffFormComponent implements OnInit {
         alert("Attachment Uploaded");
       })
   }
+
+     // Methods to search the Vendor-staff details//
 
   GetVendor_Staff() {
     this.RecruitmentServiceService.GetVendor_Staff().subscribe({
@@ -119,6 +126,7 @@ export class VendorStaffFormComponent implements OnInit {
       }
     })
   }
+     // Methods to insert the values in Vendor_Staff table //
 
   Save() {
     debugger;
@@ -161,6 +169,8 @@ export class VendorStaffFormComponent implements OnInit {
     }
   }
 
+ // Methods to Displaying the Vendor_Dashboard Deatils //
+
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -181,6 +191,7 @@ export class VendorStaffFormComponent implements OnInit {
       }
     })
   }
+// Methods to Displaying the Role Tittle Deatils //
 
   public GetRoleType() {
     debugger
@@ -203,6 +214,8 @@ export class VendorStaffFormComponent implements OnInit {
       }
     })
   }
+
+  // Methods to Update the Vendor_Staff Deatils //
 
   Update() {
     debugger
@@ -236,7 +249,7 @@ export class VendorStaffFormComponent implements OnInit {
       }
     })
   }
-
+// Method to get routing the with respect the URL//
   cancel() {
     location.href = "#/admin/VendorStaffDashboard";
   }

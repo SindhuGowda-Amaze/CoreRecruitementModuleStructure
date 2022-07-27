@@ -2,7 +2,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,GetDepartment,GetJob_Requirements,
+// --Description :This page contains 
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
   count4: any;
   count5: any;
   count6: any;
-
   joblist1: any;
   joblist2: any;
   joblist3: any;
@@ -107,7 +106,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-   // Methods to get Count of GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,GetDepartment,GetJob_Requirements,
+   // Methods to get Count of GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,Ge
 
   GetRecruiterStaff(){
 

@@ -1,8 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  GetJobDescriptionMaster,InsertJobDescriptionMaster,GetVendor_Dasboard,GetRoleType,UpdateJobDescriptionMaster
-// --Last Modified Date : 26 July , 2022
+// --Description :This page contains  Serach the Job Tittle, Insert & Update the data in JobDescriptionMaster,Displaying Vendor Details& Role Tittle,Routing with Respect of URL. 
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
 // --Copyrights : AmazeINC-Bangalore-2022
@@ -60,7 +59,7 @@ export class JobDescriptionFormComponent implements OnInit {
 
   }
 
-// Methods to get Count of GetJobDescriptionMaster,InsertJobDescriptionMaster,GetVendor_Dasboard,GetRoleType,UpdateJobDescriptionMaster
+// Methods to serach the Job tittle//
 
   GetVendor_Staff() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
@@ -86,6 +85,7 @@ export class JobDescriptionFormComponent implements OnInit {
 })
 
   }
+// Method to Insert  the  data  from JobDescriptionMaster Table//
   Save() {
     debugger;  
     if(this.role_Id==undefined || this.role_Id==0 ||
@@ -128,6 +128,7 @@ export class JobDescriptionFormComponent implements OnInit {
   
 
   }
+  // Method to Displaying Vendor Details//
 
   public GetVendor_Dasboard() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
@@ -150,6 +151,7 @@ export class JobDescriptionFormComponent implements OnInit {
 })
 
   }
+   // Method to Displaying Role Tittle Details//
  
   public GetRoleType() {
     debugger
@@ -173,6 +175,8 @@ export class JobDescriptionFormComponent implements OnInit {
 })
 
   }
+
+   // Method to Update Job Tittle in UpdateJobDescriptionMaster table//
 
   Update() {
     debugger
@@ -203,6 +207,10 @@ export class JobDescriptionFormComponent implements OnInit {
   }
 })
   }
+
+  
+  //Method to get Routing with Respect of URL//
+
   cancel(){
     location.href = "#/admin/JobDescriptionDash";
   }
