@@ -50,8 +50,9 @@ export class OfferedCandidatesReportsComponent implements OnInit {
     })
   }
  
-  GetCandidateRegistration(){  this.RecruitementService.GetCandidateRegistration()
-    
+  GetCandidateRegistration()
+  { 
+     this.RecruitementService.GetCandidateRegistration()
     .subscribe({
       next: data => {
         debugger
@@ -174,7 +175,5 @@ export class OfferedCandidatesReportsComponent implements OnInit {
         )
       }
     })
-
-  
   }
 }

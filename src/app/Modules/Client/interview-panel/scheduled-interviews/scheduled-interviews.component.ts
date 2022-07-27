@@ -323,8 +323,9 @@ export class ScheduledInterviewsComponent implements OnInit {
         )
         this.SendMailEmployee()
         this.GetCandidateReg()
+        this.rinterview=""
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
+        Swal.fire('Issue in  Accepting Interview');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -582,13 +583,13 @@ export class ScheduledInterviewsComponent implements OnInit {
     }
     this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any) => {
       debugger
-      Swal.fire('Cancle Sucessfully')
+      Swal.fire('Cancle Successfully')
 location.reload();
     })
   }
 
 public mynotes(){
-  Swal.fire('Saved Sucessfully')
+  Swal.fire('Saved Successfully')
 }
 
 

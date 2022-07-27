@@ -28,13 +28,13 @@
             <div class="col-lg-2">
                    
                     <input type="date" style="color:#0C275A;" class="form-control poppinns"
-                    (change)="CandidateRegistration()" name="endDate" value="endDate" [(ngModel)]="endDate">
+                    (change)="FilterByDate()" name="endDate" value="endDate" [(ngModel)]="endDate">
             </div>
             <div class="col-lg-2">
       
-                <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="GetJobDescription()">
+                <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="getjobdescription($event)">
                     <option value="">Select Job Title</option>
-                    <option value="{{Job.id}}" *ngFor="let Job of jobdescription">
+                    <option value="{{Job.role}}" *ngFor="let Job of jobdescription">
                       {{Job.role}}
                     </option>
                   </select>

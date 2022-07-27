@@ -891,7 +891,7 @@ this.manPowerMenu=8;
   public OfferedReport() {
     localStorage.setItem('Pagename', 'OPEN POSITIONS')
     this.router.navigate(['/report/OfferedCandidatesReports']);
-    this.reportmenu=5;
+    this.reportmenu=502;
     // this.offeredreport = true
     // this.Jobrecruit = false
     // this.Vendorrecruit = false

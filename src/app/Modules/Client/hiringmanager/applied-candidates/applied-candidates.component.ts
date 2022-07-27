@@ -240,7 +240,9 @@ export class AppliedCandidatesComponent implements OnInit {
             this.SendJobMail(sub, desc, email);
             this.InsertNotificationRecruiter();
             this.GetJobDescription();
+            this.ngOnInit();
             this.loader = false;
+
           },
           (error) => {
             this.loader = false;
