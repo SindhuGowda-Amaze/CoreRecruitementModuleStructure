@@ -74,6 +74,7 @@ export class SelectedCandidatesComponent implements OnInit {
   jobdescriptionID: any;
   jobdescription: any;
   maxdate: any;
+  even : any
   files: File[] = [];
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -366,6 +367,7 @@ export class SelectedCandidatesComponent implements OnInit {
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.count = this.joblist.length;
           this.loader = false;
+          this.filterByJD(this.even)
         }
         else {
           this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
