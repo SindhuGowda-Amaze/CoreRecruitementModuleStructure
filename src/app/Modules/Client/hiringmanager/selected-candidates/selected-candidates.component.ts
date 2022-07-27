@@ -93,6 +93,8 @@ export class SelectedCandidatesComponent implements OnInit {
     this.username = sessionStorage.getItem('UserName');
   }
 
+
+  //Method to Get Company Staff Data//
   GetRecruiterStaff(){
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
@@ -388,8 +390,8 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
-  
-  public changeoption() {
+//Method to filter the data by Notice Period//
+  public filterByNoticePeriod() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -413,6 +415,7 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
+  //Method to get data from JobRequirements Table//
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -441,6 +444,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
+ //Click Method to get and Prefill Budget Details from CandidateRegistration Table//
   getid(even: any) {
     debugger
     this.id = even;
@@ -460,6 +464,7 @@ export class SelectedCandidatesComponent implements OnInit {
       })
   }
 
+//Method to Approve Candidate by Comparing Budget Planning//
   public ApproveId() {
     Swal.fire({
       title: 'Are you sure?',
@@ -498,7 +503,7 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
-
+//Method to Reject Candidate by Comparing Budget Planning//
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -537,6 +542,8 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+  //Method to get Job Description//
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -561,7 +568,7 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
-
+//Method to filter Data by Job Description//
   public filterByJD(even: any) {
     this.jobdescriptionID = even.target.value
 
