@@ -97,7 +97,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   //Method to Get Company Staff Data//
   GetRecruiterStaff(){
-    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
         this.hrlist = data.filter(x => x.role == "Hiring Manager");

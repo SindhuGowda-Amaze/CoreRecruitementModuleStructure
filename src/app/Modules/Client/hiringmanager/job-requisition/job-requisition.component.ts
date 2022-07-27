@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU
+// --Description :This page contains  methods from GetClientStaff,GetManpowerPlanningandBudgeting,InsertJob_Requirements,sendemailattachements,InsertNotificationSBU
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -72,7 +72,7 @@ export class JobRequisitionComponent implements OnInit {
 
 
 
-  // Methods to get Count of GetClientStaff,GetManpowerPlanningandBudgeting,sendemailattachements,InsertNotificationSBU
+  // Methods to get Count of GetClientStaff,GetManpowerPlanningandBudgeting,InsertJob_Requirements,sendemailattachements,InsertNotificationSBU
 
   GetClientStaff(){
     this.RecruitmentServiceService.GetClientStaff()

@@ -49,7 +49,7 @@
             </div>
             
             <div class="col-lg-2">
-                <select class="form-control" id="Role" name="Role" [(ngModel)]="Role" (change)="filterByJD($event)">
+                <select class="form-control form-control poppinns" id="Role" name="Role" [(ngModel)]="Role" (change)="filterByJD($event)">
                   <option value="">Select Job Title</option>
                   <option  *ngFor="let job of jobdescription" value="{{job.role}}">
                     {{job.role}}  
