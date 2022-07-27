@@ -118,7 +118,7 @@ export class ClientformComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
+//Method to Display Image in UploadImages Table
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -141,7 +141,7 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
-
+//Method to insert data from ClientMaster Table
   public Save() {
     debugger
     if (this.Name == undefined || this.PhoneNo == undefined || this.Email == undefined || this.Address == undefined || this.Company_logo == undefined) {
@@ -182,7 +182,7 @@ export class ClientformComponent implements OnInit {
     }
 
   }
-
+//Method to Display data from ClientMaster table 
   GetClientMaster() {
     this.RecruitmentServiceService.GetClientMaster().subscribe({
       next: data => {

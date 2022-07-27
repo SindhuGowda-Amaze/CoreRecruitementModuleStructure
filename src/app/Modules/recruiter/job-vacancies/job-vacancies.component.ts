@@ -36,15 +36,10 @@ export class JobVacanciesComponent implements OnInit {
     this.userid = sessionStorage.getItem('userid')
     this.Source = sessionStorage.getItem('role')
 
-    this.RecruitmentServiceService.GetClientStaff()
+    this.RecruitmentServiceService.GetRecruiterStaff()
     .subscribe(data => {
       this.hrlist = data.filter((x: { role: string; }) => x.role == 'Hiring Manager');
-
       this.hirirngmanger = this.hrlist[0].id
-
-
-
-
     })
 
 
@@ -144,7 +139,7 @@ export class JobVacanciesComponent implements OnInit {
     debugger
     var event: any = 'Recruiter Applied for the job';
 
-    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.hirirngmanger, 'Your Recruiter Applied for new Job')
+    this.RecruitmentServiceService.InsertNotificationSBU(event,  this.hirirngmanger, 'Your Recruiter Applied for a Job')
       .subscribe({
         next: data => {
           debugger
@@ -221,7 +216,6 @@ export class JobVacanciesComponent implements OnInit {
       debugger;
       // Swal.fire('Letter Generated and Sent Successfully');
       Swal.fire('Email sent');
-
     })
   }
   Cancle(){

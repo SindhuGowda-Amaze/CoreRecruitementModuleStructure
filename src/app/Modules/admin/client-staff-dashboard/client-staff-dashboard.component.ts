@@ -6,6 +6,8 @@
 // Last Modified Changes :   Added comments
 // Last Modified By : Manikanta
 // Copyrights : AmazeINC-Bangalore-2022 
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -63,13 +65,13 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to update the  data  from ClientStaff Table
   edit(details: any){
     debugger
     location.href="#/admin/ClientStaffForm/"+ details;
     }
 
-
+// Method to delete  the  data  from ClientStaff Table
   public delete(details: any) {
     debugger
     var json={
@@ -106,7 +108,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to EnableStaff from ClientStaff
   public DisableStaff(id: any) {
     debugger
     var eb = {
@@ -144,7 +146,7 @@ export class ClientStaffDashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to DisableStaff from ClientStaff
   public DisableStaff1(id: any) {
     debugger
     var eb = {

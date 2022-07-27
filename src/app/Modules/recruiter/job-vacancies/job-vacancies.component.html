@@ -1,3 +1,12 @@
+<!-- Product : DigiCoreRecrcitment System 1.0 
+Date : 28 Jan, 2022
+Author : Praveen,Sindhu,Anusha,Madhava
+Description :this procedure Deletes the data in ClientMaster Table
+Last Modified Date : 25 July , 2022
+Last Modified Changes :   Added comments
+Last Modified By : Madhava
+Copyrights : AmazeINC-Bangalore-2022 -->
+
 <div class="container-fluid ">
     <br>
     <div class="row">
@@ -9,12 +18,13 @@
             <div class="row" *ngFor="let job of joblist">
                 <div class="col-lg-12">
                     
-                    <p style="color:#3247D5;font-size:17px;">{{job.jobTitle}} ({{job.companyName}})
+                    <p style="color:#3247D5;font-size:17px;">{{job.jobTitle}} 
+                         &nbsp;{{job.companyName}}
                     </p>
                 </div>
 
                 <div class="col-lg-6">
-                    <span class=""><b>Skillsets:</b> {{job.skills}}</span>
+                    <span class=""><b>Skill Set:</b> {{job.skills}}</span>
                 </div>
                 <div class="col-lg-3">
                     <span style="margin-left:15px;" class=""><b>Job Location: </b>{{job.joblocation}}</span><br>

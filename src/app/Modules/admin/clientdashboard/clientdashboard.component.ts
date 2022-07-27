@@ -65,11 +65,12 @@ export class ClientdashboardComponent implements OnInit {
       }
     })
   }
-
+// Method to edit data  in ClientMaster Table 
   edit(id: any) {
     debugger
     location.href = "#/admin/Clientform/ " + id;
   }
+ // Method to delete  data  in ClientMaster Table  
   public delete(details: any) {
     debugger
     var json = {

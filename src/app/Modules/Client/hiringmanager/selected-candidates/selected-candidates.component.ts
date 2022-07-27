@@ -1,7 +1,8 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
+// --Description :This page contains Recruiter Details,Job Description, Send Email and Notification function, Approve and Reject Budget Planning(Hirirng Manager),upload offer letter and update Tentative DOJ
+// and filter code 
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -72,15 +73,15 @@ export class SelectedCandidatesComponent implements OnInit {
   id: any;
   jobdescriptionID: any;
   jobdescription: any;
-
+  maxdate: any;
+  files: File[] = [];
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-  
     //Variable Initialisation and Default Method Calls//
-
+    this.maxdate = new Date().toISOString().split("T")[0];
     this.GetCandidateReg();
     this.GetRecruiterStaff();
     this.GetJobDescription();
@@ -93,6 +94,8 @@ export class SelectedCandidatesComponent implements OnInit {
     this.username = sessionStorage.getItem('UserName');
   }
 
+
+  //Method to Get Company Staff Data//
   GetRecruiterStaff(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -116,13 +119,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
- // Methods to get Count of GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
-
-
-
-
-
-
+ // Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     debugger
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -160,22 +157,31 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+  //Method to get OfferID //
   public GetOfferID(id: any, job: any) {
     this.candidateid = id;
     this.candidatename = job.candidateName,
       this.email = job.email
   }
 
+
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
 
+
+  //Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
-  files: File[] = [];
+
+
+
+//Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
     if (event.addedFiles[0].type == "application/pdf") {
@@ -219,6 +225,10 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+
+
+//Method to  Upload offer letter and update tentative DOJ with notes//
   public updatedetails() {
 
     if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
@@ -259,6 +269,8 @@ export class SelectedCandidatesComponent implements OnInit {
     }
   }
 
+
+  //Method to update Joining Date with notes//
   public updatejoiningdate() {
     if (this.date == null || this.date == undefined || this.date == 0 ||
       this.joiningbonus == null || this.joiningbonus == undefined || this.joiningbonus == 0 ||
@@ -299,8 +311,9 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
-  public sendmail() {
 
+  //Method to Send Email//
+  public sendmail() {
     var entity = {
       'emailto': this.email,
       'emailsubject': "Amaze Inc Offer Letter",
@@ -314,6 +327,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
+  //Method to Send Notification//
   public InsertNotificationRecruiter() {
     debugger
     var event: any = 'Candidate Selected';
@@ -340,58 +354,30 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
-
-  // public GetDate(event:any) {
-  //   if(this.Date==0){
-  //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-  //       this.joblist = data.filter(x => x.recruiter == this.userid);
-  //       this.count = this.joblist.length;
-  //     })
-  //   }
-  //   else{
-  //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-  //       this.joblist = data.filter(x => x.recruiter == this.userid && x.date==this.Date);
-
-  //       this.count = this.joblist.length;
-  //     })
-  //   }
-
-  // }
-
-  //   public GetDate(event: any) {
-  //     if (this.Date == 0) {
-  //       debugger
-  //       this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  //         this.joblist = data;
-  //         debugger
-  //         this.dummjoblist = data;
-  //         this.count = this.joblist.length;
-  //       })
-  //     }
-  //     else {
-  //       debugger
-  //       this.joblist = this.dummjoblist.filter((x: { date: any; }) => x.date == this.Date);
-  //       this.count = this.joblist.length;
-  //     }
-  //   }
-
-
-  public changeAnniversary() {
+//Method to filter the data by Dates//
+  public FilterByDate() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
-
-
+        if (this.roleid == 2) {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.count = this.joblist.length;
+          this.loader = false;
+        }
+        else {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
+          this.jobListCopy = this.joblist.filter((x: { date: number; })=>x.date >= this.Date && x.date <= this.endDate);
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.loader = false;
+          this.count = this.joblist.length;
+        }
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GettingCandidate Registration');
         // Insert error in Db Here//
-        var obj = {
+        var obj = { 
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
@@ -404,7 +390,9 @@ export class SelectedCandidatesComponent implements OnInit {
     }) ;
   }
 
-  public changeoption() {
+
+//Method to filter the data by Notice Period//
+  public filterByNoticePeriod() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -428,6 +416,7 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
+  //Method to get data from JobRequirements Table//
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -456,6 +445,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
+ //Click Method to get and Prefill Budget Details from CandidateRegistration Table//
   getid(even: any) {
     debugger
     this.id = even;
@@ -475,6 +465,7 @@ export class SelectedCandidatesComponent implements OnInit {
       })
   }
 
+//Method to Approve Candidate by Comparing Budget Planning//
   public ApproveId() {
     Swal.fire({
       title: 'Are you sure?',
@@ -513,7 +504,7 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
-
+//Method to Reject Candidate by Comparing Budget Planning//
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -552,6 +543,8 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
+
+  //Method to get Job Description//
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -576,7 +569,7 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
-
+//Method to filter Data by Job Description//
   public filterByJD(even: any) {
     this.jobdescriptionID = even.target.value
 

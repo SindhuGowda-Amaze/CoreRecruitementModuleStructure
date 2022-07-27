@@ -536,11 +536,11 @@ export class RecruitementService {
       'Date': new Date(),
       'Event': Event,
       'FromUser': 'Admin',
-      'ToUser': sessionStorage.getItem('userid'),
+      'ToUser':sessionStorage.getItem('userid'),  
       'Message': Message,
       'Photo': 'Null',
       'Building': 'Dynamics 1',
-      'UserID': ToUser,
+      'UserID':ToUser ,
       'NotificationTypeID': 3,
       'VendorID': 0
     }

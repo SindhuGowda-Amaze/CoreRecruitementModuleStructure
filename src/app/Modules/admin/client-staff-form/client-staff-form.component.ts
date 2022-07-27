@@ -90,7 +90,7 @@ export class ClientStaffFormComponent implements OnInit {
       }
     })
   }
-
+// Method to display data  from ClientMaster Table
   public GetClientMaster() {
     debugger
     this.RecruitmentServiceService.GetClientMaster().subscribe({
@@ -114,7 +114,7 @@ export class ClientStaffFormComponent implements OnInit {
     })
   }
 
-
+// Method to display data  from ClientStaff Table
   GetClientStaff1() {
     this.RecruitmentServiceService.GetClientStaff().subscribe(
       data => {
@@ -158,6 +158,7 @@ export class ClientStaffFormComponent implements OnInit {
       "Address": this.Address,
       "Signature": this.Signature,
     };
+    // Method to insert data  from ClientStaff Table
     this.RecruitmentServiceService.InsertClientStaff(json).subscribe({
       next: data => {
         debugger
@@ -186,7 +187,7 @@ export class ClientStaffFormComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
+// Method to display image  from ClientStaff Table
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
@@ -222,7 +223,7 @@ export class ClientStaffFormComponent implements OnInit {
       "Address": this.Address,
       "Signature": this.Signature,
     };
-
+// Method to update  data  in ClientStaff Table
     this.RecruitmentServiceService.UpdateClientStaff(json).subscribe({
       next: data => {
         debugger
