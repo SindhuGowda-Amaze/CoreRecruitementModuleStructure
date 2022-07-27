@@ -60,9 +60,10 @@ export class SelectedCandidatesComponent implements OnInit {
   id: any;
   jobdescriptionID: any;
   jobdescription: any;
-
+  maxdate: any;
   ngOnInit(): void {
-    this.GetJobDescription()
+    this.GetJobDescription();
+    this.maxdate = new Date().toISOString().split("T")[0];
     this.Role = ""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
@@ -311,57 +312,29 @@ export class SelectedCandidatesComponent implements OnInit {
 
 
 
-  // public GetDate(event:any) {
-  //   if(this.Date==0){
-  //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-  //       this.joblist = data.filter(x => x.recruiter == this.userid);
-  //       this.count = this.joblist.length;
-  //     })
-  //   }
-  //   else{
-  //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe(data => {
-  //       this.joblist = data.filter(x => x.recruiter == this.userid && x.date==this.Date);
-
-  //       this.count = this.joblist.length;
-  //     })
-  //   }
-
-  // }
-
-  //   public GetDate(event: any) {
-  //     if (this.Date == 0) {
-  //       debugger
-  //       this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
-  //         this.joblist = data;
-  //         debugger
-  //         this.dummjoblist = data;
-  //         this.count = this.joblist.length;
-  //       })
-  //     }
-  //     else {
-  //       debugger
-  //       this.joblist = this.dummjoblist.filter((x: { date: any; }) => x.date == this.Date);
-  //       this.count = this.joblist.length;
-  //     }
-  //   }
-
-
-  public changeAnniversary() {
+  public FilterByDate() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
-        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
-
-
+        if (this.roleid == 2) {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.count = this.joblist.length;
+          this.loader = false;
+        }
+        else {
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
+          this.jobListCopy = this.joblist.filter((x: { date: number; })=>x.date >= this.Date && x.date <= this.endDate);
+          this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.loader = false;
+          this.count = this.joblist.length;
+        }
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GettingCandidate Registration');
         // Insert error in Db Here//
-        var obj = {
+        var obj = { 
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }

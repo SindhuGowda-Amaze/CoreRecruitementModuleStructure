@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="row" [hidden]="showorhidecontent" style="overflow: auto;">
-          <div class="col-lg-12" >
+          <div class="col-lg-12">
             <table class="table tablebordered">
               <thead>
                 <tr class="head">
@@ -73,7 +73,7 @@
                   <th>Interview Date</th>
                   <!-- <th>Client Name</th> -->
                   <th>Time</th>
-                  <!-- <th>Interviewer</th> -->
+                  <th  *ngIf="roleid==6">Interviewer</th>
                   <th>Job Title</th>
                   <th>Candidate Name</th>
                   <th>Phone No</th>
@@ -93,7 +93,7 @@
                   <td>{{job.date|date}}</td>
                   <!-- <td>Mind Tree</td> -->
                   <td>{{job.slotTime}}</td>
-                  <!-- <td>{{job.staffname}}</td> -->
+                  <td *ngIf="roleid==6">{{job.staffname}}</td>
                   <td>{{job.jobTitle}}</td>
                   <td>{{job.candidateName}}</td>
                   <td>{{job.phoneNo}}</td>
@@ -106,37 +106,40 @@
                   <!-- <td>{{job.comments}}</td> -->
                   <td>Select based on Relevant Experience</td>
                   <td>
-                    <img class="resume" src="assets/Images/pdf.png" (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
+                    <img class="resume" src="assets/Images/pdf.png"
+                      (click)="GetOfferLetter1('https://www.robertwalters.co.nz/content/dam/robert-walters/global/files/complete-interview-guide/Interview-guide-web.pdf')">
                   </td>
-                  <td  *ngIf="roleid==5">
+                  <td *ngIf="roleid==5">
 
                     <table class="sub-table">
                       <tr>
                         <td>
 
-                          <button class="btn btn-primary Button"
-                          (click)="getid(job.id)"  data-toggle="modal" data-target="#exampleModal">Selected</button><br>
+                          <button class="btn btn-primary Button" (click)="getid(job.id)" data-toggle="modal"
+                            data-target="#exampleModal">Selected</button><br>
                         </td>
-                        <td >
-                          <button class="btn btn-primary" style="background-color:#dc3545;  border:none" data-dismiss="modal" data-toggle="modal"
-                          data-target="#exampleModal3" (click)="getId(job.id)">Cancel</button>
+                        <td>
+                          <button class="btn btn-primary" style="background-color:#dc3545;  border:none"
+                            data-dismiss="modal" data-toggle="modal" data-target="#exampleModal3"
+                            (click)="getId(job.id)">Cancel</button>
                           <!-- <button class="btn btn-primary Button" style="background-color:#dc3545;" (click)="Cancel()">Cancel</button> -->
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-toggle="modal"
-                          data-target="#Reject" (click)="getid(job.id)">Rejected</button>
-                        
+                          <button class="btn btn-primary" style="background-color:#dc3545; border:none"
+                            data-toggle="modal" data-target="#Reject" (click)="getid(job.id)">Rejected</button>
+
                         </td>
                         <td>
-                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#Note" (click)="Note()">My Notes</button>
-      
+                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#Note"
+                            (click)="Note()">My Notes</button>
+
                         </td>
                       </tr>
                     </table>
 
-                
+
                     <!-- <button class="btn btn-primary"
                           *ngIf="job.interviewRejected=='0'&&job.interviewSelected=='0'"
                           (click)="Accept(job.id,job.interviewercomments)">Selected</button> &nbsp;
@@ -144,58 +147,58 @@
                       <button class="btn btn-danger"
                           *ngIf="job.interviewRejected=='0'&&job.interviewSelected=='0'"
                           (click)="Reject(job.id,job.interviewercomments)">Rejected</button> -->
-                </td>
-              </tr>
-            </thead>
-          </table>
+                  </td>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
         </div>
-        <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
-      </div>
 
-      <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="row callendernavButtons">
-              <div class="col-lg-4">
-                <a (click)="previousmonth()">
-                  <img src="assets/Images/left.png" class="montharrow">
-                  <!-- <i class="fa fa-angle-left" aria-hidden="true"></i> -->
-                </a>
-              </div>
-              <div class="col-lg-4">
-                <strong>{{callenderMonth}}</strong> {{callenderyear}}
+        <div class="shadow p-3 mb-5 bg-white rounded  maincard " [hidden]="!showorhidecontent">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row callendernavButtons">
+                <div class="col-lg-4">
+                  <a (click)="previousmonth()">
+                    <img src="assets/Images/left.png" class="montharrow">
+                    <!-- <i class="fa fa-angle-left" aria-hidden="true"></i> -->
+                  </a>
+                </div>
+                <div class="col-lg-4">
+                  <strong>{{callenderMonth}}</strong> {{callenderyear}}
+
+                </div>
+                <div class="col-lg-4">
+                  <a (click)="nextmonth()">
+                    <img src="assets/Images/right-arrow.png" class="montharrow">
+                    <!-- <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
+                  </a>
+                </div>
 
               </div>
-              <div class="col-lg-4">
-                <a (click)="nextmonth()">
-                  <img src="assets/Images/right-arrow.png" class="montharrow">
-                  <!-- <i class="fa fa-chevron-right" aria-hidden="true"></i> -->
-                </a>
-              </div>
-
-            </div>
-            <div class="row callenderdiv">
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
-                    {{calday.date}} {{calday.day}}
-                    <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
-                      style="overflow-y: auto; border-bottom: solid 6px white;">
+              <div class="row callenderdiv">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
+                      {{calday.date}} {{calday.day}}
+                      <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
+                        style="overflow-y: auto; border-bottom: solid 6px white;">
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-lg-1"></div>
     </div>
-    <div class="col-lg-1"></div>
   </div>
-</div>
 
-<!-- <div class="modal fade" id="#exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- <div class="modal fade" id="#exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
@@ -233,40 +236,29 @@
   </div>
 </div> -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
 
-aria-hidden="true">
- <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:700px">
 
- <div class="modal-content" style="width:700px">
+        <div class="modal-header ">
 
- <div class="modal-header ">
+          <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
 
-<p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Interview Notes </p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" (click)="rinterview=''">&times;</span>
 
- <span aria-hidden="true">&times;</span>
+          </button>
 
- </button>
+        </div>
 
- </div>
-
- <div class="modal-body">
-
- <div class="row">
-
-<!-- <div class="col-lg-3">
-
-              <label style="font-size: 16px;">Selected Notes</label>
-
-            </div> -->
-
- <div class="col-lg-12">
- 
- <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-
- <!-- <select class="form-control" (change)="GetStaffID($event)">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+              <!-- <select class="form-control" (change)="GetStaffID($event)">
 
                               <option value="">Select</option>
 
@@ -274,91 +266,85 @@ aria-hidden="true">
 
                           </select> -->
 
- </div>
-
- </div><br>
-
- <div class="row">
-
- <div class="col-lg-5"></div>
-
- <div class="col-lg-2">
-
- <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" (click)="Acceptcandidate()"
-
- data-dismiss="modal">Selected</button>
-
- </div>
- <div class="col-lg-2">
-  <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+              <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" (click)="Acceptcandidate()"
+                data-dismiss="modal">Selected</button>
+            </div>
+            <div class="col-lg-2">
+              <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
     data-target="#exampleModal3">Cancel</button> -->
-</div>
+            </div>
 
- </div> <br>
- 
-
- <div class="modal-footer">
-
- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div> <br>
 
 
+          <div class="modal-footer">
 
- </div>
-
- </div>
-
- </div>
-
-</div>
-
-</div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="rinterview=''">Close</button>
 
 
 
-<div class="modal fade" id="Reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:700px">
-      <div class="modal-header">
-        <p class="Heading" id="exampleModalLabel">Interview Notes</p>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-lg-3">
-            <label style="font-size: 16px;">Rejected Notes</label>
           </div>
+
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <textarea class="form-control" placeholder="Notes" rows="10"></textarea>
-            <!-- <select class="form-control" (change)="GetStaffID($event)">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="modal fade" id="Reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header">
+          <p class="Heading" id="exampleModalLabel">Interview Notes</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Rejected Notes</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <textarea class="form-control" placeholder="Notes" rows="10"></textarea>
+              <!-- <select class="form-control" (change)="GetStaffID($event)">
                               <option value="">Select</option>
                               <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
                           </select> -->
+            </div>
           </div>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+              <button class="btn btn-primary " style="background-color:#dc3545; border:none ; margin-left: 10%;"
+                (click)="Rejecttcandidate()" data-dismiss="modal">Rejected</button>
+            </div>
+          </div> <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
         </div>
 
-        <br>
-        <div class="row">
-          <div class="col-lg-5"></div>
-          <div class="col-lg-2">
-            <button class="btn btn-primary " style="background-color:#dc3545; border:none ; margin-left: 10%;"
-              (click)="Rejecttcandidate()" data-dismiss="modal">Rejected</button>
-          </div>
-        </div> <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
 
       </div>
-
-     
-
     </div>
   </div>
-</div>
 
 
 
@@ -370,49 +356,48 @@ aria-hidden="true">
 
 
 
-<div class="modal fade" id="Note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content" style="width:700px">
-    <div class="modal-header ">
-      <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">My Interview Notes </p>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <!-- <div class="col-lg-3">
+  <div class="modal fade" id="Note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header ">
+          <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">My Interview Notes </p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!-- <div class="col-lg-3">
           <label style="font-size: 16px;">Selected Notes</label>
         </div> -->
-        <div class="col-lg-12">
+            <div class="col-lg-12">
 
-          <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
-          <!-- <select class="form-control" (change)="GetStaffID($event)">
+              <textarea class="form-control" placeholder="Notes" [(ngModel)]="rinterview" rows="10"></textarea>
+              <!-- <select class="form-control" (change)="GetStaffID($event)">
                           <option value="">Select</option>
                           <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
                       </select> -->
-        </div>
-      </div><br>
-      <div class="row">
-        <div class="col-lg-5"></div>
-        <div class="col-lg-2">
-          <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="mynotes()"
-            data-dismiss="modal">Save</button>
-        </div>
-      </div> <br>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+              <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="mynotes()"
+                data-dismiss="modal">Save</button>
+            </div>
+          </div> <br>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
 
-<!-- <div class="modal fade" id="exampleModal3"  role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- <div class="modal fade" id="exampleModal3"  role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:700px">
@@ -453,40 +438,40 @@ aria-hidden="true">
 </div> -->
 
 
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
 
-aria-hidden="true">
- <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:700px">
 
- <div class="modal-content" style="width:700px">
+        <div class="modal-header ">
 
- <div class="modal-header ">
+          <p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Reschedule Interview </p>
 
-<p class="Heading" style="font-weight: bold;" id="exampleModalLabel">Reschedule Interview </p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
 
- <span aria-hidden="true">&times;</span>
+          </button>
 
- </button>
+        </div>
 
- </div>
+        <div class="modal-body">
 
- <div class="modal-body">
+          <div class="row">
 
- <div class="row">
-
-<!-- <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
 
               <label style="font-size: 16px;">Selected Notes</label>
 
             </div> -->
 
- <div class="col-lg-12">
- <p>Comments</p>
- <textarea class="form-control" placeholder="Notes" id="Canclecomments" name="Canclecomments" [(ngModel)]="Canclecomments" rows="10"></textarea>
+            <div class="col-lg-12">
+              <p>Comments</p>
+              <textarea class="form-control" placeholder="Notes" id="Canclecomments" name="Canclecomments"
+                [(ngModel)]="Canclecomments" rows="10"></textarea>
 
- <!-- <select class="form-control" (change)="GetStaffID($event)">
+              <!-- <select class="form-control" (change)="GetStaffID($event)">
 
                               <option value="">Select</option>
 
@@ -494,41 +479,40 @@ aria-hidden="true">
 
                           </select> -->
 
- </div>
+            </div>
 
- </div><br>
+          </div><br>
 
- <div class="row">
+          <div class="row">
 
- <div class="col-lg-5"></div>
+            <div class="col-lg-5"></div>
 
- <div class="col-lg-2">
+            <div class="col-lg-2">
 
- <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" 
+              <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" data-dismiss="modal"
+                style="background-color: red;" (click)="update()">Cancel</button>
 
- data-dismiss="modal" style="background-color: red;" (click)="update()">Cancel</button>
-
- </div>
- <div class="col-lg-2">
-  <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
+            </div>
+            <div class="col-lg-2">
+              <!-- <button class="btn btn-primary" style="background-color:#dc3545; border:none" data-dismiss="modal" data-toggle="modal"
     data-target="#exampleModal3">Cancel</button> -->
-</div>
+            </div>
 
- </div> <br>
- 
-
- <div class="modal-footer">
-
- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div> <br>
 
 
+          <div class="modal-footer">
 
- </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
- </div>
 
- </div>
 
-</div>
+          </div>
 
-</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
