@@ -52,6 +52,7 @@ export class ClosedPositionComponent implements OnInit {
   selectedCandidates : any
   joinedCandidates: any
   jobRefernceID:any;
+  cv:any;
   ngOnInit(): void {
     debugger;
   
@@ -210,32 +211,33 @@ export class ClosedPositionComponent implements OnInit {
       }
     })
 
-    if (this.roleid == '3') {
-      debugger;
-      this.RecruitmentServiceService.GetClosedJobRequirement().subscribe({
-        next: (data: any[]) => {
-          debugger
-          this.joblist = data.filter(x => x.vendor == this.username);
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Getting Job Requirements');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    else {
+    // if (this.roleid == '3') {
+    //   debugger;
+    //   this.RecruitmentServiceService.GetClosedJobRequirement().subscribe({
+    //     next: (data: any[]) => {
+    //       debugger
+    //       this.joblist = data.filter(x => x.vendor == this.username);
+    //       this.count = this.joblist.length;
+    //     }, error: (err: { error: { message: any; }; }) => {
+    //       Swal.fire('Getting Job Requirements');
+    //       var obj = {
+    //         'PageName': this.currentUrl,
+    //         'ErrorMessage': err.error.message
+    //       }
+    //       this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+    //         data => {
+    //           debugger
+    //         },
+    //       )
+    //     }
+    //   })
+    // }
+ 
       this.RecruitmentServiceService.GetJob_Requirements().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
+          this.joblist = data;
+          this.cv= this.joblist[0].noofCVs
           this.jobListCopy = this.joblist
           this.count = this.joblist.length;
         }, error: (err: { error: { message: any; }; }) => {
@@ -251,7 +253,7 @@ export class ClosedPositionComponent implements OnInit {
           )
         }
       })
-    }
+    
     this.dropdownSettings1 = {
       singleSelection: false,
       idField: 'id',
