@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from  InsertClientMaster,GetClientMaster,UpdateClientMaster
+// --Description :This page contains FormControl Validators Required,Upload Images,Upload Attchmentts ,Client Details,Insert Client Details,Update Client Details//
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -73,6 +73,8 @@ export class ClientformComponent implements OnInit {
       this.currentUrl = window.location.href;
   }
 
+  //Methods to Get Upload Attachments
+
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -80,7 +82,7 @@ export class ClientformComponent implements OnInit {
     this.uploadattachments();
     console.log("content", this.files);
   }
-// Methods to get Count of InsertClientMaster,GetClientMaster,UpdateClientMaster//
+// Methods to Get Insert the Data in Client Master Table//
 
   public InsertClientMaster() {
     debugger
@@ -211,6 +213,7 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
+//Method to Update data from ClientMaster Table//
 
   public Update() {
     debugger;
@@ -243,7 +246,7 @@ export class ClientformComponent implements OnInit {
       }
     })
   }
-
+// Method to Get Routing with Respect of URL 
   cancel() {
     location.href = "#/admin/Clientdashboard";
   }

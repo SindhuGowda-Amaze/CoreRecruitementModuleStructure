@@ -2,17 +2,11 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetDepartment,GetManpowerPlanningandBudgeting,DeleteManpowerPlanningandBudgeting
+// --Description :This page contains Displaying the Department Details,Count & Deletethe ManpowerPlanningandBudgeting,Attchments The Files, filter Data.
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
 // --Copyrights : AmazeINC-Bangalore-2022
-
-
-
-
-
-
 
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -63,7 +57,7 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
 
   }
 
-   // Methods to get Count of GetDepartment,GetManpowerPlanningandBudgeting,DeleteManpowerPlanningandBudgeting
+   // Methods to Displaying the Department Details//
 
   public GetDepartment() {
     this.DigipayrollServiceService1.GetDepartment().subscribe(data => {
@@ -71,6 +65,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
       this.Departmentlist = data;
     });
   }
+   // Methods to Get Count the ManpowerPlanningandBudgeting//
+
   public GetManpowerPlanningandBudgeting() {
     debugger
     this.DigipayrollServiceService1.GetManpowerPlanningandBudgeting().subscribe(
@@ -83,6 +79,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
         this.Grandtotal = total.toLocaleString();
       })
   }
+
+ // Methods to Delete the ManpowerPlanningandBudgeting table //
 
   public delete(id: any) {
     debugger
@@ -108,6 +106,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
       }
     });
   }
+
+   // Methods to Attchments The Files//
 
   incomingfile(event: any) {
     debugger;
@@ -142,6 +142,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
     Swal.fire('Uploaded successfully');
   }
 
+
+  //Method to filter Data by ManpowerPlanningandBudgeting//
   public filterByDepartment() {
     debugger
     if (this.Department == '') {
@@ -168,6 +170,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
       )
     }
   }
+
+    //Method to filter Data by ManpowerPlanningandBudgeting//
 
   public filterByYear() {
     debugger
@@ -196,6 +200,8 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
     }
   }
 
+    //Method to filter Data by ManpowerPlanningandBudgeting//
+
   public filterBySubsidiary() {
     debugger
     if (this.Subsidiary == '') {
@@ -222,12 +228,12 @@ export class ManpowerPlanningandBudgetingdashComponent implements OnInit {
       )
     }
   }
-
+  //Method to Get Routing With Respect URL//
   public edit(id: any) {
     debugger;
     this.router.navigate(['/BUHead/ManpowerPlanningandBudgeting/' + id]);
   }
-
+//Method to Delete the Data ManpowerPlanningandBudgeting table//
   Delete(id: any) {
     debugger
     this.DigipayrollServiceService1.DeleteManpowerPlanningandBudgeting(id).subscribe(data => {

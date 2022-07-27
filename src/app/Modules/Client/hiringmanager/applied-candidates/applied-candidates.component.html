@@ -27,7 +27,7 @@
       </div>
 
       <div class="col-lg-2">
-        <select name="Select" class="form-control poppinns form-select" (change)="changeoption()"
+        <select name="Select" class="form-control poppinns form-select" (change)="filter()"
           [(ngModel)]="searchbynotice">
           <option value="">Select Notice Period</option>
           <option *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">{{job.noticePeriod}}</option>

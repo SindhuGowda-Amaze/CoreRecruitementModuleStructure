@@ -2,7 +2,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
+// --Description :This page contains Serach the Candidate Deatils & RecruiterStaff Details,Displaying the Offerletter,Shortlisting Candidate Comments,sending the mails,Displaying Count
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -74,7 +74,7 @@ export class AppliedCandidatesComponent implements OnInit {
     this.GetCandidateReg();
   }
 
-   // Methods to get Count of GetCandidateRegistration,GetRecruiterStaff,UpdateCandidateRegistrationAcceptReject,sendemailattachements
+   // Methods to Serach the  Candidate Registration Details//
   public GetCandidateReg() {
     if (this.roleid == '3') {
       debugger;
@@ -181,6 +181,7 @@ export class AppliedCandidatesComponent implements OnInit {
     }
 
   }
+// Method Serach the  RecruiterStaff Details//
 
   public GetRecruiterStaff() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
@@ -204,6 +205,8 @@ export class AppliedCandidatesComponent implements OnInit {
       },
     });
   }
+
+  //Method To Update the Shortlisting Candidate Comments in CandidateRegistrationAcceptReject table//
 
   public Accept(id: any, shortlistionNotes: any) {
     Swal.fire({
@@ -262,11 +265,14 @@ export class AppliedCandidatesComponent implements OnInit {
         );
       },
     });
+  
   }
-
+//Method to Get Offerletter//
   public GetOfferLetter(offer: any) {
     window.open(offer, '_blank');
   }
+
+  // Method to Update The Reject shortlistionNotes CandidateRegistrationAcceptReject table//
 
   public Reject(id: any, shortlistionNotes: any) {
     Swal.fire({
@@ -312,7 +318,9 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
-  public changeoption() {
+// Method to Displaying the candidate Notice period//
+
+  public filter() {
     debugger;
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: (data) => {
@@ -339,6 +347,8 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
+//Method to Displaying CTC for Candidate//
+
   public changectc() {
     debugger;
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -363,6 +373,8 @@ export class AppliedCandidatesComponent implements OnInit {
       },
     });
   }
+
+  //Method to Get the Values Job Candidate Details//
 
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -393,6 +405,8 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
+  // Method to Displaying Job Description & Staff Details Count//
+
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -416,8 +430,6 @@ export class AppliedCandidatesComponent implements OnInit {
       },
     });
   }
-
-
   public getjobdescription(even: any) {
     this.jobdescriptionID = even.target.value
 
@@ -531,7 +543,7 @@ export class AppliedCandidatesComponent implements OnInit {
 
   }
 
-
+//Method to send the mails//
   public SendJobMail(sub: any, desc: any, email: any) {
     debugger
     var entity3 = {
@@ -549,6 +561,7 @@ export class AppliedCandidatesComponent implements OnInit {
   }
 
 
+//Method to Displaying The Notification & Insert the values NotificationSBU table//
 
   public InsertNotificationRecruiter() {
     debugger
