@@ -12,10 +12,10 @@ export class HeaderComponent implements OnInit {
   constructor(private RecruitmentServiceService: RecruitementService) { }
 
   company_name: any;
-  temp:any
-  roleid:any;
-  role:any;
-  UserName:any;
+  temp: any
+  roleid: any;
+  role: any;
+  UserName: any;
   pagename: any;
   showsidebar: any;
   time: any;
@@ -23,27 +23,26 @@ export class HeaderComponent implements OnInit {
   mm: any;
   ampm: any;
   username: any;
-  staffID:any;
+  staffID: any;
+  initail: any
+  notificationslist: any
+  notificationCount: any;
+
   ngOnInit() {
-this.GetNotification();
-  this.pagename = "DASHBOARD"
-  this.staffID = sessionStorage.getItem('userid');
-   
+    this.GetNotification();
+    this.pagename = "DASHBOARD"
+    this.staffID = sessionStorage.getItem('userid');
+
     interval(1000).subscribe((x => {
-      
       this.pagename = localStorage.getItem('Pagename')
-
-
     }));
 
-    
-    this.temp=sessionStorage.getItem('temp')
+
+    this.temp = sessionStorage.getItem('temp')
     this.roleid = sessionStorage.getItem('roleid');
     this.company_name = sessionStorage.getItem("company_name");
     this.UserName = sessionStorage.getItem('UserName');
     this.role = sessionStorage.getItem('role')
-
-    
 
     setInterval(() => {
       var time = new Date();
@@ -54,13 +53,8 @@ this.GetNotification();
       this.mm = temp1[0];
       this.ampm = temp1[1];
     }, 1000);
-
-
   }
 
-  initail: any
-  notificationslist: any
-  notificationCount: any;
 
   public GetNotification() {
     debugger
@@ -80,7 +74,7 @@ this.GetNotification();
     location.reload();
   }
 
- 
+
   public ClearNotification() {
     debugger
     this.RecruitmentServiceService.ClearNotificationByID(Number(this.staffID)).subscribe((_data: any) => {

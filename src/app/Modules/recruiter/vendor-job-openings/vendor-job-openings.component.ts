@@ -45,6 +45,7 @@ jobdescription:any;
   username: any;
   currentUrl: any
   endDate: any
+<<<<<<< HEAD
   data :any;
   Role: any;
   staffdetails: any;
@@ -57,6 +58,12 @@ jobdescription:any;
   Userlist: any;
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   
+=======
+  data :any
+  Role: any
+  staffdetails: any
+  even : any
+>>>>>>> 2bcdc7ae5c96e6bd5ee0b381f907acab6c16a039
   ngOnInit(): void {
     debugger;
   
@@ -393,6 +400,7 @@ FilterByDate(){
         debugger
         this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
         this.count = this.joblist.length;
+        this.getjobdescription(this.even)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
@@ -414,6 +422,7 @@ FilterByDate(){
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved'&& x.date >= this.Date && x.date <= this.endDate);
         this.jobListCopy = this.joblist
         this.count = this.joblist.length;
+        this.getjobdescription(this.even)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {

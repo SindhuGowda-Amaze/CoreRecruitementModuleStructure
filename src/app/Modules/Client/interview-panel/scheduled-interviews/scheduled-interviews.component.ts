@@ -12,8 +12,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
+
 
 @Component({
   selector: 'app-scheduled-interviews',
@@ -40,6 +41,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   public todaydate = new Date().getDate();
   public options1: any;
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
+
   joblist: any;
   search: any;
   count: any;
@@ -65,11 +67,16 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
   ngOnInit(): void {
+<<<<<<< HEAD
       
     //Variable Initialisation and Default Method Calls//
 
     this.GetJobDescription1();
     this.GetCandidateReg();
+=======
+
+    this.GetJobDescription1()
+>>>>>>> 2bcdc7ae5c96e6bd5ee0b381f907acab6c16a039
     this.Role1 = ""
     this.currentUrl = window.location.href
     this.staffid = sessionStorage.getItem('userid');
