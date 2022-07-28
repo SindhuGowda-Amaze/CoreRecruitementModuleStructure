@@ -90,9 +90,9 @@ export class AppliedCandidatesReportsComponent implements OnInit {
 }
 
 
-  // refresh() {
-  //   location.reload();
-  // }
+  refresh() {
+    location.reload();
+  }
 
    //Method to Get Candidate Details in CandidateReg table//
   
