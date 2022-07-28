@@ -1,3 +1,14 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains  Client Staff Data,get list of Selected Candidates from CandidateRegistration Table,get data from CandidateRegistration Table,
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -8,6 +19,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./selected-candidates-reports.component.css']
 })
 export class SelectedCandidatesReportsComponent implements OnInit {
+  
+    //Variable Declerations//
+
   joblist: any;
   count: any;
   search: any;
@@ -15,19 +29,27 @@ export class SelectedCandidatesReportsComponent implements OnInit {
   loader:any;
   roleid:any;
   hrlist:any;
+  fileName = 'SELECTED CANDIDATES REPORT.xlsx';
   hiringManager:any;
   currentUrl: any;
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
-    this.roleid = sessionStorage.getItem('roleid');
-   this.loader=true;
-   this.hiringManager="";
-   this.GetCandidateReg();
-   this.GetClientStaff();
+    
+      //Variable Initialisation and Default Method Calls//
 
+    this.GetCandidateReg();
+    this.GetClientStaff();
+    this.roleid = sessionStorage.getItem('roleid');
+    this.loader=true;
+    this.hiringManager="";
+   
   }
   
+
+  
+  //Method to Get Client Staff Data//
+
   GetClientStaff(){
     this.RecruitementService.GetClientStaff()
     
@@ -56,6 +78,9 @@ export class SelectedCandidatesReportsComponent implements OnInit {
   refresh(){
     location.reload();
   }
+
+   // Methods to  get list of Selected Candidates from CandidateRegistration Table//
+
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
     
@@ -81,7 +106,7 @@ export class SelectedCandidatesReportsComponent implements OnInit {
     
   }
 
-  fileName = 'SELECTED CANDIDATES REPORT.xlsx';
+
   exportexcel(): void {
     this.loader = true;
     /* table id is passed over here */
@@ -102,6 +127,8 @@ export class SelectedCandidatesReportsComponent implements OnInit {
   }
 
 
+
+  //Method to get data from CandidateRegistration Table//
 
   public GetJobRequirements(){
   

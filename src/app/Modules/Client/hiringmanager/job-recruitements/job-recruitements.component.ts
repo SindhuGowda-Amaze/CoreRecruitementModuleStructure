@@ -22,9 +22,11 @@ export class JobRecruitementsComponent implements OnInit {
 
   
   //Variable Declerations//
-
+  show: any;
+  description: any;
   jobListCopy: any;
   err: any;
+  hiringManager: any;
   joblist: any;
   search: any;
   count: any;
@@ -44,6 +46,17 @@ export class JobRecruitementsComponent implements OnInit {
   currentUrl: any
   staffdetails:any
   Role: any;
+  ID: any;
+  Vendor: any;
+  Notes: any;
+  vendorid: any;
+  userid: any;
+  skills: any;
+  Recruiter: any;
+  stafflist: any;
+  enddate:any;
+  dummjoblist: any;
+  empcomments: any;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, public router: Router,) { }
 
@@ -80,8 +93,7 @@ export class JobRecruitementsComponent implements OnInit {
   }
 
 
-// Methods to get Count of GetClientStaff,GetVendor_Dasboard,GetJob_Requirements,UpdateJobPost,UpdateVendor,AssignRecruiter,GetRecruiterStaff,UpdateJobRequirementStatus,GetJobDescriptionMaster,InsertNotificationSBU,
-
+// Methods to Displaying Company Staff Details//
 
   GetClientStaff(){
 
@@ -107,6 +119,8 @@ export class JobRecruitementsComponent implements OnInit {
 
 
   }
+  
+// Methods to Displaying Vendor Staff Details//
 
   GetVendor_Dasboard(){
 
@@ -135,6 +149,8 @@ export class JobRecruitementsComponent implements OnInit {
 
 
   }
+
+  // Methods to Search the Candidates Details//
 
   GetJob_Requirements(){
 
@@ -178,7 +194,7 @@ export class JobRecruitementsComponent implements OnInit {
 
   }
 
-
+//Method to Fliter Job tittle//
 
   public Filterjobs() {
     debugger
@@ -186,6 +202,7 @@ export class JobRecruitementsComponent implements OnInit {
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
 
+//Method to Displaying vendor Dashboard deatils//
 
   public GetUserslist() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
@@ -207,24 +224,24 @@ export class JobRecruitementsComponent implements OnInit {
       }
     })
   }
-  show: any;
 
-  description: any;
   GetId(id: any) {
     this.ID = id
     debugger
     this.description = this.joblist.filter((x: { ID: any; }) => x.ID == this.ID);
     this.show = 1;
   }
-  empcomments: any;
+
   public GEtemployeecomments(job: any) {
     this.description = job.jobDescription
   }
 
-  skills: any;
+ 
   public GEtskills(job: any) {
     this.skills = job.skills
   }
+
+  //Method to Update No of Positions Hired in UpdateJobPost table//
 
   UpdateJobPost() {
     debugger
@@ -259,11 +276,7 @@ export class JobRecruitementsComponent implements OnInit {
 window.location.reload();
 
   }
-  ID: any;
-  Vendor: any;
-  Notes: any;
-  vendorid: any;
-  userid: any;
+ 
   public UpdateVendor() {
     debugger
 
@@ -308,7 +321,7 @@ window.location.reload();
     this.router.navigate(['/AttendanceView']);
   }
 
-  Recruiter: any;
+
 
   public UpdateRecruiter() {
     debugger
@@ -327,8 +340,7 @@ window.location.reload();
 
       })
   }
-  stafflist: any;
-  enddate:any;
+
 
 
   public GetRecruiterStaff() {
@@ -352,7 +364,7 @@ window.location.reload();
       }
     })
   }
-  dummjoblist: any;
+
   public GetDate(event: any) {
     if (this.date == 0) {
       debugger
@@ -388,7 +400,7 @@ window.location.reload();
   }
 
 
-  hiringManager: any;
+
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
       next: data => {

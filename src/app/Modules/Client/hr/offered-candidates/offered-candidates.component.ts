@@ -1,3 +1,14 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Displaying Company Staff Details,Displaying Job Staff Details,offer letter,Search Job Tittle,Displaying the Date changes,Displaying the option changes,Accept Candidate Details,dropped Candidate Details,Get Count joblist,Get Count staffdetails.
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
@@ -10,11 +21,12 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./offered-candidates.component.css']
 })
 export class OfferedCandidatesComponent implements OnInit {
+  
+  //Variable Declerations//
+
   title: any;
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
   p: any = 1;
   count1: any = 5;
-
   OfferComments: any;
   joblist: any;
   count: any;
@@ -28,10 +40,10 @@ export class OfferedCandidatesComponent implements OnInit {
   username: any;
   endDate: any
   staffdetails: any
-  vendor: any
-  Role1: any
-
-
+  vendor: any;
+  Role1: any;
+  hiringManager: any;
+  jobdescriptionID: any;
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
   public selectedlanguage: any;
@@ -42,42 +54,30 @@ export class OfferedCandidatesComponent implements OnInit {
   public callenderBindData = new Date();
   public todaydate = new Date().getDate();
   public options1: any;
-  currentUrl: any
+  currentUrl: any;
+  public callenderstartday: any;
+  public callenderendday: any;
+
+  public alldates: any = []
 
   public todayDay = this.datePipe.transform(new Date().getDay(), 'EEEE');
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
+
   ngOnInit(): void {
 
-    this.jobTitle()
+    //Variable Initialisation and Default Method Calls//
 
+    this.jobTitle();
+    this.GetRecruiterStaff();
     this.currentUrl = window.location.href;
     this.hiringManager = "";
     this.GetCandidateReg()
     this.GetJobDescription();
     this.Role1 = ""
-
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
-    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
-      next: data => {
-        debugger
-        this.hrlist = data.filter(x => x.role == "Hiring Manager");
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Client Staff');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
     this.showorhidecontent = false;
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
@@ -128,6 +128,35 @@ export class OfferedCandidatesComponent implements OnInit {
       height: 500,
     }
   }
+
+  
+   //Method to Get Company Staff Details//
+
+ public GetRecruiterStaff(){
+  this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+    next: data => {
+      debugger
+      this.hrlist = data.filter(x => x.role == "Hiring Manager");
+
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire(' Issue in Getting Client Staff');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+
+
+   //Method to Get JobDescription//
+
   GetJobDescriptionMaster() {
     throw new Error('Method not implemented.');
   }
@@ -142,6 +171,8 @@ export class OfferedCandidatesComponent implements OnInit {
       this.showorhidecontent = true;
     }
   }
+   //Method to Get JobDescription//
+
   public GetCandidateReg() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -173,7 +204,8 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
-  jobdescriptionID: any;
+//Method to Search jobdescription//
+
   public filterbyJD(even: any) {
     this.jobdescriptionID = even.target.value
 
@@ -210,12 +242,14 @@ export class OfferedCandidatesComponent implements OnInit {
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
-
+//Method to  displaying Job Tittle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
+
+  //Method to  displaying date//
 
   public changeAnniversary() {
     debugger;
@@ -242,6 +276,10 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     });
   }
+
+  
+  //Method to Displaying Accept the Candidate Details//
+
   public Accept(id: any, comments: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -286,6 +324,9 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
+
+  //Method to Displaying Reject the Candidate Details//
+
   public Reject(id: any, comments: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -316,9 +357,10 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
-  hiringManager: any;
-  public GetJobRequirements() {
+ 
+   //Method to Get Count joblist //
 
+  public GetJobRequirements() {
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -342,10 +384,9 @@ export class OfferedCandidatesComponent implements OnInit {
     })
 
   }
-  public callenderstartday: any;
-  public callenderendday: any;
 
-  public alldates: any = []
+  //Method To Get count callenderdaysdount & MaintainanceList//
+
   public buildcallender(MaintainanceList: string | any[]) {
     debugger
     this.callenderdaysdount.length = 0;
@@ -393,17 +434,21 @@ export class OfferedCandidatesComponent implements OnInit {
     }
   }
 
+  //Method to  Displaying previousmonth//
   public previousmonth() {
     debugger;
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() - 1);
     this.buildcallender(this.joblist);
   }
+
+    //Method to  Displaying nextmonth//
   public nextmonth() {
     debugger;
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() + 1);
     this.buildcallender(this.joblist);
   }
 
+   //Method to  Search the  jobTitle//
 
   public jobTitle() {
     debugger;
@@ -412,6 +457,8 @@ export class OfferedCandidatesComponent implements OnInit {
       this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
     });
   }
+
+   //Method to  Search the  jobTitle//
 
   public Role() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data => {
@@ -441,6 +488,9 @@ export class OfferedCandidatesComponent implements OnInit {
   //   })
 
   // }
+
+  //Method to Get JobDescriptionMaster Details//
+
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: data => {

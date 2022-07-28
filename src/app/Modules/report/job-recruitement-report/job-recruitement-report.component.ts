@@ -1,3 +1,16 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Get Company Staff Data,get data from JobRequirements Table,Displaying Job Tittle,get data from JobRequirements Table.
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -8,6 +21,9 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./job-recruitement-report.component.css']
 })
 export class JobRecruitementReportComponent implements OnInit {
+
+    //Variable Declerations//
+
   ID: any;
   show: any;
   joblist: any;
@@ -25,6 +41,7 @@ export class JobRecruitementReportComponent implements OnInit {
   skills: any;
   joblist1:any;
   currentUrl: any;
+  fileName = 'JOB RECRCUITMENT REPORT.xlsx';
   constructor(private RecruitementService: RecruitementService) { }
 
 
@@ -34,17 +51,22 @@ export class JobRecruitementReportComponent implements OnInit {
 
  
   ngOnInit(): void {
+
+ //Variable Initialisation and Default Method Calls//
+
+   this. GetClientStaff();
+   this.GetJob_Requirements();
+
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName'); 
     this.loader=true;
     this.hiringManager="";
  
-   this. GetClientStaff()
-    this.GetJob_Requirements()
    
   }
  
- 
+  //Method to Get Company Staff Data//
+
   GetClientStaff()
   {
     
@@ -70,6 +92,8 @@ export class JobRecruitementReportComponent implements OnInit {
     
 
 }
+  //Method to get data from JobRequirements Table//
+
 GetJob_Requirements()
 {
   this.RecruitementService.GetJob_Requirements()
@@ -104,7 +128,7 @@ GetJob_Requirements()
   })
 
 }
-
+ //Click Method to Displaying Job Tittle//
   GetId(id: any) {
     this.ID = id
     debugger
@@ -116,15 +140,10 @@ GetJob_Requirements()
   public GEtemployeecomments(job: any) {
     this.description = job.jobDescription
   }
-
- 
   public GEtskills(job: any) {
     this.skills = job.skills
   }
 
-
-
-  fileName = 'JOB RECRCUITMENT REPORT.xlsx';
   exportexcel(): void {
     this.loader = false;
     /* table id is passed over here */
@@ -140,8 +159,8 @@ GetJob_Requirements()
     this.loader = false;
   }
 
+   //Method to get data from JobRequirements Table//
 
- 
   public GetJobRequirements(){
   
   

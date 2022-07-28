@@ -1,7 +1,8 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetClientStaff,GetManpowerPlanningandBudgeting,InsertJob_Requirements,sendemailattachements,InsertNotificationSBU
+// --Description :This page contains Search the  Company Staff,Displaying the ManpowerPlanningandBudgeting,Search Department,Insert the values Job_Requirements,Serach the jobdescription & jobtitile,sending a mail,Insert the data InsertNotificationSBU,
+//Insert the data InsertNotificationManager,
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -72,7 +73,7 @@ export class JobRequisitionComponent implements OnInit {
 
 
 
-  // Methods to get Count of GetClientStaff,GetManpowerPlanningandBudgeting,InsertJob_Requirements,sendemailattachements,InsertNotificationSBU
+  // Methods to Search the  Company Staff Details//
 
   GetClientStaff(){
     this.RecruitmentServiceService.GetClientStaff()
@@ -86,7 +87,8 @@ export class JobRequisitionComponent implements OnInit {
 
   }
 
-  
+    // Method to  Displaying the ManpowerPlanningandBudgeting  Details//
+
   GetManpowerPlanningandBudgeting1(){
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe((data) => {
       debugger;
@@ -95,6 +97,7 @@ export class JobRequisitionComponent implements OnInit {
 
 
   }
+   // Method to  Search Department Details//
 
  public  GetManpowerPlanningandBudgeting(){
     this.RecruitmentServiceService.GetManpowerPlanningandBudgeting().subscribe({
@@ -120,7 +123,7 @@ export class JobRequisitionComponent implements OnInit {
   }
 
 
-
+  // Method to Get Hr Name Details//
 
   public GetHrName(even: any) {
     this.hiringmanager = even.target.value;
@@ -134,6 +137,9 @@ export class JobRequisitionComponent implements OnInit {
 
   //    })
   // }
+
+  // Method to Insert the values Job_Requirements table//
+
   public insertdetails() {
     debugger;
     if (this.jobtitile == null || this.jobtitile == undefined || this.jobtitile == 0 ||
@@ -224,6 +230,7 @@ export class JobRequisitionComponent implements OnInit {
     }
 
   }
+ // Method to Serach the jobdescription & jobtitile //
 
   public Getjobno(event: any) {
     debugger
@@ -261,6 +268,8 @@ export class JobRequisitionComponent implements OnInit {
       })
   }
 
+// Method  to sending a mail//
+
   public SendJobMail(sub: any, desc: any, email: any) {
     debugger
     var entity3 = {
@@ -276,6 +285,9 @@ export class JobRequisitionComponent implements OnInit {
       Swal.fire('Emails Sent');
     })
   }
+
+
+// Method  to  Insert the data InsertNotificationSBU table//
 
   public InsertNotificationSBU() {
     debugger
@@ -302,6 +314,10 @@ export class JobRequisitionComponent implements OnInit {
   }
 
 
+
+// Method  to  Insert the data InsertNotificationManager table//
+
+
   public InsertNotificationManager() {
     debugger
     var event: any = 'Job Post';
@@ -325,6 +341,8 @@ export class JobRequisitionComponent implements OnInit {
           )}
       })
   }
+
+  //Method to Route with Respect URL//
 
   Cancel() {
     location.href = "#/hirignmanager/JobRecruitements";

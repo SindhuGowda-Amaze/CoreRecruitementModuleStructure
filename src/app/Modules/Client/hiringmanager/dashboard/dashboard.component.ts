@@ -2,7 +2,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains 
+// --Description :This page contains serach the RecruiterStaff & Department & Job Candidate Details ,Displaying CandidateRegistration Details,Count the Job Recuriter, Flip the Card,Route the URL
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-   // Methods to get Count of GetJob_Requirements,GetCandidateRegistration,GetRecruiterStaff,Ge
+   // Methods to serach the RecruiterStaff Details//
 
   GetRecruiterStaff(){
 
@@ -131,12 +131,10 @@ export class DashboardComponent implements OnInit {
       })
    
 
-
-
-
-
-
   }
+
+  
+   // Methods to serach the Department Details//
 
   GetDepartment(){
 
@@ -164,6 +162,7 @@ export class DashboardComponent implements OnInit {
 
 
   }
+   // Methods to serach the Job Candidate Details//
 
   GetJob_Requirements1(){
       this.RecruitmentServiceService.GetJob_Requirements().subscribe({
@@ -201,6 +200,10 @@ export class DashboardComponent implements OnInit {
 
 
   }
+
+
+  // Methods to serach the Job Candidate Details//
+
 
   GetJob_Requirements2(){
 
@@ -243,6 +246,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration1(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -277,6 +282,8 @@ export class DashboardComponent implements OnInit {
      })
 
   }
+  
+  //Method to Get the CandidateRegistration Details//
 
   GetCandidateRegistration2(){
 
@@ -317,6 +324,7 @@ export class DashboardComponent implements OnInit {
 
 
   }
+   //Method to Get the CandidateRegistration Details//
   GetCandidateRegistration3(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -352,6 +360,9 @@ export class DashboardComponent implements OnInit {
 
 
   }
+
+   //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration4(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -391,6 +402,8 @@ export class DashboardComponent implements OnInit {
 
 
   }
+   //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration5(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -427,6 +440,8 @@ export class DashboardComponent implements OnInit {
     })
 
   }
+
+   //Method to Get the CandidateRegistration Details//
 
   GetCandidateRegistration6(){
 
@@ -465,6 +480,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+   //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration7(){
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -500,6 +517,8 @@ export class DashboardComponent implements OnInit {
     })
 
   }
+
+   //Method to Get the CandidateRegistration Details//
 
   GetCandidateRegistration8(){
 
@@ -540,6 +559,9 @@ export class DashboardComponent implements OnInit {
 
 
   }
+
+   //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration9(){
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -576,7 +598,7 @@ export class DashboardComponent implements OnInit {
 
 
   }
-
+ //Method to Get the CandidateRegistration Details//
   GetCandidateRegistration10(){
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -612,6 +634,8 @@ export class DashboardComponent implements OnInit {
     
     
   }
+
+   //Method to Get the CandidateRegistration Details//
 
   GetCandidateRegistration11(){
 
@@ -687,6 +711,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+   //Method to Get the CandidateRegistration Details//
+
   GetCandidateRegistration13(){
 
 
@@ -725,13 +751,14 @@ export class DashboardComponent implements OnInit {
   }
 
 
- // Methods to get Count of GetJob_Requirements,GetCandidateRegistration
-
-
 
   changedepartment(){
 
   }
+
+
+ // Methods to Get Count Job_Requirements in table//
+
  public changestaff() {
   this.RecruitmentServiceService.GetJob_Requirements().subscribe({
   next: data => {
@@ -756,6 +783,8 @@ export class DashboardComponent implements OnInit {
   }
 })
 
+ //Method to Get the CandidateRegistration Details//
+
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
     debugger
@@ -775,6 +804,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 })
+ //Method to Get the CandidateRegistration Details//
 
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
@@ -797,6 +827,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 })
+ //Method to Get the CandidateRegistration Details//
 
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
@@ -819,6 +850,8 @@ export class DashboardComponent implements OnInit {
   }
 })
 
+ //Method to Get the CandidateRegistration Details//
+
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
     debugger
@@ -840,6 +873,8 @@ export class DashboardComponent implements OnInit {
   }
 })
 
+ //Method to Get the CandidateRegistration Details//
+
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
     debugger
@@ -860,6 +895,8 @@ export class DashboardComponent implements OnInit {
     )
   }
 })
+
+ //Method to Get the CandidateRegistration Details//
 
   this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
   next: data => {
@@ -886,7 +923,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-
+//Method to get changebirthday//
   public changebirthday() {
     debugger;
     this.Anniversery = false;
@@ -894,7 +931,7 @@ export class DashboardComponent implements OnInit {
     this.NewJoinee = false;
 
   }
-
+//Method to get changeAnniversary//
   public changeAnniversary() {
     debugger;
     this.Anniversery = true;
@@ -903,7 +940,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-
+//Method to get changenewjoinee//
   public changenewjoinee() {
     debugger;
     this.Anniversery = false;
@@ -913,6 +950,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
+//Method to Flip the Card//
 
   public flip(event: { currentTarget: any; }) {
     debugger
@@ -940,6 +978,7 @@ export class DashboardComponent implements OnInit {
       }
     }
   };
+//Method to Route the With Respect of URL//
 
   public leavedashbaord1() {
     debugger

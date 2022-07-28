@@ -1,3 +1,15 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page containsGet Company Staff Data,Job Description, get list of Selected Candidates from CandidateRegistration Table,Open Pdf in new Window,get data from JobRequirements Table
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -8,6 +20,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./dropped-candiadtes-reports.component.css']
 })
 export class DroppedCandiadtesReportsComponent implements OnInit {
+     
+  //Variable Declerations//
 
   OfferComments: any;
   joblist: any;
@@ -27,15 +41,21 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  //Variable Initialisation and Default Method Calls//
+
+    this.GetClientStaff();
+    this.GetCandidateReg();
+
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
-    this.GetClientStaff();
-    this.GetCandidateReg();
+   
   }
 
 
+ //Method to Get Company Staff Data//
 
   GetClientStaff(){
   this.RecruitementService.GetClientStaff()
@@ -60,7 +80,7 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
   }
 
 
-
+ // Methods to  get list of Selected Candidates from CandidateRegistration Table
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
     
@@ -94,6 +114,7 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
 
   }
 
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer:any) {
     window.open(offer, "_blank")
   }
@@ -113,6 +134,8 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
     this.loader = false;
   }
+
+  //Method to get data from JobRequirements Table//
 
   public GetJobRequirements(){
   

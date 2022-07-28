@@ -1,3 +1,13 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get Company Staff Details,Search the Job Tittle,Approve & Reject Candidate, Displaying OfferLetters,Sending a mails.
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
@@ -11,12 +21,13 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./scheduled-interviews.component.css']
 })
 export class ScheduledInterviewsComponent implements OnInit {
+
+
+  //Variable Declerations//
+
   files: any;
   Canclecomments: any;
   Cancleinterview: any;
-
-  constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
-
   options: FullCalendarOptions | undefined;
   events: EventObject[] | undefined;
   roleid: any;
@@ -35,6 +46,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   staffid: any;
   Username: any;
   id: any;
+  rinterview: any;
   jobListCopy: any;
   p: any = 1;
   count1: any = 5;
@@ -44,20 +56,26 @@ export class ScheduledInterviewsComponent implements OnInit {
   staffdetails: any
   data: any
   Role1: any
-  cancle: any
+  cancle: any;
+  showorhidecontent: any;
+  jobid:any;
+
+  constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
+
+
 
   ngOnInit(): void {
-    this.GetJobDescription1()
+      
+    //Variable Initialisation and Default Method Calls//
+
+    this.GetJobDescription1();
+    this.GetCandidateReg();
     this.Role1 = ""
     this.currentUrl = window.location.href
     this.staffid = sessionStorage.getItem('userid');
     this.roleid = sessionStorage.getItem('roleid');
     this.Username = sessionStorage.getItem('UserName');
-    this.GetCandidateReg();
-
     // this.insertdetails()
-
-
     this.showorhidecontent = false;
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
@@ -73,9 +91,6 @@ export class ScheduledInterviewsComponent implements OnInit {
       outputFormat: 'YYYY/MM/DD',
       startOfWeek: 1
     };
-
-   
-
     if (this.selectedlanguage == '1') {
       this.selectedlanguage1 = 'en';
     }
@@ -111,7 +126,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
-  showorhidecontent: any;
+
 
   changeStatus(evn: any) {
 
@@ -123,6 +138,8 @@ export class ScheduledInterviewsComponent implements OnInit {
     }
 
   }
+
+// Method to get Company Staff Details//
 
   public GetCandidateReg() {
     debugger
@@ -205,6 +222,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }
 
+  // Method to Search the Job Tittle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
@@ -221,6 +239,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
 
 
+//Method to Approve Candidate//
   public Accept(id: any, rinterview: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -267,6 +286,9 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
   }
 
+  
+//Method to Reject Candidate //
+
   public Reject(id: any, interview: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -311,7 +333,9 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
     })
   }
-  rinterview: any;
+  
+//Method to Accept Candidate by Interview//
+
   public Acceptcandidate() {
     this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
       next: data => {
@@ -340,6 +364,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
 
   }
+  //Method to Reject Candidate by Interview//
   public Rejecttcandidate() {
     this.RecriutmentServiceService.RejectInterview(this.id, 2, this.rinterview).subscribe({
       next: data => {
@@ -366,6 +391,9 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
 
   }
+
+//Method to Displaying OfferLetters// 
+
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
@@ -414,6 +442,9 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
     }
   }
+
+
+  //Method to Displaying Dates//
   public previousmonth() {
     debugger;
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() - 1);
@@ -433,6 +464,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }
 
+//Method to search the Date Details//
   public filterByDate() {
     debugger;
 
@@ -513,6 +545,9 @@ export class ScheduledInterviewsComponent implements OnInit {
     }
  
   }
+
+  //Method to  Note for Rejected candidate//
+
   public Note() {
     this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
       next: data => {
@@ -547,6 +582,8 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }
 
+  //Method to Sending a mail//
+
   public SendMailEmployee() {
     debugger
     var entity3 = {
@@ -567,13 +604,13 @@ export class ScheduledInterviewsComponent implements OnInit {
 
   }
 
-  jobid:any;
+
 
   getId(id:any)
   {
     this.jobid=id;
   }
-
+//Method to Update Reject Candidate  Comments//
   public update() {
     debugger
     var entity = {

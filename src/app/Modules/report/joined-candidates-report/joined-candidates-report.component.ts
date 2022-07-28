@@ -1,3 +1,16 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Get Company Staff Data,get data from CandidateReg Table,search data by JobTitle,get data from JobRequirements Table,get data from JobRequirements Table,search data by JobTitle.
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -8,7 +21,10 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./joined-candidates-report.component.css']
 })
 export class JoinedCandidatesReportComponent implements OnInit {
-  
+
+   
+  //Variable Declerations//
+
   OfferComments: any;
   joblist: any;
   count: any;
@@ -25,21 +41,25 @@ export class JoinedCandidatesReportComponent implements OnInit {
 
   constructor(private RecruitementService: RecruitementService){ }
 
- 
-  refresh(){
-    location.reload();
-  }
-
-
   ngOnInit(): void {
+
+     //Variable Initialisation and Default Method Calls//
+
+     this.GetCandidateReg();
+     this.GetClientStaff();
+
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.loader=true;
     this.hiringManager="";
-    this.GetCandidateReg()
-    this.GetClientStaff()
-
+  
   }
+  
+  refresh(){
+    location.reload();
+  }
+
+    //Method to Get Company Staff Data//
 
   GetClientStaff(){
   this.RecruitementService.GetClientStaff()
@@ -62,6 +82,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
     }
   })
 }
+//Method to get data from CandidateReg Table//
 
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
@@ -94,7 +115,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
     })
     
   }
-
+//Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.term.toLowerCase();
@@ -121,7 +142,7 @@ export class JoinedCandidatesReportComponent implements OnInit {
     this.loader = false;
   }
   
- 
+   //Method to get data from JobRequirements Table//
   public GetJobRequirements(){
   
   

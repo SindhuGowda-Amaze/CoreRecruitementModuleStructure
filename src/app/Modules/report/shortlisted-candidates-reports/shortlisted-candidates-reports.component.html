@@ -18,7 +18,7 @@
                     <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
                   </select>
 
-                  <select *ngIf="roleid==2"  name="Select" class="form-control poppinns form-select" (change)="changeoption()"  [(ngModel)]="searchbynotice">
+                  <select *ngIf="roleid==2"  name="Select" class="form-control poppinns form-select" (change)="Filterjobs()"  [(ngModel)]="searchbynotice">
                     <option value="">Select Notice Period</option>
                     <option  *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">{{job.noticePeriod}}</option>
                   </select>

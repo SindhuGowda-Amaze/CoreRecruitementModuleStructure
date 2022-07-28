@@ -47,7 +47,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
             </div>
 
             <div class="col-lg-2">
-                <select name="Select" class="form-control poppinns" (change)="changeoption()"
+                <select name="Select" class="form-control poppinns" (change)="Filter()"
                     [(ngModel)]="searchbynotice">
                     <option value="" style="color:#0C275A;">Select Notice Period</option>
                     <option style="color:#0C275A;" *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">

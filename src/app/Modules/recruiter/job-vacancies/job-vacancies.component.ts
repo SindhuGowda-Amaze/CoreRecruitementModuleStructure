@@ -1,3 +1,13 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Company Staff Details, Send Email and Notification function, get OfferID,upload Attachmnet,Route With Respect to URL.
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +18,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./job-vacancies.component.css']
 })
 export class JobVacanciesComponent implements OnInit {
+    
+  //Variable Declerations//
 
   Company_logo: any;
   ID: any;
@@ -29,54 +41,77 @@ export class JobVacanciesComponent implements OnInit {
   Expectedctc: any;
   hrlist:any;
   hirirngmanger:any;
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.currentUrl = window.location.href;
-    this.userid = sessionStorage.getItem('userid')
-    this.Source = sessionStorage.getItem('role')
-
-    this.RecruitmentServiceService.GetRecruiterStaff()
-    .subscribe(data => {
-      this.hrlist = data.filter((x: { role: string; }) => x.role == 'Hiring Manager');
-      this.hirirngmanger = this.hrlist[0].id
-    })
-
-
-    this.ActivatedRoute.params.subscribe(params => {
-      this.ID = params['id'];
-      this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-        next: data => {
-          debugger
-          this.joblist = data.filter(x => x.id == this.ID);
-
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Job Requirements');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    )
-  }
   attachments = []
   attachmentsurl: any;
   brochures = [];
   imagesurl: any;
   brochures1 = [];
   jobid: any;
-  roleid : any
+  roleid : any;
+  files: File[] = [];
+
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+
+    
+    //Variable Initialisation and Default Method Calls//
+    this.GetRecruiterStaff();
+    this.GetJob_Requirements();
+
+    this.currentUrl = window.location.href;
+    this.userid = sessionStorage.getItem('userid')
+    this.Source = sessionStorage.getItem('role')
+    this.ActivatedRoute.params.subscribe(params => {
+      this.ID = params['id'];
+    
+    }
+    )
+  }
+
+ //Method to Get Company Staff Details//
+
+public  GetRecruiterStaff(){
+
+  this.RecruitmentServiceService.GetRecruiterStaff()
+  .subscribe(data => {
+    this.hrlist = data.filter((x: { role: string; }) => x.role == 'Hiring Manager');
+    this.hirirngmanger = this.hrlist[0].id
+  })
+
+}
+
+//
+ // Methods to  get list of Selected Candidates from Job_Requirements Table//
+
+public GetJob_Requirements(){
+this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+  next: data => {
+    debugger
+    this.joblist = data.filter(x => x.id == this.ID);
+
+  }, error: (err: { error: { message: any; }; }) => {
+    Swal.fire('Issue in Getting Job Requirements');
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+
+}
+  //Method to get OfferID //
 
   public GetJobID(jobid: any) {
     this.jobid = jobid;
   }
+
+  //Method to Insert the CandidateRegistration table//
   public insertdetails() {
     debugger
     if (this.candidatename == null || this.candidatename == undefined || this.candidatename == 0 || this.phoneno == null || this.phoneno == undefined || this.phoneno == 0 ||
@@ -135,6 +170,9 @@ export class JobVacanciesComponent implements OnInit {
       // location.reload();
     }
   } 
+
+
+  //Method to Insert NotificationSBU table//
   public InsertNotificationhr() {
     debugger
     var event: any = 'Recruiter Applied for the job';
@@ -161,7 +199,7 @@ export class JobVacanciesComponent implements OnInit {
         }
       })
   }
-  files: File[] = [];
+ //Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
     if (event.addedFiles[0].type == "application/pdf") {
@@ -201,6 +239,9 @@ export class JobVacanciesComponent implements OnInit {
       }
     })
   }
+
+   //Method to Send Email//
+
   public SendMailEmployee() {
     debugger
     var entity3 = {
@@ -218,6 +259,8 @@ export class JobVacanciesComponent implements OnInit {
       Swal.fire('Email sent');
     })
   }
+
+  //Method to Route With Respect to URL//
   Cancle(){
     location.href = "#/recruiter/VendorJobOpenings";
   }

@@ -27,7 +27,7 @@
           <option style="color:#0C275A" value="">Select CTC</option>
           <option style="color:#0C275A" *ngFor="let job of ctclist" value="{{job.ctc}}">{{job.ctc}}</option>
         </select> -->
-        <select *ngIf="roleid==2" name="Select" class="form-control poppinns" (change)="changeoption()"
+        <select *ngIf="roleid==2" name="Select" class="form-control poppinns" (change)="Fliter()"
           [(ngModel)]="searchbynotice">
           <option style="color:#0C275A" value="">Select Notice Period</option>
           <option style="color:#0C275A" *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">

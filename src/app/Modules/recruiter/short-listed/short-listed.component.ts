@@ -1,3 +1,13 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Candidate Details,displaying Comapny Staff Details, Send Email and Notification function,Approve Candidate,Displaying Slot List Details, update InterviewSchedule Date with notes, Open Pdf in new Window
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +21,8 @@ import { ThisReceiver } from '@angular/compiler';
   styleUrls: ['./short-listed.component.css']
 })
 export class ShortListedComponent implements OnInit {
+
+    //Variable Declerations//
 
   joblist: any;
   search: any;
@@ -39,113 +51,143 @@ export class ShortListedComponent implements OnInit {
   Role: any
   slotTime: any
   err: any;
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-  ngOnInit(): void {
-    debugger
-    this.currentUrl = window.location.href;
+  staffid: any;
+  jobid: any;
+  candidateid: any;
+  date: any;
+  notes: any;
+  hiringManager: any;
+  files: File[] = [];
+  interviewGuid: any;
+  jobdescription: any;
+  jobdescriptionID: any;
 
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
+  ngOnInit(): void {
+    
+    
+    //Variable Initialisation and Default Method Calls//
+
+    debugger
+    this.GetCandidateRegistration();
+    this.GetJobDescription();
+    this.GetRecruiterStaff()
+    this.GetStaffType();
+    this.currentUrl = window.location.href;
     this.Role = ""
     this.loader = true;
     this.searchbyctc = "";
     this.searchbynotice = "";
     this.hiringManager = "";
-
-    this.RecruitmentServiceService.GetRecruiterStaff()
-      .subscribe(data => {
-        this.hrlist = data.filter(x => x.role == "Hiring Manager");
-      })
-    this.GetStaffType();
-
     this.userid = sessionStorage.getItem('userid')
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     debugger
-    if (this.roleid == '3') {
-      debugger;
-      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-
-        next: data => {
-          debugger
-          this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.jobListCopy = this.joblist
-          this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
-          this.loader = false;
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire(' Issue in Getting Candidate Registration');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-
-    }
-    else if (this.roleid == '2') {
-      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-        next: data => {
-          debugger
-          this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          // this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.jobListCopy = this.joblist
-          this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.loader = false;
-          this.count = this.joblist.length;;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire(' Issue in Getting Candidate Registration');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    else {
-      debugger
-      this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
-        next: data => {
-          debugger
-          this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.jobListCopy = this.joblist
-          this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.loader = false;
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire(' Issue in Getting Candidate Registration');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-
-
-
-    this.GetJobDescription();
+  
+    
   }
-  public changeoption() {
+
+ 
+ //Method to Get Candidate Details//
+
+  public GetCandidateRegistration(){
+  if (this.roleid == '3') {
+    debugger;
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+
+      next: data => {
+        debugger
+        this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
+        this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
+        this.jobListCopy = this.joblist
+        this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
+        this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0 && (x.source == 'Vendor' && x.vendorId == this.userid));
+        this.loader = false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
+  else if (this.roleid == '2') {
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        // this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 && x.hiringManager == this.username);
+        this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.jobListCopy = this.joblist
+        this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.loader = false;
+        this.count = this.joblist.length;;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  else {
+    debugger
+    this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.jobListCopy = this.joblist
+        this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.ctclist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+        this.loader = false;
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Candidate Registration');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+}
+
+
+ //Method to displaying Comapny Staff Details//
+
+  GetRecruiterStaff(){
+  this.RecruitmentServiceService.GetRecruiterStaff()
+  .subscribe(data => {
+    this.hrlist = data.filter(x => x.role == "Hiring Manager");
+  })
+}
+
+
+//Method to filter the data by Notice Period//
+  public Fliter() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -168,6 +210,8 @@ export class ShortListedComponent implements OnInit {
     })
       ;
   }
+  
+///Method to Approve Candidate//
   public changectc() {
     debugger;
     this.RecruitmentServiceService.GetCandidateRegistration()
@@ -191,6 +235,7 @@ export class ShortListedComponent implements OnInit {
       })
       ;
   }
+   //Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
@@ -200,18 +245,20 @@ export class ShortListedComponent implements OnInit {
     this.date = even.target.value;
     this.GetSlotsMaster();
   }
-  jobid: any;
+ 
   public GetJobFilter(even: any) {
     this.jobid = even.target.value;
 
   }
-  staffid: any;
+
 
   public GetStaffID(even: any) {
     this.staffid = even.target.value;
   //  this.GetSlotsMaster();
 
   }
+  //Method to Search the Job Tittle//
+
   public GetStaffType() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
@@ -235,6 +282,9 @@ export class ShortListedComponent implements OnInit {
     this.timeid = even.target.value;
     this.GetSlotsMaster();
   }
+
+  //Method to Displaying Slot List Details//
+
   public GetSlotsMaster() {
     debugger
     this.RecruitmentServiceService.GetSlotsMasterByStaffID(this.date, this.staffid).subscribe({
@@ -255,14 +305,15 @@ export class ShortListedComponent implements OnInit {
       }
     })
   }
-  candidateid: any;
+
 
   public GetCandidateID(candidateid: any) {
     this.candidateid = candidateid;
   }
 
-  date: any;
-  notes: any;
+
+    //Method to update InterviewSchedule Date with notes//
+
   public UpdateInterviewSchedule() {
     if (this.staffid == null || this.staffid == undefined || this.staffid == 0 ||
       this.date == null || this.date == undefined || this.date == 0 ||
@@ -307,11 +358,15 @@ export class ShortListedComponent implements OnInit {
       })
     }
   }
+  
+  //Method to Open Pdf in new Window//
+
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
 
-  hiringManager: any;
+//Method to filter the data by CandidateRegistration table//
+
   public filterbyHirirngManager() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
@@ -333,7 +388,7 @@ export class ShortListedComponent implements OnInit {
     })
   }
 
-  files: File[] = [];
+  //Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
 
@@ -348,7 +403,6 @@ export class ShortListedComponent implements OnInit {
     }
 
   }
-  interviewGuid: any
   onRemove(event: any) {
     debugger
     console.log(event);
@@ -376,7 +430,8 @@ export class ShortListedComponent implements OnInit {
     })
   }
 
-  jobdescription: any;
+//Method to get Job Description//
+
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: (data) => {
@@ -402,7 +457,9 @@ export class ShortListedComponent implements OnInit {
   }
 
 
-  jobdescriptionID: any;
+ 
+  //Method to search data by JobTitle//
+
   public filterjobdescription(even: any) {
     this.jobdescriptionID = even.target.value
 
@@ -488,6 +545,7 @@ export class ShortListedComponent implements OnInit {
 
   }
 
+ //Method to Send Email//
 
   public SendJobMail(sub: any, desc: any, email: any) {
     debugger
@@ -504,6 +562,8 @@ export class ShortListedComponent implements OnInit {
       Swal.fire('Emails Sent');
     })
   }
+
+    //Method to Send Notification//
 
   public InsertNotificationInterviewpanel() {
     debugger

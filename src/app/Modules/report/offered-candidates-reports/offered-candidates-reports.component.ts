@@ -1,3 +1,15 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Get Client Staff Details,Company Staff Data,get list of Selected Candidates from CandidateRegistration Table, Open Pdf in new Window,
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -8,6 +20,9 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./offered-candidates-reports.component.css']
 })
 export class OfferedCandidatesReportsComponent implements OnInit {
+  
+    //Variable Declerations//
+
   OfferComments: any;
   joblist: any;
   count: any;
@@ -20,14 +35,21 @@ export class OfferedCandidatesReportsComponent implements OnInit {
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
- 
+
+      //Variable Initialisation and Default Method Calls//
+
+    this.GetCandidateRegistration();
+    this.GetClientStaff();
     this.hiringManager="";
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
-    this.GetCandidateRegistration();
-    this.GetClientStaff()
   
   }
+
+
+
+  //Method to Get Client Staff Details//
+
   GetClientStaff(){ this.RecruitementService.GetClientStaff()
     
     .subscribe({
@@ -50,6 +72,8 @@ export class OfferedCandidatesReportsComponent implements OnInit {
     })
   }
  
+   //Method to Get Company Staff Data//
+
   GetCandidateRegistration()
   { 
      this.RecruitementService.GetCandidateRegistration()
@@ -76,9 +100,12 @@ export class OfferedCandidatesReportsComponent implements OnInit {
 
 }
 
+
+
   refresh(){
     location.reload();
   }
+   // Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
     
@@ -114,6 +141,7 @@ export class OfferedCandidatesReportsComponent implements OnInit {
     
   }
 
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer:any) {
     window.open(offer, "_blank")
   }

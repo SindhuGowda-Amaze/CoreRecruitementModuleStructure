@@ -1,7 +1,7 @@
 //  Product : DigiCoreRecrcitment System 1.0 
 // /Date : 28 Jan, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains  methods from GetCandidateRegistration,UploadImages,UpdateOfferLetter,UpdateCandidateJoiningDate,sendemail,InsertNotificationSBU,UpdateCanditateBudgetStatus
+// --Description :This page contains   Get Company Staff Details,Get Job Staff Details,Get offer letter,Search Job Tittle,Displaying the Date changes,Displaying the option changes,Accept Candidate Details,dropped Candidate Details,Get Count joblist,Get Count staffdetails.
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -43,8 +43,9 @@ export class DroppedCandidatesComponent implements OnInit {
   endDate : any
   staffdetails:any
   vendor: any
-  role:any
-  Role: any
+  role:any;
+  Role: any;
+  hiringManager:any;
 
   constructor(private RecruitmentServiceService:RecruitementService) { }
 
@@ -64,6 +65,9 @@ export class DroppedCandidatesComponent implements OnInit {
  
     this.GetCandidateReg()
   }
+
+
+   //Method to Get Company Staff Data//
 
   GetRecruiterStaff(){
 
@@ -97,6 +101,7 @@ export class DroppedCandidatesComponent implements OnInit {
   //   throw new Error('Method not implemented.');
   // }
 
+ //Method to Get Job Staff Details//
 
   public GetCandidateReg() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -131,15 +136,21 @@ export class DroppedCandidatesComponent implements OnInit {
 
   }
 
+   //Method to Get offer letter//
+
   public GetOfferLetter(offer:any) {
     window.open(offer, "_blank")
   }
+
+   //Method to Search Job Tittle//
 
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string,jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy)||x.jobTitle.toLowerCase().includes(searchCopy));
   }
+
+ //Method to Displaying the Date changes //
 
   public changeAnniversary() {
     debugger;
@@ -169,6 +180,7 @@ export class DroppedCandidatesComponent implements OnInit {
  ;
   }
 
+   //Method to Displaying the option changes // 
   public changeoption() {
     debugger;
   
@@ -194,8 +206,8 @@ export class DroppedCandidatesComponent implements OnInit {
   ;
   }
 
-
-
+ //Method to Displaying the Accept Candidate Details //
+  
   public Accept(id:any, comments:any) {
     swal.fire({
       title: 'Are you sure?',
@@ -244,6 +256,7 @@ export class DroppedCandidatesComponent implements OnInit {
     })
   }
 
+ //Method to Displaying the dropped Candidate Details //
 
   public Reject(id:any, comments:any) {
     swal.fire({
@@ -291,7 +304,8 @@ export class DroppedCandidatesComponent implements OnInit {
     })
   }
 
-  hiringManager:any;
+ //Method to Get Count joblist //
+
   public GetJobRequirements(){
   
   
@@ -317,6 +331,8 @@ export class DroppedCandidatesComponent implements OnInit {
     })
 
   }
+
+   //Method to Get Count staffdetails // 
 
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({

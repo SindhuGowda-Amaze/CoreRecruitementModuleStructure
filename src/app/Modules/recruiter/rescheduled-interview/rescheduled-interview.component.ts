@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Recruiter Details,Job Description, Send Email and Notification function, Approve and Reject Budget Planning(Hirirng Manager),Upload offer letter and update tentative DOJ with notes,
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,19 +20,15 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 })
 export class RescheduledInterviewComponent implements OnInit {
 
+    //Variable Declerations//
+
   roleid: any
   err: any;
   staffid: any;
   timeid: any;
   notes: any; 
-  slotslist : any
-
-
-
-  stafflist : any
-
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-
+  slotslist : any;
+  stafflist : any;
   DeminimisList: any;
   deminimis: any;
   joblist: any;
@@ -54,50 +59,69 @@ export class RescheduledInterviewComponent implements OnInit {
   currentUrl: any
   staffdetails:any
   Role:any
-  data : any
-  even : any
- 
-  
+  data : any;
+  even : any;
+  dummjoblist1: any;
+  candidateid: any;
+  candidatename: any; 
+  emailattchementurl = [];
+  public email: any;
+  public doctorname: any;
+  files: File[] = [];
+  hiringManager: any;
+  demenisamt: any;
+  id: any;
+  Date: any;
+  endDate: any;
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+
 
   ngOnInit(): void {
+
+     //Variable Initialisation and Default Method Calls//
    
     this.GetStaffType()
+    this.GetCandidateReg()
     this.GetJobDescription()
+    this.GetClientStaff()
     this.Role=""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
     this.hiringManager = "";
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
-      next: data => {
-        debugger
-        this.hrlist = data;
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting Client Staff');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-
-
-
-
-
-    this.GetCandidateReg()
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
+
   }
-  dummjoblist1: any;
+
+  //Method to Displaying Client Staff Details//
+
+public  GetClientStaff(){
+
+  this.RecruitmentServiceService.GetClientStaff().subscribe({
+    next: data => {
+      debugger
+      this.hrlist = data;
+
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting Client Staff');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+
+
+
+// Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     debugger
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -134,22 +158,32 @@ export class RescheduledInterviewComponent implements OnInit {
       }
     })
   }
-  candidateid: any;
-  candidatename: any;
+
+
+   //Method to get OfferID //
   public GetOfferID(id: any, job: any) {
     this.candidateid = id;
     this.candidatename = job.candidateName,
       this.email = job.email
   }
+
+
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
+
+
+  //Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
     this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   }
-  files: File[] = [];
+
+
+
+//Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
     if (event.addedFiles[0].type == "application/pdf") {
@@ -190,6 +224,10 @@ export class RescheduledInterviewComponent implements OnInit {
       }
     })
   }
+
+
+
+//Method to  Upload offer letter and update tentative DOJ with notes//
  public updatedetails() {
 
     if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
@@ -228,6 +266,8 @@ export class RescheduledInterviewComponent implements OnInit {
       location.reload();
     }
   }
+
+ //Method to update Joining Date with notes//
 public updatejoiningdate() {
     if (this.date == null || this.date == undefined || this.date == 0 ||
       this.joiningbonus == null || this.joiningbonus == undefined || this.joiningbonus == 0 ||
@@ -267,7 +307,6 @@ public updatejoiningdate() {
     }
 
   }
-
   public GetStaffID(even: any) {
     debugger
     this.staffid = even.target.value;
@@ -275,10 +314,8 @@ public updatejoiningdate() {
  //   this.GetSlotsMaster();
   }
 
-  emailattchementurl = [];
-  public email: any;
-  public doctorname: any;
 
+  //Method to Send Email//
   public sendmail() {
 
     var entity = {
@@ -293,9 +330,7 @@ public updatejoiningdate() {
       })
   }
 
-  Date: any;
-  userid: any;
-  endDate:any
+  
   // public GetDate(event:any) {
   //   if(this.Date==0){
   //     debugger
@@ -332,7 +367,7 @@ public updatejoiningdate() {
   //     }
   //   }
 
-
+//Method to Displaying the Dates//
   public changeAnniversary() {
     debugger;
 
@@ -358,8 +393,8 @@ public updatejoiningdate() {
       }
     }) ;
   }
-
-  public changeoption() {
+//Method to Dsipalying the Job Tittels//
+  public Filter() {
     debugger;
 
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -383,7 +418,8 @@ public updatejoiningdate() {
     });
   }
 
-  hiringManager: any;
+  //Method to get data from CandidateRegistration Table//
+
   public GetJobRequirements() {
 
 
@@ -413,7 +449,7 @@ public updatejoiningdate() {
   GetJobDeminimis() {
 
   }
-  demenisamt: any;
+
 
 
   getid(even: any) {
@@ -436,7 +472,7 @@ public updatejoiningdate() {
 
       })
   }
-  id: any;
+//Method to Approve Candidate by Comparing Budget Planning//
   public ApproveId() {
     Swal.fire({
       title: 'Are you sure?',
@@ -474,6 +510,7 @@ public updatejoiningdate() {
       }
     })
   }
+  //Method to Reject Candidate by Comparing Budget Planning//
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -511,6 +548,9 @@ public updatejoiningdate() {
       }
     })
   }
+  
+  //Method to get Job Description//
+
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: data => {
@@ -537,6 +577,8 @@ public updatejoiningdate() {
   public GetCandidateID(candidateid: any) {
     this.candidateid = candidateid;
   }
+
+  //Method to Update InterviewSchedule table//
   public UpdateInterviewSchedule() {
     if (this.staffid == null || this.staffid == undefined || this.staffid == 0 ||
       this.date == null || this.date == undefined || this.date == 0 ||
@@ -577,7 +619,6 @@ public updatejoiningdate() {
 
     
   }
-
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
   }
@@ -586,6 +627,8 @@ public updatejoiningdate() {
     this.date = even.target.value;
     this.GetSlotsMaster();
   }
+
+  //Method to Get Slot List Candidate Deatils//
 
   public GetSlotsMaster() {
     debugger
@@ -608,6 +651,9 @@ public updatejoiningdate() {
       }
     })
   }
+
+  //Method to Displaying Staff Details//
+
   public GetStaffType() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
@@ -628,6 +674,8 @@ public updatejoiningdate() {
     })
   }
  
+    //Method to Send Email//
+
   public SendMailEmployee() {
 
     debugger

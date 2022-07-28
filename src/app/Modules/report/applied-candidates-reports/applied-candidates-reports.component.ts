@@ -1,7 +1,17 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Company Staff Details, Candidate Details in CandidateReg,search data by JobTitle,the Job Count & get list of Selected Candidates from CandidateRegistration,Open Pdf in new Window
+// and filter code 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as XLSX from 'xlsx';
-
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -10,9 +20,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./applied-candidates-reports.component.css']
 })
 export class AppliedCandidatesReportsComponent implements OnInit {
-  currentUrl: any;
 
-  constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+    //Variable Declerations//
+
+  currentUrl: any;
   joblist: any;
   count: any;
   DropJobList: any;
@@ -31,17 +42,28 @@ export class AppliedCandidatesReportsComponent implements OnInit {
   noticeperiodlist: any;
   jobListCopy: any;
   username: any;
+  jobid: any;
+
+
+  constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
   ngOnInit(): void {
+
+     //Variable Initialisation and Default Method Calls//
+    
+    this.GetCandidateReg()
+    this.GetClientStaff()
+
     this.hiringManager = "";
     this.searchbynotice = "";
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
     this.userid = sessionStorage.getItem('userid')
     this.loader = true;
-    this.GetCandidateReg()
-    this.GetClientStaff()
-
+ 
   }
+
+   //Method to Get Company Staff Details//
 
   GetClientStaff(){
 
@@ -68,10 +90,12 @@ export class AppliedCandidatesReportsComponent implements OnInit {
 }
 
 
-  refresh() {
-    location.reload();
-  }
+  // refresh() {
+  //   location.reload();
+  // }
 
+   //Method to Get Candidate Details in CandidateReg table//
+  
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
     
@@ -130,8 +154,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
   }
 })
  }
-
-  jobid: any;
+  //Method to search data by JobTitle//
 
   public GetJobFilter(even: any) {
     this.jobid = even.target.value;
@@ -160,6 +183,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
     this.loader = false;
   }
 
+    //Method to Dsipalying the Job Count & get list of Selected Candidates from CandidateRegistration //
 
   public GetJobRequirements() {
 
@@ -191,7 +215,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
 
     
   }
-
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
 
     window.open(offer, "_blank")
@@ -201,8 +225,7 @@ export class AppliedCandidatesReportsComponent implements OnInit {
     debugger;
 
     this.RecruitementService.GetCandidateRegistration()
-    
-    
+       
 .subscribe({
   next: data => {
     debugger
@@ -223,6 +246,8 @@ export class AppliedCandidatesReportsComponent implements OnInit {
 })
     
 }  
+
+  //Method to search data by JobTitle//
 
   public Filterjobs() {
     debugger

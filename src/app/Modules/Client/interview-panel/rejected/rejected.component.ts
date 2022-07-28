@@ -1,3 +1,13 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Search the Job tittle & Count,Get OfferLetter, S Reject Candidate Deatils, Get date & Count & Job tittle. 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -10,22 +20,34 @@ import swal from 'sweetalert2';
 })
 export class RejectedComponent implements OnInit {
 
-  Date: any;
+    //Variable Declerations//
+    Date: any;
+    OfferComments: any;
+    joblist: any;
+    count: any;
+    term: any;
+    search: any;
+    loader: any;
+    roleid: any;
+    currentUrl: any;
+    candidateid: any;
+    candidatename: any;
+    email: any;
+    searchbynotice: any;
+    dummjoblist: any;
+
 
   constructor(private RecruitServiceService: RecruitementService) { }
-  OfferComments: any;
-  joblist: any;
-  count: any;
-  term: any;
-  search: any;
-  loader: any;
-  roleid: any;
-  currentUrl: any
+ 
   ngOnInit(): void {
+
+  //Variable Initialisation and Default Method Calls//
+    this.GetCandidateReg();
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
-    this.GetCandidateReg();
   }
+
+  //Method to Search the Job tittle & Count//
 
   public GetCandidateReg() {
     this.RecruitServiceService.GetCandidateRegistration().subscribe({
@@ -50,6 +72,8 @@ export class RejectedComponent implements OnInit {
     })
 
   }
+
+  // Method to Get OfferLetter//
 
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
@@ -99,6 +123,8 @@ export class RejectedComponent implements OnInit {
       }
     })
   }
+
+  // Method to Reject Candidate Deatils AcceptRejectOffer table//
   public Reject(id: any, comments: any) {
     swal.fire({
       title: 'Are you sure?',
@@ -141,17 +167,15 @@ export class RejectedComponent implements OnInit {
       }
     })
   }
-  candidateid: any;
-  candidatename: any;
-  email: any;
-  searchbynotice: any;
+
+  // Method to get Offer candidate Deatils//
   public GetOfferID(id: any, job: any) {
     this.candidateid = id;
     this.candidatename = job.candidateName,
       this.email = job.email
   }
-  dummjoblist: any;
-
+ 
+// Method to Get date & Count & Job tittle//
   public GetDate(event: any) {
     if (this.Date == 0) {
       debugger

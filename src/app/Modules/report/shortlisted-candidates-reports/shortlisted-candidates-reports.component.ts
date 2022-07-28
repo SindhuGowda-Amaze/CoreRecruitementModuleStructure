@@ -1,3 +1,17 @@
+
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from Job_Requirements Table,get data from ClientStaff Table,get list of Selected Candidates from CandidateRegistration,search data by JobTitle,Get SlotsMaster Staff Details,Update CandidateInterviewSchedule,Open Pdf in new Window.
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -8,6 +22,9 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./shortlisted-candidates-reports.component.css']
 })
 export class ShortlistedCandidatesReportsComponent implements OnInit {
+
+ //Variable Declerations//
+
   joblist: any;
   search: any;
   stafflist: any;
@@ -35,18 +52,24 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
-    this.hiringManager = "";
-    this.searchbynotice = "";
-    this.userid = sessionStorage.getItem('userid')
-    this.roleid = sessionStorage.getItem('roleid');
-    this.username = sessionStorage.getItem('UserName');
+
+     //Variable Initialisation and Default Method Calls//
 
     this.loader = true;
     this.GetClientStaff();
     this.GetCandidateReg();
     this.GetStaffType();
     this.GetJob_Requirements()
+    this.hiringManager = "";
+    this.searchbynotice = "";
+    this.userid = sessionStorage.getItem('userid')
+    this.roleid = sessionStorage.getItem('roleid');
+    this.username = sessionStorage.getItem('UserName');
+
+  
   }
+
+    //Method to get data from Job_Requirements Table//
 
   public GetJob_Requirements(){
 
@@ -100,6 +123,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     }
 }
 
+ //Method to get data from ClientStaff Table//
   GetClientStaff(){
     this.RecruitementService.GetClientStaff()
     .subscribe({
@@ -126,12 +150,12 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   refresh() {
     location.reload();
   }
-
   public GetDate(even: any) {
     this.date = even.target.value;
     this.GetSlotsMaster();
   }
 
+   // Methods to  get list of Selected Candidates from CandidateRegistration Table//
 
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
@@ -168,8 +192,8 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     })
     
   }
-
-  public changeoption() {
+//Method to search data by JobTitle//
+  public Filterjobs() {
     debugger;
 
     this.RecruitementService.GetCandidateRegistration()
@@ -196,6 +220,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   }
 
 ;
+//Method to search data by JobTitle//
 
   public GetJobFilter(even: any) {
     this.jobid = even.target.value;
@@ -232,9 +257,14 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     })
     
   }
+  //Method to  Get TimeID //
+
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
   }
+
+    //Method to  Get SlotsMaster Staff Details//
+
   public GetSlotsMaster() {
     debugger
     this.RecruitementService.GetSlotsMasterByStaffID(this.date, this.staffid)
@@ -259,13 +289,13 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     
   }
 
-
+//Method to  Get CandidateID //
 
   public GetCandidateID(candidateid: any) {
     this.candidateid = candidateid;
   }
 
-
+//Method to Update CandidateInterviewSchedule by CandidateInterviewSchedule table//
   public UpdateInterviewSchedule() {
     var entity = {
       'ID': this.candidateid,
@@ -297,6 +327,8 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
 
   }
 
+   //Method to Open Pdf in new Window//
+
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
@@ -318,7 +350,8 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   }
 
 
- 
+   //Method to get data from JobRequirements Table//
+
   public GetJobRequirements() {
 
 

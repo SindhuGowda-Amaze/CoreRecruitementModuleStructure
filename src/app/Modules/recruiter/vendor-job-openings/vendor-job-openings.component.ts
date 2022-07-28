@@ -1,3 +1,12 @@
+//  Product : DigiCoreRecrcitment System 1.0 
+// /Date : 28 Jan, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains R get data from JobRequirements, Get Company Staff Data & Vendor_Dasboard Staff Data, search data by JobTitle, filter the data by Dates,Route with Respect to URL
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,15 +18,19 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
   styleUrls: ['./vendor-job-openings.component.css']
 })
 export class VendorJobOpeningsComponent implements OnInit {
+
+    //Variable Declerations//
+
   Date: any;
   title: any;
   RecruitServiceService: any;
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   public Editor = ClassicEditor;
   joblist: any;
   search: any;
   count: any;
   vendorid: any;
+  loader :any
+jobdescription:any;
   term: any;
   userid: any;
   roleid: any;
@@ -32,13 +45,29 @@ export class VendorJobOpeningsComponent implements OnInit {
   username: any;
   currentUrl: any
   endDate: any
-  data :any
-  Role: any
-  staffdetails: any
+  data :any;
+  Role: any;
+  staffdetails: any;
+  ID: any;
+  description: any;
+  skills: any;
+  Vendor: any;
+  Notes: any;
+  jobdescriptionID:any;
+  Userlist: any;
+  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
+  
   ngOnInit(): void {
     debugger;
+  
+    //Variable Initialisation and Default Method Calls//
 
-    this.GetJobDescription()
+    this.GetVendor_Dasboard();
+    this.GetRecruiterStaff();
+    this.GetJob_Requirements();
+    this.GetJobDescription();
+    this.GetUserslist();
+
     this.Role=""
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid')
@@ -46,82 +75,22 @@ export class VendorJobOpeningsComponent implements OnInit {
     this.vendorid = sessionStorage.getItem('vendorid');
     this.username = sessionStorage.getItem('UserName')
     this.roleid = sessionStorage.getItem("roleid")
-    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
-      next: data => {
-        debugger
-        this.hrlist = data.filter(x=>x.role=="Hiring Manager");
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Client Staff');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
 
-    if (this.roleid == '3') {
-      debugger;
-      this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-        next: data => {
-          debugger
-          this.joblist = data.filter(x => x.vendor == this.username );
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire(' Issue in Getting Job Requirements');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    else {
-      this.RecruitmentServiceService.GetJob_Requirements().subscribe({
-        next: data => {
-          debugger
-          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
-          this.jobListCopy = this.joblist
-          this.count = this.joblist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire(' Issue in Getting Job Requirements');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
-    }
-    this.dropdownSettings1 = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'vendor_Name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 20,
-      allowSearchFilter: true,
-    };
-    this.GetUserslist();
-    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+  }
+
+//Method to get data from JobRequirements Table//
+
+  public GetJob_Requirements(){
+
+  if (this.roleid == '3') {
+    debugger;
+    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
-        this.dropdownList1 = data;
+        this.joblist = data.filter(x => x.vendor == this.username );
+        this.count = this.joblist.length;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Vendor Dasboard');
+        Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -134,6 +103,87 @@ export class VendorJobOpeningsComponent implements OnInit {
       }
     })
   }
+  else {
+    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
+        this.jobListCopy = this.joblist
+        this.count = this.joblist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Job Requirements');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  this.dropdownSettings1 = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'vendor_Name',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 20,
+    allowSearchFilter: true,
+  };
+
+
+}
+
+ //Method to Get Company Staff Data//
+
+  public GetRecruiterStaff(){
+  this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+    next: data => {
+      debugger
+      this.hrlist = data.filter(x=>x.role=="Hiring Manager");
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire(' Issue in Getting Client Staff');
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+
+ //Method to Get Vendor_Dasboard Staff Data/
+  
+  public GetVendor_Dasboard(){
+  this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+    next: data => {
+      debugger
+      this.dropdownList1 = data;
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire(' Issue in Getting Vendor Dasboard');
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+
+
+
+  //Method to search data by JobTitle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
@@ -143,12 +193,10 @@ export class VendorJobOpeningsComponent implements OnInit {
     this.ID = id
     location.href = "#/recruiter/JobVacancies/" + this.ID
   }
-
-  description: any;
   public GEtemployeecomments(job: any) {
     this.description = job.jobDescription
   }
-  skills: any;
+ 
   public GEtskills(job: any) {
     this.skills = job.skills
   }
@@ -157,10 +205,8 @@ export class VendorJobOpeningsComponent implements OnInit {
     this.ID = id
     this.Getvendorid(this.ID);
   }
-  ID: any;
-  searchByCtc: any
-  Vendor: any;
-  Notes: any;
+ 
+    //Method to update Selected Candidate with notes//
   public UpdateVendor() {
     debugger
     for (let i = 0; i < this.selectedItems1.length; i++) {
@@ -194,7 +240,7 @@ export class VendorJobOpeningsComponent implements OnInit {
     })
   }
 
-  Userlist: any;
+ //Method to Dsipalying  Vendor_Dasboard Details//
   public GetUserslist() {
     this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -224,7 +270,7 @@ export class VendorJobOpeningsComponent implements OnInit {
         this.selectedItems1 = data.filter(x => x.id == this.vendorid);
 
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('  Issue in  Updating  Vendor');
+        Swal.fire('  Issue in  Getting  Vendor');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -239,7 +285,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   }
 
 
-
+ //Click Method to get and VendorID Details//
   Getvendorid(even: any) {
     debugger
     this.vendorid = even;
@@ -297,7 +343,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   // }
 
 
-
+  //Method to get data from JobRequirements Table//
   public GetJobRequirements() {
     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
       next: data => {
@@ -338,7 +384,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   //   });
   // }
 
-
+//Method to filter the data by Dates//
 FilterByDate(){
   if (this.roleid == '3') {
     debugger;
@@ -387,8 +433,8 @@ FilterByDate(){
 
 
 
-loader :any
-jobdescription:any;
+  //Method to get Job Description//
+
 public GetJobDescription() {
   this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
     next: (data) => {
@@ -415,11 +461,10 @@ public GetJobDescription() {
 }
 
 
-jobdescriptionID:any;
+//Method to Get Job Description Details//
 public getjobdescription(even:any){
+ 
   this.jobdescriptionID=even.target.value
-
-
   if (this.roleid == '3') {
     debugger;
     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
@@ -507,6 +552,7 @@ public getjobdescription(even:any){
   }
 
 }
+//Method to Route with Respect to URL//
 close(){
   location.href="#/recruiter/VendorJobOpenings"
 }
