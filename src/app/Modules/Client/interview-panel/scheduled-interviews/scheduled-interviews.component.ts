@@ -67,16 +67,8 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
   ngOnInit(): void {
-<<<<<<< HEAD
-      
-    //Variable Initialisation and Default Method Calls//
-
-    this.GetJobDescription1();
-    this.GetCandidateReg();
-=======
 
     this.GetJobDescription1()
->>>>>>> 2bcdc7ae5c96e6bd5ee0b381f907acab6c16a039
     this.Role1 = ""
     this.currentUrl = window.location.href
     this.staffid = sessionStorage.getItem('userid');

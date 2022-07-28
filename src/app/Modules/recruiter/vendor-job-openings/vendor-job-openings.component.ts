@@ -45,25 +45,18 @@ jobdescription:any;
   username: any;
   currentUrl: any
   endDate: any
-<<<<<<< HEAD
-  data :any;
-  Role: any;
-  staffdetails: any;
+  data :any
+  Role: any
+  staffdetails: any
+  even : any;
   ID: any;
   description: any;
   skills: any;
   Vendor: any;
   Notes: any;
-  jobdescriptionID:any;
   Userlist: any;
-  constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
-  
-=======
-  data :any
-  Role: any
-  staffdetails: any
-  even : any
->>>>>>> 2bcdc7ae5c96e6bd5ee0b381f907acab6c16a039
+  jobdescriptionID: any;
+  constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     debugger;
   
@@ -91,7 +84,7 @@ jobdescription:any;
 
   if (this.roleid == '3') {
     debugger;
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.vendor == this.username );
@@ -102,7 +95,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -111,7 +104,7 @@ jobdescription:any;
     })
   }
   else {
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
@@ -123,7 +116,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -147,7 +140,7 @@ jobdescription:any;
  //Method to Get Company Staff Data//
 
   public GetRecruiterStaff(){
-  this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+  this.RecruitementService.GetRecruiterStaff().subscribe({
     next: data => {
       debugger
       this.hrlist = data.filter(x=>x.role=="Hiring Manager");
@@ -157,7 +150,7 @@ jobdescription:any;
         'PageName': this.currentUrl,
         'ErrorMessage': err.error.message
       }
-      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
         data => {
           debugger
         },
@@ -169,7 +162,7 @@ jobdescription:any;
  //Method to Get Vendor_Dasboard Staff Data/
   
   public GetVendor_Dasboard(){
-  this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+  this.RecruitementService.GetVendor_Dasboard().subscribe({
     next: data => {
       debugger
       this.dropdownList1 = data;
@@ -179,7 +172,7 @@ jobdescription:any;
         'PageName': this.currentUrl,
         'ErrorMessage': err.error.message
       }
-      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
         data => {
           debugger
         },
@@ -226,7 +219,7 @@ jobdescription:any;
       "Notes": this.Notes,
       "VendorId": 1
     }
-    this.RecruitmentServiceService.UpdateVendor(entity).subscribe({
+    this.RecruitementService.UpdateVendor(entity).subscribe({
       next: data => {
         debugger
 
@@ -238,7 +231,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -249,7 +242,7 @@ jobdescription:any;
 
  //Method to Dsipalying  Vendor_Dasboard Details//
   public GetUserslist() {
-    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+    this.RecruitementService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
         this.Userlist = data;
@@ -259,7 +252,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -271,7 +264,7 @@ jobdescription:any;
     debugger
     console.log(item);
     this.vendorid = item.id;
-    this.RecruitmentServiceService.GetVendor_Dasboard().subscribe({
+    this.RecruitementService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
         this.selectedItems1 = data.filter(x => x.id == this.vendorid);
@@ -282,7 +275,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -306,7 +299,7 @@ jobdescription:any;
   // public GetDate(event: any) {
   //   if (this.Date == 0) {
   //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+  //     this.RecruitementService.GetJob_Requirements().subscribe({
   //       next: data => {
   //         debugger
   //         this.joblist = data.filter(x => x.recruiter == this.userid);
@@ -317,7 +310,7 @@ jobdescription:any;
   //           'PageName': this.currentUrl,
   //           'ErrorMessage': err.error.message
   //         }
-  //         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+  //         this.RecruitementService.InsertExceptionLogs(obj).subscribe(
   //           data => {
   //             debugger
   //           },
@@ -327,7 +320,7 @@ jobdescription:any;
   //   }
   //   else {
   //     debugger
-  //     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+  //     this.RecruitementService.GetJob_Requirements().subscribe({
   //       next: data => {
   //         debugger
   //         this.joblist = data.filter(x => x.recruiter == this.userid && x.date == this.Date);
@@ -339,7 +332,7 @@ jobdescription:any;
   //           'PageName': this.currentUrl,
   //           'ErrorMessage': err.error.message
   //         }
-  //         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+  //         this.RecruitementService.InsertExceptionLogs(obj).subscribe(
   //           data => {
   //             debugger
   //           },
@@ -352,7 +345,7 @@ jobdescription:any;
 
   //Method to get data from JobRequirements Table//
   public GetJobRequirements() {
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.hiringManager == this.hiringManager);
@@ -365,7 +358,7 @@ jobdescription:any;
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -377,7 +370,7 @@ jobdescription:any;
 
   // public jobTitle() {
   //   debugger;
-  //   this.RecruitmentServiceService.GetClientStaff().subscribe(data => {
+  //   this.RecruitementService.GetClientStaff().subscribe(data => {
   //     this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
   //   });
   // }
@@ -385,7 +378,7 @@ jobdescription:any;
 
   // public CandidateRegistration () {
   //   debugger;
-  //   this.RecruitmentServiceService.GetCandidateRegistration().subscribe(data => {
+  //   this.RecruitementService.GetCandidateRegistration().subscribe(data => {
   //     // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
   //     this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
   //   });
@@ -395,7 +388,7 @@ jobdescription:any;
 FilterByDate(){
   if (this.roleid == '3') {
     debugger;
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
@@ -407,7 +400,7 @@ FilterByDate(){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -416,7 +409,7 @@ FilterByDate(){
     })
   }
   else {
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved'&& x.date >= this.Date && x.date <= this.endDate);
@@ -429,7 +422,7 @@ FilterByDate(){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -445,7 +438,7 @@ FilterByDate(){
   //Method to get Job Description//
 
 public GetJobDescription() {
-  this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
+  this.RecruitementService.GetJobDescriptionMaster().subscribe({
     next: (data) => {
       debugger;
       this.jobdescription = data;
@@ -460,7 +453,7 @@ public GetJobDescription() {
         PageName: this.currentUrl,
         ErrorMessage: err.error.message,
       };
-      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
         (data) => {
           debugger;
         }
@@ -476,7 +469,7 @@ public getjobdescription(even:any){
   this.jobdescriptionID=even.target.value
   if (this.roleid == '3') {
     debugger;
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.vendor == this.username && x.jobTitle==this.jobdescriptionID);
@@ -487,7 +480,7 @@ public getjobdescription(even:any){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -496,7 +489,7 @@ public getjobdescription(even:any){
     })
   }
   else  {
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved' && x.jobTitle==this.jobdescriptionID);
@@ -508,7 +501,7 @@ public getjobdescription(even:any){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -518,7 +511,7 @@ public getjobdescription(even:any){
   }
   if (this.Date == 0) {
     debugger
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.recruiter == this.userid && x.jobTitle==this.jobdescriptionID);
@@ -529,7 +522,7 @@ public getjobdescription(even:any){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
@@ -539,7 +532,7 @@ public getjobdescription(even:any){
   }
   else {
     debugger
-    this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+    this.RecruitementService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
         this.joblist = data.filter(x => x.recruiter == this.userid && x.date == this.Date && x.jobTitle==this.jobdescriptionID);
@@ -551,7 +544,7 @@ public getjobdescription(even:any){
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
           data => {
             debugger
           },
