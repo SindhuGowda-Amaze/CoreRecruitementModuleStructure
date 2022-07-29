@@ -67,7 +67,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+this.GetCandidateReg();
     this.GetJobDescription1()
     this.Role1 = ""
     this.currentUrl = window.location.href

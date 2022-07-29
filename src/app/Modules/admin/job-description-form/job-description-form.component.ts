@@ -105,7 +105,13 @@ export class JobDescriptionFormComponent implements OnInit {
           next: data => {
             debugger
             let id = data;
-            Swal.fire("Successfully Saved!!")
+            if(id<=0){
+              Swal.fire("Job Description Exists!!")
+            }
+            else{
+              Swal.fire("Successfully Saved!!")
+            }
+        
             location.href = "#/admin/JobDescriptionDash"
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in  Inserting JobDescriptionMaster');
