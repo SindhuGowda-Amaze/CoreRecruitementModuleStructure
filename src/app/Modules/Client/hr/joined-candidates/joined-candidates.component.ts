@@ -109,6 +109,9 @@ data: any
         debugger
         // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
         this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+        this.filterjobdescription(this.even)
+      
+        
 
 
       }, error: (err: { error: { message: any; }; }) => {
@@ -125,6 +128,9 @@ data: any
         )
       }
     }) ;
+  }
+  even(even: any) {
+    throw new Error('Method not implemented.');
   }
   public Accept(id:any, comments:any) {
     swal.fire({
@@ -255,6 +261,7 @@ data: any
 
  
   jobdescriptionID:any;
+
   public filterjobdescription(even:any){
     this.jobdescriptionID=even.target.value
 

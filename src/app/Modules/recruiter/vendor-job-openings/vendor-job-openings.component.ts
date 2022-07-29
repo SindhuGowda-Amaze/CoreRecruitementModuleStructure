@@ -394,6 +394,7 @@ FilterByDate(){
         this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
         this.count = this.joblist.length;
         this.getjobdescription(this.even)
+       
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
@@ -415,7 +416,7 @@ FilterByDate(){
         this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved'&& x.date >= this.Date && x.date <= this.endDate);
         this.jobListCopy = this.joblist
         this.count = this.joblist.length;
-        this.getjobdescription(this.even)
+       
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire(' Issue in Getting Job Requirements');
         var obj = {
@@ -465,7 +466,7 @@ public GetJobDescription() {
 
 //Method to Get Job Description Details//
 public getjobdescription(even:any){
- 
+ debugger
   this.jobdescriptionID=even.target.value
   if (this.roleid == '3') {
     debugger;
@@ -530,28 +531,28 @@ public getjobdescription(even:any){
       }
     })
   }
-  else {
-    debugger
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.recruiter == this.userid && x.date == this.Date && x.jobTitle==this.jobdescriptionID);
-        debugger
-        this.count = this.joblist.length;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
+  // else {
+  //   debugger
+  //   this.RecruitementService.GetJob_Requirements().subscribe({
+  //     next: data => {
+  //       debugger
+  //       this.joblist = data.filter(x => x.recruiter == this.userid && x.date == this.Date && x.jobTitle==this.jobdescriptionID);
+  //       debugger
+  //       this.count = this.joblist.length;
+  //     }, error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire(' Issue in Getting Job Requirements');
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
+  // }
 
 }
 //Method to Route with Respect to URL//
