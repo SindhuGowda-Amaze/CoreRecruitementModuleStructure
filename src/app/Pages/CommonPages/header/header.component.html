@@ -193,10 +193,10 @@ px
                                 {{item.date|date}} {{item.time}}<br><br><br>
 
                             </div>
-                            <div class="col-lg-8" (click)="changecolor(item.id)">
+                            <div class="col-lg-8" >
                                 <!-- <h6>{{item.message}}</h6> -->
 
-                                <h6>
+                                <h6 (click)="changecolor(item.id)">
 
                                     <p *ngIf="item.readBit!=0">{{item.message}}</p>
                                     <p *ngIf="item.readBit==0" style="background-color: rgb(145, 188, 145)">
