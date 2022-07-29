@@ -70,6 +70,7 @@ export class ClosedPositionComponent implements OnInit {
   searchByCtc: any;
   Vendor: any;
   Notes: any;
+  jobdescription : any
 
   constructor(
     private RecruitmentServiceService: RecruitementService,
@@ -559,17 +560,33 @@ export class ClosedPositionComponent implements OnInit {
         this.joblist = data.filter(
           (x: { date: any }) => x.date >= this.Date && x.date <= this.endDate
         );
+        this.getjobdescription(this.even)
       }
     );
+  }
+  even(even: any) {
+    throw new Error('Method not implemented.');
   }
 
   //Method to get Job Description//
 
   public GetJobDescription() {
+    debugger
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(
       (data) => {
-        this.staffdetails = data;
+        this.jobdescription = data;
       }
     );
   }
+
+  jobdescriptionID : any
+  public getjobdescription(even : any){
+    debugger
+    this.jobdescriptionID= even.target.value;
+    this.joblist = this.joblist.filter((x: { accept: number; scheduled: number; jobTitle: any; }) =>  x.jobTitle==this.jobdescriptionID);
+    debugger
+  }
+
+
+  
 }
