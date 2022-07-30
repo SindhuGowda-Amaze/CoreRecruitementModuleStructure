@@ -184,22 +184,23 @@ px
             transform: translate3d(15px, -5px, 0px);">
                     <br>
                     <button style="margin-left: 235px;" (click)="ClearNotification()" type="button"
-                        class="btn-sm btn-danger ">Clear All</button>
+                        class="btn-sm btn-danger " style="white-space: nowrap;">Clear All</button>
 
                     <div class="container-fluid contain" style="font-family: 'Poppins';">
                         <!-- <h6>No Notification Today !</h6> -->
                         <div class="row" *ngFor="let item of notificationslist">
-                            <div class="col-lg-4">
+                            <div class="col-lg-4" style="white-space: nowrap;">
                                 {{item.date|date}} {{item.time}}<br><br><br>
-
+  
                             </div>
-                            <div class="col-lg-8" (click)="changecolor(item.id)">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" (click)="changecolor(item.id)">
                                 <!-- <h6>{{item.message}}</h6> -->
 
                                 <h6>
 
-                                    <p *ngIf="item.readBit!=0">{{item.message}}</p>
-                                    <p *ngIf="item.readBit==0" style="background-color: rgb(145, 188, 145)">
+                                    <p *ngIf="item.readBit!=0" style="white-space: nowrap;">{{item.message}}</p>
+                                    <p *ngIf="item.readBit==0" style="background-color: rgb(145, 188, 145); ">
                                         {{item.message}}</p>
                                 </h6>
 

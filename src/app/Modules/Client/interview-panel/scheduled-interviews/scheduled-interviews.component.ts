@@ -57,7 +57,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   endDate: any
   staffdetails: any
   data: any
-  Role1: any
+  Role1: any;
   cancle: any;
   showorhidecontent: any;
   jobid:any;

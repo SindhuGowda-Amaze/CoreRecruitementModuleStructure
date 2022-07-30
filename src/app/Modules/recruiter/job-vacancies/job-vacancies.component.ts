@@ -49,6 +49,7 @@ export class JobVacanciesComponent implements OnInit {
   jobid: any;
   roleid : any;
   files: File[] = [];
+  emailValid: boolean | undefined;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
@@ -111,16 +112,36 @@ this.RecruitmentServiceService.GetJob_Requirements().subscribe({
     this.jobid = jobid;
   }
 
+  ValidateEmail() {
+    debugger;
+  
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   
+    if (this.email.match(mailformat)) {
+      this.emailValid = true;
+      alert('Valid email address!');
+      
+      return true;
+    } else {
+      this.emailValid = false;
+      alert('You have entered an invalid email address!');
+      return false;
+    }
+  }
+
+
   //Method to Insert the CandidateRegistration table//
   public insertdetails() {
     debugger
-    if (this.candidatename == null || this.candidatename == undefined || this.candidatename == 0 || this.phoneno == null || this.phoneno == undefined || this.phoneno == 0 ||
+    this.ValidateEmail();
+    debugger
+    if ((this.candidatename == null || this.candidatename == undefined || this.candidatename == 0 || this.phoneno == null || this.phoneno == undefined || this.phoneno == 0 ||
       this.email == null || this.email == undefined || this.email == 0 || this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
       this.relaventexp == null || this.relaventexp == undefined || this.relaventexp == 0 || this.city == null || this.city == undefined || this.city == 0
       || this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 || this.currentcompany == null || this.currentcompany == undefined || this.currentcompany == 0
       || this.noticeperiod == null || this.noticeperiod == undefined || this.noticeperiod == 0 || this.ctc == null || this.ctc == undefined || this.ctc == 0
       || this.servingnotice == null || this.servingnotice == undefined || this.relocate == null || this.relocate == undefined 
-      || this.Source == null || this.Source == undefined || this.Source == 0) {
+      || this.Source == null || this.Source == undefined || this.Source == 0)&& this.emailValid) {
       Swal.fire('Please Fill All Mandatory Fields ')
     }
     else {
