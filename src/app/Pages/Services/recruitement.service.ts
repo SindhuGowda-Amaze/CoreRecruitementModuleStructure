@@ -508,11 +508,14 @@ export class RecruitementService {
     );
   }
 
-  public UpdateNotificationSeen(data: any) {
-    debugger;
-    this.url = this.host + '/Master/UpdateNotificationSeen';
-    return this.http.post(this.url, data);
+
+  public UpdateNotificationSeen(ID: any) {
+    return this.http.get<any[]>(
+    this.host + "/Master/UpdateNotificationSeen?ID=" + ID
+      // this.host + "/Master/UpdateNotificationSeen?ID=" + ID
+      );
   }
+
 
   public UpdateCandidateRegistration(data: any) {
     debugger;
@@ -547,4 +550,20 @@ export class RecruitementService {
     this.url = this.host + '/User/InsertNotification/';
     return this.http.post(this.url, entity);
   }
+
+
+
+  public InsertLevelMaster(data: any) {
+    debugger;
+    this.url = this.host + '/Vendor/InsertLevelMaster';
+    return this.http.post(this.url, data);
+  }
+
+
+  public GetLevelMaster() {
+
+    return this.http.get<any[]>(this.host + "/Vendor/GetLevelMaster");
+  }
+
+
 }

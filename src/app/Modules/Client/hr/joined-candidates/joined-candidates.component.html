@@ -49,9 +49,10 @@
                     <tr>
                         <!-- <th>Vendor</th> -->
                         <th>Job Reference ID</th>
+                        <th>Job Title</th>
                         <th>Source</th>
                         <th  *ngIf="roleid!='2'">Hiring Manager</th>
-                        <th>Job Title</th>
+                       
                         <th>Candidate Name</th>
                         <th>Joined Date</th>
                         <th>Phone No</th>
@@ -63,11 +64,12 @@
                     </tr>
                     <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
+                        <td>{{job.jobTitle}}</td>
                         <td>{{job.source}}</td>
                         <!-- <td>{{job.slotTime}}</td> -->
                         <!-- <td>{{job.hiringManager}}</td> -->
                         <td  *ngIf="roleid!='2'">{{job.hiringManager}}</td>
-                        <td>{{job.jobTitle}}</td>
+                       
                         <td>{{job.candidateName}}</td>
                         <td>{{job.date|date}}
                         <td>{{job.phoneNo}}</td>

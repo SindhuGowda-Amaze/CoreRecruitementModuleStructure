@@ -64,7 +64,7 @@
                         <th>Total Years of Experience</th>
                         <th>Relevant Experience</th>
                         <th>Offer Letter</th>
-                        <th>Comments</th>
+                        <!-- <th>Comments</th> -->
                         <!-- <th>Dropped Notes</th> -->
                     </tr>
                     <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }">
@@ -86,9 +86,9 @@
                                     <span *ngIf="job.offerAcceptreject=='1'">Joined</span>
                                     <span *ngIf="job.offerAcceptreject=='2'">Dropped</span>
                                 </td> -->
-                        <td style="color:#0C275A">
+                        <!-- <td style="color:#0C275A">
                             {{job.offerComments}}
-                        </td>
+                        </td> -->
                         <!-- <td>
                                     <button class="btn btn-primary" *ngIf="job.offerAcceptreject=='0'"
                                         (click)="Accept(job.id,job.offerComments)">Joined</button><br><br>

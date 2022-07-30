@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   initail: any
   notificationslist: any
   notificationCount: any;
-
+  notificationlistNotRead:any;
   ngOnInit() {
     this.GetNotification();
     this.pagename = "DASHBOARD"
@@ -62,9 +62,10 @@ export class HeaderComponent implements OnInit {
     this.RecruitmentServiceService.GetNotification(sessionStorage.getItem('userid')).subscribe((data: any) => {
       debugger
       this.notificationslist = data;
-      this.notificationCount = this.notificationslist.length;
+      this.notificationlistNotRead= data.filter((x: { readBit: number; })=>x.readBit!=1) 
+      this.notificationCount = this.notificationlistNotRead.length;
     })
-  }
+  } 
 
   logout() {
     sessionStorage.clear();
@@ -90,10 +91,7 @@ export class HeaderComponent implements OnInit {
   show: any;
   public changecolor(ID: any) {
     debugger
-    var entity = {
-      ID: ID
-    }
-    this.RecruitmentServiceService.UpdateNotificationSeen(entity).subscribe((_data: any) => {
+    this.RecruitmentServiceService.UpdateNotificationSeen(ID).subscribe((data: any) => {
       location.reload();
     })
   }

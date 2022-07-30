@@ -295,7 +295,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     this.candidateid = candidateid;
   }
 
-//Method to Update CandidateInterviewSchedule by CandidateInterviewSchedule table//
+//Method to Schedule the Interview //
   public UpdateInterviewSchedule() {
     var entity = {
       'ID': this.candidateid,
@@ -350,7 +350,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   }
 
 
-   //Method to get data from JobRequirements Table//
+   //Method to get Job Details from JobRequirements Table//
 
   public GetJobRequirements() {
 
