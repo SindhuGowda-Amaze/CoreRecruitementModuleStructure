@@ -200,7 +200,7 @@ px
                                 <h6 (click)="changecolor(item.id)">
 
                                     <p *ngIf="item.readBit!=0" style="white-space: nowrap;">{{item.message}}</p>
-                                    <p *ngIf="item.readBit==0" style="background-color: rgb(145, 188, 145); ">
+                                    <p *ngIf="item.readBit==0" style="white-space: nowrap; width: auto;">
                                         {{item.message}}</p>
                                 </h6>
 
