@@ -73,8 +73,8 @@
                 <thead>
                     <tr>
                         <th class="heading">Job Reference ID</th>
-                        <th class="heading">Date</th>
                         <th class="heading">Job Title</th>
+                        <th class="heading">Date</th>
                         <th class="heading">Skill/Technology</th>
                         <th class="heading">Total Years of Experience</th>
                         <th class="heading">Expected Experience</th>
@@ -90,8 +90,9 @@
                 </thead>
                 <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }" >
                     <td>{{job.jobRefernceID}}</td>
-                    <td><span style="width: 10px;">{{job.date}}</span></td>
                     <td>{{job.jobTitle}}</td>
+                    <td><span style="width: 10px;">{{job.date}}</span></td>
+                   
                     <td>
                         <button class="Button"  data-toggle="modal"
                         (click)="GEtskills(job)" data-target="#viewempcomments1" >View</button>

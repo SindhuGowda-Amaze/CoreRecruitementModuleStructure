@@ -46,8 +46,8 @@
             <table class="table" id="downloadaplication"  *ngIf="(joblist)">
                 <tr>
                     <th>Job Reference ID</th>
-                    <th>Source</th>
                     <th>Job Title</th>
+                    <th>Source</th>                    
                     <th>Candidate Name</th>
                     <th>Phone No</th>
                     <th>Email</th>
@@ -63,8 +63,8 @@
                 </tr>
                 <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
                     <td>{{job.jobRefernceID}}</td>
-                    <td> {{job.source}}</td>
                     <td>{{job.jobTitle}}</td>
+                    <td> {{job.source}}</td>                    
                     <td>{{job.candidateName}}</td>
                     <td>{{job.phoneNo}}</td>
                     <td>{{job.email}}</td>
