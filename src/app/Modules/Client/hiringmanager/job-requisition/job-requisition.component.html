@@ -115,11 +115,13 @@
 
 
             <div class="col-lg-3">
-              <select name="" id="" class="form-control">
+              <select name="Short" id="Short" class="form-control" [(ngModel)]="Short" (change)="Level($event)" >
                 <option value="">level</option>
-                <option value="">A1</option>
-                <option value="">A2</option>
-                <option value="">A3</option>
+                <option value="{{level.Short}}" *ngFor="let level of levelmaster">
+                  {{level.Short}}>
+                  
+                </option>
+                
   
               </select>
             </div>
