@@ -130,8 +130,9 @@ export class SidebarComponent implements OnInit {
     this.vendorstaf = false;
     this.vendo = false;
     this.jobstaff=false;
+    this.menu=false;
     this.active='';
-
+this.menu=0;
 
 
   }
@@ -152,7 +153,8 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['admin/RecruiterStaffDashboard']);
     this.client = false
     this.clientstaff = false
-    this.home = false
+    this.home = false;
+    this.menu=false;
     this.recruitstaff = true
     this.vendorstaf = false
     this.vendo = false
@@ -167,9 +169,10 @@ export class SidebarComponent implements OnInit {
     this.client = false
     this.clientstaff = false
     this.home = false
+    this.menu=false;
     this.recruitstaff = false
     this.vendorstaf = false
-    this.active=''
+    this.active=false
     this.jobstaff=false
   }
  
@@ -194,6 +197,7 @@ export class SidebarComponent implements OnInit {
     this.client = false
     this.clientstaff = false
     this.home = false
+    this.menu=false;
     this.recruitstaff = false;
     this.active ='';
     this.jobstaff=false;
@@ -484,7 +488,8 @@ this.reportmenu=0;
     this.active='';
     this.vendo=false;
     this.home=false
-    this.client=false
+    this.client=false;
+    this.menu=false;
     this.vendorstaf=false
     this.recruitstaff=false;
   }
@@ -1066,6 +1071,8 @@ this.reportmenu=0;
     this.reportmenu=0;
     this.manPowerMenu=10;
     this.setup=false;
+    
+    this.client=false;
     localStorage.setItem('Pagename', 'CLOSED POSITION')
     this.router.navigate(['/shared/ClosedPosition']);
     // this.dropped = false
@@ -1098,6 +1105,11 @@ this.reportmenu=0;
 
   Supporttickets(){
     this.active = 'SupportTickets'
+    this.client=false;
+    this.recruitstaff=false;
+    this.vendo=false;
+    this.jobstaff=false;
+    this.vendorstaf=false;
     this.router.navigate(['/shared/SupportTicketDashboard'])
    
     localStorage.setItem("Pagename", "support tickets")

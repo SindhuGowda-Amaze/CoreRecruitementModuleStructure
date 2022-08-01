@@ -84,7 +84,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                             <label>Phone No : </label>
                         </div>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" placeholder="Phone No" maxlength="11" [(ngModel)]="phoneno"
+                            <input onkeypress="return event.charCode >= 48 && event.charCode <= 57"  maxlength="10" class="form-control" placeholder="Phone No"  [(ngModel)]="phoneno"
                                 name="phoneno">
                         </div>
                     </div><br>
