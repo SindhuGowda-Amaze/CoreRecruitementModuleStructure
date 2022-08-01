@@ -60,14 +60,14 @@ export class ScheduledInterviewsComponent implements OnInit {
   Role1: any;
   cancle: any;
   showorhidecontent: any;
-  jobid:any;
+  jobid: any;
 
   constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
 
 
 
   ngOnInit(): void {
-this.GetCandidateReg();
+    this.GetCandidateReg();
     this.GetJobDescription1()
     this.Role1 = ""
     this.currentUrl = window.location.href
@@ -138,7 +138,7 @@ this.GetCandidateReg();
 
   }
 
-// Method to get Company Staff Details//
+  // Method to get Company Staff Details//
 
   public GetCandidateReg() {
     debugger
@@ -148,6 +148,7 @@ this.GetCandidateReg();
           debugger
           this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+
           debugger
           this.jobListCopy = this.joblist
           console.log("===", this.jobListCopy)
@@ -170,11 +171,11 @@ this.GetCandidateReg();
 
     }
 
-    else if(this.roleid==6){
+    else if (this.roleid == 6) {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview==null);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview == null);
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -199,7 +200,7 @@ this.GetCandidateReg();
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview==null);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null);
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -238,7 +239,7 @@ this.GetCandidateReg();
   }
 
 
-//Method to Approve Candidate//
+  //Method to Approve Candidate//
   public Accept(id: any, rinterview: any) {
     Swal.fire({
       title: 'Are you sure?',
@@ -285,8 +286,8 @@ this.GetCandidateReg();
     })
   }
 
-  
-//Method to Reject Candidate //
+
+  //Method to Reject Candidate //
 
   public Reject(id: any, interview: any) {
     Swal.fire({
@@ -332,8 +333,8 @@ this.GetCandidateReg();
       }
     })
   }
-  
-//Method to Accept Candidate by Interview//
+
+  //Method to Accept Candidate by Interview//
 
   public Acceptcandidate() {
     this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
@@ -346,7 +347,7 @@ this.GetCandidateReg();
         )
         this.SendMailEmployee()
         this.GetCandidateReg()
-        this.rinterview=""
+        this.rinterview = ""
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in  Accepting Interview');
         // Insert error in Db Here//
@@ -391,7 +392,7 @@ this.GetCandidateReg();
 
   }
 
-//Method to Displaying OfferLetters// 
+  //Method to Displaying OfferLetters// 
 
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
@@ -463,7 +464,7 @@ this.GetCandidateReg();
 
   }
 
-//Method to search the Date Details//
+  //Method to search the Date Details//
   public filterByDate() {
     debugger;
 
@@ -496,11 +497,11 @@ this.GetCandidateReg();
 
     }
 
-    else if(this.roleid==6){
+    else if (this.roleid == 6) {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview==null && x.date >= this.Date && x.date && this.endDate);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -523,7 +524,7 @@ this.GetCandidateReg();
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview==null && x.date >= this.Date && x.date && this.endDate);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
@@ -542,24 +543,25 @@ this.GetCandidateReg();
       })
 
     }
- 
+
   }
 
-  //Method to  Note for Rejected candidate//
+  //Method to  Save MyNotes of Interviewer//
 
-  public Note() {
-    this.RecriutmentServiceService.RejectInterview(this.id, 1, this.rinterview).subscribe({
+  public mynotes() {
+    this.RecriutmentServiceService.RejectInterview(this.id, 3, this.mynote).subscribe({
       next: data => {
         debugger
-        // Swal.fire(
-        //   'Selected!!',
-        //   'Candidate has been Accepted',
-        //   'success'
-        // )
-        //this.SendMailEmployee()
-        //this.GetCandidateReg()
+        Swal.fire(
+          'Saved!!',
+          'My Notes is Saved',
+          'success'
+        )
+        this.SendMailEmployee();
+        this.GetCandidateReg();
+        this.ngOnInit();
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Rejecting Interview');
+        Swal.fire('Issue in Saving My Notes');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,
@@ -605,11 +607,10 @@ this.GetCandidateReg();
 
 
 
-  getId(id:any)
-  {
-    this.jobid=id;
+  getId(id: any) {
+    this.jobid = id;
   }
-//Method to Update Reject Candidate  Comments//
+  //Method to Update Reject Candidate  Comments//
   public update() {
     debugger
     var entity = {
@@ -620,14 +621,41 @@ this.GetCandidateReg();
     this.RecriutmentServiceService.UpdateCandidateRegistration(entity).subscribe((data: any) => {
       debugger
       Swal.fire('Cancle Successfully')
-location.reload();
+      location.reload();
     })
   }
 
-public mynotes(){
-  Swal.fire('Saved Successfully')
-}
+  ID: any;
+  mynote:any;
+  mynotelist:any;
+  public getNoteID(even: any) {
+    this.ID = even.id
+    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        // this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+        this.mynotelist = data.filter(x => x.scheduled == 1 && x.id == this.ID);
+        this.mynote = this.mynotelist[0].interviewerMyNotes
+        debugger
+  
+        
+        this.GetCandidateReg()
 
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
 
 
 
