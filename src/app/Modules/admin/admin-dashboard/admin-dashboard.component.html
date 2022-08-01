@@ -166,6 +166,8 @@
                         (click)="flip1($event)">
                         <div class="back"style="height: 300px;overflow:auto" >
                             <br>
+                            <br>
+                            <br>
                             <div class="row" *ngFor="let job of clientstafflist1">
                                 <div class="col-lg-2">
                                     <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
@@ -214,18 +216,23 @@
                         (click)="flip1($event)">
                         <div class="back" style="height: 300px;overflow:auto">
                             <br>
-                            <div class="row" *ngFor="let job of CompanyStaffList"  >
-                                <div class="col-lg-2">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row" *ngFor="let job of CompanyStaffList" >
+                                <div class="col-lg-1">
                                     <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-9">
                                     <label class="poppinns">{{job.name}}<br>
                                         <div class="poppinns">{{job.email}}</div>
                                         <div class="poppinns">{{job.phoneNo}}</div>
                                     </label>
                                 </div>
+                                <div class="col-lg-1"></div>
                             </div>
                             <hr class="new4">
                             <div class="backflip">

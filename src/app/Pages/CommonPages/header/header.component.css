@@ -11,6 +11,13 @@
   }
   .container-fluid{
     box-shadow: 2px,2px,10px solid silver;
+    width:100%;
+  }
+  .card{
+
+    width:100%;
+
+
   }
   .dropdown-submenu {
     position: relative;
