@@ -57,7 +57,8 @@
             </div>
             
             <div class="col-lg-2">
-                <input class="form-control poppinns" placeholder="Search.."  [(ngModel)]="search" name="search" (ngModelChange)="Filterjobs()">
+                <input class="form-control poppinns" placeholder="Search.."  [(ngModel)]="search" name="search" >
+                <!-- (ngModelChange)="Filterjobs()" -->
             </div>
             <!-- <div class="col-lg-3" *ngIf="roleid==3"></div> -->
             <div class="col-lg-1">
@@ -88,7 +89,7 @@
                         <th *ngIf="roleid==6">Assigned Vendors</th>
                     </tr>
                 </thead>
-                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }" >
+                <tr *ngFor="let job of joblist|filter:search|paginate: { itemsPerPage: count1, currentPage: p }" >
                     <td>{{job.jobRefernceID}}</td>
                     <td>{{job.jobTitle}}</td>
                     <td><span style="width: 10px;">{{job.date}}</span></td>
