@@ -62,11 +62,6 @@ jobdescription:any;
   
     //Variable Initialisation and Default Method Calls//
 
-    this.GetVendor_Dasboard();
-    this.GetRecruiterStaff();
-    this.GetJob_Requirements();
-    this.GetJobDescription();
-    this.GetUserslist();
 
     this.Role=""
     this.currentUrl = window.location.href;
@@ -76,6 +71,12 @@ jobdescription:any;
     this.username = sessionStorage.getItem('UserName')
     this.roleid = sessionStorage.getItem("roleid")
 
+    
+    this.GetJob_Requirements();
+    this.GetVendor_Dasboard();
+    this.GetRecruiterStaff();
+    this.GetJobDescription();
+    this.GetUserslist();
   }
 
 //Method to get data from JobRequirements Table//
@@ -124,6 +125,7 @@ jobdescription:any;
       }
     })
   }
+
   this.dropdownSettings1 = {
     singleSelection: false,
     idField: 'id',
@@ -368,21 +370,6 @@ jobdescription:any;
 
   }
 
-  // public jobTitle() {
-  //   debugger;
-  //   this.RecruitementService.GetClientStaff().subscribe(data => {
-  //     this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.jobTitle == this.title));
-  //   });
-  // }
-
-
-  // public CandidateRegistration () {
-  //   debugger;
-  //   this.RecruitementService.GetCandidateRegistration().subscribe(data => {
-  //     // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
-  //     this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
-  //   });
-  // }
 
 //Method to filter the data by Dates//
 FilterByDate(){
@@ -531,28 +518,7 @@ public getjobdescription(even:any){
       }
     })
   }
-  // else {
-  //   debugger
-  //   this.RecruitementService.GetJob_Requirements().subscribe({
-  //     next: data => {
-  //       debugger
-  //       this.joblist = data.filter(x => x.recruiter == this.userid && x.date == this.Date && x.jobTitle==this.jobdescriptionID);
-  //       debugger
-  //       this.count = this.joblist.length;
-  //     }, error: (err: { error: { message: any; }; }) => {
-  //       Swal.fire(' Issue in Getting Job Requirements');
-  //       var obj = {
-  //         'PageName': this.currentUrl,
-  //         'ErrorMessage': err.error.message
-  //       }
-  //       this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-  //         data => {
-  //           debugger
-  //         },
-  //       )
-  //     }
-  //   })
-  // }
+
 
 }
 //Method to Route with Respect to URL//

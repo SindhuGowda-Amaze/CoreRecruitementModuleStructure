@@ -5,9 +5,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class RecruitementService {
 
-  attachements(entity3: { emailto: any; emailsubject: any; emailbody: any; attachmenturl: any; cclist: string; bcclist: string; }) {
-    throw new Error('Method not implemented.');
-  }
 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
@@ -523,7 +520,7 @@ export class RecruitementService {
     return this.http.post(this.url, data);
   }
 
-
+ 
 
 
 

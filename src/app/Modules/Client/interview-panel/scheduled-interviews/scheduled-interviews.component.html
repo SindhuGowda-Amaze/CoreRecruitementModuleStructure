@@ -135,7 +135,7 @@
                         </td>
                         <td>
                           <button class="btn btn-primary Button" data-toggle="modal" data-target="#Note"
-                            (click)="getNoteID($event)">My Notes</button>
+                            (click)="getNoteID(job.id)">My Notes</button>
 
                         </td>
                       </tr>
@@ -250,7 +250,7 @@
 
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="rinterview()">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"(click)="rinterview=''">Close</button>
 
 
 
@@ -333,11 +333,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <!-- <div class="col-lg-3">
-          <label style="font-size: 16px;">Selected Notes</label>
-        </div> -->
             <div class="col-lg-12">
-
               <textarea class="form-control" placeholder="Notes" id="mynote" name="mynote" [(ngModel)]="mynote" rows="10"></textarea>
               <!-- <select class="form-control" (change)="GetStaffID($event)">
                           <option value="">Select</option>
