@@ -32,6 +32,9 @@ export class SelectedCandidatesReportsComponent implements OnInit {
   fileName = 'SELECTED CANDIDATES REPORT.xlsx';
   hiringManager:any;
   currentUrl: any;
+  Date : any  
+  endDate : any
+ 
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
@@ -158,5 +161,13 @@ export class SelectedCandidatesReportsComponent implements OnInit {
     })
     
   }
+  filterdate(){
+    this.RecruitementService.GetCandidateRegistration().subscribe({
+      next :data=>{
+        this.joblist=data.filter(x =>x.date >= this.Date && x.date <= this.endDate)
+      }
+    })
+  }
+  
 }
 

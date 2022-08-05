@@ -41,6 +41,7 @@ export class JobRecruitementReportComponent implements OnInit {
   skills: any;
   joblist1:any;
   currentUrl: any;
+  
   fileName = 'JOB RECRCUITMENT REPORT.xlsx';
   constructor(private RecruitementService: RecruitementService) { }
 
@@ -189,6 +190,17 @@ GetJob_Requirements()
       }
     })
 
+}
+Date : any
+endDate : any
+enddate : any
+date : any
+GetDate(){
+  this.RecruitementService.GetJob_Requirements().subscribe({
+    next : data =>{
+      this.joblist= data.filter(x =>x.date >= this.date && x.date <= this.enddate)
+    }
+  })
 }
 
 

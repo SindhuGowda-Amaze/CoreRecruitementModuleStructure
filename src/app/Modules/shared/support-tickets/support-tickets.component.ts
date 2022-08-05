@@ -40,7 +40,7 @@ export class SupportTicketsComponent implements OnInit {
   ngOnInit(): void {
 
    //Variable Initialisation and Default Method Calls//
-
+   this.date = new Date().toISOString().split("T")[0];
     this.GetSupportTickets();
 
     this.currentUrl = window.location.href;

@@ -14,25 +14,41 @@
                     </div>
                     <div class="col-lg-3">
                       
-                        <select *ngIf="roleid!=2"  class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
+                        <select  class="form-control form-select poppinns" [(ngModel)]="hiringManager"  (change)="GetJobRequirements()" >
                             <option value="">Select Hiring Manager</option>
                             <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
                           </select>
-                        <input *ngIf="roleid==2" style="color:#0C275A" class="form-control poppinns" type="date" placeholder="Duration">
+                        
+                    </div>
+                    <div class="col-lg-2"   >
+                        <input type="date" class="form-control poppinns"  name="date" value="date"  [(ngModel)]="date">
+
+                    </div>
+
+                    <div class="col-lg-2"   >
+                        <input type="date" class="form-control poppinns"(change)="GetDate()" name="enddate" value="enddate"  [(ngModel)]="enddate">
+
                     </div>
                     <div class="col-lg-3">
                         <input style="color:#0C275A" class="form-control poppinns" type="search" placeholder="Search by Job reference ID..." [(ngModel)]="search" name="search" >
                     </div>
+                   
+                    <div class="col-lg-1">
+                        <p class="Count">Count:{{count}}</p>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2"></div>
                     <div class="col-lg-2">
                         <button class=" form-control export poppinns" (click)="refresh()">Refresh</button>
                     </div>
                     <div class="col-lg-2">
                         <button class=" form-control export poppinns" (click)="exportexcel()">Export to Excel</button>
                     </div>
-                    <div class="col-lg-1">
-                        <p class="Count">Count:{{count}}</p>
-                    </div>
-                </div>   
+                </div> 
             </div> <br><br>
            
             <div class="row">
@@ -57,7 +73,7 @@
         
         
                         </tr>
-                        <tr *ngFor="let job of joblist | paginate: { itemsPerPage: count1, currentPage: p }">
+                        <tr *ngFor="let job of joblist|filter:search | paginate: { itemsPerPage: count1, currentPage: p }">
                             <td >{{job.jobRefernceID}}</td>
                             <td >{{job.date|date}}</td>
                             <!-- <td>MindTree</td> -->
