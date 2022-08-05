@@ -104,7 +104,7 @@
 
                         <th>Budget Status</th>
                         <!-- <th>Interviewer Feedback</th> -->
-                        <th>Actions</th>
+                        <th *ngIf="roleid!=3">Actions</th>
                     </tr>
                     <tr *ngFor="let job of joblist|filter:search | paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
@@ -132,7 +132,7 @@
                             <p *ngIf="job.budgetStatus==null">Waiting for Approval</p>
                             <p *ngIf="job.budgetStatus!=null">{{job.budgetStatus}}</p>
                         </td>
-                        <td >
+                        <td  *ngIf="roleid!=3">
 
                             <button class="btn btn-danger" *ngIf="job.offered=='0' && job.budgetStatus=='Approved' && roleid=='6'" 
                                 data-toggle="modal" data-target="#exampleModal"
