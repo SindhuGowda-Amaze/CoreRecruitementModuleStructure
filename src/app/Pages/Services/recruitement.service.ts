@@ -520,14 +520,6 @@ export class RecruitementService {
     return this.http.post(this.url, data);
   }
 
- 
-
-
-
-
-
-
-
 
   
   public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
@@ -552,15 +544,17 @@ export class RecruitementService {
 
   public InsertLevelMaster(data: any) {
     debugger;
-    this.url = this.host + '/Vendor/InsertLevelMaster';
+    this.url = this.host + '/Master/InsertLevelMaster';
     return this.http.post(this.url, data);
   }
 
 
   public GetLevelMaster() {
 
-    return this.http.get<any[]>(this.host + "/Vendor/GetLevelMaster");
+    return this.http.get<any[]>(this.host + "/Master/GetLevelMaster");
   }
+
+
 
 
 }

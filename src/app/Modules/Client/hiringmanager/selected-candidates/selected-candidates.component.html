@@ -57,7 +57,7 @@
                 </select>
               </div>
 
-                <div class="col-lg-1"><p class="Count" >Count:{{joblist.length}}</p>  </div>
+                <div class="col-lg-1"><p class="Count"  >Count:{{joblist.length}}</p>  </div>
                       
             <!-- <div class="col-lg-2"></div> -->
                 
@@ -77,7 +77,7 @@
 
 
     <div class="row">
-        <div class="col-lg-12" style="height: 470px; overflow-y: scroll;">
+        <div class="col-lg-12" style="width: 100px; overflow-x: scroll;">
             <table class="table tablebordered">
                 <thead>
                     <tr>
@@ -109,7 +109,7 @@
                     <tr *ngFor="let job of joblist|filter:search | paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
                         <td>{{job.jobTitle}}</td>
-                        <td>{{job.date|date}}</td>
+                        <td style="white-space:pre;">{{job.date|date}}</td>
                         <td>{{job.source}}</td>
                         <!-- <td>{{job.slotTime}}</td> -->
                         <td *ngIf="roleid!=2">{{job.hiringManager}}</td>

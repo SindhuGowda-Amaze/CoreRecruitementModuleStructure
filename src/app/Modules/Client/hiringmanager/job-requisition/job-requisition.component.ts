@@ -55,6 +55,7 @@ export class JobRequisitionComponent implements OnInit {
   hrlist2: any;
   Short : any 
   levelmaster : any
+  level : any;
 
   constructor(private RecruitmentServiceService: RecruitementService) { }
 
@@ -68,7 +69,10 @@ export class JobRequisitionComponent implements OnInit {
     this.GetManpowerPlanningandBudgeting();
     this.currentUrl = window.location.href;
     this.username = sessionStorage.getItem('UserName');
-    this.level();
+    this.Short="";
+    this.jobno=""
+    this.Level();
+
  
    
   }
@@ -355,14 +359,14 @@ export class JobRequisitionComponent implements OnInit {
 
   //   })
   // }
-  level : any
-  public Level(even : any) {
+
+  public Level() {
     debugger
     this.RecruitmentServiceService.GetLevelMaster()
       .subscribe({
         next: data => {
           debugger
-         this.level= data
+         this.levelmaster= data
         }, error: (err) => {
           Swal.fire('Issue in Getting  LevelMaster');
           // Insert error in Db Here//
@@ -377,4 +381,12 @@ export class JobRequisitionComponent implements OnInit {
           )}
       })
 }
+
+
 }
+
+
+
+
+
+
