@@ -1177,7 +1177,7 @@ this.manPowerMenu=0;
   }
   SelectedCANDIDATES(){
     this.manPowerMenu=33;
-
+this.menu=0;
 
   }
   Manpower(){
@@ -1267,7 +1267,7 @@ this.reportmenu=0;
   REJECTEDCANDIDATES(){
     debugger
     this.manPowerMenu=56
-
+this.menu=0;
 
   }
 
