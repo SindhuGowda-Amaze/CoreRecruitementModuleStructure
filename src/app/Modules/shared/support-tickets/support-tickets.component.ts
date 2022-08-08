@@ -115,7 +115,7 @@ export class SupportTicketsComponent implements OnInit {
         this.files.length = 0;
       },
       error: (err: { error: { message: any } }) => {
-        Swal.fire('Attachment Upload Successfully ');
+        Swal.fire('Attachment Uploaded Successfully ');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,

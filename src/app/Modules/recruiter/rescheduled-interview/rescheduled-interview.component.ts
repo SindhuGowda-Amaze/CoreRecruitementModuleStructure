@@ -175,11 +175,11 @@ public  GetClientStaff(){
 
 
   //Method to search data by JobTitle//
-  public Filterjobs() {
-    debugger
-    let searchCopy = this.search.toLowerCase();
-    this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
-  }
+  // public Filterjobs() {
+  //   debugger
+  //   let searchCopy = this.search.toLowerCase();
+  //   this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
+  // }
 
 
 
