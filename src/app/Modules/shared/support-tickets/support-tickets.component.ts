@@ -91,11 +91,17 @@ export class SupportTicketsComponent implements OnInit {
   onSelect(event: { addedFiles: any }) {
     debugger;
     console.log(event);
-    this.files.push(event.addedFiles[0]);
+    // this.files.push(event.addedFiles[0]);
     this.files1.push(event.addedFiles[0]);
 
     console.log('content', this.files);
     this.AttachmentsUpload();
+  }
+
+  onRemove(event: any) {
+    debugger;
+    console.log(event);
+    this.files1.splice(this.files1.indexOf(event), 1);
   }
 
   //Method to upload Attachmnet//
@@ -124,11 +130,7 @@ export class SupportTicketsComponent implements OnInit {
     });
   }
 
-  onRemove(event: any) {
-    debugger;
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
-  }
+ 
 
  //Method to Insert the Data by InsertSupportTickets table //
   save() {

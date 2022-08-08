@@ -12,6 +12,7 @@ import { RecruitementService } from 'src/app/Pages/Services/recruitement.service
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as ClassicEditor from '@ckeditor/ckeditor5-angular';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-vendor-job-openings',
   templateUrl: './vendor-job-openings.component.html',
@@ -205,7 +206,9 @@ jobdescription:any;
 
   GetId1(id: any) {
     this.ID = id
+
     this.Getvendorid(this.ID);
+        
   }
  
     //Method to update Selected Candidate with notes//
@@ -524,5 +527,8 @@ public getjobdescription(even:any){
 //Method to Route with Respect to URL//
 close(){
   location.href="#/recruiter/VendorJobOpenings"
+}
+close1(){
+location.reload()
 }
 }
