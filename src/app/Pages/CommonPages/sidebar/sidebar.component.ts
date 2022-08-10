@@ -455,6 +455,7 @@ this.reportmenu=0;
     debugger
     if (this.roleid == '5') {
       this.manPowerMenu=33;
+      this.menu=0;
       this.active = 81;
       localStorage.setItem('Pagename', 'SELECTED CANDIDATES')
       this.router.navigate(['/hiringmanager/SelectedCandidates']);
@@ -1050,7 +1051,8 @@ this.reportmenu=0;
     this.menu = 4;
     this.active = 'help'
     this.home=false
-    this.jobstaff=false
+    this.jobstaff=false;
+    this.manPowerMenu=0;
     this.recruitstaff=false
     this.setup=false
     localStorage.setItem("clickname", "HELP")
@@ -1109,6 +1111,7 @@ this.reportmenu=0;
     this.recruitstaff=false;
     this.vendo=false;
     this.jobstaff=false;
+      this.manPowerMenu=0;
     this.vendorstaf=false;
     this.router.navigate(['/shared/SupportTicketDashboard'])
    
