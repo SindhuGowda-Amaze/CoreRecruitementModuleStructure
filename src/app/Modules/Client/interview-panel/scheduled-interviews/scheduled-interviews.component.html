@@ -40,7 +40,7 @@
           <div class="col-lg-2">
             <select class="form-control form-control poppinns" id="Role1" name="Role1" [(ngModel)]="Role1" (change)="GetJobDescription1()">
               <option value="">Select Job Title</option>
-              <option value="{{vendor.id}}" *ngFor="let vendor of staffdetails">
+              <option value="{{vendor.role}}" *ngFor="let vendor of staffdetails ">
                 {{vendor.role}}
               </option>
             </select>
