@@ -5,9 +5,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class RecruitementService {
 
-  attachements(entity3: { emailto: any; emailsubject: any; emailbody: any; attachmenturl: any; cclist: string; bcclist: string; }) {
-    throw new Error('Method not implemented.');
-  }
 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
@@ -524,14 +521,6 @@ export class RecruitementService {
   }
 
 
-
-
-
-
-
-
-
-
   
   public InsertNotificationSBU(Event: any, ToUser: any, Message: any,) {
     debugger
@@ -555,15 +544,17 @@ export class RecruitementService {
 
   public InsertLevelMaster(data: any) {
     debugger;
-    this.url = this.host + '/Vendor/InsertLevelMaster';
+    this.url = this.host + '/Master/InsertLevelMaster';
     return this.http.post(this.url, data);
   }
 
 
   public GetLevelMaster() {
 
-    return this.http.get<any[]>(this.host + "/Vendor/GetLevelMaster");
+    return this.http.get<any[]>(this.host + "/Master/GetLevelMaster");
   }
+
+
 
 
 }

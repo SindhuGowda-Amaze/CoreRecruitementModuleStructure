@@ -1,4 +1,4 @@
-<div class="container-fluid">
+ <div class="container-fluid">
     <br>
     <div class="row">
       <div class="col-lg-12">
@@ -115,10 +115,10 @@
 
 
             <div class="col-lg-3">
-              <select name="Short" id="Short" class="form-control" [(ngModel)]="Short" (change)="Level($event)" >
+              <select name="Short" id="Short" class="form-control" [(ngModel)]="Short" (change)="Level()" >
                 <option value="">level</option>
-                <option value="{{level.Short}}" *ngFor="let level of levelmaster">
-                  {{level.short}}>
+                <option value="{{level.id}}" *ngFor="let level of levelmaster">
+                  {{level.short}}
                   
                 </option>
                 

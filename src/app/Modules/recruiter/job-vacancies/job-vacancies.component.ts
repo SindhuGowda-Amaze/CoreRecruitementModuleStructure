@@ -119,7 +119,7 @@ this.RecruitmentServiceService.GetJob_Requirements().subscribe({
    
     if (this.email.match(mailformat)) {
       this.emailValid = true;
-      alert('Valid email address!');
+      // alert('Valid email address!');
       
       return true;
     } else {

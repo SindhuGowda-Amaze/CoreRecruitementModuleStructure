@@ -57,6 +57,7 @@ export class JobRecruitementsComponent implements OnInit {
   enddate:any;
   dummjoblist: any;
   empcomments: any;
+  even : any
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, public router: Router,) { }
 
@@ -166,6 +167,9 @@ export class JobRecruitementsComponent implements OnInit {
         else if (this.roleid == 10) {
           this.joblist = data.filter(x => x.status == 'Manager Approved BU Pending');
         }
+        else if (this.roleid == 3) {
+          this.joblist = data.filter(x => x.role == 'vendor');
+          }
         else {
           this.joblist = data;
         }
@@ -376,6 +380,7 @@ window.location.reload();
           this.dummjoblist = data;
 
           this.count = this.joblist.length;
+          this.getjobdescription(this.even)
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Getting Job Requirements');
           // Insert error in Db Here//
@@ -534,12 +539,12 @@ window.location.reload();
 
 
 
-
+  jobdescription : any
   public GetJobDescription() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe({
       next: data => {
         debugger
-        this.staffdetails = data;
+        this.jobdescription = data;
         this.loader=false;
         this.count=this.staffdetails.length;
       }, error: (err: { error: { message: any; }; }) => {
@@ -558,6 +563,51 @@ window.location.reload();
     })
 
   }
+  jobdescriptionID : any
+  public getjobdescription(even : any){
+this.jobdescriptionID=even.target.value
+this.RecruitmentServiceService.GetJob_Requirements().subscribe({
+  next: data => {
+    debugger
+    if (this.roleid == 2) {
+      this.joblist = data.filter(x => x.hiringManager == this.username && x.jobTitle==this.jobdescriptionID);
+    }
+    else if (this.roleid == 11) {
+      this.joblist = data.filter(x => x.status == 'Manager Pending' && x.jobTitle==this.jobdescriptionID);
+    }
+    else if (this.roleid == 10) {
+      this.joblist = data.filter(x => x.status == 'Manager Approved BU Pending' && x.jobTitle==this.jobdescriptionID);
+    }
+    else if (this.roleid == 3) {
+    this.joblist = data.filter(x => x.role == 'vendor'&& x.jobTitle==this.jobdescriptionID);
+    }
+    else {
+      this.joblist = data;
+    }
+  
+    this.count = this.joblist.length;
+
+ 
+  },error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting Job Requirements');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }    
+})
+
+
+    
+  }
+
+
 
 
    

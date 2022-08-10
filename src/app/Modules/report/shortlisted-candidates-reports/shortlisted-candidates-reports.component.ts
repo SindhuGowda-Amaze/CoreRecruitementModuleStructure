@@ -201,7 +201,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        this.noticeperiodlist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && (x.noticePeriod == this.searchbynotice));
+        this.noticeperiodlist = data.filter(x =>  x.noticePeriod == this.searchbynotice);
       }, error: (err) => {
         Swal.fire('Issue in GetCandidate Registration');
         // Insert error in Db Here//
@@ -359,7 +359,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     .subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && x.hiringManager == this.hiringManager);
+        this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && x.hiringManager == this.hiringManager && x.noticePeriod == this.searchbynotice);
 
         this.count = this.joblist.length;
       }, error: (err) => {

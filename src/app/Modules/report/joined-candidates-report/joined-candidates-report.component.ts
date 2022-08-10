@@ -172,4 +172,17 @@ export class JoinedCandidatesReportComponent implements OnInit {
   
   
   }
+
+  Date : any
+  endDate : any
+  public changeAnniversary() {
+    debugger;
+  
+    this.RecruitementService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+      }
+    }) ;
+  }
 }

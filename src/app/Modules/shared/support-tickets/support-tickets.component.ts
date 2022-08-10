@@ -40,7 +40,7 @@ export class SupportTicketsComponent implements OnInit {
   ngOnInit(): void {
 
    //Variable Initialisation and Default Method Calls//
-
+   this.date = new Date().toISOString().split("T")[0];
     this.GetSupportTickets();
 
     this.currentUrl = window.location.href;
@@ -91,11 +91,17 @@ export class SupportTicketsComponent implements OnInit {
   onSelect(event: { addedFiles: any }) {
     debugger;
     console.log(event);
-    this.files.push(event.addedFiles[0]);
+    // this.files.push(event.addedFiles[0]);
     this.files1.push(event.addedFiles[0]);
 
     console.log('content', this.files);
     this.AttachmentsUpload();
+  }
+
+  onRemove(event: any) {
+    debugger;
+    console.log(event);
+    this.files1.splice(this.files1.indexOf(event), 1);
   }
 
   //Method to upload Attachmnet//
@@ -109,7 +115,7 @@ export class SupportTicketsComponent implements OnInit {
         this.files.length = 0;
       },
       error: (err: { error: { message: any } }) => {
-        Swal.fire(' Getting Attachments ');
+        Swal.fire('Attachment Uploaded Successfully ');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
@@ -124,11 +130,7 @@ export class SupportTicketsComponent implements OnInit {
     });
   }
 
-  onRemove(event: any) {
-    debugger;
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
-  }
+ 
 
  //Method to Insert the Data by InsertSupportTickets table //
   save() {

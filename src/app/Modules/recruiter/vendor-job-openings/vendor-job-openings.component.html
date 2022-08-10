@@ -6,6 +6,13 @@
         </div>
     </div><br>
     <div class="card">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2" style="margin-left: 28px;">Start Date</div>
+            <div class="col-lg-2" style="margin-left: -1px;">End Date</div>
+
+
+        </div>
        
         <div class="row FilterClass">
             <div class="col-lg-1">
@@ -57,7 +64,8 @@
             </div>
             
             <div class="col-lg-2">
-                <input class="form-control poppinns" placeholder="Search.."  [(ngModel)]="search" name="search" (ngModelChange)="Filterjobs()">
+                <input class="form-control poppinns" type="search" placeholder="Search by Source..."
+                [(ngModel)]="search" name="search" >              
             </div>
             <!-- <div class="col-lg-3" *ngIf="roleid==3"></div> -->
             <div class="col-lg-1">
@@ -69,9 +77,11 @@
 
     <div class="row">
         <div class="col-lg-12" style="overflow: auto; ">
-            <table class="table">
+            <table class="table"
+            *ngIf="(joblist | filter: search).length > 0; else noResults"
+            >
                 <thead>
-                    <tr>
+                    <tr >
                         <th class="heading">Job Reference ID</th>
                         <th class="heading">Job Title</th>
                         <th class="heading">Date</th>
@@ -88,7 +98,7 @@
                         <th *ngIf="roleid==6">Assigned Vendors</th>
                     </tr>
                 </thead>
-                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }" >
+                <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p } | filter:search" >
                     <td>{{job.jobRefernceID}}</td>
                     <td>{{job.jobTitle}}</td>
                     <td><span style="width: 10px;">{{job.date}}</span></td>
@@ -119,14 +129,15 @@
             </table>
            
             <ng-template #noResults>
-                <p> no results found for "{{search}}" </p>
+                <p class="NoResultShow"> No results found for "{{search}}" </p> 
             </ng-template>
         </div>
+       
         <div class="text-right">
             <br>
             <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
         </div> 
-        <span *ngIf="joblist.length==0">No data found.</span>
+        <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
     </div>
 
 
@@ -198,7 +209,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Assign Vendor</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -239,7 +250,7 @@
             <div class="modal-footer">
                 <hr>
                 <div class="col-lg-2">
-                    <button class="Button"  data-dismiss="modal">Close</button>
+                    <button class="Button"  data-dismiss="modal" (click)="close1()">Close</button>
                 </div>
             </div>
         </div>

@@ -166,4 +166,25 @@ export class DroppedCandiadtesReportsComponent implements OnInit {
 })
 
   }
+  Date : any
+  endDate : any
+  public changeAnniversary() {
+    debugger;
+  
+    this.RecruitementService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        // this.joblist = data.filter(x => x.cdate == this.Date + "T00:00:00");
+        this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
+
+
+      }
+    })
+
+ ;
+  }
+
+
+
+
   }
