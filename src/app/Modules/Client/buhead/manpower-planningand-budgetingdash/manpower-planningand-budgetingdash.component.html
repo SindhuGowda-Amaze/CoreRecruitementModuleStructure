@@ -12,7 +12,8 @@
             <div class="card filtercard">
                 <div class="row">
                     <div class="col-md-1">
-                        Filter By
+                        <img src="assets/Images/filter.svg" class="filter-img">
+                        <p class="filter">Filter By:</p>
                     </div>
                     <div class="col-lg-3">
                         <select class="form-control" id="Subsidiary" name="Subsidiary" [(ngModel)]="Subsidiary"
@@ -58,8 +59,8 @@
                 </div> -->
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
-                    <a href="#/BUHead/ManpowerPlanningandBudgeting"><button class="AddButton">Add</button> </a>
-                    <button class="AddButton" data-toggle="modal" data-target="#import">Import Excel
+                    <a href="#/BUHead/ManpowerPlanningandBudgeting"><button class="imp-AddButton"><img src="assets/Images/plus.svg" class="plus-icon">Add Budget</button> </a>
+                    <button class="imp-AddButton" data-toggle="modal" data-target="#import">Import Excel
                     </button>
                 </div>
             </div>
@@ -101,10 +102,10 @@
                                         Approve</button>
                                 </td> -->
                                 <td *ngIf="roleid==10">
-                                    <button style="height: fit-content;" type="button" class="upload"
+                                    <button style="height: fit-content;" type="button" class="edit-btn"
                                         (click)="edit(holiday.id)">
-                                        Edit</button>
-                                    <button style="height: fit-content;" type="button" class="upload"
+                                        Edit</button><br><br>
+                                    <button style="height: fit-content;" type="button" class="edit-btn"
                                         (click)="Delete(holiday.id)">
                                         Delete</button>
                                 </td>

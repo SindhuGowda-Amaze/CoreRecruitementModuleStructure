@@ -60,8 +60,8 @@
         </div>
         <div class="row">
             <div class="col-lg-3" *ngIf="id==null || id==undefined">
-                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="screenShot"
-                    style="width:100% ;height: auto; text-align: center;">
+                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="screenShot" class="attachment">
+                    <img src="assets/Images/upload.png" *ngIf="files1.length==0" class="img-set dropdowning">
                     <ngx-dropzone-label>Please Attach Photo!</ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files1" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
