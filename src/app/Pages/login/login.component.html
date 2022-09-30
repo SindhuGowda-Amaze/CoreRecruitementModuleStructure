@@ -95,86 +95,143 @@
 
 <div class="container-fluid  fullscreen">
     <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-10 maindiv">
-            <div class="inndercard">
-                <img src="assets/Images/Logo_digiOffice_Colored.png" style="width: 40%;margin-bottom: 5%;">
-                <!-- <div class="input-group ">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="maindiv">
+                <div class="inndercard">
+                    <img src="assets/Images/Logo_digiOffice_Colored.png" class="digi-logo">
+                    <div class="input-group ">
 
-                    <select class="inputclass">
-                        <option selected>Select Company</option>
-                        <option value="1001">Ayala Land</option>
-                        <option value="1002">Avida Land Corp</option>
-                        <option value="1003">Avida Sales Corp</option>
-                        <option value="1004">Ayala Land Premier, Inc</option>
-                        <option value="1005">Ayala Land Sales Inc</option>
-                        <option value="1006">Ayala Land Offices, Inc</option>
-                    </select>
-                    <span class="highlight"></span>
+                        <select class="inputclass padp-20" (change)="getRoleID($event)">
+                            <option selected>Select</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Hiring Manager</option>
+                            <option value="4">Client</option>
+                            <option value="5">Interview Panel</option>
+                            <option value="6">Recruiter</option>
+                            <option value="3">Vendor</option>
+                            <option value="7">Vendor Staff</option>
+                            <option value="8">HR</option>
+                            <option value="9">CEO</option>
+                            <option value="10">BU Head</option>
+                            <option value="11">Manager</option>
+                        </select>
+                        <img class="imgview" src="assets/Images/dropdown.svg">
 
-                    <span class="bar"></span>
+                    </div>
 
-                </div> -->
 
-                <div class="input-group ">
+                    <div class="input-group ">
 
-                    <select class="inputclass padp-20" (change)="getRoleID($event)">
-                        <option selected>Select</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Hiring Manager</option>
-                        <option value="4">Client</option>
-                        <option value="5">Interview Panel</option>
-                        <option value="6">Recruiter</option>
-                        <option value="3">Vendor</option>
-                        <option value="7">Vendor Staff</option>
-                        <option value="8">HR</option>
-                        <option value="9">CEO</option>
-                        <option value="10">BU Head</option>
-                        <option value="11">Manager</option>
-                    </select>
-                    <img class="imgview" src="assets/Images/dropdown.svg">
+                        <input type="text" class="inputclass" [(ngModel)]="userName" name="username">
+                        <span class="highlight"></span>
+
+                        <span class="bar"></span>
+
+                        <label class="placeholder">Username</label>
+
+                    </div>
+                    <div class="input-group ">
+
+                        <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="password"
+                            name="password" />
+                        <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
+                            name="password" />
+                        <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
+                        margin-left: -224px;
+                        margin-top: 18px;" (click)="Showhidepassword()"></span>
+
+                        <span class="highlight"></span>
+
+                        <span class="bar"></span>
+
+                        <label class="placeholder">Password</label>
+
+                    </div>
+
+                    <div class="btnalign">
+                        <a style=" color: #3247D5;"> Forgot Password</a>
+                        <button type="button" class="loginbtn" (click)="login()">Login</button>
+                    </div>
+
+                    <div class="copy-right">
+                        <label><b>Copyright © 2022 AMAZE ONE. All Rights Reserved</b></label>
+                    </div>
                 </div>
-
-                <div class="input-group ">
-
-                    <input type="text" class="inputclass" [(ngModel)]="userName" name="username">
-                    <span class="highlight"></span>
-
-                    <span class="bar"></span>
-
-                    <label class="placeholder">Username</label>
-
+                <div class="imgdiv">
+                    <img src="assets/Images/Mask Group.png">
+                    <div><span class="secure">Secured and</span></div>
+                    <div><span class="easy">Easy to Use</span></div>
+                    <div><span class="smart">Smart all-in-one software for HR operations</span></div>
                 </div>
-                <div class="input-group ">
-
-                    <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="password"
-                        name="password" />
-                    <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
-                        name="password" />
-                    <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
-                    margin-left: -224px;
-                    margin-top: 18px;" (click)="Showhidepassword()"></span>
-
-                    <span class="highlight"></span>
-
-                    <span class="bar"></span>
-
-                    <label class="placeholder">Password</label>
-
-                </div>
-
-
-
-                <div class="btnalign">
-                    <a style=" color: #3247D5;"> Forgot Password</a>
-                    <button type="button" class="loginbtn" (click)="login()">Login</button>
-                </div>
-
             </div>
-            <div class="imgdiv">
-                <img src="assets/Images/Mask Group.png">
-            </div>
+
         </div>
         <div class="col-lg-1"></div>
     </div>
 </div>
+<div id="changepassword" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top: 100px;">
+            <div class="modal-header">
+                <h4><b>Forgot Password</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3 ">
+                        <p style="padding:3px"> Subsidiary
+                            <span class="starspan">*</span>
+                        </p>
+
+
+                    </div>
+                    <div class="col-lg-8 ">
+                        <select class="form-control">
+                            <option value="1001">Asticom Main</option>
+                            <option value="1002">Asticom ABSI (ABSI)</option>
+                            <option value="1005">Asticom FINSI</option>
+                            <option value="1003">Asticom BRAD</option>
+                            <option value="1004">Asticom HCX</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3 ">
+                        <p style="padding:3px">Enter Email
+                            <span class="starspan">*</span>
+                        </p>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <input type="text" class="form-control" name="email" id="email" required
+                            placeholder="Enter Email" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-2">
+                        <button style="width: auto;" class="btn btn-success form-control" data-dismiss="modal"
+                            type="button">Send</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
