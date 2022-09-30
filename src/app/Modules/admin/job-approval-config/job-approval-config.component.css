@@ -16,3 +16,8 @@ input[type=radio] {
     background-color: #3247D5;
     color: white;
   }
+  .check-box{
+    position: absolute;
+    top: -2px;
+    left: 44px;
+  }

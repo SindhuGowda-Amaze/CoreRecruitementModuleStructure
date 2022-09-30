@@ -37,7 +37,9 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                         </div>
                         <div class="row leavereq">
                             <div class="col-md-3">
-                                <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                <ngx-dropzone (change)="onSelect($event)" class="attachment">
+                                    <img src="assets/Images/upload.png" *ngIf="files.length==0"
+                                        class="img-set dropdowning">
                                     <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
                                         (removed)="onRemove(f)">
@@ -61,15 +63,16 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                                 </div>  -->
                             <div class="col-md-3">
                                 <input type="text" class="form-control inputfield" [(ngModel)]="Name" name="Name"
-                                    formControlName="Name" onkeypress="return /[A-Z]/i.test(event.key)">
+                                    placeholder="Enter Client Name" formControlName="Name"
+                                    onkeypress="return /[A-Z]/i.test(event.key)">
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control inputfield" [(ngModel)]="Email" max="11"
-                                    id="Email" name="Email" formControlName="Email">
+                                    id="Email" name="Email" formControlName="Email" placeholder="Enter Email">
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control inputfield" [(ngModel)]="PhoneNo" name="PhoneNo"
-                                    maxlength="11" id="PhoneNo" formControlName="PhoneNo"
+                                    maxlength="11" id="PhoneNo" formControlName="PhoneNo" placeholder="Enter Phone No"
                                     onkeypress="return /[0-9]/i.test(event.key)">
                             </div>
                             <!-- <div class="col-md-3">
@@ -88,20 +91,19 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <textarea type="text" class="form-control inputfield" [(ngModel)]="Address" rows="4"
-                                    name="Address" formControlName="Address"></textarea>
+                                <textarea type="text" placeholder="Enter Address" class="form-control inputfield"
+                                    [(ngModel)]="Address" rows="4" name="Address" formControlName="Address"></textarea>
                             </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-10"></div>
-                            <div class="col-lg-1">
-                                <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-2">
+                                <button class="Edit" (click)="cancel()">Cancel</button>
                             </div>
-                            <div class="col-lg-1">
-                                <button type="button" class="form-control Edit" *ngIf="showButton==2"
-                                    (click)="Save()">Save</button>
-                                <button type="button" class="form-control Edit" *ngIf="showButton==1"
+                            <div class="col-lg-2">
+                                <button type="button" class="Save" *ngIf="showButton==2" (click)="Save()">Save</button>
+                                <button type="button" class="Save" *ngIf="showButton==1"
                                     (click)="Update()">Update</button>
                             </div>
                         </div>

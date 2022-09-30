@@ -10,7 +10,8 @@
   <div class="card">
     <div class="row FilterClass">
       <div class="col-lg-1">
-        <p>Filter By</p>
+        <img src="assets/Images/filter.svg" class="filter-img">
+        <p class="filter">Filter By:</p>
       </div>
       <div class="col-lg-2">
         <input class="form-control poppinns" placeholder="Search for  Job Reference ID..." [(ngModel)]="search"
@@ -38,16 +39,17 @@
 
       </div>
       <div class="col-lg-2">
-        <select class="form-control form-select poppinns" id="Role" name="Role" [(ngModel)]="Role" (change)="filterjobdescription($event)">
+        <select class="form-control form-select poppinns" id="Role" name="Role" [(ngModel)]="Role"
+          (change)="filterjobdescription($event)">
           <option value="">Select Job Title</option>
-          <option  *ngFor="let job of jobdescription" value="{{job.role}}">
-            {{job.role}}  
+          <option *ngFor="let job of jobdescription" value="{{job.role}}">
+            {{job.role}}
           </option>
         </select>
       </div>
 
 
-<div class="col-lg-4"></div>
+      <div class="col-lg-4"></div>
 
       <div class="col-lg-1">
         <p class="Count">Count:{{joblist.length}}</p>
@@ -161,17 +163,16 @@
             <input type="date" class="form-control" [(ngModel)]="date" name="date" (change)="GetDate($event)">
           </div>
         </div><br>
-     <br>
-       
+        <br>
+
         <br>
         <div class="row">
           <div class="col-lg-3">
             <label>Time : <span style="color: red;">*</span></label>
           </div>
           <div class="col-lg-6">
-            <select class="form-control" (change)="GetTimeID($event) " 
-            [(ngModel)]="slotTime" name="slotTime" id="slotTime"
-            >
+            <select class="form-control" (change)="GetTimeID($event) " [(ngModel)]="slotTime" name="slotTime"
+              id="slotTime">
               <option value="">Select</option>
               <option *ngFor="let time of slotslist" value="{{time.id}}">{{time.slotTime}}</option>
             </select>

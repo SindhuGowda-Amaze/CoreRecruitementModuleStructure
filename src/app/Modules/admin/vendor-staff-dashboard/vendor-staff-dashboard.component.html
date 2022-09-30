@@ -22,7 +22,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                 <div class="card">
                     <div class="row">
                         <div class="col-lg-1">
-                            <p>Filter By</p>
+                            <img src="assets/Images/filter.svg" class="filter-img">
+                            <p class="filter">Filter By:</p>
                         </div>
                         <div class="col-lg-4">
                             <input class="form-control poppinns" type="search" placeholder="Search" [(ngModel)]="search"
@@ -39,7 +40,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
         <div class="row">
             <div class="col-lg-8"></div>
             <div class="col-lg-4">
-                <a routerLink="/admin/VendorStaffForm"><button class="Addbutton">Add</button> </a>
+                <a routerLink="/admin/VendorStaffForm"><button class="Addbutton"><img src="assets/Images/plus.svg" class="plus-icon"> Add Staff</button> </a>
             </div>
         </div> <br>
         <div class="container-fluid">
@@ -63,8 +64,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                                 <td>{{vendor.phone_Number}}</td>
                                 <td>{{vendor.email_Id}}</td>
                                 <!-- <td><img style="width:40% ; text-align:center;" src="{{vendor.signature}}"> </td> -->
-                                <td><button class="Edit" (click)="edit(vendor.id)">Edit</button> <br> <br>
-                                    <button class="Edit" (click)="Ondelete(vendor.id)">Delete</button><br><br>
+                                <td><button class="edit-btn" (click)="edit(vendor.id)">Edit</button> <br> <br>
+                                    <button class="edit-btn" (click)="Ondelete(vendor.id)">Delete</button><br><br>
                                     <img src="assets/Images/activate.png" style="width:30%"
                                         *ngIf="vendor.enable_Disable==0 || vendor.enable_Disable==null "
                                         (click)="DisableStaff(vendor.id)"> <br />

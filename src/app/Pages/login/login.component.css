@@ -275,4 +275,18 @@
   
   }
   
-  
+  .imgview {
+  margin-left: -35px;
+  margin-top: -15px;
+  pointer-events: none;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.paswordview {
+  margin-left: -35px;
+  margin-top: -15px;
+}

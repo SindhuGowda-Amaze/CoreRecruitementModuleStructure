@@ -21,10 +21,11 @@
         </div>
         <div class="row FilterClass">
           <div class="col-lg-1">
-            <P>Filter By</P>
+            <img src="assets/Images/filter.svg" class="filter-img">
+            <p class="filter">Filter By:</p>
           </div>
           <div class="col-lg-3">
-            <input class="form-control" placeholder="Search" [(ngModel)]="search" >
+            <input class="form-control" placeholder="Search" [(ngModel)]="search">
           </div>
           <div class="col-lg-2">
             <input type="date" style="color:#0C275A;" class="form-control poppinns" name="Date" value="Date"
@@ -38,7 +39,8 @@
 
           </div>
           <div class="col-lg-2">
-            <select class="form-control form-control poppinns" id="Role1" name="Role1" [(ngModel)]="Role1" (change)="GetJobDescription1()">
+            <select class="form-control form-control poppinns" id="Role1" name="Role1" [(ngModel)]="Role1"
+              (change)="GetJobDescription1()">
               <option value="">Select Job Title</option>
               <option value="{{vendor.role}}" *ngFor="let vendor of staffdetails ">
                 {{vendor.role}}
@@ -74,9 +76,8 @@
         </div>
         <div class="row" [hidden]="showorhidecontent" style="overflow: auto;">
           <div class="col-lg-12">
-            <table class="table tablebordered"
-            *ngIf="(joblist | filter: search).length > 0; else noResults">
-            >
+            <table class="table tablebordered" *ngIf="(joblist | filter: search).length > 0; else noResults">
+              >
               <thead>
                 <tr class="head">
                   <!-- <th>Vendor</th> -->
@@ -86,7 +87,7 @@
                   <th>Interview Date</th>
                   <!-- <th>Client Name</th> -->
                   <th>Time</th>
-                  <th  *ngIf="roleid==6">Interviewer</th>
+                  <th *ngIf="roleid==6">Interviewer</th>
                   <th>Candidate Name</th>
                   <th>Phone No</th>
                   <th>Email</th>
@@ -128,24 +129,23 @@
                       <tr>
                         <td>
 
-                          <button class="btn btn-primary Button" (click)="getid(job.id)" data-toggle="modal"
-                            data-target="#exampleModal" >Selected</button><br>
+                          <button class="edit-btn" (click)="getid(job.id)" data-toggle="modal"
+                            data-target="#exampleModal">Selected</button><br>
                         </td>
                         <td>
-                          <button class="btn btn-primary" style="background-color:#dc3545;  border:none"
-                            data-dismiss="modal" data-toggle="modal" data-target="#exampleModal3"
-                            (click)="getId(job.id)">Cancel</button>
+                          <button class="edit-btn" style="color: #dc3545; border:2px solid #dc3545" data-dismiss="modal"
+                            data-toggle="modal" data-target="#exampleModal3" (click)="getId(job.id)">Cancel</button>
                           <!-- <button class="btn btn-primary Button" style="background-color:#dc3545;" (click)="Cancel()">Cancel</button> -->
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <button class="btn btn-primary" style="background-color:#dc3545; border:none"
-                            data-toggle="modal" data-target="#Reject" (click)="getid(job.id)">Rejected</button>
+                          <button class="edit-btn" style="color: #dc3545; border:2px solid #dc3545" data-toggle="modal"
+                            data-target="#Reject" (click)="getid(job.id)">Rejected</button>
 
                         </td>
                         <td>
-                          <button class="btn btn-primary Button" data-toggle="modal" data-target="#Note"
+                          <button class="edit-btn" data-toggle="modal" data-target="#Note"
                             (click)="getNoteID(job.id)">My Notes</button>
 
                         </td>
@@ -169,7 +169,7 @@
             </ng-template>
           </div>
           <!-- <span *ngIf="joblist.length==0">No data found.</span> -->
-        
+
 
         </div>
 
@@ -216,7 +216,7 @@
     </div>
   </div>
 
- 
+
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -253,7 +253,7 @@
           <div class="row">
             <div class="col-lg-5"></div>
             <div class="col-lg-2">
-              <button class="btn btn-primary Button" style=" border:none; margin-left: 10%;" (click)="Acceptcandidate()"
+              <button class="Save" style=" border:none; margin-left: 10%;" (click)="Acceptcandidate()"
                 data-dismiss="modal">Selected</button>
             </div>
             <div class="col-lg-2">
@@ -266,7 +266,7 @@
 
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"(click)="rinterview=''">Close</button>
+            <button type="button" class="Edit" data-dismiss="modal" (click)="rinterview=''">Close</button>
 
 
 
@@ -318,7 +318,7 @@
           </div> <br>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="Edit" data-dismiss="modal">Close</button>
 
         </div>
 
@@ -327,7 +327,7 @@
       </div>
     </div>
   </div>
- 
+
 
 
 
@@ -351,7 +351,8 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12">
-              <textarea class="form-control" placeholder="Notes" id="mynote" name="mynote" [(ngModel)]="mynote" rows="10"></textarea>
+              <textarea class="form-control" placeholder="Notes" id="mynote" name="mynote" [(ngModel)]="mynote"
+                rows="10"></textarea>
               <!-- <select class="form-control" (change)="GetStaffID($event)">
                           <option value="">Select</option>
                           <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
@@ -361,13 +362,13 @@
           <div class="row">
             <div class="col-lg-5"></div>
             <div class="col-lg-2">
-              <button class="btn btn-primary Button" style=" border:none;  margin-left: 10%;" (click)="mynotes()"
+              <button class="Save" style=" border:none;  margin-left: 10%;" (click)="mynotes()"
                 data-dismiss="modal">Save</button>
             </div>
           </div> <br>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="Edit" data-dismiss="modal">Close</button>
 
           </div>
         </div>
@@ -376,7 +377,7 @@
   </div>
 
 
- 
+
 
 
   <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -444,7 +445,7 @@
 
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="Edit" data-dismiss="modal">Close</button>
 
 
 

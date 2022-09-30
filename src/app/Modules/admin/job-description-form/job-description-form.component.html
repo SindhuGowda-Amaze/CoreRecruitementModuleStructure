@@ -60,12 +60,12 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                             <div class="row leavereq">
                                 <div class="col-lg-8"></div>
                                 <div class="col-lg-2">
-                                    <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                                    <button class="Edit" (click)="cancel()">Cancel</button>
                                 </div>
                                 <div class="col-lg-2">
-                                    <button class="form-control Edit" *ngIf="id==null || id==undefined"
+                                    <button class="Save" *ngIf="id==null || id==undefined"
                                         (click)="Save()">Save</button>
-                                    <button class="form-control Edit" *ngIf="id!=null || id!=undefined"
+                                    <button class="Save" *ngIf="id!=null || id!=undefined"
                                         (click)="Update()">Update</button>
                                 </div>
                             </div>

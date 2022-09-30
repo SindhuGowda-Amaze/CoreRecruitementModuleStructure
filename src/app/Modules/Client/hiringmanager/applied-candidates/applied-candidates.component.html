@@ -9,8 +9,9 @@
   </div> <br>
   <div class="card">
     <div class="row FilterClass">
-      <div class="col-lg-1" style="font-size: 15px;">
-        <p>Filter By</p>
+      <div class="col-lg-1">
+        <img src="assets/Images/filter.svg" class="filter-img">
+        <p class="filter">Filter By:</p>
       </div>
       <div class="col-lg-2" *ngIf="roleid!=2 && roleid!=3">
         <select class="form-control form-select poppinns" [(ngModel)]="hiringManager" (change)="GetJobRequirements()">
@@ -39,7 +40,8 @@
       </div>
 
       <div class="col-lg-2">
-        <select class="form-control poppinns form-select " id="Role" name="Role" [(ngModel)]="Role" (change)="getjobdescription($event)">
+        <select class="form-control poppinns form-select " id="Role" name="Role" [(ngModel)]="Role"
+          (change)="getjobdescription($event)">
           <option value="">Select Job Title</option>
           <option *ngFor="let job of jobdescription" value="{{job.role}}">
             {{job.role}}

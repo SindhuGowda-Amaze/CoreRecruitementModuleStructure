@@ -1,4 +1,25 @@
-.image{
-    width:100px;
+.image {
+    width: 100px;
     height: auto;
+}
+
+.getbutton {
+    text-transform: uppercase;
+    font-weight: initial;
+    text-shadow: initial;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 40%;
+    float: right;
+    margin-right: 15px;
+    font-size: 15px;
+    width: 166px;
+    font-weight: bold;
+    background: #3247D5 !important;
+    box-shadow: 1px 1px 17px 1px rgb(50 71 213 / 60%);
+    border-radius: 5px solid #3247D5;
+    border: 5px solid #3247D5;
 }

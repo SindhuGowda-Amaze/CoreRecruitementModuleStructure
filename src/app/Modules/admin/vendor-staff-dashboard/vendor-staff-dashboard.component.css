@@ -106,13 +106,14 @@
   }
   
   .Count {
-    color: #3247d5;
-    font-size: 20px !important;
+    color: #0C275A;
+    font-size: 18px !important;
     font-family: "Poppins";
     font-weight: bold;
     float: right;
-    margin-top: 5px;
+    margin-top: -10px;
     margin-right: -80px;
+    padding-top: 13px;
   }
   
   .button {
