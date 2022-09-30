@@ -137,9 +137,10 @@
                             name="password" />
                         <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
                             name="password" />
-                        <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
+                        <!-- <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
                         margin-left: -224px;
-                        margin-top: 18px;" (click)="Showhidepassword()"></span>
+                        margin-top: 18px;" (click)="Showhidepassword()"></span> -->
+                        <img class="paswordview" (click)="Showhidepassword()" src="assets/Images/view.svg">
 
                         <span class="highlight"></span>
 
