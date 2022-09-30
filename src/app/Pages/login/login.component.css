@@ -99,7 +99,8 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10%;
-  width: 76%;
+  margin-left: 45px;
+  width: 81%;
   align-items: center;
 }
 
@@ -377,4 +378,9 @@ select {
 .paswordview {
   margin-left: -35px;
   margin-top: -15px;
+}
+
+.Save {
+  height: 40px;
+  width: 200px;
 }
