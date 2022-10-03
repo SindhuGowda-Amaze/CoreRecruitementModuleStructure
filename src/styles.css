@@ -394,7 +394,7 @@ tr:nth-child(even) {
   background: #fff;
   border-radius: 8px;
   border: 2px solid #3247D5;
-  border-left: 1px !important;
+  /* border-left: 1px !important; */
 }
 
 .tab-slider--trigger {

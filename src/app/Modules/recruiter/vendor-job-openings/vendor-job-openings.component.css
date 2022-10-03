@@ -41,12 +41,12 @@
 }
 
 .Count {
-    color: #3247D5;
-    font-size: 20px !important;
-
+    color: #0C275A;
+    font-size: 15px !important;
+    font-family: "Poppins";
     font-weight: bold;
     float: right;
-    margin-right: 15px;
+    margin-top: 5px;
 }
 
 .Heading {
@@ -63,6 +63,6 @@
 
 .FilterClass {
     color: #0C275A;
-   /*  margin-left: 5px; */
+    /*  margin-left: 5px; */
     font-size: 15px;
 }
