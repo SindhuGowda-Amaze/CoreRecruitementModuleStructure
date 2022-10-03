@@ -127,7 +127,7 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
-  changeStatus(evn: any) {
+/*   changeStatus(evn: any) {
 
     if (evn.currentTarget.checked) {
       this.showorhidecontent = false;
@@ -136,7 +136,16 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.showorhidecontent = true;
     }
 
+  } */
+  changeStatus(evn: any) {
+    if (evn.target.value == 1) {
+      this.showorhidecontent = true;
+    }
+    else {
+      this.showorhidecontent = false;
+    }
   }
+
 
   // Method to get Company Staff Details//
 
