@@ -1,69 +1,71 @@
 .FilterClass {
-    padding-left: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .HrLine {
-    margin-top: 10px;
-  }
-  
-  
-  .head {
-    background-color: #02CFFF;
-    color: white;
-  }
-  
-  .Heading {
-    font-size: 20px;
-    font-weight: bold;
-    color: #3247d5;
-  }
-  
-  .Count {
-   
-    font-size: 20px !important;
-    font-weight: bold;
-    float: right;
-    margin-right: 10px;
-  }
-  
-  
-  
-  
-  
-  .Button {
-    padding: 7px;
-    border-radius: 5px;
-    border: none;
-    background-color: #3247D5;
-    color: white;
-    width: 100%;
-  }
-  
-  .Add {
-    padding: 7px;
-    border-radius: 5px;
-    border: none;
-    background-color: #3247D5;
-    color: white;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  .Add1 {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #3247D5;
-    color: white;
-    width: 100%;
-    font-size: 16px;
-   
-  }
-  
-  .NoResultShow {
-    font-size: 16px;
-  }
+  padding-left: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+
+.HrLine {
+  margin-top: 10px;
+}
+
+
+.head {
+  background-color: #02CFFF;
+  color: white;
+}
+
+.Heading {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3247d5;
+}
+
+.Count {
+  color: #0C275A;
+  font-size: 15px !important;
+  font-family: "Poppins";
+  font-weight: bold;
+  float: right;
+  margin-top: 5px;
+  margin-right: -80px;
+}
+
+
+
+
+
+.Button {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3247D5;
+  color: white;
+  width: 100%;
+}
+
+.Add {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3247D5;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+}
+
+.Add1 {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3247D5;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+
+}
+
+.NoResultShow {
+  font-size: 16px;
+}

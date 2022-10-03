@@ -14,8 +14,15 @@
         <p class="filter">Filter By:</p>
       </div>
       <div class="col-lg-2">
-        <input class="form-control poppinns" placeholder="Search for  Job Reference ID..." [(ngModel)]="search"
-          (ngModelChange)="Filterjobs()">
+
+
+        <select class="form-control form-select poppinns" id="Role" name="Role" [(ngModel)]="Role"
+          (change)="filterjobdescription($event)">
+          <option value="">Select Job Title</option>
+          <option *ngFor="let job of jobdescription" value="{{job.role}}">
+            {{job.role}}
+          </option>
+        </select>
       </div>
       <div class="col-lg-2">
         <select *ngIf="roleid!=2" class="form-control form-select poppinns" [(ngModel)]="hiringManager"
@@ -35,17 +42,12 @@
             {{job.noticePeriod}}</option>
         </select>
       </div>
-      <div *ngIf="roleid==2">
+      <!--   <div *ngIf="roleid==2">
 
-      </div>
+      </div> -->
       <div class="col-lg-2">
-        <select class="form-control form-select poppinns" id="Role" name="Role" [(ngModel)]="Role"
-          (change)="filterjobdescription($event)">
-          <option value="">Select Job Title</option>
-          <option *ngFor="let job of jobdescription" value="{{job.role}}">
-            {{job.role}}
-          </option>
-        </select>
+        <input class="form-control poppinns" placeholder="Search for  Job Reference ID..." [(ngModel)]="search"
+          (ngModelChange)="Filterjobs()">
       </div>
 
 
@@ -97,8 +99,7 @@
               <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)">
             </td>
             <td *ngIf="roleid!='4' && roleid=='6'">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                (click)="GetCandidateID(job.id)">
+              <button class="edit-btn" data-toggle="modal" data-target="#exampleModal" (click)="GetCandidateID(job.id)">
                 Schedule Interview
               </button>
 

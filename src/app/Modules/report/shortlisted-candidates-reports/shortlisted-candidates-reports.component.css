@@ -1,36 +1,38 @@
-.export{
+.export {
     border-radius: 10px;
     background-color: #3247D5;
     height: 35px;
     color: #fff;
     width: 100%;
-   border-radius: 5px;
+    border-radius: 5px;
     margin-top: 2%;
 }
 
 
 
-.hrline{
-   margin-top: 0px;
+.hrline {
+    margin-top: 0px;
 }
-.Count{
 
-    font-size: 20px !important;
-  
+.Count {
+    color: #0C275A;
+    font-size: 15px !important;
+    font-family: "Poppins";
     font-weight: bold;
     float: right;
-    padding-right: 10px;;
+    margin-top: 5px;
+
 }
 
 
-.head{
+.head {
     background-color: #02CFFF;
-    color:white;
+    color: white;
 
 }
 
-.filterclass{
+.filterclass {
     font-size: 15px;
-    margin-left: 15px;
-    color:#0C275A
+    /*   margin-left: 15px; */
+    color: #0C275A
 }

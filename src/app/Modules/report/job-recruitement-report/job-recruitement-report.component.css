@@ -1,17 +1,18 @@
-.export{
+.export {
     border-radius: 10px;
     background-color: #3247D5;
- 
+
     color: #fff;
     width: 100%;
-   border-radius: 5px;
-   
+    border-radius: 5px;
+
 }
 
 
-.hrline{
-   margin-top: 0px;
+.hrline {
+    margin-top: 0px;
 }
+
 .Button {
     padding: 7px;
     border-radius: 5px;
@@ -19,21 +20,22 @@
     background-color: #3247D5;
     color: white;
     width: 100%;
-  }
-
-.head{
-    background-color:#02CFFF ;
-    color:white;
 }
 
-.Count{
-  
-    font-size: 20px !important;
+.head {
+    background-color: #02CFFF;
+    color: white;
+}
 
+.Count {
+    color: #0C275A;
+    font-size: 15px !important;
+    font-family: "Poppins";
     font-weight: bold;
     float: right;
-    padding-right: 10px;;
-  }
+    margin-top: 5px;
+    margin-right: -10px;
+}
 
 /* .heading{
     background-color: #e4e5e6;
@@ -45,8 +47,8 @@
     width: 100%;
 } */
 
-.filterclass{
+.filterclass {
     font-size: 15px;
-  
-    color:#0C275A;
+
+    color: #0C275A;
 }

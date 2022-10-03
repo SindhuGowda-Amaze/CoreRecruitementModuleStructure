@@ -41,11 +41,13 @@
   color:#0C275A;
   }
   .Count{
-  
-    font-size: 20px !important;
-  
+    color: #0C275A;
+    font-size: 15px !important;
+    font-family: "Poppins";
     font-weight: bold;
     float: right;
+    margin-top: 5px;
+    margin-right: -45px;
    
   }
   

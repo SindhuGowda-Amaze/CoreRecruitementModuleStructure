@@ -17,8 +17,8 @@
             <div class="card">
                 <div class="row">
                     <div class="col-lg-1"></div>
-                    <div class="col-lg-2" style="margin-left: 17px;">Start Date</div>
-                    <div class="col-lg-2" style="margin-left: 17px;">End Date</div>
+                    <div class="col-lg-2" style="margin-left: 17px;"></div>
+                    <div class="col-lg-2" style="margin-left: 17px;"></div>
 
 
                 </div>
@@ -62,10 +62,6 @@
                     <!-- </select>
                     </div> -->
                     <div class="col-lg-2">
-                        <input class="form-control poppinns" placeholder="Search..." [(ngModel)]="search"
-                            (ngModelChange)="Filterjobs()" name="search">
-                    </div>
-                    <div class="col-lg-2">
                         <select class="form-control poppinns" id="Role" name="Role" [(ngModel)]="Role"
                             (change)="getjobdescription($event)">
                             <option value="">Select Job Title</option>
@@ -73,6 +69,11 @@
                                 {{vendor.role}}
                             </option>
                         </select>
+                    </div>
+                    <div class="col-lg-2">
+
+                        <input class="form-control poppinns" placeholder="Search..." [(ngModel)]="search"
+                            (ngModelChange)="Filterjobs()" name="search">
                     </div>
 
 
@@ -133,7 +134,7 @@
                                     data-target="#ScheduleInterview2" (click)="GetId(job.id)">UnPost</button></td>
 
                             <td *ngIf="roleid==11|| roleid==10"> <button class="edit-btn"
-                                    (click)="ApproveId(job.id)">Approve</button><br>
+                                    (click)="ApproveId(job.id)">Approve</button><br><br>
                                 <button class="edit-btn" (click)="Reject(job.id)">Reject</button>
                             </td>
                             <!-- <td>Monster</td> -->

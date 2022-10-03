@@ -39,97 +39,113 @@
     border-radius: 5px;
   } */
 
-  
-  .Job{
-    color:gray;
-    padding-left: 10px;
-    font-size: 18px;
-    padding-top: 20px;
-    font-weight: 400;
-  }
-  .search{
-    margin-left: 10px;
-  }
-  
-  .newFont{
-   
-    color:black;
-    width:100%;
-    vertical-align: middle;
-  }
-  
-  /* .th{
+
+.Job {
+  color: gray;
+  padding-left: 10px;
+  font-size: 18px;
+  padding-top: 20px;
+  font-weight: 400;
+}
+
+.search {
+  margin-left: 10px;
+}
+
+.newFont {
+
+  color: black;
+  width: 100%;
+  vertical-align: middle;
+}
+
+/* .th{
     background-color: #e4e5e6;
     color:#404040;
     font-family: "DIN Bold";
   /* } */
-  /* .table, th, td {
+/* .table, th, td {
   border: 1px solid lightgray;
    border-collapse: collapse; 
-  } */ 
-  .Heading{
+  } */
+.Heading {
   padding-left: 5px;
   font-size: 20px;
-  color:#3247D5;
-  }
-  .head{
-  background-color:#02CFFF;
-  color:white;
-  
-  }
-  .FilterClass{
+  color: #3247D5;
+}
+
+.head {
+  background-color: #02CFFF;
+  color: white;
+
+}
+
+.FilterClass {
   padding-left: 15px;
   font-size: 15px;
   color: #0C275A;
-  }
-  .Count{
-  
-    font-size: 20px !important;
-  
-    font-weight: bold;
-    float: right;
-    margin-right: 10px;
-  }
-  .button{
-    padding:5px;
-    border-radius: 5px;
-    color:white;
-    background-color: #007bff;
-    border:none;
-    width:100%;
-  }
-  .Save{
-    padding:5px;
-    border-radius: 5px;
-    border:none;
-    background-color:#007bff ;
-    float:right;
-    color:white;
-    width:100%;
-    font-size: 16px;
-  }
-  .Button{
-    background-color: #6c757d;
-    color:white;
-    border-radius: 5px;
-    border:#e4e5e6;
-    width:100%;
-    padding: 5px;
-  }
-  .Text{
-    font-size: 18px;
-  }
-  .pdf{
-    width: 25%;
-    height: auto;
-  
-  }
-  .card{
-    width:100%;
-    background: #FFFFFF;
-    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-  }
-  .new{
-    color:#0C275A;
-  }
+}
+
+.Count {
+  color: #0C275A;
+  font-size: 15px !important;
+  font-family: "Poppins";
+  font-weight: bold;
+  float: right;
+  margin-top: 5px;
+  margin-right: -80px;
+}
+
+.button {
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  width: 100%;
+}
+
+.Save {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  float: right;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+}
+
+.Button {
+  background-color: #6c757d;
+  color: white;
+  border-radius: 5px;
+  border: #e4e5e6;
+  width: 100%;
+  padding: 5px;
+}
+
+.Text {
+  font-size: 18px;
+}
+
+.pdf {
+  width: 25%;
+  height: auto;
+
+}
+
+.card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.new {
+  color: #0C275A;
+}
+
+.edit-btn {
+  width: 150px;
+}
