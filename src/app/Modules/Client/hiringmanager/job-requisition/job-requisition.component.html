@@ -9,10 +9,18 @@
           <div class="col-lg-2">
             <p class="job"></p>
           </div>
+
+
         </div>
         <br>
-        <div class="card">
-          <div class="row">
+        <label class="switch">
+          <input type="checkbox" checked (change)="changeStatus($event)">
+          <span class="slider round"></span>
+        </label>
+        <br>
+
+        <div class="card" [hidden]="showorhidecontent">
+          <div class="row" >
             <div class="col-lg-3">
               <p class="text"> Job Order No.<span style="color: red;">*</span></p>
             </div>
@@ -87,13 +95,6 @@
             <div class="col-lg-3">
               <p class="text">Level <span style="color: red;">*</span></p>
             </div>
-
-
-
-
-
-
-           
             <!-- <div class="col-lg-3">
               <p class="text"> Hiring Manager <span style="color: red;">*</span></p>
             </div> -->
@@ -192,6 +193,200 @@
             <div class="col-lg-3">
               <button class="form-control Addbutton" (click)="Cancel()">Cancel</button>
               <button (click)="insertdetails()" class="form-control Addbutton">Save</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card" [hidden]="!showorhidecontent">
+          <div class="row">
+            <div class="col-lg-3">
+              <p class="text"> Job Order No.<span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="text"> Department <span style="color: red;">*</span></p>
+            </div>
+            <!-- <div class="col-lg-3">
+              <p class="text"> Approved Count <span style="color: red;">*</span></p>
+            </div> -->
+  
+  
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <input class="form-control" type="text" placeholder="Job order No.">
+              <!-- <select class="form-control" id="jobno" name="jobno" [(ngModel)]="jobno" (change)="Getjobno($event)">
+                <option value="">Select Job Order No.</option>
+                <option value="{{holiday.id}}" *ngFor="let holiday of awardlist1">
+                  {{holiday.joborder}}
+                </option>
+              </select> -->
+            </div>
+            <div class="col-lg-3">
+              <!-- <input class="form-control" placeholder="Department" id="Department" name="Department" disabled=""
+                [(ngModel)]="Department"> -->
+                <input class="form-control" type="text" placeholder="Department">
+            </div>
+            <!-- <div class="col-lg-3">
+              <input class="form-control" placeholder="noofpositions ">
+
+              <input class="form-control" placeholder=" No of Positions" [(ngModel)]="noofpositions" disabled="">
+            </div> -->
+  
+  
+          </div> <br>
+  
+          <div class="row">
+            <div class="col-lg-3">
+              <p class="text"> Job Role<span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-6">
+              <p class="text"> Skill / Technology <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="text"> Total Years of Experience <span style="color: red;">*</span></p>
+            </div>
+  
+  
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <!-- <input class="form-control" placeholder=" Job Title" [(ngModel)]="jobtitile" disabled> -->
+              <input class="form-control" type="text" placeholder="jobtitile">
+
+            </div>
+            <div class="col-lg-6">
+              <textarea class="form-control" placeholder="Skill / Technology" [(ngModel)]="skills" rows="6"></textarea>
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" placeholder="Total Years of Experience" [(ngModel)]="yearsofexp">
+            </div>
+  
+  
+          </div> <br>
+          <div class="row">
+            <div class="col-lg-3">
+              <p class="text"> Years of Relavant Experience <span style="color: red;">*</span></p>
+            </div>
+            <!-- <div class="col-lg-3">
+              <p class="text">No of Positions <span style="color: red;">*</span></p>
+            </div> -->
+            <!-- <div class="col-lg-3">
+              <p class="text"> Company Name </p>
+            </div> -->
+            <div class="col-lg-3">
+              <p class="text"> Maximun CTC Budget <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="text">Level <span style="color: red;">*</span></p>
+            </div>
+
+
+
+
+
+
+           
+            <!-- <div class="col-lg-3">
+              <p class="text"> Hiring Manager <span style="color: red;">*</span></p>
+            </div> -->
+  
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <input class="form-control" placeholder="Years of Relavant Experience" [(ngModel)]="yearsofrelavantexp">
+            </div>
+            <!-- <div class="col-lg-3">
+              <input class="form-control" placeholder=" No of Positions" [(ngModel)]="noofpositions">
+            </div> -->
+            <!-- <div class="col-lg-3">
+              <textarea class="form-control" placeholder=" Company Name " [(ngModel)]="companyname"></textarea>
+            </div> -->
+            <div class="col-lg-3">
+              <input class="form-control" placeholder=" Maximun CTC Budget" [(ngModel)]="package">
+            </div>
+
+
+            <div class="col-lg-3">
+              <select name="Short" id="Short" class="form-control" [(ngModel)]="Short" (change)="Level()" >
+                <option value="">level</option>
+                <option value="{{level.id}}" *ngFor="let level of levelmaster">
+                  {{level.short}}
+                  
+                </option>
+                
+  
+              </select>
+            </div>
+            <!-- <div class="col-lg-3">
+              <select class="form-control" (change)="GetHrName($event)">
+                <option value="">Select</option>
+                <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+              </select>
+            </div> -->
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-6">
+              <p class="text">Job Description <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="text"> Job Location <span style="color: red;">*</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="text">Other Required Conditions </p>
+            </div>
+            <!-- <div class="col-lg-3">
+              <p class="text"> Resource Manager </p>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- <textarea class="form-control" placeholder="Job Description" [(ngModel)]="jobdescription" disabled
+                rows="6"></textarea> -->
+                <textarea class="form-control" placeholder="Job Description" 
+                rows="6"></textarea>
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" placeholder=" Job Location" [(ngModel)]="joblocation">
+            </div>
+            <div class="col-lg-3">
+  
+              <!-- <input class="form-control" placeholder="Other Required Condition" [(ngModel)]="otherreqconditions"> -->
+              <textarea class="form-control" placeholder="Other Required Condition" [(ngModel)]="otherreqconditions" rows="6"></textarea>
+            </div>
+            <!-- <div class="col-lg-3">
+              <input class="form-control" placeholder=" Resource Manager" [(ngModel)]="resourcemanager">
+            </div> -->
+          </div> <br>
+  
+          <!-- <div class="row">
+            <div class="col-lg-3">
+              <p class="text">Status<span style="color: red;">*</span></p>
+            </div>
+          </div> -->
+  
+          <!-- <div class="row">
+  
+            <div class="col-lg-2">
+              <select class="form-control">
+                <option value="">Select</option>
+                <option value="">Request Raised</option>
+                <option value="">Resume Submitted</option>
+                <option value="">Candidate Shortlisted</option>
+                <option value="">Candidate Interviewed</option>
+                <option value="">Candidate Offered</option>
+                <option value="">Joined and Closed</option>
+              </select>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-lg-9">
+  
+            </div>
+            <div class="col-lg-3">
+              <button class="form-control Addbutton" (click)="Cancel()">Cancel</button>
+              <button (click)="insertjobrequisition()" class="form-control Addbutton">Save</button>
             </div>
           </div>
         </div>

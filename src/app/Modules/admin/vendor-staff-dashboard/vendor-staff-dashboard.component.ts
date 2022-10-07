@@ -94,7 +94,7 @@ export class VendorStaffDashboardComponent implements OnInit {
           next: data => {
             debugger
             this.GetVendor_Staff();
-            Swal.fire('Deleted');
+            Swal.fire('Deleted Successfully');
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');
             // Insert error in Db Here//

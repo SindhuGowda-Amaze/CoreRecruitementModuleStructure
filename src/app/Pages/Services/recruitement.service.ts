@@ -8,10 +8,10 @@ export class RecruitementService {
 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
-  //  host = "http://103.133.214.197/CoreDigiRecuritmentAPI";
-  // host="http://localhost:1807/"
+  host = "https://103.12.1.103/CoreDigiRecruitmentAPI";
+  // host="http://localhost:1807//"
 
-  host = "http://23.101.22.93/CoreDigiRecruitementAPI";
+  // host = "http://23.101.22.93/CoreDigiRecruitementAPI";
   public host1 = "https://asticom.digiofficeapp.com/SupportAPI";
 
   private url: string = "";
@@ -136,7 +136,12 @@ export class RecruitementService {
     this.url = this.host + "/Vendor/InsertJob_Requirements";
     return this.http.post(this.url, data);
   }
-
+  public Authenicate(data: any) {
+    debugger;
+    // this.url = this.host + "/Master/Verifyotp";
+    this.url = this.host + '/Announcement/Authenicate';
+    return this.http.post(this.url, data);
+  }
   public UpdateVendor(data: any) {
     debugger
     this.url = this.host + "/User/UpdateVendorforjob";

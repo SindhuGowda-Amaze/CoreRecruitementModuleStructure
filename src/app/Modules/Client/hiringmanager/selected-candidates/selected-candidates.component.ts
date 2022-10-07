@@ -525,7 +525,7 @@ export class SelectedCandidatesComponent implements OnInit {
         this.RecruitmentServiceService.UpdateCanditateBudgetStatus(entity).subscribe({
           next: data => {
             debugger
-            Swal.fire('Approved Successfully')
+            Swal.fire('Rejected Successfully')
             location.reload();
           }, error: (err: { error: { message: any; }; }) => {
             Swal.fire('Issue in Getting Expenses List Web');
