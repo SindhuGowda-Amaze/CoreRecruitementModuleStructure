@@ -19,9 +19,22 @@
       </label>
       <br>
 
-      <div class="card" [hidden]="showorhidecontent">
-        
-      <div class="row">
+      <div class="card" [hidden]="showorhidecontent" >
+        <div class="row"  >
+          <div class="col-lg-3">
+            <p class="text"> Job Order No.<span style="color: red;">*</span></p>
+          </div>
+          <div class="col-lg-3">
+            <p class="text"> Department <span style="color: red;">*</span></p>
+          </div>
+          <!-- <div class="col-lg-3">
+              <p class="text"> Approved Count <span style="color: red;">*</span></p>
+            </div> -->
+
+
+        </div>
+         
+      <div class="row" >
         <div class="col-lg-3">
           <select class="form-control" id="jobno" name="jobno" [(ngModel)]="jobno" (change)="Getjobno($event)">
             <option value="">Select Job Order No.</option>
@@ -188,8 +201,8 @@
     </div>
 
 
-      <div class="card" [hidden]="!showorhidecontent">
-        <div class="row">
+      <div class="card" >
+        <div class="row"  [hidden]="!showorhidecontent">
           <div class="col-lg-3">
             <p class="text"> Job Order No.<span style="color: red;">*</span></p>
           </div>
