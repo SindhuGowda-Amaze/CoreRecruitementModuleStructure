@@ -242,7 +242,7 @@ export class JobRequisitionComponent implements OnInit {
 
   public insertjobrequisition() {
     debugger;
-    if (this.Role == null || this.Role == undefined || this.Role == 0 ||
+    if (this.jobtitile == null || this.jobtitile == undefined || this.jobtitile == 0 ||
       this.skills == null || this.skills == undefined || this.skills == 0 ||
       this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
       this.yearsofrelavantexp == null || this.yearsofrelavantexp == undefined || this.yearsofrelavantexp == 0 ||

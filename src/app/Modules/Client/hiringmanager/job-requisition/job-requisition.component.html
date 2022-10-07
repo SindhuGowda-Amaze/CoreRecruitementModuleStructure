@@ -20,28 +20,7 @@
       <br>
 
       <div class="card" [hidden]="showorhidecontent">
-        <div class="row">
-          <div class="col-lg-3">
-            <p class="text"> Job Order No.<span style="color: red;">*</span></p>
-          </div>
-          <div class="col-lg-3">
-            <p class="text"> Department <span style="color: red;">*</span></p>
-          </div>
-          <div class="col-lg-3">
-            <p class="text"> Approved Count <span style="color: red;">*</span></p>
-          </div>
-
-
-        </div>
-        <div class="col-lg-3">
-          <p class="text"> Department <span style="color: red;">*</span></p>
-        </div>
-        <div class="col-lg-3">
-          <p class="text"> Approved Count <span style="color: red;">*</span></p>
-        </div>
-
-
-      </div>
+        
       <div class="row">
         <div class="col-lg-3">
           <select class="form-control" id="jobno" name="jobno" [(ngModel)]="jobno" (change)="Getjobno($event)">
@@ -143,7 +122,7 @@
             </div> -->
       </div>
       <br>
-      <div class="row">
+      <div class="row" >
         <div class="col-lg-6">
           <p class="text">Job Description <span style="color: red;">*</span></p>
         </div>
@@ -206,6 +185,7 @@
         </div>
         <div class="col-lg-2"> <button (click)="insertdetails()" class="Save">Save</button></div>
       </div>
+    </div>
 
 
       <div class="card" [hidden]="!showorhidecontent">
@@ -262,7 +242,7 @@
         <div class="row">
           <div class="col-lg-3">
             <!-- <input class="form-control" placeholder=" Job Title" [(ngModel)]="jobtitile" disabled> -->
-            <input class="form-control" type="text" placeholder="jobtitile">
+            <input class="form-control" type="text" placeholder="jobtitile"  [(ngModel)]="jobtitile">
 
           </div>
           <div class="col-lg-6">
@@ -391,18 +371,22 @@
             </div>
           </div> -->
         <div class="row">
-          <div class="col-lg-9">
-
-          </div>
-          <div class="col-lg-3">
-            <button class="form-control Addbutton" (click)="Cancel()">Cancel</button>
-            <button (click)="insertjobrequisition()" class="form-control Addbutton">Save</button>
-          </div>
+         
+            <div class="col-lg-8">
+    
+            </div>
+            <div class="col-lg-2">
+              <button class="Edit" (click)="Cancel()">Cancel</button>
+    
+            </div>
+            <div class="col-lg-2"> <button (click)="insertjobrequisition()" class="Save">Save</button></div>
+        
         </div>
       </div>
 
 
     </div>
+
 
 
  
