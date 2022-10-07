@@ -13,7 +13,7 @@
         <img src="assets/Images/filter.svg" class="filter-img">
         <p class="filter">Filter By:</p>
       </div>
-      <div class="col-lg-2">
+    <!-- SelectedCandidates
 
 
         <select class="form-control form-select poppinns" id="Role" name="Role" [(ngModel)]="Role"
@@ -23,7 +23,7 @@
             {{job.role}}
           </option>
         </select>
-      </div>
+      </div> -->
       <div class="col-lg-2">
         <select *ngIf="roleid!=2" class="form-control form-select poppinns" [(ngModel)]="hiringManager"
           (change)="filterbyHirirngManager()">
@@ -78,6 +78,8 @@
             <th>City</th>
             <th>Notes</th>
             <th>Resume</th>
+            <th>Applied Date</th>
+            <th>Short listed Date</th>
             <th *ngIf="roleid!='4' && roleid=='6'">Actions</th>
           </tr>
           <tr *ngFor="let job of joblist |paginate: { itemsPerPage: count1, currentPage: p }">
@@ -98,8 +100,10 @@
             <td>
               <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)">
             </td>
+            <td>{{job.date}}</td>
+            <td>{{job.date}}</td>
             <td *ngIf="roleid!='4' && roleid=='6'">
-              <button class="edit-btn" data-toggle="modal" data-target="#exampleModal" (click)="GetCandidateID(job.id)">
+              <button class="edit-btn" data-toggle="modal" data-target="#exampleModal" (click)="GetCandidateID(job)">
                 Schedule Interview
               </button>
 
@@ -143,7 +147,7 @@
             <label>Staff : <span style="color: red;">*</span></label>
           </div>
           <div class="col-lg-6">
-            <select class="form-control" (change)="GetStaffID($event)">
+            <select class="form-control" (change)="GetStaffID($event)" >
               <option value="">Select</option>
               <option *ngFor="let staff of stafflist" value="{{staff.id}}">{{staff.name}}</option>
             </select>

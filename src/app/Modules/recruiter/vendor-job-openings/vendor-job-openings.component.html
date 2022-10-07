@@ -72,7 +72,7 @@
             </div>
             <!-- <div class="col-lg-3" *ngIf="roleid==3"></div> -->
             <div class="col-lg-1">
-                <p class="Count Heading">Count:{{count}}</p>
+                <p class="Count">Count:{{count}}</p>
             </div>
         </div>
     </div>
@@ -123,7 +123,11 @@
                     <button *ngIf="roleid==6" class="edit-btn" data-toggle="modal" (click)="GetId1(job.id)"
                         data-target="#Assign" style="
                         width: 120px;
-                    ">Assign Vendor</button>
+                    ">Assign Vendor</button><br><br>
+                    <button *ngIf="roleid==6" class="edit-btn" data-toggle="modal" (click)="GetId1(job.id)"
+                        data-target="#Assign" style="
+                    width: 120px;
+                ">Generate Link</button>
                     <!-- <button  class="Add1 form-control " data-toggle="modal"
                             (click)="GetId1(job.id)" data-target="#Assign">Assign Vendor</button> -->
                 </td>
@@ -243,19 +247,20 @@
                     </div>
                 </div> <br>
                 <div class="row">
-                    <div class="col-lg-5"></div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-3"> <button class="Edit" data-dismiss="modal" (click)="close1()">Close</button>
+                    </div>
+                    <div class="col-lg-3">
                         <button class="form-control Save" (click)="UpdateVendor()">Assign</button>
                     </div>
 
                 </div>
             </div>
-            <div class="modal-footer">
-                
+            <!--  <div class="modal-footer">
                 <div class="col-lg-4">
                     <button class="Edit" data-dismiss="modal" (click)="close1()">Close</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

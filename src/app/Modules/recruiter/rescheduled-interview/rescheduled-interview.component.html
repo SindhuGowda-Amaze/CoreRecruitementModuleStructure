@@ -146,7 +146,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
               <p *ngIf="job.budgetStatus!=null">{{job.budgetStatus}}</p>
             </td>
             <td *ngIf="roleid!='4' && roleid=='6'">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+              <button class="edit-btn" data-toggle="modal" data-target="#exampleModal"
                 (click)="GetCandidateID(job.id)">
                 Reschedule Interview
               </button>

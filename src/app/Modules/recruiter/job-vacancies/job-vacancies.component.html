@@ -193,7 +193,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                             <label>Resume : </label>
                         </div>
                         <div class="col-lg-5">
-                            <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                            <ngx-dropzone (change)="onSelect($event)" class="attachment">
+                                <img src="assets/Images/upload.png" *ngIf="files.length==0" class="img-set dropdowning">
                                 <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
                                     (removed)="onRemove(f)">
@@ -205,8 +206,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-2">
-                            <button type="button" class="Addbutton" 
-                                (click)="insertdetails()" data-dismiss="modal">Upload</button>
+                            <button type="button" class="Addbutton" (click)="insertdetails()"
+                                data-dismiss="modal">Upload</button>
                         </div>
                         <div class="col-lg-5"></div>
                     </div><br>
@@ -214,8 +215,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="Edit" data-dismiss="modal"
-                    (click)="Cancle()">Close</button>
+                <button type="button" class="Edit" data-dismiss="modal" (click)="Cancle()">Close</button>
                 <!-- <button type="button" class="btn btn-primary">Save changes</button>  -->
             </div>
         </div>
