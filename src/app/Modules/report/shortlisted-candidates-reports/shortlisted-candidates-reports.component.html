@@ -6,11 +6,12 @@
             <p class="Heading">SHORTLISTED CANDIDATES REPORTS</p>
         </div>
     </div>
-    <BR>
+
     <div class="card">
         <div class="row filterclass">
             <div class="col-lg-1">
-                <p>Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-2">
                 <select *ngIf="roleid!=2" class="form-control form-select poppinns" [(ngModel)]="hiringManager"
@@ -32,10 +33,10 @@
             </div>
 
             <div class="col-lg-2">
-                <button class=" form-control export" (click)="refresh()">Refresh</button>
+                <button class="Addbutton" (click)="refresh()">Refresh</button>
             </div>
             <div class="col-lg-2">
-                <button class=" form-control export" (click)="exportexcel()">Export to Excel</button>
+                <button class="Addbutton" (click)="exportexcel()">Export to Excel</button>
             </div>
 
             <div class="col-lg-2">

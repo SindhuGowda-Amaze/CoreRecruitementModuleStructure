@@ -70,7 +70,7 @@ body {
   font-size: 16px;
 }
 
-.Edit {
+/* .Edit {
   text-transform: uppercase;
   font-weight: initial;
   text-shadow: initial;
@@ -84,7 +84,7 @@ body {
   font-size: 12px;
   font-weight: bold;
 }
-
+ */
 .card {
   background: #ffffff;
   box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);

@@ -9,8 +9,9 @@
   </div> <br>
   <div class="card">
     <div class="row FilterClass">
-      <div class="col-lg-1" style="font-size: 15px;">
-        <p>Filter By</p>
+      <div class="col-lg-1">
+        <img src="assets/Images/filter.svg" class="filter-img">
+        <p class="filter">Filter By:</p>
       </div>
       <div class="col-lg-2" *ngIf="roleid!=2 && roleid!=3">
         <select class="form-control form-select poppinns" [(ngModel)]="hiringManager" (change)="GetJobRequirements()">
@@ -26,25 +27,27 @@
         </select>
       </div>
 
-      <div class="col-lg-2">
+      <!--    <div class="col-lg-2">
         <select name="Select" class="form-control poppinns form-select" (change)="filter()"
           [(ngModel)]="searchbynotice">
           <option value="">Select Notice Period</option>
           <option *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">{{job.noticePeriod}}</option>
         </select>
       </div>
-
-      <div class="col-lg-2">
-        <input class="form-control poppinns" placeholder="Search for Candidate Name..." [(ngModel)]="search">
-      </div>
-
-      <div class="col-lg-2">
-        <select class="form-control poppinns form-select " id="Role" name="Role" [(ngModel)]="Role" (change)="getjobdescription($event)">
+ -->
+      <!-- <div class="col-lg-2">
+        <select class="form-control poppinns form-select " id="Role" name="Role" [(ngModel)]="Role"
+          (change)="getjobdescription($event)">
           <option value="">Select Job Title</option>
           <option *ngFor="let job of jobdescription" value="{{job.role}}">
             {{job.role}}
           </option>
         </select>
+      </div> -->
+
+      <div class="col-lg-2">
+
+        <input class="form-control poppinns" placeholder="Search for Candidate Name..." [(ngModel)]="search">
       </div>
 
       <div class="col-lg-2">
@@ -62,7 +65,7 @@
           <tr>
             <!-- <th>Vendor</th> -->
             <th>Job Reference ID</th>
-            <th *ngIf=" roleid!='6' ">Source</th>
+            <th>Source</th>
             <th>Job Title</th>
             <th>Candidate Name</th>
             <th>Phone No</th>
@@ -77,11 +80,14 @@
             <th>Resume</th>
             <th>Comments</th>
             <th *ngIf="roleid=='2' && roleid!='6'">Actions</th>
+
+            <th>Applied Date </th>
+
           </tr>
           <tr
             *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }|filter:search|filter:searchbyctc">
             <td style="color:#0C275A">{{job.jobRefernceID}}</td>
-            <td *ngIf=" roleid!='6' ">{{job.source}}</td>
+            <td>{{job.source}}</td>
             <td style="color:#0C275A">{{job.jobTitle}}</td>
             <td style="color:#0C275A">{{job.candidateName}}</td>
             <td style="color:#0C275A">{{job.phoneNo}}</td>
@@ -110,6 +116,9 @@
               <img src="assets/Images/can.png" *ngIf="job.accept=='0'&&job.reject=='0' " tilte="Reject"
                 style="width:20px;" (click)="Reject(job.id,job.shortlistionNotes)" />
             </td>
+           <!--  <td>{{job.source}} </td> -->
+            <td>{{job.modifiedDate}}</td>
+
           </tr>
         </thead>
       </table>

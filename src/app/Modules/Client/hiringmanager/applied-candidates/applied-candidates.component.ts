@@ -21,7 +21,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppliedCandidatesComponent implements OnInit {
 
-    
+
   //Variable Declerations//
 
   err: any;
@@ -50,14 +50,14 @@ export class AppliedCandidatesComponent implements OnInit {
   staffdetails: any;
   jobdescription: any;
   jobdescriptionID: any;
-  recruiter:any;
+  recruiter: any;
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
- 
+
 
   ngOnInit(): void {
 
-       //Variable Initialisation and Default Method Calls//
+    //Variable Initialisation and Default Method Calls//
 
     this.GetJobDescription();
     this.Role = '';
@@ -74,7 +74,7 @@ export class AppliedCandidatesComponent implements OnInit {
     this.GetCandidateReg();
   }
 
-   // Methods to Serach the  Candidate Registration Details//
+  // Methods to Serach the  Candidate Registration Details//
   public GetCandidateReg() {
     if (this.roleid == '3') {
       debugger;
@@ -163,32 +163,32 @@ export class AppliedCandidatesComponent implements OnInit {
           );
           this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
           this.count = this.joblist.length;
-
-          },error: (err: { error: { message: any } }) => {
-            Swal.fire(' Issue in Getting Candidate Registration');
-            // Insert error in Db Here//
-            var obj = {
-              PageName: this.currentUrl,
-              ErrorMessage: err.error.message,
-            };
-            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-              (data) => {
-                debugger;
-              }
-            );
+          console.log("GET JOB", this.joblist);
+        }, error: (err: { error: { message: any } }) => {
+          Swal.fire(' Issue in Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
         },
       });
     }
 
   }
-// Method Serach the  RecruiterStaff Details//
+  // Method Serach the  RecruiterStaff Details//
 
   public GetRecruiterStaff() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: (data) => {
         debugger;
         this.hrlist = data.filter(x => x.role == "Hiring Manager");
-        this.recruiter=data.filter(x=>x.role=="Recruiter")
+        this.recruiter = data.filter(x => x.role == "Recruiter")
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire(' Issue in Getting Recruiter Staff');
@@ -237,8 +237,8 @@ export class AppliedCandidatesComponent implements OnInit {
             );
             var sub = 'Hiring Manager Shortlisted Candidates'
             var email = 'sindhugowda.amazeinc@gmail.com'
-            var desc = 
-            'Hello Recruiter,I hope you are doing great!<br>We are Happy to inform you that Your Resumes have been shortlisted.Please Login to Recruitment portal for futher Info and will update the further information soon! Please let me know if you have any query!'
+            var desc =
+              'Hello Recruiter,I hope you are doing great!<br>We are Happy to inform you that Your Resumes have been shortlisted.Please Login to Recruitment portal for futher Info and will update the further information soon! Please let me know if you have any query!'
             'Thank You!'
             this.SendJobMail(sub, desc, email);
             this.InsertNotificationRecruiter();
@@ -265,9 +265,9 @@ export class AppliedCandidatesComponent implements OnInit {
         );
       },
     });
-  
+
   }
-//Method to Get Offerletter//
+  //Method to Get Offerletter//
   public GetOfferLetter(offer: any) {
     window.open(offer, '_blank');
   }
@@ -318,7 +318,7 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
-// Method to Displaying the candidate Notice period//
+  // Method to Displaying the candidate Notice period//
 
   public filter() {
     debugger;
@@ -331,7 +331,7 @@ export class AppliedCandidatesComponent implements OnInit {
             x.reject == 0 &&
             x.noticePeriod == this.searchbynotice
         );
-        }, error: (err: { error: { message: any } }) => {
+      }, error: (err: { error: { message: any } }) => {
         Swal.fire('Getting Candidate Registration');
         // Insert error in Db Here//
         var obj = {
@@ -347,7 +347,7 @@ export class AppliedCandidatesComponent implements OnInit {
     });
   }
 
-//Method to Displaying CTC for Candidate//
+  //Method to Displaying CTC for Candidate//
 
   public changectc() {
     debugger;
@@ -364,7 +364,7 @@ export class AppliedCandidatesComponent implements OnInit {
           PageName: this.currentUrl,
           ErrorMessage: this.err.error.message,
         };
-     
+
         this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
           (data) => {
             debugger;
@@ -386,6 +386,7 @@ export class AppliedCandidatesComponent implements OnInit {
             x.reject == 0 &&
             x.hiringManager == this.hiringManager
         );
+      
         // this.joblist = data.filter(x => x.accept == 0 && x.reject == 0 && x.hiringManager == this.hiringManager);
         this.count = this.joblist.length;
       },
@@ -525,25 +526,25 @@ export class AppliedCandidatesComponent implements OnInit {
           this.ctclist = data.filter((x) => x.accept == 0 && x.reject == 0);
           this.count = this.joblist.length;
 
-          },error: (err: { error: { message: any } }) => {
-            Swal.fire(' Issue in Getting Candidate Registration');
-            // Insert error in Db Here//
-            var obj = {
-              PageName: this.currentUrl,
-              ErrorMessage: err.error.message,
-            };
-            this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-              (data) => {
-                debugger;
-              }
-            );
-          },
+        }, error: (err: { error: { message: any } }) => {
+          Swal.fire(' Issue in Getting Candidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
+        },
       });
     }
 
   }
 
-//Method to send the mails//
+  //Method to send the mails//
   public SendJobMail(sub: any, desc: any, email: any) {
     debugger
     var entity3 = {
@@ -561,7 +562,7 @@ export class AppliedCandidatesComponent implements OnInit {
   }
 
 
-//Method to Displaying The Notification & Insert the values NotificationSBU table//
+  //Method to Displaying The Notification & Insert the values NotificationSBU table//
 
   public InsertNotificationRecruiter() {
     debugger
@@ -583,7 +584,8 @@ export class AppliedCandidatesComponent implements OnInit {
             data => {
               debugger
             },
-          )}
+          )
+        }
       })
   }
 }

@@ -96,8 +96,8 @@ li a:hover {
 
 
 .Count {
-  color: #3247d5;
-  font-size: 20px !important;
+  color: #0C275A;
+  font-size: 15px !important;
   font-family: "Poppins";
   font-weight: bold;
   float: right;
@@ -105,7 +105,7 @@ li a:hover {
   margin-right: -80px;
 }
 
-.Addbutton {
+/* .Addbutton {
   text-transform: uppercase;
   font-weight: initial;
   text-shadow: initial;
@@ -120,9 +120,9 @@ li a:hover {
   margin-right: 15px;
   font-size: 15px;
   font-weight: bold;
-}
+} */
 
-.Edit {
+/* .Edit {
   text-transform: uppercase;
   font-weight: initial;
   text-shadow: initial;
@@ -136,4 +136,9 @@ li a:hover {
   margin-right: 15px;
   font-size: 12px;
   font-weight: bold;
+}
+ */
+.butn-sadow {
+  position: relative;
+  left: 0px;
 }

@@ -21,7 +21,7 @@ import { FullCalendarOptions, EventObject } from 'ngx-fullcalendar';
   styleUrls: ['./offered-candidates.component.css']
 })
 export class OfferedCandidatesComponent implements OnInit {
-  
+
   //Variable Declerations//
 
   title: any;
@@ -72,7 +72,7 @@ export class OfferedCandidatesComponent implements OnInit {
     this.GetRecruiterStaff();
     this.currentUrl = window.location.href;
     this.hiringManager = "";
-    this.GetCandidateReg()
+    this.GetCandidateReg();
     this.GetJobDescription();
     this.Role1 = ""
     this.roleid = sessionStorage.getItem('roleid');
@@ -129,49 +129,57 @@ export class OfferedCandidatesComponent implements OnInit {
     }
   }
 
-  
-   //Method to Get Company Staff Details//
 
- public GetRecruiterStaff(){
-  this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
-    next: data => {
-      debugger
-      this.hrlist = data.filter(x => x.role == "Hiring Manager");
+  //Method to Get Company Staff Details//
 
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire(' Issue in Getting Client Staff');
-      // Insert error in Db Here//
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
+  public GetRecruiterStaff() {
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
+      next: data => {
+        debugger
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire(' Issue in Getting Client Staff');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
-}
+    })
+  }
 
 
-   //Method to Get JobDescription//
+  //Method to Get JobDescription//
 
   GetJobDescriptionMaster() {
     throw new Error('Method not implemented.');
   }
   showorhidecontent: any;
 
+  /*  changeStatus(evn: any) {
+ 
+     if (evn.currentTarget.checked) {
+       this.showorhidecontent = false;
+     }
+     else {
+       this.showorhidecontent = true;
+     }
+   } */
   changeStatus(evn: any) {
-
-    if (evn.currentTarget.checked) {
-      this.showorhidecontent = false;
-    }
-    else {
+    if (evn.target.value == 1) {
       this.showorhidecontent = true;
     }
+    else {
+      this.showorhidecontent = false;
+    }
   }
-   //Method to Get JobDescription//
+  //Method to Get JobDescription//
 
   public GetCandidateReg() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -204,7 +212,7 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
-//Method to Search jobdescription//
+  //Method to Search jobdescription//
 
   public filterbyJD(even: any) {
     this.jobdescriptionID = even.target.value
@@ -242,7 +250,7 @@ export class OfferedCandidatesComponent implements OnInit {
   public GetOfferLetter(offer: any) {
     window.open(offer, "_blank")
   }
-//Method to  displaying Job Tittle//
+  //Method to  displaying Job Tittle//
   public Filterjobs() {
     debugger
     let searchCopy = this.search.toLowerCase();
@@ -277,7 +285,7 @@ export class OfferedCandidatesComponent implements OnInit {
     });
   }
 
-  
+
   //Method to Displaying Accept the Candidate Details//
 
   public Accept(id: any, comments: any) {
@@ -357,8 +365,8 @@ export class OfferedCandidatesComponent implements OnInit {
       }
     })
   }
- 
-   //Method to Get Count joblist //
+
+  //Method to Get Count joblist //
 
   public GetJobRequirements() {
 
@@ -441,14 +449,14 @@ export class OfferedCandidatesComponent implements OnInit {
     this.buildcallender(this.joblist);
   }
 
-    //Method to  Displaying nextmonth//
+  //Method to  Displaying nextmonth//
   public nextmonth() {
     debugger;
     this.callenderBindData.setMonth(this.callenderBindData.getMonth() + 1);
     this.buildcallender(this.joblist);
   }
 
-   //Method to  Search the  jobTitle//
+  //Method to  Search the  jobTitle//
 
   public jobTitle() {
     debugger;
@@ -458,7 +466,7 @@ export class OfferedCandidatesComponent implements OnInit {
     });
   }
 
-   //Method to  Search the  jobTitle//
+  //Method to  Search the  jobTitle//
 
   public Role() {
     this.RecruitmentServiceService.GetJobDescriptionMaster().subscribe(data => {

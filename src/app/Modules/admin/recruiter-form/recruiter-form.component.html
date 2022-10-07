@@ -70,11 +70,11 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                                 </div>
                                 <div class="col-md-2">
                                     <input type="text" class="form-control inputfield" name="Email" id="Email"
-                                        [(ngModel)]="Email">
+                                        placeholder="Email" [(ngModel)]="Email">
                                 </div>
                                 <div class="col-md-3">
                                     <textarea type="text" class="form-control inputfield" name="Address" id="Address"
-                                        [(ngModel)]="Address"></textarea>
+                                        placeholder="Address" [(ngModel)]="Address"></textarea>
                                 </div>
                             </div>
                             <br>
@@ -85,7 +85,9 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                             </div>
                             <div class="row leavereq">
                                 <div class="col-lg-3">
-                                    <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                    <ngx-dropzone (change)="onSelect($event)" class="attachment">
+                                        <img src="assets/Images/upload.png" *ngIf="files.length==0"
+                                            class="img-set dropdowning">
                                         <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                                         <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
                                             (removed)="onRemove(f)">
@@ -93,16 +95,19 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                                         </ngx-dropzone-preview>
                                     </ngx-dropzone>
                                     <br>
-                                    <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px">
+                                  <!--   <img src="{{Logo}}" *ngIf="show==1" style="width: 100px;height:100px"> -->
                                 </div>
-                                <div class="col-lg-7"></div>
-                                <div class="col-lg-1">
-                                    <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                                <div class="col-lg-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-2">
+                                    <button class="Edit" (click)="cancel()">Cancel</button>
                                 </div>
-                                <div class="col-lg-1">
-                                    <button class="form-control Edit" *ngIf="ID==undefined && ID==null"
+                                <div class="col-lg-2">
+                                    <button class="Save" *ngIf="ID==undefined && ID==null"
                                         (click)="insertdetails()">Submit</button>
-                                    <button class="form-control Edit" *ngIf="ID!=undefined  && ID!=null"
+                                    <button class="Save" *ngIf="ID!=undefined  && ID!=null"
                                         (click)="Update()">Update</button>
                                 </div>
                             </div>

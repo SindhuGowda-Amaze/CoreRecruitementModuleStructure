@@ -41,7 +41,9 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                             </div>
                             <div class="row leavereq">
                                 <div class="col-lg-3">
-                                    <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                                    <ngx-dropzone (change)="onSelect($event)" class="attachment">
+                                        <img src="assets/Images/upload.png" *ngIf="files.length==0"
+                                            class="img-set dropdowning">
                                         <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                                         <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
                                             (removed)="onRemove(f)">
@@ -71,15 +73,13 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                         </form>
                     </div>
                     <div class="row">
-                        <div class="col-lg-10"></div>
-                        <div class="col-lg-1">
-                            <button class="form-control Edit" (click)="cancel()">Cancel</button>
+                        <div class="col-lg-8"></div>
+                        <div class="col-lg-2">
+                            <button class="Edit" (click)="cancel()">Cancel</button>
                         </div>
-                        <div class="col-lg-1">
-                            <button class="form-control Edit" *ngIf="id==null || id==undefined"
-                                (click)="Save()">Save</button>
-                            <button class="form-control Edit" *ngIf="id!=null || id!=undefined"
-                                (click)="Update()">Update</button>
+                        <div class="col-lg-2">
+                            <button class="Save" *ngIf="id==null || id==undefined" (click)="Save()">Save</button>
+                            <button class="Save" *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>
                         </div>
                     </div>
                 </div>

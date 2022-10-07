@@ -1,52 +1,52 @@
 <div class="container-fluid" style="background-color: #f2f2f2;">
     <br>
     <!-- <div class="row" *ngIf="roleid!='3'|| roleid!='6'"> -->
-        <div class="hmcard"  *ngIf="roleid==4 ||roleid==6">
-            <div class="row" >
-                <div class="col-lg-1">
-                    <p>Filter By :</p>
-                </div>
-                <div class="col-lg-3">
-                <select   class="form-control form-select" [(ngModel)]="hiringManager"  (change)="changestaff()">
+    <div class="hmcard" *ngIf="roleid==4 ||roleid==6">
+        <div class="row">
+            <div class="col-lg-1">
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control form-select" [(ngModel)]="hiringManager" (change)="changestaff()">
                     <option value="">Select Hiring Manager</option>
                     <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
-                  </select>
-                </div>
-                <div class="col-lg-3">
-                    <select   class="form-control form-select" [(ngModel)]="department"  (change)="changedepartment()">
-                        <option value="">Select Department</option>
-                        <option *ngFor="let dept of deptlist" value="{{dept.name}}">{{dept.name}}</option>
-                        <!-- <option>Development</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control form-select" [(ngModel)]="department" (change)="changedepartment()">
+                    <option value="">Select Department</option>
+                    <option *ngFor="let dept of deptlist" value="{{dept.name}}">{{dept.name}}</option>
+                    <!-- <option>Development</option>
                         <option>Testing</option>
                         <option>Finance</option>
                         <option>Human Resourse</option> -->
-                      </select>
-                    </div>
+                </select>
             </div>
         </div>
-       
-    <br/>
-    <br/>
-    
-    <div class="row" style="margin-left: 10px;"  >
-       
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row" style="margin-left: 10px;">
+
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card1" style="background-color: white; height: 325px;width: 275px;"
                         (click)="flip1($event)">
-                        <div class="back"  style="height: 300px;overflow:auto">
+                        <div class="back" style="height: 300px;overflow:auto">
                             <br>
                             <br>
                             <br>
                             <div class="row" *ngFor="let job of joblist1">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.jobTitle}}<br>
                                         <div class="din-Medium1">{{job.date}}</div>
                                         <div class="din-Medium1">{{job.joblocation}}</div>
@@ -56,7 +56,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a  routerLink="/recruiter/VendorJobOpenings"><button class="viewall"   *ngIf="roleid!='7'" (click)="Regularization()">VIEW ALL</button></a>
+                                <a routerLink="/recruiter/VendorJobOpenings"><button class="viewall" *ngIf="roleid!='7'"
+                                        (click)="Regularization()">VIEW ALL</button></a>
 
                                 <!-- <a routerLink="/recruiter/VendorJobOpenings"><button class="viewall" *ngIf="roleid=='7'" (click)="Regularization()">VIEW ALL</button></a> -->
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
@@ -64,14 +65,14 @@
                         </div>
                         <div class="front">
                             <br>
-                            <div class="row title_outer1 red" > 
+                            <div class="row title_outer1 red">
                                 <div class="col-lg-1">
                                 </div>
                                 <div class="col-lg-1">
                                     <i class="fa fa-calendar calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel poppinns"  >OPEN POSITIONS</h1>
+                                    <h1 class="cardlabel poppinns">OPEN POSITIONS</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -81,7 +82,7 @@
                                 </div>
                                 <div class="col-lg-4"></div>
                             </div><br><br><br><br>
-                            <button class="clickbutton1" >VIEW DETAILS</button>
+                            <button class="clickbutton1">VIEW DETAILS</button>
                         </div>
                     </div>
                 </div>
@@ -92,12 +93,11 @@
                             <br>
                             <div class="row" *ngFor="let job of joblist3">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.jobTitle}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -107,7 +107,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a ><button class="viewall" routerLink="/hirignmanager/AppliedCandidates">VIEW ALL</button></a>
+                                <a><button class="viewall" routerLink="/hirignmanager/AppliedCandidates">VIEW
+                                        ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                                     <i class="fa fa-calendar calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >APPLIED</h1>
+                                    <h1 class="cardlabel">APPLIED</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -141,12 +142,11 @@
                             <br>
                             <div class="row" *ngFor="let job of joblist6">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.jobTitle}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -156,7 +156,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a routerLink="/recruiter/ShortListed"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <a routerLink="/recruiter/ShortListed"><button class="viewall"
+                                        (click)="Regularization()">VIEW ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -169,7 +170,7 @@
                                     <i class="fa fa-th-list calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >SHORTLISTED</h1>
+                                    <h1 class="cardlabel">SHORTLISTED</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -190,14 +191,13 @@
                             <br>
                             <br>
                             <br>
-                            <div class="row" *ngFor="let job of joblist7" >
+                            <div class="row" *ngFor="let job of joblist7">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.jobTitle}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -207,7 +207,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a routerLink="/hirignmanager/SelectedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <a routerLink="/hirignmanager/SelectedCandidates"><button class="viewall"
+                                        (click)="Regularization()">VIEW ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -220,7 +221,7 @@
                                     <i class="fa fa-check-square-o calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >SELECTED</h1>
+                                    <h1 class="cardlabel">SELECTED</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -240,7 +241,7 @@
     </div><br><br><br>
 
     <div class="row" style="margin-left: 10px;">
-      
+
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-3">
@@ -250,12 +251,11 @@
                             <br>
                             <div class="row" *ngFor="let job of joblist9">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.jobTitle}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -265,7 +265,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a routerLink="/hr/OfferedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <a routerLink="/hr/OfferedCandidates"><button class="viewall"
+                                        (click)="Regularization()">VIEW ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -278,7 +279,7 @@
                                     <i class="fa fa-file-text calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >OFFERED</h1>
+                                    <h1 class="cardlabel">OFFERED</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -299,12 +300,11 @@
                             <br>
                             <div class="row" *ngFor="let job of joblist11">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.jobTitle}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -314,7 +314,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a href="#/hr/JoinedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <a href="#/hr/JoinedCandidates"><button class="viewall" (click)="Regularization()">VIEW
+                                        ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -327,7 +328,7 @@
                                     <i class="fa fa-user-plus calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >JOINED</h1>
+                                    <h1 class="cardlabel">JOINED</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">
@@ -348,12 +349,11 @@
                             <br>
                             <div class="row" *ngFor="let job of joblist13">
                                 <div class="col-lg-2">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"
-                                        style="font-size: 43px;color:maroon; margin-top: 5px;
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 43px;color:maroon; margin-top: 5px;
                                         margin-left: 5px;"></i>
                                 </div>
                                 <div class="col-lg-1"></div>
-                                <div class="col-lg-7" >
+                                <div class="col-lg-7">
                                     <label class="name">{{job.candidateName}}<br>
                                         <div class="din-Medium1">{{job.phoneNo}}</div>
                                         <div class="din-Medium1">{{job.email}}</div>
@@ -363,7 +363,8 @@
                             <hr class="new4">
                             <div class="backflip">
                                 <button class="bcakbtn">BACK</button>
-                                <a href="#/hr/DroppedCandidates"><button class="viewall" (click)="Regularization()">VIEW ALL</button></a>
+                                <a href="#/hr/DroppedCandidates"><button class="viewall" (click)="Regularization()">VIEW
+                                        ALL</button></a>
                                 <!-- <button class="viewall" (click)="Regularization()" routerLink="/JobRecruitements/">VIEW ALL</button> -->
                             </div>
                         </div>
@@ -376,7 +377,7 @@
                                     <i class="fa fa-user-times calend" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h1 class="cardlabel" >DROPPED OUT</h1>
+                                    <h1 class="cardlabel">DROPPED OUT</h1>
                                 </div>
                             </div><br><br>
                             <div class="row">

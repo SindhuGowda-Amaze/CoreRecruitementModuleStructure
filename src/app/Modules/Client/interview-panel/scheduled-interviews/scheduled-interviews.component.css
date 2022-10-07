@@ -29,7 +29,7 @@
     /* font-family: "DIN Bold"; */
   }
   .FilterClass{
-  padding-left: 15px;
+/*   padding-left: 15px; */
   }
   .Count{
   text-align: right;
@@ -248,4 +248,8 @@
   .sub-table tr:nth-child(even)
   {
     background-color: transparent !important;
+  }
+  .edit-btn {
+
+    width: 82px;
   }

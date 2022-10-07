@@ -12,6 +12,13 @@ export class RecruitementService {
   // host="http://localhost:1807//"
 
   // host = "http://23.101.22.93/CoreDigiRecruitementAPI";
+
+
+  public baseURL = "http://103.12.1.103/CoreDigiRecruitmentAPI";
+
+
+
+
   public host1 = "https://asticom.digiofficeapp.com/SupportAPI";
 
   private url: string = "";

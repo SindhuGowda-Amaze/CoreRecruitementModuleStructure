@@ -34,7 +34,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
 
                     <div class="row">
                         <div class="col-lg-1">
-                            <p>Filter By</p>
+                            <img src="assets/Images/filter.svg" class="filter-img">
+                            <p class="filter">Filter By:</p>
                         </div>
                         <div class="col-lg-4" style="font-family: 'Poppins';">
                             <input class="form-control" type="search" placeholder="Search for Name.."
@@ -49,9 +50,10 @@ Copyrights : AmazeINC-Bangalore-2022 -->
             </div>
         </div><br>
         <div class="row">
-            <div class="col-lg-8"></div>
-            <div class="col-lg-4">
-                <a routerLink="/admin/VendorForm"><button class="Addbutton">Add</button> </a>
+            <div class="col-lg-10"></div>
+            <div class="col-lg-2">
+                <a routerLink="/admin/VendorForm"><button class="Addbutton"><img src="assets/Images/plus.svg"
+                            class="plus-icon"> Add Vendor</button> </a>
             </div>
         </div> <br>
 
@@ -74,8 +76,8 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                                 <td>{{vendor.phone_Number}}</td>
                                 <td>{{vendor.email_ID}}</td>
                                 <td>{{vendor.address}}</td>
-                                <td><button class=" Edit" (click)="edit(vendor.id)">Edit</button> <br> <br>
-                                    <button class=" Edit" (click)="Ondelete(vendor.id)">Delete</button>
+                                <td><button class="edit-btn" (click)="edit(vendor.id)">Edit</button> <br> <br>
+                                    <button class="edit-btn" (click)="Ondelete(vendor.id)">Delete</button>
                                 </td>
                             </tr>
                         </thead>
