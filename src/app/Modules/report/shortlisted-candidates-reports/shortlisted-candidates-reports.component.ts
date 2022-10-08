@@ -295,6 +295,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   }
   //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
+    this.loader = true;
     window.open(offer, "_blank")
   }
 

@@ -292,12 +292,12 @@ export class ShortListedComponent implements OnInit {
 
   }
   //Method to Search the Job Tittle//
-
+  stafflist1 : any
   public GetStaffType() {
     this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.stafflist = data.filter(x => x.role == "Interview Panel");
+        this.stafflist1 = data.filter(x => x.role == "Interview Panel");
       }, error: (err: { error: { message: any; }; }) => {
         // Swal.fire('Issue in Getting Expenses List Web');
         var obj = {
@@ -390,9 +390,9 @@ export class ShortListedComponent implements OnInit {
             'Dear Interview Panel,<br>I hope you are doing great!<br>This inform you that We have Scheduled an Interview to Candidate.<br>Please Login to Recruitment portal for futher Info about the Interviw and Candidate and will update the further information soon!<br> Please let me know if you have any query!<br>'
           'Thank You!'
 
-          this.SendJobMail(sub, desc, email);
-          this.SendJobMail(hrsub, hrdesc, hrEmail);
-          this.SendJobMail(intersub, interdesc, interEmail);
+          // this.SendJobMail(sub, desc, email);
+          // this.SendJobMail(hrsub, hrdesc, hrEmail);
+          // this.SendJobMail(intersub, interdesc, interEmail);
           this.InsertNotificationInterviewpanel();
           this.ngOnInit();
         }, error: (err: { error: { message: any; }; }) => {
@@ -600,21 +600,21 @@ export class ShortListedComponent implements OnInit {
 
   //Method to Send Email//
 
-  public SendJobMail(sub: any, desc: any, email: any) {
-    debugger
-    var entity3 = {
-      'emailto': email,
-      'emailsubject': sub,
-      'emailbody': desc,
-      'attachmenturl': [],
-      'cclist': [],
-      'bcclist': [],
-    }
-    this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
-      debugger;
-      Swal.fire('Emails Sent');
-    })
-  }
+  // public SendJobMail(sub: any, desc: any, email: any) {
+  //   debugger
+  //   var entity3 = {
+  //     'emailto': email,
+  //     'emailsubject': sub,
+  //     'emailbody': desc,
+  //     'attachmenturl': [],
+  //     'cclist': [],
+  //     'bcclist': [],
+  //   }
+  //   this.RecruitmentServiceService.sendemailattachements(entity3).subscribe(res => {
+  //     debugger;
+  //     Swal.fire('Emails Sent');
+  //   })
+  // }
 
   //Method to Send Notification//
 
