@@ -363,15 +363,17 @@
               <tr class="head">
                 <th>Interview Date</th>
                 <th>Time</th>
-                <th *ngIf="roleid==6">Interviewer</th>
+                <th>Interviewer</th>
                 <th>Candidate Name</th>
+                <th>Phone No</th>
                 <th>Comments</th>
               </tr>
               <tr *ngFor="let job of joblist |paginate: { itemsPerPage: count1, currentPage: p }">
                 <td>{{job.date|date}}</td>
                 <td>{{job.slotTime}}</td>
-                <td *ngIf="roleid==6">{{job.staffname}}</td>
+                <td>{{job.staffname}}</td>
                 <td>{{job.candidateName}}</td>
+                <td>{{job.phoneNo}}</td>
                 <td>{{job.notes}}</td>
 
 
