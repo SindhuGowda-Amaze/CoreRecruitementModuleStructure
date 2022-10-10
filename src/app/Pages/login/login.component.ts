@@ -94,7 +94,8 @@ export class LoginComponent implements OnInit {
       'Password': 'P@ssw0rd',
       'RoleID': 1
     }
-    this.RecruitmentServiceService.Authenicate(entity).subscribe((data: any) => {
+    this.RecruitmentServiceService.Authenicate(entity).subscribe((data: any) => 
+    {
       debugger
       
       if (data['requestMessage'] != undefined || null) {

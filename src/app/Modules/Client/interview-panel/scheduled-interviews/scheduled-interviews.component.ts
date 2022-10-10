@@ -482,8 +482,8 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
-
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null );
+          // && x.date >= this.Date && x.date && this.endDate
           //this.joblist = data.filter((x: { date: any; }) => x.date >= this.Date && x.date <= this.endDate);
           // this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.date >= this.Date && x.date && this.endDate);
           // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
@@ -513,7 +513,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
         next: data => {
           debugger
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null );
 
          // this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
           this.count = this.joblist.length;
@@ -539,7 +539,7 @@ export class ScheduledInterviewsComponent implements OnInit {
         next: data => {
           debugger
           //this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
-          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null && x.date >= this.Date && x.date && this.endDate);
+          this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0 && x.staffID == this.staffid && x.cancleinterview == null );
           this.count = this.joblist.length;
           this.buildcallender(this.joblist);
         }, error: (err: { error: { message: any; }; }) => {
