@@ -56,7 +56,8 @@ export class JobRequisitionComponent implements OnInit {
   Short : any 
   levelmaster : any
   level : any;
-
+  showorhidecontent : any
+  Role : any
   constructor(private RecruitmentServiceService: RecruitementService) { }
 
   ngOnInit(): void {
@@ -159,6 +160,96 @@ export class JobRequisitionComponent implements OnInit {
       this.package == null || this.package == undefined || this.package == 0 ||
       this.otherreqconditions == null || this.otherreqconditions == undefined || this.otherreqconditions == 0)
     // this.resourcemanager==null || this.resourcemanager==undefined || this.resourcemanager==0 
+    {
+      Swal.fire('Please Fill the Mandatory Fields')
+    }
+    else {
+
+      var entity = {
+        'jobTitle': this.jobtitile,
+        'Skills': this.skills,
+        'TotalExp': this.yearsofexp,
+        'RelaventExp': this.yearsofrelavantexp,
+        'JobDescription': this.jobdescription,
+        'joblocation': this.joblocation,
+        'Noofpositions': this.noofpositions,
+        'CompanyName': this.companyname,
+        'package': this.package,
+        'HiringManager': this.username,
+        'OtherRequiredConditions': this.otherreqconditions,
+        'ResourceManager': this.resourcemanager,
+        'Status': 'Manager Pending'
+      }
+      this.RecruitmentServiceService.InsertJob_Requirements(entity).subscribe({
+        next: data => {
+          debugger
+          if (data != 0) {
+            Swal.fire({
+              title: '<strong>Use this link to post in External site<br></strong>',
+              icon: 'info',
+              html:
+                'You can use <b>below link to Apply</b>, ' +
+                '<a target="_blank" href="http://23.101.22.93/RecruitementModule/hiringnmanager/ExternalJobApply/53">Apply</a> ',
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              confirmButtonText:
+                '<i class="fa fa-thumbs-up"></i> Save!',
+              confirmButtonAriaLabel: 'Thumbs up, great!',
+              cancelButtonText:
+                '<i class="fa fa-thumbs-down"></i>',
+              cancelButtonAriaLabel: 'Thumbs down'
+            })
+
+            var sub = 'Hiring Manager has Posted the job'
+            var email = 'gmrmadhavreddy416@gmail.com'
+            var desc = 'Hiring manager to Manager'
+            'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+            'Thank You!'
+            this.SendJobMail(sub, desc, email);
+
+            var sub = 'Hiring Manager has Posted the job'
+            var email = 'sindhugowda.amazeinc@gmail.com'
+            var desc = 'Hiring manager to SBU'
+            'Hello Sir/Madam,I hope you are doing great!I have posted for hiring positions, please give approval for the same. Once you will approve, will update the further information soon! Please let me know if you have any query!'
+            'Thank You!'
+            this.SendJobMail(sub, desc, email);
+
+            this.InsertNotificationSBU();
+            this.InsertNotificationManager();
+
+            // Swal.fire('Saved Successfully');
+            // location.href = "#/hirignmanager/JobRecruitements";
+          }
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Inserting Job Requirements');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+
+  }
+
+
+  public insertjobrequisition() {
+    debugger;
+    if (this.jobtitile == null || this.jobtitile == undefined || this.jobtitile == 0 ||
+      this.skills == null || this.skills == undefined || this.skills == 0 ||
+      this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
+      this.yearsofrelavantexp == null || this.yearsofrelavantexp == undefined || this.yearsofrelavantexp == 0 ||
+      this.joblocation == null || this.joblocation == undefined || this.joblocation == 0 ||
+      // this.noofpositions == null || this.noofpositions == undefined || this.noofpositions == 0 ||
+      this.package == null || this.package == undefined || this.package == 0 ||
+      this.otherreqconditions == null || this.otherreqconditions == undefined || this.otherreqconditions == 0)
     {
       Swal.fire('Please Fill the Mandatory Fields')
     }
@@ -380,6 +471,16 @@ export class JobRequisitionComponent implements OnInit {
             },
           )}
       })
+}
+
+changeStatus(evn: any) {
+
+  if (evn.currentTarget.checked) {
+    this.showorhidecontent = false;
+  }
+  else {
+    this.showorhidecontent = true;
+  }
 }
 
 

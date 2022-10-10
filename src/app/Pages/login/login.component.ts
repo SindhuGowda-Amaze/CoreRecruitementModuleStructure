@@ -87,7 +87,18 @@ export class LoginComponent implements OnInit {
   // }
   result1: any;
   public login() {
+    debugger;
     let adminCopy = this.admin.toLowerCase();
+    var entity = {
+      'username': 'Amaze',
+      'Password': 'P@ssw0rd',
+      'RoleID': 1
+    }
+    this.RecruitmentServiceService.Authenicate(entity).subscribe((data: any) => {
+      debugger
+      
+      if (data['requestMessage'] != undefined || null) {
+        localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);
     if (this.userName.toLowerCase().includes(adminCopy) && this.password == '1' && this.roleID == 1) {
       debugger
       sessionStorage.setItem('UserName', 'admin');
@@ -310,7 +321,7 @@ export class LoginComponent implements OnInit {
         })
 
     }
-
+ 
     //     else {
     //       Swal.fire('Phonenumber or Password is invalid');
     //       this.userName = "";
@@ -743,5 +754,10 @@ export class LoginComponent implements OnInit {
         }
       })
     }
+  }
+}
+
+
+)
   }
 }

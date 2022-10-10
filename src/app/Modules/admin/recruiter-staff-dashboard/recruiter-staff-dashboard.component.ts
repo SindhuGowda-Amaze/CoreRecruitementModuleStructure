@@ -59,7 +59,7 @@ export class RecruiterStaffDashboardComponent implements OnInit {
         this.RecruitmentServiceService.DeleteRecruiterStaff(id).subscribe(
           data => {
             debugger
-            Swal.fire('Deleted');
+            Swal.fire('Deleted Successfully');
             this.GetRecruiterStaff();
           })
       }

@@ -64,6 +64,7 @@
         <thead>
           <tr>
             <!-- <th>Vendor</th> -->
+            <th *ngIf="roleid=='2' && roleid!='6'">Actions</th>
             <th>Job Reference ID</th>
             <th>Source</th>
             <th>Job Title</th>
@@ -79,13 +80,21 @@
             <th>City</th>
             <th>Resume</th>
             <th>Comments</th>
-            <th *ngIf="roleid=='2' && roleid!='6'">Actions</th>
+           
 
             <th>Applied Date </th>
 
           </tr>
           <tr
+          
             *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }|filter:search|filter:searchbyctc">
+            <td *ngIf="roleid=='2' && roleid!='6' ">
+              <img src="assets/Images/acc.png" *ngIf="job.accept=='0'&&job.reject=='0'" tilte="Accept"
+                style="width:20px;" (click)="Accept(job.id,job.shortlistionNotes)" />&nbsp;<br>
+
+              <img src="assets/Images/can.png" *ngIf="job.accept=='0'&&job.reject=='0' " tilte="Reject"
+                style="width:20px;" (click)="Reject(job.id,job.shortlistionNotes)" />
+            </td>
             <td style="color:#0C275A">{{job.jobRefernceID}}</td>
             <td>{{job.source}}</td>
             <td style="color:#0C275A">{{job.jobTitle}}</td>
@@ -109,13 +118,7 @@
 
 
             </td>
-            <td *ngIf="roleid=='2' && roleid!='6' ">
-              <img src="assets/Images/acc.png" *ngIf="job.accept=='0'&&job.reject=='0'" tilte="Accept"
-                style="width:20px;" (click)="Accept(job.id,job.shortlistionNotes)" />&nbsp;<br>
-
-              <img src="assets/Images/can.png" *ngIf="job.accept=='0'&&job.reject=='0' " tilte="Reject"
-                style="width:20px;" (click)="Reject(job.id,job.shortlistionNotes)" />
-            </td>
+           
            <!--  <td>{{job.source}} </td> -->
             <td>{{job.modifiedDate}}</td>
 

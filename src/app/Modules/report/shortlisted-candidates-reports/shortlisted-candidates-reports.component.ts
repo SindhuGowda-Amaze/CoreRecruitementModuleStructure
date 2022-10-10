@@ -8,10 +8,6 @@
 // --Last Modified By : Manikanta
 // --Copyrights : AmazeINC-Bangalore-2022
 
-
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { RecruitementService } from 'src/app/Pages/Services/recruitement.service';
 import Swal from 'sweetalert2';
@@ -23,7 +19,7 @@ import * as XLSX from 'xlsx';
 })
 export class ShortlistedCandidatesReportsComponent implements OnInit {
 
- //Variable Declerations//
+  //Variable Declerations//
 
   joblist: any;
   search: any;
@@ -52,9 +48,7 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
   constructor(private RecruitementService: RecruitementService) { }
 
   ngOnInit(): void {
-
-     //Variable Initialisation and Default Method Calls//
-
+    //Variable Initialisation and Default Method Calls//
     this.loader = true;
     this.GetClientStaff();
     this.GetCandidateReg();
@@ -65,47 +59,63 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     this.userid = sessionStorage.getItem('userid')
     this.roleid = sessionStorage.getItem('roleid');
     this.username = sessionStorage.getItem('UserName');
-
-  
   }
-
-    //Method to get data from Job_Requirements Table//
-
-  public GetJob_Requirements(){
-
+  //Method to get data from Job_Requirements Table//
+  public GetJob_Requirements() {
     if (this.roleid == '3') {
       debugger;
       this.RecruitementService.GetJob_Requirements()
-      .subscribe({
-        next: data => {
-          this.DropJobList = data.filter(x => (x.source == "Vendor" && x.vendorId == this.userid));
-        this.loader = false;
-        }, error: (err) => {
-          Swal.fire('Issue in Getting Job Requirements');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
+        .subscribe({
+          next: data => {
+            this.DropJobList = data.filter(x => (x.source == "Vendor" && x.vendorId == this.userid));
+            this.loader = false;
+          }, error: (err) => {
+            Swal.fire('Issue in Getting Job Requirements');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
           }
-          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      }) 
- 
+        })
     }
     else {
-
       this.RecruitementService.GetJob_Requirements()
+        .subscribe({
+          next: data => {
+            debugger
+            this.DropJobList = data;
+            this.loader = false;
+          }, error: (err) => {
+            Swal.fire('Issue in Getting Job Requirements');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+    }
+  }
+  //Method to get data from ClientStaff Table//
+  GetClientStaff() {
+    this.RecruitementService.GetClientStaff()
       .subscribe({
         next: data => {
           debugger
-          this.DropJobList = data;
-          this.loader = false;
+          this.hrlist = data;
         }, error: (err) => {
-          Swal.fire('Issue in Getting Job Requirements');
+          Swal.fire('Issue in Getting Client Staff');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -118,35 +128,8 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
           )
         }
       })
-       
- 
-    }
-}
 
- //Method to get data from ClientStaff Table//
-  GetClientStaff(){
-    this.RecruitementService.GetClientStaff()
-    .subscribe({
-      next: data => {
-        debugger
-        this.hrlist = data;
-      }, error: (err) => {
-        Swal.fire('Issue in Getting Client Staff');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
   }
- 
   refresh() {
     location.reload();
   }
@@ -154,74 +137,65 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     this.date = even.target.value;
     this.GetSlotsMaster();
   }
-
-   // Methods to  get list of Selected Candidates from CandidateRegistration Table//
-
+  // Methods to  get list of Selected Candidates from CandidateRegistration Table/
   public GetCandidateReg() {
     this.RecruitementService.GetCandidateRegistration()
-    .subscribe({
-      next: data => {
-        debugger
-        if (this.roleid == 2) {
-          this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0 );
-          this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.count = this.joblist.length;
+      .subscribe({
+        next: data => {
+          debugger
+          if (this.roleid == 2) {
+            this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.count = this.joblist.length;
+          }
+          else {
+            this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
+            this.count = this.joblist.length;
+          }
+        }, error: (err) => {
+          Swal.fire('Issue in GetCandidateRegistration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        else {
-          this.dummjoblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.joblist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.noticeperiodlist = data.filter(x => x.accept == 1 && x.scheduled == 0);
-          this.count = this.joblist.length;
-        }
-  
-  
-      }, error: (err) => {
-        Swal.fire('Issue in GetCandidateRegistration');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
+      })
+
   }
-//Method to search data by JobTitle//
+  //Method to search data by JobTitle//
   public Filterjobs() {
     debugger;
-
     this.RecruitementService.GetCandidateRegistration()
-    
-    .subscribe({
-      next: data => {
-        debugger
-        this.noticeperiodlist = data.filter(x =>  x.noticePeriod == this.searchbynotice);
-      }, error: (err) => {
-        Swal.fire('Issue in GetCandidate Registration');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+      .subscribe({
+        next: data => {
+          debugger
+          this.noticeperiodlist = data.filter(x => x.noticePeriod == this.searchbynotice);
+        }, error: (err) => {
+          Swal.fire('Issue in GetCandidate Registration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  
-  }
+      })
 
-;
-//Method to search data by JobTitle//
-
+  };
+  //Method to search data by JobTitle//
   public GetJobFilter(even: any) {
     this.jobid = even.target.value;
 
@@ -255,47 +229,40 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
         )
       }
     })
-    
+
   }
   //Method to  Get TimeID //
-
   public GetTimeID(even: any) {
     this.timeid = even.target.value;
   }
-
-    //Method to  Get SlotsMaster Staff Details//
-
+  //Method to  Get SlotsMaster Staff Details//
   public GetSlotsMaster() {
     debugger
     this.RecruitementService.GetSlotsMasterByStaffID(this.date, this.staffid)
-    .subscribe({
-      next: data => {
-        debugger
-        this.slotslist = data;
-      }, error: (err) => {
-        Swal.fire('Issue in Get Slots Master By StaffID');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+      .subscribe({
+        next: data => {
+          debugger
+          this.slotslist = data;
+        }, error: (err) => {
+          Swal.fire('Issue in Get Slots Master By StaffID');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
+      })
   }
-
-//Method to  Get CandidateID //
-
+  //Method to  Get CandidateID //
   public GetCandidateID(candidateid: any) {
     this.candidateid = candidateid;
   }
-
-//Method to Schedule the Interview //
+  //Method to Schedule the Interview //
   public UpdateInterviewSchedule() {
     var entity = {
       'ID': this.candidateid,
@@ -305,31 +272,30 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
       'Notes': this.notes
     }
     this.RecruitementService.UpdateCandidateInterviewSchedule(entity)
-    .subscribe({
-      next: data => {
-        debugger
-        Swal.fire("Interview Scheduled Successfully");
-        this.GetCandidateReg();
-      }, error: (err) => {
-        Swal.fire('Issue in Update Candidate InterviewSchedule');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+      .subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Interview Scheduled Successfully");
+          this.GetCandidateReg();
+        }, error: (err) => {
+          Swal.fire('Issue in Update Candidate InterviewSchedule');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
 
   }
-
-   //Method to Open Pdf in new Window//
-
+  //Method to Open Pdf in new Window//
   public GetOfferLetter(offer: any) {
+    this.loader = true;
     window.open(offer, "_blank")
   }
 
@@ -348,34 +314,29 @@ export class ShortlistedCandidatesReportsComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
     this.loader = false;
   }
-
-
-   //Method to get Job Details from JobRequirements Table//
-
+  //Method to get Job Details from JobRequirements Table//
   public GetJobRequirements() {
-
-
     this.RecruitementService.GetCandidateRegistration()
-    .subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && x.hiringManager == this.hiringManager && x.noticePeriod == this.searchbynotice);
+      .subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => (x.accept == 1 && x.scheduled == 0) && x.hiringManager == this.hiringManager && x.noticePeriod == this.searchbynotice);
 
-        this.count = this.joblist.length;
-      }, error: (err) => {
-        Swal.fire('Issue in Getting CandidateRegistration');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+          this.count = this.joblist.length;
+        }, error: (err) => {
+          Swal.fire('Issue in Getting CandidateRegistration');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
   }
 
 }

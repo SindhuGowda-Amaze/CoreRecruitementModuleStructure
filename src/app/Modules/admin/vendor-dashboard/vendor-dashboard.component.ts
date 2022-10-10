@@ -91,7 +91,7 @@ export class VendorDashboardComponent implements OnInit {
           next: data => {
             debugger
             this.GetVendor_Dasboard();
-            swal.fire('Deleted Sucessfully');
+            swal.fire('Deleted Successfully');
 
             // Insert error in Db Here//
             var obj = {

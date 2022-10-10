@@ -72,7 +72,7 @@ export class OfferedCandidatesComponent implements OnInit {
     this.GetRecruiterStaff();
     this.currentUrl = window.location.href;
     this.hiringManager = "";
-    this.GetCandidateReg()
+    this.GetCandidateReg();
     this.GetJobDescription();
     this.Role1 = ""
     this.roleid = sessionStorage.getItem('roleid');
