@@ -214,12 +214,19 @@
               <div class="row callenderdiv">
                 <div class="col-lg-12">
                   <div class="row">
-                    <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount;let i = index">
+                    <div class="col-lg-2 callenderboxes" *ngFor="let calday of callenderdaysdount">
                       {{calday.date}} {{calday.day}}
                       <div class="event_Pending" [innerHtml]='calday.mantainenceHtml'
                         style="overflow-y: auto; border-bottom: solid 6px white;">
                       </div>
+                      <div class="col-md-2" *ngIf="calday.mantainenceHtml!=null">
+                        <h6 class="event_Pending" style="width: 100px;margin-left:75px" data-toggle="modal"
+                          data-target="#Calender-view" (click)="changeStatus1(calday.dateformat)">
+                          view more.....
+                        </h6>
+                      </div>
                     </div>
+
                   </div>
                 </div>
 
@@ -339,7 +346,45 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="Calender-view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header">
+          <p class="Heading" id="exampleModalLabel">Interview Slots</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col-lg-12">
+          <table class="table tablebordered" *ngIf="joblist.length > 0; else noResults">
 
+            <thead>
+              <tr class="head">
+                <th>Interview Date</th>
+                <th>Time</th>
+                <th *ngIf="roleid==6">Interviewer</th>
+                <th>Candidate Name</th>
+                <th>Comments</th>
+              </tr>
+              <tr *ngFor="let job of joblist |paginate: { itemsPerPage: count1, currentPage: p }">
+                <td>{{job.date|date}}</td>
+                <td>{{job.slotTime}}</td>
+                <td *ngIf="roleid==6">{{job.staffname}}</td>
+                <td>{{job.candidateName}}</td>
+                <td>{{job.notes}}</td>
+
+
+              </tr>
+            </thead>
+          </table>
+          <ng-template #noResults>
+            <p>no results found for "{{search}}" </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

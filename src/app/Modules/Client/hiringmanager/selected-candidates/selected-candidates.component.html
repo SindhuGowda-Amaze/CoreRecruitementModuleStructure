@@ -110,6 +110,7 @@
                         <th>Appro Status</th>
                         <!-- <th>Interviewer Feedback</th> -->
                         <th *ngIf="roleid!=3">Actions</th>
+                        <th *ngIf="roleid==6 || roleid==8">Selection</th>
                     </tr>
                     <tr *ngFor="let job of joblist|filter:search | paginate: { itemsPerPage: count1, currentPage: p }">
                         <td>{{job.jobRefernceID}}</td>
@@ -158,6 +159,9 @@
                             <!-- <button class="btn btn-danger" *ngIf="job.offered=='0'" data-toggle="modal"
                                 data-target="#exampleModal1" (click)="GetOfferID(job.id,job)">Notes</button> -->
 
+                        </td>
+                        <td *ngIf="roleid==6 || roleid==8">
+                            <button class="button form-control" data-toggle="modal" data-target="#exampleModal11" >SalaryRecommended</button>
                         </td>
                     </tr>
                 </thead>
@@ -402,6 +406,112 @@
                     </div>
                     <div class="col-lg-6">
                         <input type="text" class="form-control" placeholder="30000" disabled>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-5">
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="ApproveId()"
+                            data-dismiss="modal">Approve</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="modal-title Heading" id="exampleModalLabel"> Recommended Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Basic Salary : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="basicsalary" name="basicsalary" class="form-control" 
+                            placeholder="Basic Salary">
+                    </div>
+
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis List : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" [(ngModel)]="DeminimisList " name="DeminimisList" class="form-control"
+                            placeholder="Deminimis List " rows="3" ></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis Amount : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="demenisamt" name="demenisamt" class="form-control"
+                            placeholder="Deminimis Amount" >
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Net Salary/month : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="netsalary" name="netsalary" class="form-control"
+                            placeholder="Net Salary/month " >
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">CTC : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="ctc" name="ctc" class="form-control" placeholder="CTC" >
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Current Level of Employee : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="currentlevel" name="currentlevel" class="form-control"
+                            placeholder="Current Level of Employee" >
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Expected Salary: <span
+                                style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text"  class="form-control"
+                        placeholder="Expected Salary" rows="3" ></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Comments: <span
+                                style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text"  class="form-control"
+                        placeholder="Deminimis List " rows="3" ></textarea>
                     </div>
                 </div><br>
                 <div class="row">

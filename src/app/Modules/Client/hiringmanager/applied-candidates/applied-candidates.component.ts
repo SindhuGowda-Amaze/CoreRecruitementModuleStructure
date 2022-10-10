@@ -269,6 +269,7 @@ export class AppliedCandidatesComponent implements OnInit {
   }
   //Method to Get Offerletter//
   public GetOfferLetter(offer: any) {
+    this.loader = true
     window.open(offer, '_blank');
   }
 
