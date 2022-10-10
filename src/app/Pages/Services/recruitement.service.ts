@@ -570,7 +570,7 @@ export class RecruitementService {
 
   public GetLevelMaster() {
 
-    return this.http.get<any[]>(this.host + "/Master/GetLevelMaster");
+    return this.http.get<any[]>(this.host + "/Master/GetLevelType");
   }
 
 
