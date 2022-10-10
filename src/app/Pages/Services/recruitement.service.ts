@@ -8,7 +8,8 @@ export class RecruitementService {
 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
-  host = "https://103.12.1.103/CoreDigiRecruitmentAPI";
+  
+   host = "https://103.12.1.103/CoreDigiRecruitmentAPI";
   // host="http://localhost:1807//"
 
   // host = "http://23.101.22.93/CoreDigiRecruitementAPI";
@@ -161,6 +162,12 @@ export class RecruitementService {
 
   public InsertCandidateRegistration(data: any) {
     this.url = this.host + "/Vendor/InsertCandidateRegistration";
+    return this.http.post(this.url, data);
+  }
+
+  public UpdateCandidateBasicsalary(data: any) {
+    debugger
+    this.url = this.host + "/Vendor/UpdateCandidateBasicsalary";
     return this.http.post(this.url, data);
   }
 
