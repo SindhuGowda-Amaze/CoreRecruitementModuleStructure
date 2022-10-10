@@ -61,6 +61,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   cancle: any;
   showorhidecontent: any;
   jobid: any;
+  dateformat1:any
 
   constructor(private RecriutmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, private datePipe: DatePipe) { }
 
@@ -127,16 +128,16 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
 
-/*   changeStatus(evn: any) {
-
-    if (evn.currentTarget.checked) {
-      this.showorhidecontent = false;
-    }
-    else {
-      this.showorhidecontent = true;
-    }
-
-  } */
+  /*   changeStatus(evn: any) {
+  
+      if (evn.currentTarget.checked) {
+        this.showorhidecontent = false;
+      }
+      else {
+        this.showorhidecontent = true;
+      }
+  
+    } */
   changeStatus(evn: any) {
     if (evn.target.value == 1) {
       this.showorhidecontent = true;
@@ -430,6 +431,7 @@ export class ScheduledInterviewsComponent implements OnInit {
       }
       _date = this.datePipe.transform(sdate, 'dd');
       let _day = this.datePipe.transform(sdate, 'EEE');
+      this.dateformat1 = this.datePipe.transform(sdate, 'yyyy-MM-ddTHH:mm:ss');
       let dateformat = this.datePipe.transform(sdate, 'yyyy-MM-ddTHH:mm:ss');
 
       this.callenderdaysdount[i] = { date: _date, day: _day, dateformat: dateformat };
@@ -448,6 +450,7 @@ export class ScheduledInterviewsComponent implements OnInit {
         // "<br>  End Time : " + MaintainanceList[j].endTime +
         // // "<br>  Unit :" + MaintainanceList[j].unitID +
         "</span>";
+        console.log("callenderdaysdount", this.callenderdaysdount)
       }
     }
   }
@@ -592,7 +595,7 @@ export class ScheduledInterviewsComponent implements OnInit {
     this.RecriutmentServiceService.GetJobDescriptionMaster().subscribe(data => {
       debugger;
       this.staffdetails = data;
-     
+
 
 
     })
@@ -604,7 +607,7 @@ export class ScheduledInterviewsComponent implements OnInit {
   public GetJobDescription1() {
     this.RecriutmentServiceService.GetCandidateRegistration().subscribe(data => {
       debugger;
-      
+
       this.joblist = data.filter(x => x.jobTitle == this.Role1 && x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0)
 
 
@@ -655,8 +658,8 @@ export class ScheduledInterviewsComponent implements OnInit {
   }
 
   ID: any;
-  mynote:any;
-  mynotelist:any;
+  mynote: any;
+  mynotelist: any;
   public getNoteID(even: any) {
     this.ID = even.id
     this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
@@ -666,8 +669,8 @@ export class ScheduledInterviewsComponent implements OnInit {
         this.mynotelist = data.filter(x => x.scheduled == 1 && x.id == this.ID);
         this.mynote = this.mynotelist[0].interviewerMyNotes
         debugger
-  
-        
+
+
         this.GetCandidateReg()
 
       }, error: (err: { error: { message: any; }; }) => {
@@ -686,6 +689,32 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
   }
 
+  changeStatus1(modif: any) {
+    debugger;
+    console.log("Date.........." + modif)
+    /*   this.joblist = this.joblist.filter((x: { date: any; }) => x.date >= x.date <= this.endDate); */
 
 
+    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        this.joblist = data.filter(x => x.cdate == modif);
+        /*     this.showorhidecontent = true; */
+        // filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+        console.log("Date.........." + this.joblist)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
 }
