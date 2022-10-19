@@ -59,6 +59,8 @@
     background-color: #21a4da;
     border:none;
     width:100%;
+    height: 60px;
+    margin-top: 10px;
   }
   .offer{
     padding:5px;

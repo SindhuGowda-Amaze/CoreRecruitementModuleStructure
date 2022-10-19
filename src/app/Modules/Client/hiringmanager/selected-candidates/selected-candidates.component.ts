@@ -22,7 +22,7 @@ import Swal from 'sweetalert2';
 })
 export class SelectedCandidatesComponent implements OnInit {
 
-   
+
   //Variable Declerations//
 
   roleid: any
@@ -74,7 +74,9 @@ export class SelectedCandidatesComponent implements OnInit {
   jobdescriptionID: any;
   jobdescription: any;
   maxdate: any;
-  even : any
+  even: any
+  ExpectedSalary: any
+  Comments: any
   files: File[] = [];
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
@@ -97,7 +99,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
 
   //Method to Get Company Staff Data//
-  GetRecruiterStaff(){
+  GetRecruiterStaff() {
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
       next: data => {
         debugger
@@ -120,7 +122,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
- // Methods to  get list of Selected Candidates from CandidateRegistration Table//
+  // Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     debugger
     this.RecruitmentServiceService.GetCandidateRegistration().subscribe({
@@ -182,7 +184,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
 
 
-//Method to upload Attachmnet//
+  //Method to upload Attachmnet//
   onSelect(event: { addedFiles: any; }) {
     debugger
     if (event.addedFiles[0].type == "application/pdf") {
@@ -209,27 +211,27 @@ export class SelectedCandidatesComponent implements OnInit {
         debugger
         this.Company_logo = res;
         Swal.fire("Attachment Uploaded");
-      },error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Uploading Images');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Uploading Images');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      
+        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+
     })
   }
 
 
 
 
-//Method to  Upload offer letter and update tentative DOJ with notes//
+  //Method to  Upload offer letter and update tentative DOJ with notes//
   public updatedetails() {
 
     if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
@@ -355,7 +357,7 @@ export class SelectedCandidatesComponent implements OnInit {
   }
 
 
-//Method to filter the data by Dates//
+  //Method to filter the data by Dates//
   public FilterByDate() {
     debugger;
 
@@ -371,7 +373,7 @@ export class SelectedCandidatesComponent implements OnInit {
         }
         else {
           this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.date >= this.Date && x.date <= this.endDate);
-          this.jobListCopy = this.joblist.filter((x: { date: number; })=>x.date >= this.Date && x.date <= this.endDate);
+          this.jobListCopy = this.joblist.filter((x: { date: number; }) => x.date >= this.Date && x.date <= this.endDate);
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.loader = false;
           this.count = this.joblist.length;
@@ -379,7 +381,7 @@ export class SelectedCandidatesComponent implements OnInit {
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in GettingCandidate Registration');
         // Insert error in Db Here//
-        var obj = { 
+        var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
         }
@@ -389,11 +391,11 @@ export class SelectedCandidatesComponent implements OnInit {
           },
         )
       }
-    }) ;
+    });
   }
 
 
-//Method to filter the data by Notice Period//
+  //Method to filter the data by Notice Period//
   public filterByNoticePeriod() {
     debugger;
 
@@ -447,27 +449,28 @@ export class SelectedCandidatesComponent implements OnInit {
 
   }
 
- //Click Method to get and Prefill Budget Details from CandidateRegistration Table//
+  //Click Method to get and Prefill Budget Details from CandidateRegistration Table//
   getid(even: any) {
     debugger
     this.id = even;
     this.RecruitmentServiceService.GetCandidateRegistration()
       .subscribe(data => {
         debugger
-
         let temp: any = data.filter(x => x.id == this.id);
         this.basicsalary = temp[0].basicsalary;
-        this.DeminimisList = temp[0].demenislist;
-        this.currentlevel = temp[0].level;
+        this.DeminimisList = temp[0].DeminimisList;
         this.demenisamt = temp[0].demenisamt;
-        this.currentlevel = temp[0].level;
-        this.netsalary = this.basicsalary + this.demenisamt;
-        this.ctc = this.netsalary * 12;
-        this.currentlevel = temp[0].level;
+        this.currentlevel = temp[0].currentlevel;
+        this.ExpectedSalary=temp[0].expectedSalary
+        this.Comments=temp[0].comments
+        // this.currentlevel = temp[0].level;
+        // this.netsalary = this.basicsalary + this.demenisamt;
+        // this.ctc = this.netsalary * 12;
+        // this.currentlevel = temp[0].level;
       })
   }
 
-//Method to Approve Candidate by Comparing Budget Planning//
+  //Method to Approve Candidate by Comparing Budget Planning//
   public ApproveId() {
     Swal.fire({
       title: 'Are you sure?',
@@ -506,7 +509,7 @@ export class SelectedCandidatesComponent implements OnInit {
     })
   }
 
-//Method to Reject Candidate by Comparing Budget Planning//
+  //Method to Reject Candidate by Comparing Budget Planning//
   public Reject(ID: any) {
     debugger
     Swal.fire({
@@ -571,7 +574,7 @@ export class SelectedCandidatesComponent implements OnInit {
     });
   }
 
-//Method to filter Data by Job Description//
+  //Method to filter Data by Job Description//
   public filterByJD(even: any) {
     this.jobdescriptionID = even.target.value
 
@@ -608,5 +611,34 @@ export class SelectedCandidatesComponent implements OnInit {
         )
       }
     })
+  }
+  candiadteID: any;
+  public getCandidateID(candidate: any) {
+    this.candiadteID = candidate
+  }
+
+  public Insertdetails() {
+    debugger
+    var entity = {
+      'ID': this.candiadteID,
+      'Basicsalary': this.basicsalary,
+      'DeminimisList': this.DeminimisList,
+      'Demenisamt': this.demenisamt,
+      // 'Netsalary': this.netsalary,
+      // 'Ctc': this.ctc,
+      'Currentlevel': this.currentlevel,
+      'ExpectedSalary': this.ExpectedSalary,
+      'Comments': this.Comments,
+    }
+    this.RecruitmentServiceService.UpdateCandidateBasicsalary(entity).subscribe({
+
+      next: data => {
+        debugger
+        this.loader = false;
+        Swal.fire('Recommended Successfully')
+
+      },
+    })
+
   }
 }

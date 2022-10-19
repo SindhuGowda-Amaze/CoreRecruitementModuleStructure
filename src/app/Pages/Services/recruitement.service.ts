@@ -8,8 +8,9 @@ export class RecruitementService {
 
 
   // host = "https://23.101.22.93/DigiOfficeBSINTAPI";
-  host = "https://103.12.1.103/CoreDigiRecruitmentAPI";
-  // host="http://localhost:1807//"
+  
+    public host = "https://103.12.1.103/CoreDigiRecruitmentAPI";
+    //host="http://localhost:1807/"
 
   // host = "http://23.101.22.93/CoreDigiRecruitementAPI";
 
@@ -146,7 +147,7 @@ export class RecruitementService {
   public Authenicate(data: any) {
     debugger;
     // this.url = this.host + "/Master/Verifyotp";
-    this.url = this.host + '/Announcement/Authenicate';
+    this.url = this.host + '/User/Authenicate';
     return this.http.post(this.url, data);
   }
   public UpdateVendor(data: any) {
@@ -161,6 +162,12 @@ export class RecruitementService {
 
   public InsertCandidateRegistration(data: any) {
     this.url = this.host + "/Vendor/InsertCandidateRegistration";
+    return this.http.post(this.url, data);
+  }
+
+  public UpdateCandidateBasicsalary(data: any) {
+    debugger
+    this.url = this.host + "/Vendor/UpdateCandidateBasicsalary";
     return this.http.post(this.url, data);
   }
 
@@ -561,9 +568,17 @@ export class RecruitementService {
   }
 
 
-  public GetLevelMaster() {
+  // public GetLevelMaster() {
 
-    return this.http.get<any[]>(this.host + "/Master/GetLevelType");
+  //   return this.http.get<any[]>(this.host + "/User/GetLevelMaster");
+  // }
+
+
+  public GetLevelMaster() {
+    return this.http.get<any[]>(
+      this.host + "/Master/GetLevelMaster"
+
+    );
   }
 
   // public ProjectAttachments(files: any, userid: any) {

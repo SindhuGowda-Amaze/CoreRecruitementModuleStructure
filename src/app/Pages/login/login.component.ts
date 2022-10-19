@@ -58,20 +58,20 @@ export class LoginComponent implements OnInit {
       next: data => {
         debugger
         this.loginTypeList = data;
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Login TypeMaster');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
       }
+
+      // }, error: (err: { error: { message: any; }; }) => {
+      //   Swal.fire(' Issue in Getting Login TypeMaster');
+      //   var obj = {
+      //     'PageName': this.currentUrl,
+      //     'ErrorMessage': err.error.message
+      //   }
+      //   this.RecruitmentServiceService.InsertExceptionLogs(obj).subscribe(
+      //     data => {
+      //       debugger
+      //     },
+      //   )
+      // }
     })
   }
   public getRoleID(even: any) {
@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
     this.RecruitmentServiceService.Authenicate(entity).subscribe((data: any) => 
     {
       debugger
+      console.log("authnticaste response",data)
       
       if (data['requestMessage'] != undefined || null) {
         localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);
