@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CandidateDocComponent } from './candidate-doc/candidate-doc.component';
 import { JobVacanciesComponent } from './job-vacancies/job-vacancies.component';
 import { RecruiterComponent } from './recruiter.component';
 import { RescheduledInterviewComponent } from './rescheduled-interview/rescheduled-interview.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'JobVacancies',component:JobVacanciesComponent},
   {path:'VendorJobOpenings',component:VendorJobOpeningsComponent},
   {path:'JobVacancies/:id',component:JobVacanciesComponent},
-  {path:'RescheduledInterview',component:RescheduledInterviewComponent}
+  {path:'RescheduledInterview',component:RescheduledInterviewComponent},
+  {path:'CandidateDoc/:id',component:CandidateDocComponent}
 
 
 ];

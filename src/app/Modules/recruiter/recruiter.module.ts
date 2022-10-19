@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { VendorJobOpeningsComponent } from './vendor-job-openings/vendor-job-openings.component';
 import { JobVacanciesComponent } from './job-vacancies/job-vacancies.component';
 import { RescheduledInterviewComponent } from './rescheduled-interview/rescheduled-interview.component';
+import { CandidateDocComponent } from './candidate-doc/candidate-doc.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RescheduledInterviewComponent } from './rescheduled-interview/reschedul
     ShortListedComponent,
     VendorJobOpeningsComponent,
     JobVacanciesComponent,
-    RescheduledInterviewComponent
+    RescheduledInterviewComponent,
+    CandidateDocComponent
   ],
   imports: [
     CommonModule,

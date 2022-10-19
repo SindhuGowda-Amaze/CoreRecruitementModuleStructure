@@ -566,7 +566,24 @@ export class RecruitementService {
     return this.http.get<any[]>(this.host + "/Master/GetLevelType");
   }
 
+  // public ProjectAttachments(files: any, userid: any) {
+  //   debugger
+  //   let formdata: FormData = new FormData();
+  //   for (let i = 0; i < files.length; i++) {
+  //     formdata.append('file_upload', files[i], files[i].name);
+  //   }
+  //   this.url = this.host + '/Master/ProjectAttachmentsbyuserid?userid=' + userid;
+  //   return this.http.post<any[]>(this.url, formdata);
+  // }
 
+  public ProjectAttachments(files: any) {
+    let formdata: FormData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formdata.append('file_upload', files[i], files[i].name);
+    }
+    this.url = this.baseURL + '/Master/ProjectAttachments';
+    return this.http.post<any[]>(this.url, formdata);
+  }
 
 
 }

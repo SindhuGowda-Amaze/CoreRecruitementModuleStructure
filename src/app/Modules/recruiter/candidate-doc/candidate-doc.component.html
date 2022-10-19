@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="Heading1">Candidate Documents</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10"></div>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="row leavereq">
+            <div class="col-md-3">
+                <label>Last Company Offer Letter</label>
+            </div>
+            <div class="col-md-3">
+                <label>Last 3 months Salary Slip</label>
+            </div>
+            <div class="col-md-3">
+                <label>National ID</label>
+            </div>
+            <div class="col-md-3">
+                <label>Latest Degree Certificate</label>
+            </div>
+        </div>
+        <div class="row leavereq">
+            <div class="col-md-3">
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,application/pdf" (change)="onSelect1($event)"
+                    style="height: 130px;">
+                    <!-- <img src="assets/Images/MicrosoftTeams-image.png" *ngIf="attachments1.length==0"
+                        class="img-set dropdowning"> -->
+                    <ngx-dropzone-label>Drop Files here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of attachments1" [removable]="true" (removed)="onRemove1(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-md-3">
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,application/pdf" (change)="onSelect2($event)"
+                    style="height: 130px;">
+                    <ngx-dropzone-label>Drop Files here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of attachments2" [removable]="true" (removed)="onRemove2(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-md-3">
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,application/pdf" (change)="onSelect3($event)"
+                    style="height: 130px;">
+                    <ngx-dropzone-label>Drop Files here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of attachments3" [removable]="true" (removed)="onRemove3(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-md-3">
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,application/pdf" (change)="onSelect4($event)"
+                    style="height: 130px;">
+                    <ngx-dropzone-label>Drop Files here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of attachments4" [removable]="true" (removed)="onRemove4(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-2">
+                <button class=" Edit" (click)="cancel()">Cancel</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="Addbutton" (click)="Save()">Upload</button>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

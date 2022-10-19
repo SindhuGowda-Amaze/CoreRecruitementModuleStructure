@@ -107,7 +107,7 @@
                         <th>Notice Period</th>
                         <th>Interviewer Comments</th>
 
-                        <th>Appro Status</th>
+                        <th>Approve Status</th>
                         <!-- <th>Interviewer Feedback</th> -->
                         <th *ngIf="roleid!=3">Actions</th>
                         <th *ngIf="roleid==6 || roleid==8">Selection</th>
@@ -153,7 +153,9 @@
                             <button class="button form-control Add1" (click)="Reject(job.id)"
                                 *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Reject</button>
                             <br><br>
-
+                            <button class="button form-control"
+                            (click)="getid(job.id)"
+                            *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='6'"  [routerLink]="['/recruiter/CandidateDoc',job.id]">Doc Link</button><br>
 
 
                             <!-- <button class="btn btn-danger" *ngIf="job.offered=='0'" data-toggle="modal"
