@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
     this.RecruitmentServiceService.Authenicate(entity).subscribe((data: any) => 
     {
       debugger
+      console.log("authnticaste response",data)
       
       if (data['requestMessage'] != undefined || null) {
         localStorage.setItem('token', data['requestMessage'].headers[0].value[0]);

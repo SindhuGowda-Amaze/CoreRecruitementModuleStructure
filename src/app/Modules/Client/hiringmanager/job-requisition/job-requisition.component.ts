@@ -66,6 +66,8 @@ export class JobRequisitionComponent implements OnInit {
 //Variable Initialisation and Default Method Calls//
 
     this.GetClientStaff();
+  
+   
     this.GetManpowerPlanningandBudgeting1();
     this.GetManpowerPlanningandBudgeting();
     this.currentUrl = window.location.href;
