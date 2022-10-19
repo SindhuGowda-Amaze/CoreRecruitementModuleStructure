@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
 })
 export class ExternalJobApplyComponent implements OnInit {
 
- 
   Company_logo: any;
   ID:any;
   Source:any;
