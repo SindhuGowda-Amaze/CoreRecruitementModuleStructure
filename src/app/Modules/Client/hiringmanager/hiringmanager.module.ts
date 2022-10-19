@@ -10,6 +10,7 @@ import { AppliedCandidatesComponent } from './applied-candidates/applied-candida
 import { SelectedCandidatesComponent } from './selected-candidates/selected-candidates.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ExternalJobApplyComponent } from '../../../external-job-apply/external-job-apply.component';
+import { CompensationRejectedCandidateComponent } from './compensation-rejected-candidate/compensation-rejected-candidate.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ExternalJobApplyComponent } from '../../../external-job-apply/external-
     JobRequisitionComponent,
     AppliedCandidatesComponent,
     SelectedCandidatesComponent,
-  ExternalJobApplyComponent
+  ExternalJobApplyComponent,
+  CompensationRejectedCandidateComponent
   ],
   imports: [
     CommonModule,

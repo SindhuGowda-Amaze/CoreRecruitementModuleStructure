@@ -251,6 +251,18 @@
                     &nbsp;SHORTLISTED
                 </a>
 
+
+                <a (click)="scheduled1()" routerLink="/InterviewPanel/ScheduledInterviews" class="nonactive"
+                    (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' "
+                    *ngIf="roleid=='6'||roleid=='5'">
+                    <img *ngIf="manPowerMenu==11" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    <img *ngIf="manPowerMenu!=11" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
+                        style="width: 13%; margin-right: 17px" />
+                    &nbsp; SCHEDULED Interview
+                </a>
+
+                
                 <div *ngIf="roleid=='6'">
                     <a (click)="RescheduledInterview()" routerLink="/recruiter/RescheduledInterview" class="nonactive"
                         (click)="openCity1($event)" [ngClass]="manPowerMenu==4? 'highlighting' : '' ">
@@ -266,16 +278,6 @@
                     </a>
                 </div>
 
-                <a (click)="scheduled1()" routerLink="/InterviewPanel/ScheduledInterviews" class="nonactive"
-                    (click)="openCity($event)" [ngClass]="manPowerMenu==11? 'highlighting' : '' "
-                    *ngIf="roleid=='6'||roleid=='5'">
-                    <img *ngIf="manPowerMenu==11" src="assets/Images/64 Blue/ATTENDANCE/Report/Employee Report.png"
-                        style="width: 13%; margin-right: 17px" />
-                    <img *ngIf="manPowerMenu!=11" src="assets/Images/64/ATTENDANCE/Report/Employee Report.png"
-                        style="width: 13%; margin-right: 17px" />
-                    &nbsp; SCHEDULED Interview
-                </a>
-
 
                 <a (click)="Selected()" class="nonactive" (click)="openCity($event)"
                     [ngClass]="manPowerMenu==6?'highlighting': ''">
@@ -285,6 +287,18 @@
                         style="width: 13%; margin-right: 17px" />
                     &nbsp;SELECTED CANDIDATES
                 </a>
+
+                <a (click)="Compensation()" class="nonactive" (click)="openCity($event)"
+                [ngClass]="manPowerMenu==10?'highlighting': ''">
+                <img *ngIf="manPowerMenu!=10" src="assets/Images/64/ATTENDANCE/Report/Probation Evaluation.png"
+                    style="width: 13%; margin-right: 17px" />
+                <img *ngIf="manPowerMenu==10" src="assets/Images/64 Blue/ATTENDANCE/Report/Probation Evaluation.png"
+                    style="width: 13%; margin-right: 17px" />
+                &nbsp;COMPENSATION REJECTED CANDIDATES
+            </a>
+
+
+            
 
                 <a (click)="Offered()" class="nonactive" (click)="openCity($event)"
                     [ngClass]="manPowerMenu==7? 'highlighting':''">

@@ -8,6 +8,7 @@ import { HiringmanagerComponent } from './hiringmanager.component';
 import { JobRecruitementsComponent } from './job-recruitements/job-recruitements.component';
 import { JobRequisitionComponent } from './job-requisition/job-requisition.component';
 import { SelectedCandidatesComponent } from './selected-candidates/selected-candidates.component';
+import { CompensationRejectedCandidateComponent } from './compensation-rejected-candidate/compensation-rejected-candidate.component';
 
 const routes: Routes = [{ path: '', component: HiringmanagerComponent },
 {path:'AppliedCandidates',component:AppliedCandidatesComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [{ path: '', component: HiringmanagerComponent },
 
 
 {path:'SelectedCandidates',component:SelectedCandidatesComponent},
-{path:'ExternalJobApply/:id',component:ExternalJobApplyComponent}
+{path:'ExternalJobApply/:id',component:ExternalJobApplyComponent},
+{path:'CompensationRejectedCandidate',component:CompensationRejectedCandidateComponent}
 
 
 

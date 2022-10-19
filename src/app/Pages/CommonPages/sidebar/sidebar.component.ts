@@ -463,6 +463,16 @@ this.reportmenu=0;
 
   }
 
+
+  public Compensation() {
+    debugger
+      this.manPowerMenu=33;
+      this.menu=0;
+      this.active = 90;
+      localStorage.setItem('Pagename', 'COMPENSATION REJECTED CANDIDATES')
+      this.router.navigate(['hirignmanager/CompensationRejectedCandidate']);
+  }
+
   public RejectedCandidates() {
     if (this.roleid == '5') {
       this.active = 82;

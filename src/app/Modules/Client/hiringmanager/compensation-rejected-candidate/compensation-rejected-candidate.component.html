@@ -1,0 +1,569 @@
+<!-- <app-loader *ngIf="loader"></app-loader> -->
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="Heading"> COMPENSATION REJECTED CANDIDATES </p>
+
+        </div>
+    </div> <br>
+
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">Start Date</div>
+            <div class="col-lg-2" style="margin-left: -28px;">End Date</div>
+        </div>
+
+
+        <div class="row FilterClass">
+            <div class="col-lg-1">
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
+            </div>
+            <!-- <div class="col-lg-2">
+                <select  class="form-control form-select poppinns" [(ngModel)]="hiringManager"
+                    (change)="GetJobRequirements()">
+                    <option value="">Select Hiring Manager</option>
+                    <option *ngFor="let hr of hrlist" value="{{hr.name}}">{{hr.name}}</option>
+            </select>                 
+            </div> -->
+            <div class="ol-lg-2">
+                <input type="date" style="color:#0C275A;" class="form-control poppinns" name="Date" value="Date"
+                    [(ngModel)]="Date">
+            </div>
+            <div class="col-lg-2">
+                <input type="date" style="color:#0C275A;" class="form-control poppinns" (change)=" FilterByDate ()"
+                    name="endDate" value="endDate" [(ngModel)]="endDate">
+            </div>
+
+            <div class="col-lg-2">
+                <select name="Select" class="form-control poppinns" (change)="filterByNoticePeriod()"
+                    [(ngModel)]="searchbynotice">
+                    <option value="" style="color:#0C275A;">Select Notice Period</option>
+                    <option style="color:#0C275A;" *ngFor="let job of noticeperiodlist" value="{{job.noticePeriod}}">
+                        {{job.noticePeriod}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control form-control poppinns" id="Role" name="Role" [(ngModel)]="Role"
+                    (change)="filterByJD($event)">
+                    <option value="">Select Job Title</option>
+                    <option *ngFor="let job of jobdescription" value="{{job.role}}">
+                        {{job.role}}
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="col-lg-2">
+                <input class="form-control poppinns" placeholder="Search.." [(ngModel)]="search" name="search">
+            </div>
+
+            <div class="col-lg-1">
+                <p class="Count">Count:{{joblist.length}}</p>
+            </div>
+
+            <!-- <div class="col-lg-2"></div> -->
+
+        </div>
+
+        <!-- <div class="row">
+            <div class="col=lg-1"></div>
+            <div class="col-lg-11">
+                   
+            </div>
+        </div> -->
+
+
+
+    </div><br>
+
+
+
+    <div class="row">
+        <div class="col-lg-12" style="width: 100px; overflow-x: scroll;">
+            <table class="table tablebordered" *ngIf="(joblist | filter: search).length > 0; else noResults">
+                <thead>
+                    <tr>
+                        <!-- <th>Vendor</th> -->
+                        <th>Job Reference ID</th>
+                        <th>Job Title</th>
+
+                        <!--    <th>Interview Date</th> -->
+                        <th>Source</th>
+                        <th *ngIf="roleid!=2">Hiring Manager</th>
+                        <!-- <th>Time</th> -->
+                        <th *ngIf="roleid!=5">Interviewed By</th>
+                        <!-- <th>Tentitive Joining Date</th> -->
+                        <th>Candidate Name</th>
+                        <th>Phone No</th>
+                        <th>Email</th>
+                        <th>Total Years of Experience</th>
+                        <th>Resume</th>
+                        <!-- <th>Relevant Experience</th> -->
+                        <!-- <th>CTC Budget</th> -->
+
+                        <th>Notice Period</th>
+                        <th>Interviewer Comments</th>
+
+                        <th>Approve Status</th>
+                        <!-- <th>Interviewer Feedback</th> -->
+                        <th *ngIf="roleid!=3 || roleid==6 || roleid==8">Actions</th>
+                        <!-- <th *ngIf="roleid==6 || roleid==8">Selection</th> -->
+                    </tr>
+                    <tr *ngFor="let job of joblist|filter:search | paginate: { itemsPerPage: count1, currentPage: p }">
+                        <td>{{job.jobRefernceID}}</td>
+                        <td>{{job.jobTitle}}</td>
+                        <!--  <td style="white-space:pre;">{{job.date|date}}</td> -->
+                        <td>{{job.source}}</td>
+                        <!-- <td>{{job.slotTime}}</td> -->
+                        <td *ngIf="roleid!=2">{{job.hiringManager}}</td>
+                        <td *ngIf="roleid!=5">{{job.staffname}}</td>
+                        <td>{{job.candidateName}}</td>
+                        <td>{{job.phoneNo}}</td>
+                        <td>{{job.email}}</td>
+                        <td>{{job.yearsofExp}}</td>
+
+                        <td>
+                            <img src="assets/Images/pdf.png" style="width: 30px;"
+                                (click)="GetOfferLetter(job.resumeUrl)">
+                        </td>
+                        <!-- <td>{{job.relavantExp}}</td>   -->
+                        <!-- <td>{{job.ctc}}</td>  -->
+                        <td>{{job.noticePeriod}}</td>
+                        <td>{{job.interviewercomments}}</td>
+
+                        <td>
+                            <p *ngIf="job.budgetStatus==null">Waiting for Approval</p>
+                            <p *ngIf="job.budgetStatus!=null">{{job.budgetStatus}}</p>
+                        </td>
+                        <td *ngIf="roleid!=3 || roleid==6 || roleid==8">
+
+                            <button class="btn btn-danger "
+                                style="background-color: #ffffff; border:2px solid red;color :red"
+                                *ngIf="job.offered=='0' && job.budgetStatus=='Approved' && roleid=='6'"
+                                data-toggle="modal" data-target="#exampleModal"
+                                (click)="GetOfferID(job.id,job)">Offer</button>
+
+                            <button class="button form-control Add1" data-toggle="modal" data-target="#exampleModal10"
+                                (click)="getid(job.id)"
+                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Approve</button><br>
+
+                            <button class="button form-control Add1" (click)="Reject(job.id)"
+                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Reject</button><br>
+
+                            <button  class="button form-control" data-toggle="modal" data-target="#exampleModal11"
+                                *ngIf="( roleid==6 || roleid==8 )&& job.basicsalary==null &&job.budgetStatus=='Approved' " (click)="getCandidateID(job.id)">Salary
+                                Recommend</button>
+
+                            <p *ngIf="job.basicsalary!=null">Recommended</p>
+
+                            <br><br>
+                            <button class="button form-control"
+                            (click)="getid(job.id)"
+                            *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='6'"  [routerLink]="['/recruiter/CandidateDoc',job.id]">Doc Link</button><br>
+
+
+
+                            <!-- <button class="btn btn-danger" *ngIf="job.offered=='0'" data-toggle="modal"
+                                data-target="#exampleModal1" (click)="GetOfferID(job.id,job)">Notes</button> -->
+
+                        </td>
+                        <!-- <td *ngIf=" roleid==6 || roleid==8">
+                            <button class="button form-control" data-toggle="modal" data-target="#exampleModal11" >Salary Recommended</button>
+                        </td> -->
+                        <!-- <td *ngIf="roleid==6 || roleid==8">
+                            <button class="button form-control" data-toggle="modal" data-target="#exampleModal11" >SalaryRecommended</button>
+                        </td> -->
+                    </tr>
+                </thead>
+            </table>
+            <ng-template #noResults>
+                <p>no results found for "{{search}}" </p>
+            </ng-template>
+        </div>
+        <div class="text-right">
+            <br>
+            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+        </div>
+        <span *ngIf="joblist.length==0">No data found.</span>
+        <br>
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Joining Date : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="date" [(ngModel)]="date" name="date" class="form-control">
+                    </div>
+
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Joining Bonus : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="joiningbonus" name="offernotes"></textarea> -->
+
+                        <input type="text" [(ngModel)]="joiningbonus" name="joiningbonus" class="form-control"
+                            placeholder="Joining Bonus">
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Notice Period By then : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="joiningbonus" name="offernotes"></textarea> -->
+
+                        <input type="text" [(ngModel)]="noticeperiodbythen" name="noticeperiodbythen"
+                            class="form-control" placeholder="Notice Period By then">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Notes : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="joiningbonus" name="offernotes"></textarea> -->
+
+
+                        <textarea rows="4" [(ngModel)]="Notes" name="Notes" class="form-control"
+                            placeholder="Notes"></textarea>
+                        <!-- <input type="text"> -->
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-5">
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="updatejoiningdate()"
+                            data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Offer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Offer Letter : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- -->
+                        <!-- <ngx-dropzone style="height:50px">
+                            <ngx-dropzone-label (change)="onattachmentUpload($event)" >Drag and drop file here</ngx-dropzone-label>
+                        </ngx-dropzone> -->
+
+                        <ngx-dropzone (change)="onSelect($event)">
+                            <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </ngx-dropzone>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- <img src="{{attachmentsurl}}" style="width: 40px;"> -->
+                    </div>
+
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Notes : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea class="form-control" rows="4" placeholder="Notes" [(ngModel)]="offernotes"
+                            name="offernotes"></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="Letter">Tentative DOJ <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="Date" class="form-control" [(ngModel)]="TentativeDate" min="{{maxdate}}">
+                    </div>
+                </div> <br>
+                <div class="row">
+                    <div class="col-lg-5">
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="updatedetails()"
+                            data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="modal-title Heading" id="exampleModalLabel">View Recommended Compensation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Basic Salary : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="basicsalary" name="basicsalary" class="form-control" disabled
+                            placeholder="Basic Salary">
+                    </div>
+
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis List : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" [(ngModel)]="DeminimisList " name="DeminimisList" class="form-control"
+                            placeholder="Deminimis List " rows="3" disabled></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis Amount : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="demenisamt" name="demenisamt" class="form-control"
+                            placeholder="Deminimis Amount" disabled>
+                    </div>
+                </div><br>
+
+                <!-- <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Net Salary/month : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="netsalary" name="netsalary" class="form-control"
+                            placeholder="Net Salary/month " disabled>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">CTC : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="ctc" name="ctc" class="form-control" placeholder="CTC" disabled>
+                    </div>
+                </div><br> -->
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Current Level of Employee : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="currentlevel" name="currentlevel" class="form-control"
+                            placeholder="Current Level of Employee" disabled>
+                    </div>
+                </div><br>
+                <!-- <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Average Salary for Current Level: <span
+                                style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" placeholder="30000" disabled>
+                    </div>
+                </div> -->
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Expected Salary: <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" class="form-control" [(ngModel)]="ExpectedSalary" id="ExpectedSalary"
+                            name="ExpectedSalary" placeholder="Expected Salary" rows="3" disabled></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Comments: <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" class="form-control" [(ngModel)]="Comments" id="Comments" name="Comments"
+                            placeholder="Comments " rows="3" disabled></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-5">
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="ApproveId()"
+                            data-dismiss="modal">Approve</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="modal-title Heading" id="exampleModalLabel"> Recommended Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Basic Salary : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="basicsalary" name="basicsalary" class="form-control"
+                            placeholder="Basic Salary">
+                    </div>
+
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis List : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" [(ngModel)]="DeminimisList " name="DeminimisList" class="form-control"
+                            placeholder="Deminimis List " rows="3"></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Deminimis Amount : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="demenisamt" name="demenisamt" class="form-control"
+                            placeholder="Deminimis Amount">
+                    </div>
+                </div><br>
+               
+                
+
+                <!-- <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Net Salary/month : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="netsalary" name="netsalary" class="form-control"
+                            placeholder="Net Salary/month " >
+                    </div>
+                </div><br> -->
+                <!-- <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">CTC : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <input type="text" [(ngModel)]="ctc" name="ctc" class="form-control" placeholder="CTC" >
+                    </div>
+                </div><br> -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Current Level of Employee : <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" [(ngModel)]="currentlevel" name="currentlevel" class="form-control"
+                            placeholder="Current Level of Employee">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Expected Salary: <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" class="form-control" [(ngModel)]="ExpectedSalary" id="ExpectedSalary"
+                            name="ExpectedSalary" placeholder="Expected Salary" rows="3"></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="Letter">Comments: <span style="color: red;">*</span></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" class="form-control" [(ngModel)]="Comments" id="Comments" name="Comments"
+                            placeholder="Comments " rows="3"></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-5">
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="Insertdetails()">Recommended</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
