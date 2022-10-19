@@ -532,4 +532,25 @@ close(){
 close1(){
 location.reload()
 }
+candidateemail : any
+public SendMailEmployee() {
+  debugger
+  var entity3 = {
+    'emailto': this.candidateemail,
+    'emailsubject': 'candidats registration',
+    'emailbody': 'Dear candidate Please find one time cradentioal for Applying for job '+ "<br><br>" + 'username'+this.candidateemail + "Password=" + 'welcome'+
+                  'please finf the registration link below'+
+                '<a target="_blank" href="http://23.101.22.93/RecruitementModule/hiringnmanager/ExternalJobApply/53">Apply</a> ',
+  }
+  this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
+    debugger;
+    // Swal.fire('Letter Generated and Sent Successfully');
+    Swal.fire('Email sent');
+  })
+
+
+
+}
+
+
 }
