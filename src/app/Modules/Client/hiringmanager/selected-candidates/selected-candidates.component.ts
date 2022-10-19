@@ -129,13 +129,13 @@ export class SelectedCandidatesComponent implements OnInit {
       next: data => {
         debugger
         if (this.roleid == 2) {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.budgetStatus!='Rejected');
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.count = this.joblist.length;
           this.loader = false;
         }
         else {
-          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
+          this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0&& x.budgetStatus!='Rejected');
           this.jobListCopy = this.joblist;
           this.dummjoblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.dummjoblist1 = data.filter(x => x.interviewSelected != 1 && x.offered != 0);
