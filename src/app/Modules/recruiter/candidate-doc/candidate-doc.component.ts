@@ -158,6 +158,18 @@ export class CandidateDocComponent implements OnInit {
     debugger
     console.log(event);
     this.attachments1.push(...event.addedFiles);
+    this.uploadattachments1()
+  }
+
+  public uploadattachments1() {
+    debugger
+    this.RecruitementService.ProjectAttachments(this.attachments1).subscribe(res => {
+      debugger
+      this.attachments1url.push(res);
+      Swal.fire('Attachment Added Successfully.');
+      this.attachments1.length = 0;
+      debugger
+    })
   }
 
   onRemove1(event: any) {
@@ -170,7 +182,20 @@ export class CandidateDocComponent implements OnInit {
     debugger
     console.log(event);
     this.attachments2.push(...event.addedFiles);
+    this.uploadattachments2()
   }
+
+  public uploadattachments2() {
+    this.RecruitementService.ProjectAttachments(this.attachments2).subscribe(res => {
+      debugger
+      this.attachments2url.push(res);
+      Swal.fire('Attachment Added Successfully.');
+      this.attachments2.length = 0;
+      debugger
+    })
+
+  }
+
 
   onRemove2(event: any) {
     debugger
@@ -182,7 +207,21 @@ export class CandidateDocComponent implements OnInit {
     debugger
     console.log(event);
     this.attachments3.push(...event.addedFiles);
+    this.uploadattachments3()
   }
+
+  public uploadattachments3() {
+    this.RecruitementService.ProjectAttachments(this.attachments3).subscribe(res => {
+      debugger
+      this.attachments3url.push(res);
+      Swal.fire('Attachment Added Successfully.');
+      this.attachments3.length = 0;
+      debugger
+    })
+
+  }
+
+
 
   onRemove3(event: any) {
     debugger
@@ -194,6 +233,17 @@ export class CandidateDocComponent implements OnInit {
     debugger
     console.log(event);
     this.attachments4.push(...event.addedFiles);
+    this.uploadattachments4();
+  }
+
+  public uploadattachments4() {
+    this.RecruitementService.ProjectAttachments(this.attachments4).subscribe(res => {
+      debugger
+      this.attachments4url.push(res);
+      Swal.fire('Attachment Added Successfully.');
+      this.attachments4.length = 0;
+      debugger
+    })
   }
 
   onRemove4(event: any) {
@@ -205,34 +255,47 @@ export class CandidateDocComponent implements OnInit {
 
   public Save() {
     debugger
-    this.RecruitementService.ProjectAttachments(this.attachments1).subscribe(res => {
-      debugger
-      this.attachments1url.push(res);
-      this.RecruitementService.ProjectAttachments(this.attachments2).subscribe(res => {
-        debugger
-        this.attachments2url.push(res);
-        this.attachments2.length = 0;
-        // this.InsertEmployeedocuments();
-        debugger
-      })
-      this.attachments1.length = 0;
-      debugger
-    })
+    debugger
+    console.log("attachment", this.attachments1url[0], this.attachments2url[0], this.attachments3url[0],this.attachments4url[0])
 
-    this.RecruitementService.ProjectAttachments(this.attachments3).subscribe(res => {
+    if ((this.attachments1url[0] == undefined && this.attachments2url[0] == undefined && this.attachments3url==undefined && this.attachments4url[0] == undefined )) {
       debugger
-      this.attachments3url.push(res);
-      this.attachments3.length = 0;
-      debugger
-    })
+      Swal.fire('Please Upload All Mandatory Documents')
 
-    this.RecruitementService.ProjectAttachments(this.attachments4).subscribe(res => {
-      debugger
-      this.attachments4url.push(res);
-      this.attachments4.length = 0;
-      debugger
-    })
+    }
+   
+    else {
+      var eb = {
+        'ID': this.id ,
+        'LastCompanyOfferLetter': this.attachments1url[0] == undefined ? null : this.attachments1url[0],
+        'Last3MonthsPaySlip': this.attachments2url[0] == undefined ? null : this.attachments2url[0],
+        'NationalID': this.attachments3url[0] == undefined ? null : this.attachments3url[0],
+        'LatestDegreeCertificate': this.attachments4url[0] == undefined ? null : this.attachments4url[0],
+      }
+      this.RecruitementService.UpdateCandidateDocuments(eb)
+        .subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Saved Successfully.');
+            
+          }, error: (err) => {
+            // Swal.fire('Issue in Inserting Employee Documents');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+    }
+
   }
+
 
   public cancel(){
     location.reload();

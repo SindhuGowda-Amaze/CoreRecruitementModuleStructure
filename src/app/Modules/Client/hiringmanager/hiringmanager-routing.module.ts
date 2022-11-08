@@ -23,6 +23,7 @@ const routes: Routes = [{ path: '', component: HiringmanagerComponent },
 {path:'SelectedCandidates',component:SelectedCandidatesComponent},
 
 {path:'ExternalJobApply/:id',component:ExternalJobApplyComponent},
+{path:'ExternalJobApply',component:ExternalJobApplyComponent},
 {path:'CompensationRejectedCandidate',component:CompensationRejectedCandidateComponent}
 
 

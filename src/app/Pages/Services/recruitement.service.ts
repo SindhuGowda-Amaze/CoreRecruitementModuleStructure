@@ -581,6 +581,18 @@ export class RecruitementService {
     );
   }
 
+  public UpdateCandidateDocuments(data: any) {
+    debugger;
+    this.url = this.host + '/Master/UpdateCandidateDocuments';
+    return this.http.post(this.url, data);
+  }
+
+
+
+
+
+
+
   // public ProjectAttachments(files: any, userid: any) {
   //   debugger
   //   let formdata: FormData = new FormData();
@@ -599,6 +611,7 @@ export class RecruitementService {
     this.url = this.baseURL + '/Master/ProjectAttachments';
     return this.http.post<any[]>(this.url, formdata);
   }
+
 
 
 }
