@@ -49,11 +49,30 @@ export class CandidateDocComponent implements OnInit {
         .subscribe({
           next: data => {
             debugger
+            let temp=data;
             this.CandidateList = data.filter(x => x.id == this.id);
-            this.LastCompanyOfferLetter=this.CandidateList[0].this.lastCompanyOfferLetter
-            this.Last3MonthsPaySlip=this.CandidateList[0].this.last3MonthsPaySlip
-            this.NationalID=this.CandidateList[0].this.nationalID
-            this.LatestDegreeCertificate=this.CandidateList[0].this.latestDegreeCertificate
+            
+            if (temp[0].lastCompanyOfferLetter1 != null) {
+              this.LastCompanyOfferLetter= temp[0].lastCompanyOfferLetter1
+            }
+
+            if (temp[0].last3MonthsPaySlip1 != null) {
+              this.Last3MonthsPaySlip= temp[0].last3MonthsPaySlip1
+            }
+
+            if (temp[0].nationalID1 != null) {
+              this.NationalID= temp[0].nationalID1
+            }
+
+            if (temp[0].latestDegreeCertificate1 != null) {
+              this.LatestDegreeCertificate= temp[0].latestDegreeCertificate1
+            }
+
+
+            // this.LastCompanyOfferLetter=this.CandidateList[0].lastCompanyOfferLetter
+            // this.Last3MonthsPaySlip=this.CandidateList[0].last3MonthsPaySlip
+            // this.NationalID=this.CandidateList[0].nationalID
+            // this.LatestDegreeCertificate=this.CandidateList[0].latestDegreeCertificate
            
            
           }, error: (err) => {
