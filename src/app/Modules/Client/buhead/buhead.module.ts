@@ -6,13 +6,15 @@ import { BUHeadComponent } from './buhead.component';
 import { ManpowerPlanningandBudgetingdashComponent } from './manpower-planningand-budgetingdash/manpower-planningand-budgetingdash.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ManpowerPlanningandBudgetingComponent } from './manpower-planningand-budgeting/manpower-planningand-budgeting.component';
+import { OfferManagementComponent } from './offer-management/offer-management.component';
 
 
 @NgModule({
   declarations: [
     BUHeadComponent,
     ManpowerPlanningandBudgetingdashComponent,
-    ManpowerPlanningandBudgetingComponent
+    ManpowerPlanningandBudgetingComponent,
+    OfferManagementComponent
   ],
   imports: [
     CommonModule,

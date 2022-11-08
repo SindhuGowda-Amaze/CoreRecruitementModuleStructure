@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('UserName', 'admin');
       sessionStorage.setItem('temp', '1');
       sessionStorage.setItem('role', 'Admin');
-      location.href = "#admin/AdminDashboard"
+      location.href = "#/admin/AdminDashboard"
       sessionStorage.setItem('roleid', '1');
       location.reload();
     }

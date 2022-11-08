@@ -533,15 +533,18 @@ close1(){
 location.reload()
 }
 candidateemail : any
+url:any;
+
 public SendMailEmployee() {
   debugger
+  this.url= 'http://103.12.1.103/CoreDigiRecruitment/#/hirignmanager/ExternalJobApply/'+this.ID
   var entity3 = {
     // 'emailto': this.candidateemail,
     'emailto': 'sindhumanjunath1008@gmail.com',
     'emailsubject': 'Candidate Registration Form',
     'emailbody': 'Dear Candidate,<br> Please find one time credentials to Apply  '+ "<br><br>" + 'username:'+this.candidateemail + "Password: welcome"+
-                  'please find the registration link below'+
-                '<a target="_blank" href="http://23.101.22.93/RecruitementModule/hiringnmanager/ExternalJobApply/53">Apply</a> <br> Note:'+this.Notes+'<br>Thanks And Regards, Recruiter'
+                  'please find the registration link below<br>'
+               + this.url+'<br> Note:'+this.Notes+'<br>Thanks And Regards, Recruiter'
   }
   this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
     debugger;

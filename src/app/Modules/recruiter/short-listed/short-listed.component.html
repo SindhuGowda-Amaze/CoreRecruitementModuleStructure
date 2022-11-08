@@ -100,8 +100,8 @@
             <td>
               <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)">
             </td>
-            <td>{{job.date}}</td>
-            <td>{{job.date}}</td>
+            <td>{{job.modifiedDate|date}}</td>
+            <td>{{job.date|date}}</td>
             <td *ngIf="roleid!='4' && roleid=='6'">
               <button class="edit-btn" data-toggle="modal" data-target="#exampleModal" (click)="GetCandidateID(job)">
                 Schedule Interview

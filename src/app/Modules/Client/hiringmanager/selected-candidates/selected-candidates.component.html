@@ -148,16 +148,18 @@
 
                             <button class="button form-control Add1" data-toggle="modal" data-target="#exampleModal10"
                                 (click)="getid(job.id)"
-                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Approve</button><br>
+                                *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'&& job.basicsalary!=null">Approve</button><br>
 
                             <button class="button form-control Add1" (click)="Reject(job.id)"
                                 *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Reject</button><br>
 
                             <button  class="button form-control" data-toggle="modal" data-target="#exampleModal11"
-                                *ngIf="( roleid==6 || roleid==8 )&& job.basicsalary==null &&job.budgetStatus!='Approved' " (click)="getCandidateID(job.id)">Salary
+                                *ngIf="( roleid==6 || roleid==8 )&& job.basicsalary==null &&job.budgetStatus!='Approved' && job.basicsalary!=null" (click)="getCandidateID(job.id)">Salary
                                 Recommend</button>
 
-                            <p *ngIf="job.basicsalary!=null">Recommended</p>
+                            <p *ngIf="job.basicsalary!=null && roleid==6"  >Recommended</p>
+                            <p *ngIf="job.basicsalary==null">Recommendation Pending</p>
+                            
 
                             <br><br>
                             <button class="button form-control"

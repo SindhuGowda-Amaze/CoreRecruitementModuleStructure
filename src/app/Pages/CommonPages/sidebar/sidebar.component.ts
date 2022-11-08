@@ -1131,7 +1131,7 @@ this.reportmenu=0;
   offermanage(){
     this.menu = 17;
     localStorage.setItem("clickname", "offermanage")
-    this.router.navigate(['/OfferManagement']);
+    this.router.navigate(['/BUHead/OfferManagement']);
   }
 
   reschedule(){

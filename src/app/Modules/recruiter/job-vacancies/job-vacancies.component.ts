@@ -153,7 +153,7 @@ this.RecruitmentServiceService.GetJob_Requirements().subscribe({
         'YearsofExp': this.yearsofexp,
         'RelavantExp': this.relaventexp,
         'City': this.city,
-        // 'ResumeUrl': this.Company_logo,
+         'ResumeUrl': this.Company_logo,
         'CurrentCompany': this.currentcompany,
         'NoticePeriod': this.noticeperiod,
         'ctc': this.ctc,

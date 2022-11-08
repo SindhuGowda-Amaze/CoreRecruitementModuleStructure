@@ -115,7 +115,7 @@
           <!-- <th>Vendor</th> -->
           <th>Job Reference ID</th>
           <th>Job Title</th>
-          <th>Department</th>
+          <!-- <th>Department</th> -->
           <th *ngIf="roleid=='4'">Source</th>
           <th *ngIf="roleid!='2'">Hiring Manager</th>
           <th>Tentative DOJ</th>
@@ -133,7 +133,7 @@
         <tr *ngFor="let job of joblist|paginate: { itemsPerPage: count1, currentPage: p }">
           <td>{{job.jobRefernceID}}</td>
           <td>{{job.jobTitle}}</td>
-          <td>{{job.department}}</td>
+          <!-- <td>{{job.department}}</td> -->
           <td *ngIf="roleid=='4'">{{job.source}}</td>
           <td *ngIf="roleid!='2'">{{job.hiringManager}}</td>
           <!-- <td>{{job.date}}</td>

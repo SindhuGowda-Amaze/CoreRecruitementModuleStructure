@@ -109,7 +109,12 @@
             <td style="color:#0C275A">{{job.relavantExp}}</td>
             <td style="color:#0C275A">{{job.city}}</td>
             <td>
-              <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)">
+              <!-- <img src="assets/Images/pdf.png" style="width: 30px;" (click)="GetOfferLetter(job.resumeUrl)"> -->
+
+              <a href={{job.resumeUrl}} target="_blank">
+                <img width="40" height="40" border="0" align="center"  src="assets/Images/pdf.png"/>
+              </a>
+              
             </td>
             <!-- <td>{{job.comments}}</td> -->
             <td>
@@ -120,7 +125,7 @@
             </td>
            
            <!--  <td>{{job.source}} </td> -->
-            <td>{{job.modifiedDate}}</td>
+            <td>{{job.modifiedDate|date}}</td>
 
           </tr>
         </thead>
