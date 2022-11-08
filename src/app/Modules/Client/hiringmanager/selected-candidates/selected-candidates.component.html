@@ -154,11 +154,11 @@
                                 *ngIf="job.offered=='0' && job.budgetStatus==null && roleid=='2'">Reject</button><br>
 
                             <button  class="button form-control" data-toggle="modal" data-target="#exampleModal11"
-                                *ngIf="( roleid==6 || roleid==8 )&& DeminimisList==null &&job.budgetStatus!='Approved' && job.basicsalary!=null" (click)="getCandidateID(job.id)">Salary
+                                *ngIf="( roleid==6 || roleid==8 )&& job.basicsalary==null  &&job.budgetStatus!='Approved' && job.basicsalary!=null" (click)="getCandidateID(job.id)">Salary
                                 Recommend</button>
 
-                            <p *ngIf="job.basicsalary!=null && roleid==6"  >Recommended</p>
-                            <p *ngIf="job.basicsalary==null">Recommendation Pending</p>
+                            <p *ngIf="job.basicsalary!=null && roleid==6 &&job.budgetStatus!='Approved'"  >Recommended</p>
+                            <p *ngIf="job.basicsalary==null&&job.budgetStatus==null">Recommendation Pending</p>
                             
 
                             <br><br>

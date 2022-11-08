@@ -468,7 +468,7 @@ export class SelectedCandidatesComponent implements OnInit {
         this.demenisamt = temp[0].demenisamt;
         this.currentlevel = temp[0].level;
         this.ExpectedSalary=temp[0].expectedctc
-        this.Comments=temp[0].comments
+        this.Comments=temp[0].budgetComments
         // this.currentlevel = temp[0].level;
         // this.netsalary = this.basicsalary + this.demenisamt;
         // this.ctc = this.netsalary * 12;
@@ -634,7 +634,7 @@ export class SelectedCandidatesComponent implements OnInit {
       // 'Ctc': this.ctc,
       'level': this.currentlevel,
       'ExpectedSalary': this.ExpectedSalary,
-      'Comments': this.Comments,
+      'BudgetComments': this.Comments,
     }
     this.RecruitmentServiceService.UpdateCandidateBasicsalary(entity).subscribe({
 
