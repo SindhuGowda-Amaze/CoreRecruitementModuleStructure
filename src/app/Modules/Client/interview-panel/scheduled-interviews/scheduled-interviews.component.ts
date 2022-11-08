@@ -25,7 +25,9 @@ export class ScheduledInterviewsComponent implements OnInit {
 
 
   //Variable Declerations//
-
+  ID: any;
+  mynote: any;
+  mynotelist: any;
   files: any;
   Canclecomments: any;
   Cancleinterview: any;
@@ -563,11 +565,40 @@ export class ScheduledInterviewsComponent implements OnInit {
     }
 
   }
+  ID123:any
+  public getNoteID(even: any) {
+    this.ID = even
+    this.ID123 = even
+    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
+      next: data => {
+        debugger
+        // this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
+        this.mynotelist = data.filter(x => x.scheduled == 1 && x.id == this.ID);
+        this.mynote = this.mynotelist[0].interviewerMyNotes
+        debugger
 
+
+        this.GetCandidateReg()
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Getting Candidate Registration');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
   //Method to  Save MyNotes of Interviewer//
 
   public mynotes() {
-    this.RecriutmentServiceService.RejectInterview(this.id, 3, this.mynote).subscribe({
+    this.RecriutmentServiceService.RejectInterview(this.ID123, 3, this.mynote).subscribe({
       next: data => {
         debugger
         Swal.fire(
@@ -575,7 +606,7 @@ export class ScheduledInterviewsComponent implements OnInit {
           'My Notes is Saved',
           'success'
         )
-        this.SendMailEmployee();
+        // this.SendMailEmployee();
         this.GetCandidateReg();
         this.ngOnInit();
       }, error: (err: { error: { message: any; }; }) => {
@@ -662,37 +693,8 @@ export class ScheduledInterviewsComponent implements OnInit {
     })
   }
 
-  ID: any;
-  mynote: any;
-  mynotelist: any;
-  public getNoteID(even: any) {
-    this.ID = even.id
-    this.RecriutmentServiceService.GetCandidateRegistration().subscribe({
-      next: data => {
-        debugger
-        // this.joblist = data.filter(x => x.scheduled == 1 && x.interviewRejected == 0 && x.interviewSelected == 0);
-        this.mynotelist = data.filter(x => x.scheduled == 1 && x.id == this.ID);
-        this.mynote = this.mynotelist[0].interviewerMyNotes
-        debugger
 
-
-        this.GetCandidateReg()
-
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Getting Candidate Registration');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecriutmentServiceService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
+  
 
   changeStatus1(modif: any) {
     debugger;
