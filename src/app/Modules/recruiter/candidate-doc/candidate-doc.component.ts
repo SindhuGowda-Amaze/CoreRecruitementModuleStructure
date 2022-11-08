@@ -157,6 +157,8 @@ export class CandidateDocComponent implements OnInit {
     //       }
     //     })
      })
+
+     
       
     
   }
@@ -171,7 +173,7 @@ export class CandidateDocComponent implements OnInit {
 
   public uploadattachments1() {
     debugger
-    this.RecruitementService.AttachmentsUpload(this.attachments1).subscribe(res => {
+    this.RecruitementService.AttachmentsUploadsss(this.attachments1).subscribe(res => {
       debugger
       this.attachments1url.push(res);
       Swal.fire('Attachment Added Successfully.');
@@ -194,11 +196,11 @@ export class CandidateDocComponent implements OnInit {
   }
 
   public uploadattachments2() {
-    this.RecruitementService.ProjectAttachments(this.attachments2).subscribe(res => {
+    this.RecruitementService.AttachmentsUploadsss(this.attachments2).subscribe(res => {
       debugger
       this.attachments2url.push(res);
       Swal.fire('Attachment Added Successfully.');
-      this.attachments2.length = 0;
+      // this.attachments2.length = 0;
       debugger
     })
 
@@ -219,11 +221,11 @@ export class CandidateDocComponent implements OnInit {
   }
 
   public uploadattachments3() {
-    this.RecruitementService.ProjectAttachments(this.attachments3).subscribe(res => {
+    this.RecruitementService.AttachmentsUploadsss(this.attachments3).subscribe(res => {
       debugger
       this.attachments3url.push(res);
       Swal.fire('Attachment Added Successfully.');
-      this.attachments3.length = 0;
+      // this.attachments3.length = 0;
       debugger
     })
 
@@ -245,11 +247,11 @@ export class CandidateDocComponent implements OnInit {
   }
 
   public uploadattachments4() {
-    this.RecruitementService.ProjectAttachments(this.attachments4).subscribe(res => {
+    this.RecruitementService.AttachmentsUploadsss(this.attachments4).subscribe(res => {
       debugger
       this.attachments4url.push(res);
       Swal.fire('Attachment Added Successfully.');
-      this.attachments4.length = 0;
+      // this.attachments4.length = 0;
       debugger
     })
   }
@@ -266,7 +268,10 @@ export class CandidateDocComponent implements OnInit {
     debugger
     console.log("attachment", this.attachments1url[0], this.attachments2url[0], this.attachments3url[0],this.attachments4url[0])
 
-    if ((this.attachments1url[0] == undefined && this.attachments2url[0] == undefined && this.attachments3url==undefined && this.attachments4url[0] == undefined )) {
+    if ((this.attachments1url[0] == undefined ||this.attachments1url[0].length == 0 ||
+       this.attachments2url[0] == undefined || this.attachments2url[0].length == 0  ||
+      this.attachments3url[0]==undefined || this.attachments3url[0].length==0 
+      || this.attachments4url[0] == undefined ||this.attachments4url[0].length == 0 )) {
       debugger
       Swal.fire('Please Upload All Mandatory Documents')
 
@@ -285,7 +290,7 @@ export class CandidateDocComponent implements OnInit {
           next: data => {
             debugger
             Swal.fire('Saved Successfully.');
-            
+            location.reload();
           }, error: (err) => {
             // Swal.fire('Issue in Inserting Employee Documents');
             // Insert error in Db Here//

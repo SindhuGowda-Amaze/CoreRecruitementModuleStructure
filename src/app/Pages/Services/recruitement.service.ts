@@ -391,7 +391,7 @@ export class RecruitementService {
     }
 
     debugger
-    let APIURL = this.host1 + "Master/UploadImages/";
+    let APIURL = this.host + "/Building/UploadImages/";
     return this.http.post(APIURL, formdata);
   }
 
