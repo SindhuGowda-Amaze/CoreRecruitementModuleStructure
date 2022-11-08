@@ -163,11 +163,11 @@ export class CandidateDocComponent implements OnInit {
 
   public uploadattachments1() {
     debugger
-    this.RecruitementService.ProjectAttachments(this.attachments1).subscribe(res => {
+    this.RecruitementService.AttachmentsUpload(this.attachments1).subscribe(res => {
       debugger
       this.attachments1url.push(res);
       Swal.fire('Attachment Added Successfully.');
-      this.attachments1.length = 0;
+      // this.attachments1.length = 0;
       debugger
     })
   }

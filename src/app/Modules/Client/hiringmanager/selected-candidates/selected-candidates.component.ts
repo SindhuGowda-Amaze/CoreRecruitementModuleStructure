@@ -85,9 +85,8 @@ export class SelectedCandidatesComponent implements OnInit {
 
     //Variable Initialisation and Default Method Calls//
     this.maxdate = new Date().toISOString().split("T")[0];
-    this.GetCandidateReg();
-    this.GetRecruiterStaff();
-    this.GetJobDescription();
+
+    
     this.Role = ""
     this.currentUrl = window.location.href;
     this.searchbynotice = "";
@@ -95,6 +94,10 @@ export class SelectedCandidatesComponent implements OnInit {
     this.roleid = sessionStorage.getItem('roleid');
     this.loader = true;
     this.username = sessionStorage.getItem('UserName');
+    this.GetCandidateReg();
+
+    this.GetRecruiterStaff();
+    this.GetJobDescription();
   }
 
 
@@ -121,7 +124,7 @@ export class SelectedCandidatesComponent implements OnInit {
     })
 
   }
-
+  ExpectedCtc:any;
   // Methods to  get list of Selected Candidates from CandidateRegistration Table//
   public GetCandidateReg() {
     debugger
@@ -132,6 +135,7 @@ export class SelectedCandidatesComponent implements OnInit {
           this.joblist = data.filter(x => x.interviewSelected == 1 && x.offered == 0 && x.budgetStatus!='Rejected');
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.count = this.joblist.length;
+          this.ExpectedCtc = this.joblist.expectedctc;
           this.loader = false;
         }
         else {
@@ -142,6 +146,7 @@ export class SelectedCandidatesComponent implements OnInit {
           this.noticeperiodlist = data.filter(x => x.interviewSelected == 1 && x.offered == 0);
           this.loader = false;
           this.count = this.joblist.length;
+          this.ExpectedCtc = this.joblist.expectedctc;
         }
 
       }, error: (err: { error: { message: any; }; }) => {
@@ -451,6 +456,7 @@ export class SelectedCandidatesComponent implements OnInit {
 
   //Click Method to get and Prefill Budget Details from CandidateRegistration Table//
   getid(even: any) {
+
     debugger
     this.id = even;
     this.RecruitmentServiceService.GetCandidateRegistration()
@@ -458,10 +464,10 @@ export class SelectedCandidatesComponent implements OnInit {
         debugger
         let temp: any = data.filter(x => x.id == this.id);
         this.basicsalary = temp[0].basicsalary;
-        this.DeminimisList = temp[0].DeminimisList;
+        this.DeminimisList = temp[0].demenislist;
         this.demenisamt = temp[0].demenisamt;
-        this.currentlevel = temp[0].currentlevel;
-        this.ExpectedSalary=temp[0].expectedSalary
+        this.currentlevel = temp[0].level;
+        this.ExpectedSalary=temp[0].expectedctc
         this.Comments=temp[0].comments
         // this.currentlevel = temp[0].level;
         // this.netsalary = this.basicsalary + this.demenisamt;
@@ -622,11 +628,11 @@ export class SelectedCandidatesComponent implements OnInit {
     var entity = {
       'ID': this.candiadteID,
       'Basicsalary': this.basicsalary,
-      'DeminimisList': this.DeminimisList,
+      'Demenislist': this.DeminimisList,
       'Demenisamt': this.demenisamt,
       // 'Netsalary': this.netsalary,
       // 'Ctc': this.ctc,
-      'Currentlevel': this.currentlevel,
+      'level': this.currentlevel,
       'ExpectedSalary': this.ExpectedSalary,
       'Comments': this.Comments,
     }
