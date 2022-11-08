@@ -66,7 +66,45 @@
                 </ngx-dropzone>
             </div>
         </div>
-        <br><br>
+        <br>
+        <div class="row leavereq">
+            <div class="col-md-3">
+                <a *ngIf="LastCompanyOfferLetter!=null" target="_blank" href="{{LastCompanyOfferLetter}}">
+                    <!-- <img src="assets/Images/pdf.png" style="height: 40px;width: 40px;"> &#x2705; -->
+                    <i class="fa fa-files-o" aria-hidden="true" style="font-size: 30px;"></i> &#x2705;
+                </a>
+
+                <!-- <a *ngIf="LastCompanyOfferLetter!=null" (click)="DeleteOBEmpDocPersonalInfoSheet()">
+                    <img>&#10060;</a> -->
+            </div>
+            <div class="col-md-3">
+                <a *ngIf="Last3MonthsPaySlip!=null" target="_blank" href="{{Last3MonthsPaySlip}}">
+                    <!-- <img src="assets/Images/pdf.png" style="height: 40px;width: 40px;"> &#x2705; -->
+                    <i class="fa fa-files-o" aria-hidden="true" style="font-size: 30px;"></i> &#x2705;
+                </a>
+
+                <!-- <a *ngIf="Last3MonthsPaySlip!=null" (click)="DeleteOBEmpDocPersonalInfoSheet()">
+                    <img>&#10060;</a> -->
+            </div>
+            <div class="col-md-3">
+                <a *ngIf="NationalID!=null" target="_blank" href="{{NationalID}}">
+                    <!-- <img src="assets/Images/pdf.png" style="height: 40px;width: 40px;"> &#x2705; -->
+                    <i class="fa fa-files-o" aria-hidden="true" style="font-size: 30px;"></i> &#x2705;
+                </a>
+
+                <!-- <a *ngIf="NationalID!=null" (click)="DeleteOBEmpDocPersonalInfoSheet()">
+                    <img>&#10060;</a> -->
+            </div>
+            <div class="col-md-3">
+                <a *ngIf="LatestDegreeCertificate!=null" target="_blank" href="{{LatestDegreeCertificate}}">
+                    <!-- <img src="assets/Images/pdf.png" style="height: 40px;width: 40px;"> &#x2705; -->
+                    <i class="fa fa-files-o" aria-hidden="true" style="font-size: 30px;"></i> &#x2705;
+                </a>
+
+                <!-- <a *ngIf="LatestDegreeCertificate!=null" (click)="DeleteOBEmpDocPersonalInfoSheet()">
+                    <img>&#10060;</a> -->
+            </div>
+        </div><br>
         <div class="row">
             <div class="col-lg-8"></div>
             <div class="col-lg-2">
@@ -75,7 +113,7 @@
             <div class="col-lg-2">
                 <button class="Addbutton" (click)="Save()">Upload</button>
             </div>
-          
+
         </div>
     </div>
 </div>

@@ -24,8 +24,12 @@ export class CandidateDocComponent implements OnInit {
   public attachments4: any = [];
   public attachments4url: any = [];
   id: any;
+  LastCompanyOfferLetter:any;
   currentUrl: any;
   CandidateList: any;
+  Last3MonthsPaySlip:any;
+  NationalID:any;
+  LatestDegreeCertificate:any;
   constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -46,6 +50,10 @@ export class CandidateDocComponent implements OnInit {
           next: data => {
             debugger
             this.CandidateList = data.filter(x => x.id == this.id);
+            this.LastCompanyOfferLetter=this.CandidateList[0].this.lastCompanyOfferLetter
+            this.Last3MonthsPaySlip=this.CandidateList[0].this.last3MonthsPaySlip
+            this.NationalID=this.CandidateList[0].this.nationalID
+            this.LatestDegreeCertificate=this.CandidateList[0].this.latestDegreeCertificate
            
            
           }, error: (err) => {
