@@ -583,7 +583,7 @@ export class RecruitementService {
 
   public UpdateCandidateDocuments(data: any) {
     debugger;
-    this.url = this.host + '/Master/UpdateCandidateDocuments';
+    this.url = this.host + '/User/UpdateCandidateDocuments';
     return this.http.post(this.url, data);
   }
 
