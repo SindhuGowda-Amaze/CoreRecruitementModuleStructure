@@ -298,6 +298,6 @@ export class CandidateDocComponent implements OnInit {
 
 
   public cancel(){
-    location.reload();
+    location.href='#/hirignmanager/SelectedCandidates/'
   }
 }
