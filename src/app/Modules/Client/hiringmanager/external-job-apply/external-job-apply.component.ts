@@ -106,9 +106,8 @@ export class ExternalJobApplyComponent implements OnInit {
     }
     location.reload();
     this.RecruitmentServiceService.InsertCandidateRegistration(entity).subscribe(data => {
-      if (data != 0) {
+      
         Swal.fire("Applied Successfully");
-      }
     })
       location.reload();
   }

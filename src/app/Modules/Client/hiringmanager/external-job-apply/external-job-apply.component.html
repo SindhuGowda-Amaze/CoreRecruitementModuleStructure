@@ -1,18 +1,18 @@
 
 <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
 
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="container-fluid ">
 
-            <div style="width: 1200px;"class="container-fluid Pages_background Mobilecss">
+            <div style="width: 1000px;"class="container-fluid Pages_background Mobilecss">
                 <br>
-                <div class="row card maincard" style="width: 1200px;">
+                <div class="row card maincard" style="width: 1000px;">
                     <div class="col-lg-12">
-                        <img src="assets/Login/logo.jpg" style="height: 93px;
+                        <img src="assets/Images/AmazeLogo.jpg" style="height: 93px;
                                 width: 101px;">
-                        <h4 style="font-size: 40px; margin-top: -50px; margin-left: 400px;">Apply For Job</h4>
+                        <h4 style="font-size: 40px; margin-top: -50px; margin-left: 300px;">Apply For Job</h4>
                     </div><hr>
                     <div class="row">
                         <!-- <div class="col-lg-5 newtext">
@@ -21,60 +21,52 @@
                     </div>
         
                     <div class="row" *ngFor="let job of joblist">
-                        <!-- <div class="col-lg-2"></div> -->
-                        <div class="col-lg-3">
-        
-                            <p style="color:#3247D5;font-size:17px;"><b>Job Title</b>{{job.jobTitle}} (Amaze One)
-                                <!-- ({{job.companyName}}) -->
-                            </p>
+
+                        <div class="col-lg-5">
+                            <p>Job Title : <b style="color:#3247D5;font-size:17px;"> {{job.jobTitle}} </b> (Amaze One)
+                                {{job.companyName}}</p>
                         </div>
         
                         <div class="col-lg-5">
-                            <span class=""><b>Skillsets: </b> {{job.skills}}</span>
+                            <span class=""><b> SkillSets : </b> <b style="color:#3247D5;"> {{job.skills}} </b></span>
                         </div>
                         
                        
-                        <div class="col-lg-3">
+                        <!-- <div class="col-lg-3">                        
                             <span style="margin-left:15px;" class=""><b>Job Location: </b>{{job.joblocation}}</span><br>
-                        </div><br><br>
+                        </div><br><br> -->
+
                         <div class="col-lg-3">
-                            <span > <b>JOB ID :</b> <b style="color: green;">{{job.jobRefernceID}}</b></span>
-                        </div><br>
-        
-                  
+                            <span > <b>JOB ID : </b> <b style="color:#3247D5;"> {{job.jobRefernceID}} </b></span>
+                        </div>
+                     
                         <!-- <div class="col-lg-6">
                             <span class="spanclass"><b>Jod Description : </b>{{job.jobDescription}}</span><br><br>
-        
-                        </div><br><br> -->
-        
+                        </div><br><br> -->       
         
                         <div class="col-lg-3">
-                            <span >Required year of Experience : {{job.relaventExp}}</span>
-                        </div><br>
+                            <span><b>Required year of Experience : </b><b style="color:#3247D5;">{{job.relaventExp}}</b></span>
+                        </div>
                         <div class="col-lg-3">
-                            <span>Job Location : {{job.joblocation}}</span>
-                        </div><br>
+                            <span><b>Job Location : </b> <b style="color:#3247D5;"> {{job.joblocation}} </b></span>
+                        </div><br><br>
                         <!-- <div class="col-lg-2"></div> -->
                         <div class="col-lg-4">
         
-                            <p style="margin-left: 30px;">Other Required Conditions : {{job.otherRequiredConditions}}
+                            <p style="margin-top: 10px;">Other Required Conditions : <b style="color:#3247D5;">{{job.otherRequiredConditions}}</b>
                                 <!-- ({{job.companyName}}) -->
                             </p>
                         </div>
         
                         <div class="col-lg-6">
-                            <span class=""><b>Job Description : <br></b> {{job.jobDescription}}</span>
+                            <span class=""><b>Job Description : </b> <b style="color:#3247D5;">{{job.jobDescription}}</b></span>
                         </div>
                         
                         <!-- <div class="col-lg-3">
                                 <button class="button" data-toggle="modal" data-target="#exampleModal1" class="btn btn-primary"
                                     (click)="GetJobID(job.id)">Upload</button>&nbsp;
                             </div> -->
-        
-        
                     </div><br>
-        
-        
                     <hr>
         
                
@@ -229,7 +221,7 @@
                             <div class="col-lg-4"></div>
                             <div class="col-lg-2">
                                 <button type="button" class="Addbutton" (click)="insertdetails()"
-                                    data-dismiss="modal">Upload</button>
+                                    data-dismiss="modal">Submit</button>
                             </div>
                             <div class="col-lg-5"></div>
                         </div><br>
