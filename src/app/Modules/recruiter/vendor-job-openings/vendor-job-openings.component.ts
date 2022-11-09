@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
 })
 export class VendorJobOpeningsComponent implements OnInit {
 
-    //Variable Declerations//
+  //Variable Declerations//
 
   Date: any;
   title: any;
@@ -30,8 +30,8 @@ export class VendorJobOpeningsComponent implements OnInit {
   search: any;
   count: any;
   vendorid: any;
-  loader :any
-jobdescription:any;
+  loader: any
+  jobdescription: any;
   term: any;
   userid: any;
   roleid: any;
@@ -46,10 +46,10 @@ jobdescription:any;
   username: any;
   currentUrl: any
   endDate: any
-  data :any
+  data: any
   Role: any
   staffdetails: any
-  even : any;
+  even: any;
   ID: any;
   description: any;
   skills: any;
@@ -60,11 +60,11 @@ jobdescription:any;
   constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     debugger;
-  
+
     //Variable Initialisation and Default Method Calls//
 
 
-    this.Role=""
+    this.Role = ""
     this.currentUrl = window.location.href;
     this.userid = sessionStorage.getItem('userid')
     this.hiringManager = "";
@@ -72,7 +72,7 @@ jobdescription:any;
     this.username = sessionStorage.getItem('UserName')
     this.roleid = sessionStorage.getItem("roleid")
 
-    
+
     this.GetJob_Requirements();
     this.GetVendor_Dasboard();
     this.GetRecruiterStaff();
@@ -80,19 +80,75 @@ jobdescription:any;
     this.GetUserslist();
   }
 
-//Method to get data from JobRequirements Table//
+  //Method to get data from JobRequirements Table//
 
-  public GetJob_Requirements(){
+  public GetJob_Requirements() {
 
-  if (this.roleid == '3') {
-    debugger;
-    this.RecruitementService.GetJob_Requirements().subscribe({
+    if (this.roleid == '3') {
+      debugger;
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.vendor == this.username);
+          this.count = this.joblist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+    else {
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
+          this.jobListCopy = this.joblist
+          this.count = this.joblist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'vendor_Name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 20,
+      allowSearchFilter: true,
+    };
+
+
+  }
+
+  //Method to Get Company Staff Data//
+
+  public GetRecruiterStaff() {
+    this.RecruitementService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.vendor == this.username );
-        this.count = this.joblist.length;
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
+        Swal.fire(' Issue in Getting Client Staff');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -105,15 +161,16 @@ jobdescription:any;
       }
     })
   }
-  else {
-    this.RecruitementService.GetJob_Requirements().subscribe({
+
+  //Method to Get Vendor_Dasboard Staff Data/
+
+  public GetVendor_Dasboard() {
+    this.RecruitementService.GetVendor_Dasboard().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
-        this.jobListCopy = this.joblist
-        this.count = this.joblist.length;
+        this.dropdownList1 = data;
       }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
+        Swal.fire(' Issue in Getting Vendor Dasboard');
         var obj = {
           'PageName': this.currentUrl,
           'ErrorMessage': err.error.message
@@ -126,63 +183,6 @@ jobdescription:any;
       }
     })
   }
-
-  this.dropdownSettings1 = {
-    singleSelection: false,
-    idField: 'id',
-    textField: 'vendor_Name',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 20,
-    allowSearchFilter: true,
-  };
-
-
-}
-
- //Method to Get Company Staff Data//
-
-  public GetRecruiterStaff(){
-  this.RecruitementService.GetRecruiterStaff().subscribe({
-    next: data => {
-      debugger
-      this.hrlist = data.filter(x=>x.role=="Hiring Manager");
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire(' Issue in Getting Client Staff');
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
-      }
-      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
-}
-
- //Method to Get Vendor_Dasboard Staff Data/
-  
-  public GetVendor_Dasboard(){
-  this.RecruitementService.GetVendor_Dasboard().subscribe({
-    next: data => {
-      debugger
-      this.dropdownList1 = data;
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire(' Issue in Getting Vendor Dasboard');
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
-      }
-      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
-}
 
 
 
@@ -192,7 +192,7 @@ jobdescription:any;
   //   let searchCopy = this.search.toLowerCase();
   //   this.joblist = this.jobListCopy.filter((x: { jobRefernceID: string, jobTitle: string; }) => x.jobRefernceID.toString().includes(searchCopy) || x.jobTitle.toLowerCase().includes(searchCopy));
   // }
-  
+
   GetId(id: any) {
     this.ID = id
     location.href = "#/recruiter/JobVacancies/" + this.ID
@@ -200,7 +200,7 @@ jobdescription:any;
   public GEtemployeecomments(job: any) {
     this.description = job.jobDescription
   }
- 
+
   public GEtskills(job: any) {
     this.skills = job.skills
   }
@@ -209,10 +209,10 @@ jobdescription:any;
     this.ID = id
 
     this.Getvendorid(this.ID);
-        
+
   }
- 
-    //Method to update Selected Candidate with notes//
+
+  //Method to update Selected Candidate with notes//
   public UpdateVendor() {
     debugger
     for (let i = 0; i < this.selectedItems1.length; i++) {
@@ -246,7 +246,7 @@ jobdescription:any;
     })
   }
 
- //Method to Dsipalying  Vendor_Dasboard Details//
+  //Method to Dsipalying  Vendor_Dasboard Details//
   public GetUserslist() {
     this.RecruitementService.GetVendor_Dasboard().subscribe({
       next: data => {
@@ -291,7 +291,7 @@ jobdescription:any;
   }
 
 
- //Click Method to get and VendorID Details//
+  //Click Method to get and VendorID Details//
   Getvendorid(even: any) {
     debugger
     this.vendorid = even;
@@ -375,186 +375,187 @@ jobdescription:any;
   }
 
 
-//Method to filter the data by Dates//
-FilterByDate(){
-  if (this.roleid == '3') {
-    debugger;
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
-        this.count = this.joblist.length;
-        this.getjobdescription(this.even)
-       
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+  //Method to filter the data by Dates//
+  FilterByDate() {
+    if (this.roleid == '3') {
+      debugger;
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.vendor == this.username && x.date >= this.Date && x.date <= this.endDate);
+          this.count = this.joblist.length;
+          this.getjobdescription(this.even)
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
-  else {
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved'&& x.date >= this.Date && x.date <= this.endDate);
-        this.jobListCopy = this.joblist
-        this.count = this.joblist.length;
-       
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+      })
+    }
+    else {
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved' && x.date >= this.Date && x.date <= this.endDate);
+          this.jobListCopy = this.joblist
+          this.count = this.joblist.length;
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+      })
+    }
   }
-}
 
 
 
 
   //Method to get Job Description//
 
-public GetJobDescription() {
-  this.RecruitementService.GetJobDescriptionMaster().subscribe({
-    next: (data) => {
-      debugger;
-      this.jobdescription = data;
-      console.log('jobdescription',this.jobdescription)
-      this.loader = false;
-      this.count = this.staffdetails.length;
-    },
-    error: (err: { error: { message: any } }) => {
-      Swal.fire('Issue in Getting Job Description Master ');
-      // Insert error in Db Here//
-      var obj = {
-        PageName: this.currentUrl,
-        ErrorMessage: err.error.message,
-      };
-      this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-        (data) => {
-          debugger;
-        }
-      );
-    },
-  });
-}
+  public GetJobDescription() {
+    this.RecruitementService.GetJobDescriptionMaster().subscribe({
+      next: (data) => {
+        debugger;
+        this.jobdescription = data;
+        console.log('jobdescription', this.jobdescription)
+        this.loader = false;
+        this.count = this.staffdetails.length;
+      },
+      error: (err: { error: { message: any } }) => {
+        Swal.fire('Issue in Getting Job Description Master ');
+        // Insert error in Db Here//
+        var obj = {
+          PageName: this.currentUrl,
+          ErrorMessage: err.error.message,
+        };
+        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+          (data) => {
+            debugger;
+          }
+        );
+      },
+    });
+  }
 
 
-//Method to Get Job Description Details//
-public getjobdescription(even:any){
- debugger
-  this.jobdescriptionID=even.target.value
-  if (this.roleid == '3') {
-    debugger;
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.vendor == this.username && x.jobTitle==this.jobdescriptionID);
-        this.count = this.joblist.length;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
-  else  {
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved' && x.jobTitle==this.jobdescriptionID);
-        this.jobListCopy = this.joblist
-        this.count = this.joblist.length;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' issue in Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
-  if (this.Date == 0) {
+  //Method to Get Job Description Details//
+  public getjobdescription(even: any) {
     debugger
-    this.RecruitementService.GetJob_Requirements().subscribe({
-      next: data => {
-        debugger
-        this.joblist = data.filter(x => x.recruiter == this.userid && x.jobTitle==this.jobdescriptionID);
-        this.count = this.joblist.length;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire(' Issue in Getting Job Requirements');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+    this.jobdescriptionID = even.target.value
+    if (this.roleid == '3') {
+      debugger;
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.vendor == this.username && x.jobTitle == this.jobdescriptionID);
+          this.count = this.joblist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.RecruitementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
+      })
+    }
+    else {
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved' && x.jobTitle == this.jobdescriptionID);
+          this.jobListCopy = this.joblist
+          this.count = this.joblist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+    if (this.Date == 0) {
+      debugger
+      this.RecruitementService.GetJob_Requirements().subscribe({
+        next: data => {
+          debugger
+          this.joblist = data.filter(x => x.recruiter == this.userid && x.jobTitle == this.jobdescriptionID);
+          this.count = this.joblist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire(' Issue in Getting Job Requirements');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+
+
+  }
+  //Method to Route with Respect to URL//
+  close() {
+    location.href = "#/recruiter/VendorJobOpenings"
+  }
+  close1() {
+    location.reload()
+  }
+  candidateemail: any
+  url: any;
+  Attachment:any=[];
+  public SendMailEmployee() {
+    debugger
+    this.url = 'http://103.12.1.103/CoreDigiRecruitment/#/hirignmanager/ExternalJobApply/' + this.ID
+    var entity3 = {
+       'emailto': this.candidateemail,
+      // 'emailto': 'sindhumanjunath1008@gmail.com',
+      'emailsubject': 'Candidate Registration Form',
+      'emailbody': 'Dear Candidate, + "<br><br>" +  Please find one time credentials to Apply  ' + "<br><br>" + 'username : ' + this.candidateemail +  "<br>" + "Password : welcome" + "<br><br>" +
+        'please find the registration link below + "<br><br>" + '
+        + this.url + "<br><br>" +  ' Note:' + this.Notes + "<br><br>" +  'Thanks And Regards,  + "<br><br>" + Recruiter',
+      'attachmenturl': this.Attachment
+    }
+    this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
+      debugger;
+      // Swal.fire('Letter Generated and Sent Successfully');
+      Swal.fire('Email sent');
     })
+
+
+
   }
-
-
-}
-//Method to Route with Respect to URL//
-close(){
-  location.href="#/recruiter/VendorJobOpenings"
-}
-close1(){
-location.reload()
-}
-candidateemail : any
-url:any;
-
-public SendMailEmployee() {
-  debugger
-  this.url= 'http://103.12.1.103/CoreDigiRecruitment/#/hirignmanager/ExternalJobApply/'+this.ID
-  var entity3 = {
-    // 'emailto': this.candidateemail,
-    'emailto': 'sindhumanjunath1008@gmail.com',
-    'emailsubject': 'Candidate Registration Form',
-    'emailbody': 'Dear Candidate,<br> Please find one time credentials to Apply  '+ "<br><br>" + 'username:'+this.candidateemail + "Password: welcome"+
-                  'please find the registration link below<br>'
-               + this.url+'<br> Note:'+this.Notes+'<br>Thanks And Regards, Recruiter'
-  }
-  this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
-    debugger;
-    // Swal.fire('Letter Generated and Sent Successfully');
-    Swal.fire('Email sent');
-  })
-
-
-
-}
 
 
 }
