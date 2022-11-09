@@ -97,7 +97,7 @@
                             <th>Expected Experience</th>
                             <th>Job Description</th>
                             <th>Job Location</th>
-                            <th>No of Positions</th>
+                            <th >No of Positions</th>
                             <!-- <th>CTC Budget</th> -->
                             <th *ngIf="roleid==4">Hiring Manager</th>
                             <th>Other Required Conditions</th>
@@ -119,7 +119,11 @@
                                     data-target="#viewempcomments">View</button></td>
                             <!-- <td >{{job.jobDescription}}</td> -->
                             <td>{{job.joblocation}}</td>
-                            <td>{{job.noofpositions}}</td>
+                            <td>
+                                <p *ngIf="job.noofpositions==0||job.noofpositions==null">NA</p>
+                                <p *ngIf="job.noofpositions!=0||job.noofpositions!=null">{{job.noofpositions}}</p>
+
+                            </td>
                             <!-- <td >{{job.package}} </td> -->
                             <td *ngIf="roleid==4">{{job.hiringManager}}</td>
                             <td>{{job.otherRequiredConditions}}</td>

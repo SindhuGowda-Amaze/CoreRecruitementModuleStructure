@@ -58,6 +58,7 @@ export class JobRecruitementsComponent implements OnInit {
   dummjoblist: any;
   empcomments: any;
   even : any
+  noofpositions : any
 
   constructor(private RecruitmentServiceService: RecruitementService, private ActivatedRoute: ActivatedRoute, public router: Router,) { }
 
