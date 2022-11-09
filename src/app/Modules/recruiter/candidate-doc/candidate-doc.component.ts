@@ -24,12 +24,16 @@ export class CandidateDocComponent implements OnInit {
   public attachments4: any = [];
   public attachments4url: any = [];
   id: any;
-  LastCompanyOfferLetter:any;
+  LastCompanyOfferLetter1:any;
   currentUrl: any;
   CandidateList: any;
-  Last3MonthsPaySlip:any;
-  NationalID:any;
-  LatestDegreeCertificate:any;
+  Last3MonthsPaySlip1:any;
+  NationalID1:any;
+  LatestDegreeCertificate1:any;
+  LastCompanyOfferLetter : any
+  Last3MonthsPaySlip : any
+  NationalID : any
+  LatestDegreeCertificate : any
   constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -38,6 +42,31 @@ export class CandidateDocComponent implements OnInit {
     this.userid = sessionStorage.getItem('userid');
     this.username = sessionStorage.getItem('UserName');
     this.ActivatedRouterCall();
+    //  this.RecruitementService.GetCandidateRegistration()
+    //     .subscribe({
+    //       next: data => {
+    //         debugger
+    //         this.CandidateList = data.filter(x => x.id == this.id);
+    //         this.LastCompanyOfferLetter1=this.CandidateList[0].this.lastCompanyOfferLetter1
+    //         this.Last3MonthsPaySlip1=this.CandidateList[0].this.last3MonthsPaySlip1
+    //         this.NationalID1=this.CandidateList[0].this.nationalID1
+    //         this.LatestDegreeCertificate1=this.CandidateList[0].this.latestDegreeCertificate1
+           
+           
+    //       }, error: (err) => {
+    //         Swal.fire('Issue in Getting Employee Transfer');
+    //         // Insert error in Db Here//
+    //         var obj = {
+    //           'PageName': this.currentUrl,
+    //           'ErrorMessage': err.error.message
+    //         }
+    //         this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+    //           data => {
+    //             debugger
+    //           },
+    //         )
+    //       }
+    //     })
   }
 
   public ActivatedRouterCall() {
