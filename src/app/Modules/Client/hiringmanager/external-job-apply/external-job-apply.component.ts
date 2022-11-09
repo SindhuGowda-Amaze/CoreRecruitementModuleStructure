@@ -86,7 +86,7 @@ export class ExternalJobApplyComponent implements OnInit {
     else{
     
     var entity = {
-      'JobID': this.jobid,
+      'JobID':this.ID,
       'CandidateName': this.candidatename,
       'PhoneNo': this.phoneno,
       'Email': this.email,
