@@ -30,6 +30,10 @@ export class CandidateDocComponent implements OnInit {
   Last3MonthsPaySlip1:any;
   NationalID1:any;
   LatestDegreeCertificate1:any;
+  LastCompanyOfferLetter : any
+  Last3MonthsPaySlip : any
+  NationalID : any
+  LatestDegreeCertificate : any
   constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -74,11 +78,30 @@ export class CandidateDocComponent implements OnInit {
         .subscribe({
           next: data => {
             debugger
+            let temp=data;
             this.CandidateList = data.filter(x => x.id == this.id);
-            this.LastCompanyOfferLetter1=this.CandidateList[0].this.lastCompanyOfferLetter1
-            this.Last3MonthsPaySlip1=this.CandidateList[0].this.last3MonthsPaySlip1
-            this.NationalID1=this.CandidateList[0].this.nationalID1
-            this.LatestDegreeCertificate1=this.CandidateList[0].this.latestDegreeCertificate1
+            
+            if (temp[0].lastCompanyOfferLetter1 != null) {
+              this.LastCompanyOfferLetter= temp[0].lastCompanyOfferLetter1
+            }
+
+            if (temp[0].last3MonthsPaySlip1 != null) {
+              this.Last3MonthsPaySlip= temp[0].last3MonthsPaySlip1
+            }
+
+            if (temp[0].nationalID1 != null) {
+              this.NationalID= temp[0].nationalID1
+            }
+
+            if (temp[0].latestDegreeCertificate1 != null) {
+              this.LatestDegreeCertificate= temp[0].latestDegreeCertificate1
+            }
+
+
+            // this.LastCompanyOfferLetter=this.CandidateList[0].lastCompanyOfferLetter
+            // this.Last3MonthsPaySlip=this.CandidateList[0].last3MonthsPaySlip
+            // this.NationalID=this.CandidateList[0].nationalID
+            // this.LatestDegreeCertificate=this.CandidateList[0].latestDegreeCertificate
            
            
           }, error: (err) => {
