@@ -72,7 +72,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Candidate Name : </label>
+                            <p>Candidate Name  <span style="color: red;">*</span> :</p>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Candidate Name"
@@ -81,7 +81,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Phone No : </label>
+                            <label>Phone No  <span style="color: red;">*</span>  :</label>
                         </div>
                         <div class="col-lg-5">
                             <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10"
@@ -90,7 +90,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Email : </label>
+                            <label>Email  <span style="color: red;">*</span>  :</label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Email" [(ngModel)]="email"
@@ -99,7 +99,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Total Years of Experience : </label>
+                            <label>Total Years of Experience  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Total Years of Experience"
@@ -109,7 +109,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Relavent Experience : </label>
+                            <label>Relavent Experience  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Relavent Experience"
@@ -119,7 +119,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Current City : </label>
+                            <label>Current City  <span style="color: red;">*</span>  :</label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Current City" [(ngModel)]="city"
@@ -130,7 +130,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
 
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Are you Willing To Relocate : </label>
+                            <label>Are you Willing To Relocate  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="radio" value="1" [(ngModel)]="relocate" name="relocate">&nbsp;Yes
@@ -140,7 +140,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Current Company : </label>
+                            <label>Current Company  <span style="color: red;">*</span>  :</label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Current Company"
@@ -150,7 +150,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Notice Period : </label>
+                            <label>Notice Period  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Notice Period"
@@ -160,7 +160,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Current CTC : </label>
+                            <label>Current CTC  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Current CTC" [(ngModel)]="ctc"
@@ -170,7 +170,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Expected CTC : </label>
+                            <label>Expected CTC  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" placeholder="Expected CTC" [(ngModel)]="Expectedctc"
@@ -181,7 +181,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
 
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Are you Currently Serving Notice Period : </label>
+                            <label>Are you Currently Serving Notice Period  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <input type="radio" value="1" [(ngModel)]="servingnotice" name="servingnotice">&nbsp;Yes
@@ -190,7 +190,7 @@ Copyrights : AmazeINC-Bangalore-2022 -->
                     </div><br>
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Resume : </label>
+                            <label>Resume  <span style="color: red;">*</span>  : </label>
                         </div>
                         <div class="col-lg-5">
                             <ngx-dropzone (change)="onSelect($event)" class="attachment">
