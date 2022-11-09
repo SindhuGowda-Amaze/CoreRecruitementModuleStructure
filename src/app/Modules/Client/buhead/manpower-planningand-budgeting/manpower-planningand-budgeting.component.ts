@@ -68,7 +68,7 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
  // Methods to get Count of Role Tittle//
 
   public GetRoleType() {
-    this.DigipayrollServiceService.GetRoleType().subscribe((data) => {
+    this.DigipayrollServiceService.GetJobDescriptionMaster().subscribe((data) => {
       debugger;
       this.awardlist1 = data;
       this.Departmentlist = data;
