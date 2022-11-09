@@ -534,25 +534,32 @@ export class VendorJobOpeningsComponent implements OnInit {
   }
   candidateemail: any
   url: any;
-  Attachment:any=[];
+  Attachment: any = [];
   public SendMailEmployee() {
-    debugger
-    this.url = 'http://103.12.1.103/CoreDigiRecruitment/#/hirignmanager/ExternalJobApply/' + this.ID
-    var entity3 = {
-       'emailto': this.candidateemail,
-      // 'emailto': 'sindhumanjunath1008@gmail.com',
-      'emailsubject': 'Candidate Registration Form',
-      'emailbody': 'Dear Candidate, + "<br><br>" +  Please find one time credentials to Apply  ' + "<br><br>" + 'username : ' + this.candidateemail +  "<br>" + "Password : welcome" + "<br><br>" +
-        'please find the registration link below + "<br><br>" + '
-        + this.url + "<br><br>" +  ' Note:' + this.Notes + "<br><br>" +  'Thanks And Regards,  + "<br><br>" + Recruiter',
-      'attachmenturl': this.Attachment
+    if (this.candidateemail == undefined || this.candidateemail == "") {
+      Swal.fire("Please Provide EmailID")
     }
-    this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
-      debugger;
-      // Swal.fire('Letter Generated and Sent Successfully');
-      Swal.fire('Email sent');
-    })
+    else {
+      debugger
+      this.url = 'http://103.12.1.103/CoreDigiRecruitment/#/hirignmanager/ExternalJobApply/' + this.ID
+      var entity3 = {
+        'emailto': this.candidateemail,
+        // 'emailto': 'sindhumanjunath1008@gmail.com',
+        'emailsubject': 'Candidate Registration Form',
+        'emailbody': 'Dear Candidate,'+
+        //  + "<br><br>" + ' Please find one time credentials to Apply  ' + "<br><br>" + 'username : ' + this.candidateemail + "<br>" + "Password : welcome" + "<br><br>" +
+          'please find the registration link below  '+"<br><br>" + 
+          + this.url + "<br><br>" + ' Note:' + this.Notes + "<br><br>" + 'Thanks And Regards,'  + "<br><br>" + 'Recruiter',
+        'attachmenturl': this.Attachment
+      }
+      this.RecruitementService.sendemailattachements(entity3).subscribe(res => {
+        debugger;
+        // Swal.fire('Letter Generated and Sent Successfully');
+        Swal.fire('Email sent');
+      })
 
+
+    }
 
 
   }
