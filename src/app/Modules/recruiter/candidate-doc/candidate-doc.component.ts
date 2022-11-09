@@ -24,20 +24,26 @@ export class CandidateDocComponent implements OnInit {
   public attachments4: any = [];
   public attachments4url: any = [];
   id: any;
-  LastCompanyOfferLetter1:any;
+  LastCompanyOfferLetter1: any;
   currentUrl: any;
   CandidateList: any;
-  Last3MonthsPaySlip1:any;
-  NationalID1:any;
-  LatestDegreeCertificate1:any;
-  LastCompanyOfferLetter : any
-  Last3MonthsPaySlip : any
-  NationalID : any
-  LatestDegreeCertificate : any
+  Last3MonthsPaySlip1: any;
+  NationalID1: any;
+  LatestDegreeCertificate1: any;
+  LastCompanyOfferLetter: any
+  Last3MonthsPaySlip: any
+  NationalID: any
+  LatestDegreeCertificate: any
   constructor(private RecruitementService: RecruitementService, private ActivatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
+
+    this.LastCompanyOfferLetter = null;
+    this.Last3MonthsPaySlip = null;
+    this.NationalID = null;
+    this.LatestDegreeCertificate = null;
+
     this.roleid = sessionStorage.getItem('roleid');
     this.userid = sessionStorage.getItem('userid');
     this.username = sessionStorage.getItem('UserName');
@@ -51,8 +57,8 @@ export class CandidateDocComponent implements OnInit {
     //         this.Last3MonthsPaySlip1=this.CandidateList[0].this.last3MonthsPaySlip1
     //         this.NationalID1=this.CandidateList[0].this.nationalID1
     //         this.LatestDegreeCertificate1=this.CandidateList[0].this.latestDegreeCertificate1
-           
-           
+
+
     //       }, error: (err) => {
     //         Swal.fire('Issue in Getting Employee Transfer');
     //         // Insert error in Db Here//
@@ -73,37 +79,23 @@ export class CandidateDocComponent implements OnInit {
     this.ActivatedRoute.params.subscribe(params => {
       debugger;
       this.id = params['id'];
-      
+
       this.RecruitementService.GetCandidateRegistration()
         .subscribe({
           next: data => {
             debugger
-            let temp=data;
+            let temp = data;
             this.CandidateList = data.filter(x => x.id == this.id);
-            
-            if (temp[0].lastCompanyOfferLetter1 != null) {
-              this.LastCompanyOfferLetter= temp[0].lastCompanyOfferLetter1
-            }
-
-            if (temp[0].last3MonthsPaySlip1 != null) {
-              this.Last3MonthsPaySlip= temp[0].last3MonthsPaySlip1
-            }
-
-            if (temp[0].nationalID1 != null) {
-              this.NationalID= temp[0].nationalID1
-            }
-
-            if (temp[0].latestDegreeCertificate1 != null) {
-              this.LatestDegreeCertificate= temp[0].latestDegreeCertificate1
-            }
+            this.LastCompanyOfferLetter = this.CandidateList[0].lastCompanyOfferLetter
+            this.Last3MonthsPaySlip = this.CandidateList[0].last3MonthsPaySlip
+            this.NationalID = this.CandidateList[0].nationalID
+            this.LatestDegreeCertificate = this.CandidateList[0].latestDegreeCertificate
 
 
-            // this.LastCompanyOfferLetter=this.CandidateList[0].lastCompanyOfferLetter
-            // this.Last3MonthsPaySlip=this.CandidateList[0].last3MonthsPaySlip
-            // this.NationalID=this.CandidateList[0].nationalID
-            // this.LatestDegreeCertificate=this.CandidateList[0].latestDegreeCertificate
-           
-           
+            // if (this.CandidateList[0].lastCompanyOfferLetter1 != null) {
+            //   this.LastCompanyOfferLetter = this.CandidateList[0].lastCompanyOfferLetter1
+            // }
+
           }, error: (err) => {
             Swal.fire('Issue in Getting Employee Transfer');
             // Insert error in Db Here//
@@ -118,97 +110,97 @@ export class CandidateDocComponent implements OnInit {
             )
           }
         })
-    //   this.DigiofficeService.GetOnboardingEmployeeDocuments()
-    //     .subscribe({
-    //       next: data => {
-    //         debugger
-    //         let filearray :  any [] = data.filter(x => x.staffId == this.id);
-
-     
+      //   this.DigiofficeService.GetOnboardingEmployeeDocuments()
+      //     .subscribe({
+      //       next: data => {
+      //         debugger
+      //         let filearray :  any [] = data.filter(x => x.staffId == this.id);
 
 
-    //         if (filearray[0].sssid != null) {
 
-    //           this.sssid1 = filearray[0].sssid
 
-    //         }
-    //         if (filearray[0].philhealth != null) {
-    //           this.Philhealth1 = filearray[0].philhealth
-    //         }
-    //         if (filearray[0].birthCertificate != null) {
-    //           this.BirthCertificate1 = filearray[0].birthCertificate
-    //         }
-    //         if (filearray[0].tin != null) {
-    //           this.TIN1 = filearray[0].tin
-    //         }
-    //         if (filearray[0].hdmf_form != null) {
-    //           this.hdmf_form1 = filearray[0].hdmf_form
-    //         }
-    //         if (filearray[0].bir_form_2316 != null) {
-    //           this.bir_form_23161 = filearray[0].bir_form_2316
-    //         }
-    //         if (filearray[0].marriageCertificate != null) {
-    //           this.MarriageCertificate1 = filearray[0].marriageCertificate
-    //         }
-    //         if (filearray[0].valid_Govt_ID != null) {
-    //           this.Valid_Govt_ID1 = filearray[0].valid_Govt_ID
-    //         }
-    //         if (filearray[0].nbI_Clearance != null) {
-    //           this.NBI_Clearance1 = filearray[0].nbI_Clearance
-    //         }
-    //         if (filearray[0].photos != null) {
-    //           this.Photos1 = filearray[0].photos
-    //         }
-    //         if (filearray[0].payroll_bank_acc != null) {
-    //           this.Payroll_bank_acc1 = filearray[0].payroll_bank_acc
-    //         }
-    //         if (filearray[0].validID2 != null) {
-    //           this.ValidID21= filearray[0].validID2
-    //         }
-    //         if (filearray[0].acknowledgementForms != null) {
-    //           this.AcknowledgementForms1 = filearray[0].acknowledgementForms
-    //         }
-    //         if (filearray[0].parkingForms != null) {
-    //           this.ParkingForms1 = filearray[0].parkingForms
+      //         if (filearray[0].sssid != null) {
 
-    //         } if (filearray[0].personalInfoSheet != null) {
-    //           this.PersonalInfoSheet1 = filearray[0].personalInfoSheet
-    //         }
-    //         if (filearray[0].hmoForms != null) {
-    //           this.HMOForms1 = filearray[0].hmoForms
-    //         }
-    //         if (filearray[0].groupLifeInsurenceForm != null) {
-    //           this.GroupLifeInsurenceForm1 = filearray[0].groupLifeInsurenceForm
-    //         }
-    //         if (filearray[0].idForm != null) {
-    //           this.IDForm1 = filearray[0].idForm
-    //         }
-    //         if (filearray[0].idPhoto2 != null) {
-    //           this.IDPhoto21 = filearray[0].idPhoto2
-    //         }
+      //           this.sssid1 = filearray[0].sssid
 
-    //         if (filearray[0].clearnce_form != null) {
-    //           this.Clearnce_form1 = filearray[0].clearnce_form
-    //         }
-    //       }, error: (err) => {
-    //         Swal.fire('Issue in Getting Employee Documents');
-    //         // Insert error in Db Here//
-    //         var obj = {
-    //           'PageName': this.currentUrl,
-    //           'ErrorMessage': err.error.message
-    //         }
-    //         this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
-    //           data => {
-    //             debugger
-    //           },
-    //         )
-    //       }
-    //     })
-     })
+      //         }
+      //         if (filearray[0].philhealth != null) {
+      //           this.Philhealth1 = filearray[0].philhealth
+      //         }
+      //         if (filearray[0].birthCertificate != null) {
+      //           this.BirthCertificate1 = filearray[0].birthCertificate
+      //         }
+      //         if (filearray[0].tin != null) {
+      //           this.TIN1 = filearray[0].tin
+      //         }
+      //         if (filearray[0].hdmf_form != null) {
+      //           this.hdmf_form1 = filearray[0].hdmf_form
+      //         }
+      //         if (filearray[0].bir_form_2316 != null) {
+      //           this.bir_form_23161 = filearray[0].bir_form_2316
+      //         }
+      //         if (filearray[0].marriageCertificate != null) {
+      //           this.MarriageCertificate1 = filearray[0].marriageCertificate
+      //         }
+      //         if (filearray[0].valid_Govt_ID != null) {
+      //           this.Valid_Govt_ID1 = filearray[0].valid_Govt_ID
+      //         }
+      //         if (filearray[0].nbI_Clearance != null) {
+      //           this.NBI_Clearance1 = filearray[0].nbI_Clearance
+      //         }
+      //         if (filearray[0].photos != null) {
+      //           this.Photos1 = filearray[0].photos
+      //         }
+      //         if (filearray[0].payroll_bank_acc != null) {
+      //           this.Payroll_bank_acc1 = filearray[0].payroll_bank_acc
+      //         }
+      //         if (filearray[0].validID2 != null) {
+      //           this.ValidID21= filearray[0].validID2
+      //         }
+      //         if (filearray[0].acknowledgementForms != null) {
+      //           this.AcknowledgementForms1 = filearray[0].acknowledgementForms
+      //         }
+      //         if (filearray[0].parkingForms != null) {
+      //           this.ParkingForms1 = filearray[0].parkingForms
 
-     
-      
-    
+      //         } if (filearray[0].personalInfoSheet != null) {
+      //           this.PersonalInfoSheet1 = filearray[0].personalInfoSheet
+      //         }
+      //         if (filearray[0].hmoForms != null) {
+      //           this.HMOForms1 = filearray[0].hmoForms
+      //         }
+      //         if (filearray[0].groupLifeInsurenceForm != null) {
+      //           this.GroupLifeInsurenceForm1 = filearray[0].groupLifeInsurenceForm
+      //         }
+      //         if (filearray[0].idForm != null) {
+      //           this.IDForm1 = filearray[0].idForm
+      //         }
+      //         if (filearray[0].idPhoto2 != null) {
+      //           this.IDPhoto21 = filearray[0].idPhoto2
+      //         }
+
+      //         if (filearray[0].clearnce_form != null) {
+      //           this.Clearnce_form1 = filearray[0].clearnce_form
+      //         }
+      //       }, error: (err) => {
+      //         Swal.fire('Issue in Getting Employee Documents');
+      //         // Insert error in Db Here//
+      //         var obj = {
+      //           'PageName': this.currentUrl,
+      //           'ErrorMessage': err.error.message
+      //         }
+      //         this.DigiofficeService.InsertExceptionLogs(obj).subscribe(
+      //           data => {
+      //             debugger
+      //           },
+      //         )
+      //       }
+      //     })
+    })
+
+
+
+
   }
 
 
@@ -314,20 +306,20 @@ export class CandidateDocComponent implements OnInit {
   public Save() {
     debugger
     debugger
-    console.log("attachment", this.attachments1url[0], this.attachments2url[0], this.attachments3url[0],this.attachments4url[0])
+    console.log("attachment", this.attachments1url[0], this.attachments2url[0], this.attachments3url[0], this.attachments4url[0])
 
-    if ((this.attachments1url[0] == undefined ||this.attachments1url[0].length == 0 ||
-       this.attachments2url[0] == undefined || this.attachments2url[0].length == 0  ||
-      this.attachments3url[0]==undefined || this.attachments3url[0].length==0 
-      || this.attachments4url[0] == undefined ||this.attachments4url[0].length == 0 )) {
+    if ((this.attachments1url[0] == undefined || this.attachments1url[0].length == 0 ||
+      this.attachments2url[0] == undefined || this.attachments2url[0].length == 0 ||
+      this.attachments3url[0] == undefined || this.attachments3url[0].length == 0
+      || this.attachments4url[0] == undefined || this.attachments4url[0].length == 0)) {
       debugger
       Swal.fire('Please Upload All Mandatory Documents')
 
     }
-   
+
     else {
       var eb = {
-        'ID': this.id ,
+        'ID': this.id,
         'LastCompanyOfferLetter': this.attachments1url[0] == undefined ? null : this.attachments1url[0],
         'Last3MonthsPaySlip': this.attachments2url[0] == undefined ? null : this.attachments2url[0],
         'NationalID': this.attachments3url[0] == undefined ? null : this.attachments3url[0],
@@ -358,7 +350,7 @@ export class CandidateDocComponent implements OnInit {
   }
 
 
-  public cancel(){
-    location.href='#/hirignmanager/SelectedCandidates/'
+  public cancel() {
+    location.href = '#/hirignmanager/SelectedCandidates/'
   }
 }
