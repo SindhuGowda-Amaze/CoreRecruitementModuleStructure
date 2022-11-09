@@ -106,9 +106,10 @@ export class ExternalJobApplyComponent implements OnInit {
     }
     location.reload();
     this.RecruitmentServiceService.InsertCandidateRegistration(entity).subscribe(data => {
-      
+
         Swal.fire("Applied Successfully");
     })
+    Swal.fire("Applied Successfully");
       location.reload();
   }
   }
@@ -143,7 +144,8 @@ this.files.splice(this.files.indexOf(event),1);
     this.RecruitmentServiceService.UploadImages(this.files).subscribe(res => {
       debugger
       this.Company_logo = res;
-      alert("ATTACHMENT UPLOADED");
+      Swal.fire("ATTACHMENT UPLOADED");
+     
     })
   }
 }
