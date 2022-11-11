@@ -138,14 +138,16 @@ export class RecruiterFormComponent implements OnInit {
   
 // Methods to Insert the Data in RecruiterStaff table//
 
-  public insertdetails() {
+  public insertdetails() 
+  {
     debugger
     if( this.roleid==undefined||this.roleid==null|| 
       this.Name==undefined||this.Name==null||
       this.PhoneNo==undefined||this.PhoneNo==null||
       this.Email==undefined||this.Email==null||
-      this.Address==undefined||this.Address==null||
-      this.Signature==undefined||this.Signature==null)
+      this.Address==undefined||this.Address==null
+      // this.Signature==undefined||this.Signature==null
+      )
       {
       Swal.fire("Please fill all fields!!");
     }

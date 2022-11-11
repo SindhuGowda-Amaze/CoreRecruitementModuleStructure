@@ -28,7 +28,7 @@ export class VendorJobOpeningsComponent implements OnInit {
   public Editor = ClassicEditor;
   joblist: any;
   search: any;
-  count: any;
+   count: any;
   vendorid: any;
   loader: any
   jobdescription: any;

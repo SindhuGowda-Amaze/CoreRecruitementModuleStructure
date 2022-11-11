@@ -138,10 +138,10 @@ this.RecruitmentServiceService.GetJob_Requirements().subscribe({
     if ((this.candidatename == null || this.candidatename == undefined || this.candidatename == 0 || this.phoneno == null || this.phoneno == undefined || this.phoneno == 0 ||
       this.email == null || this.email == undefined || this.email == 0 || this.yearsofexp == null || this.yearsofexp == undefined || this.yearsofexp == 0 ||
       this.relaventexp == null || this.relaventexp == undefined || this.relaventexp == 0 || this.city == null || this.city == undefined || this.city == 0
-      // || this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 || this.currentcompany == null || this.currentcompany == undefined || this.currentcompany == 0
+       || this.resume == null || this.resume == undefined || this.resume == 0 || this.currentcompany == null || this.currentcompany == undefined || this.currentcompany == 0
       || this.noticeperiod == null || this.noticeperiod == undefined || this.noticeperiod == 0 || this.ctc == null || this.ctc == undefined || this.ctc == 0
       || this.servingnotice == null || this.servingnotice == undefined || this.relocate == null || this.relocate == undefined 
-      || this.Source == null || this.Source == undefined || this.Source == 0)&& this.emailValid) {
+        )&& this.emailValid) {
       Swal.fire('Please Fill All Mandatory Fields ')
     }
     else {
@@ -238,12 +238,13 @@ this.RecruitmentServiceService.GetJob_Requirements().subscribe({
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+  resume : any
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
       next: (res: any) => {
         debugger
-        this.Company_logo = res;
+        this.resume = res;
         Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Uploading Images ');

@@ -159,8 +159,9 @@ export class JobRequisitionComponent implements OnInit {
       this.joblocation == null || this.joblocation == undefined || this.joblocation == 0 ||
       this.noofpositions == null || this.noofpositions == undefined || this.noofpositions == 0 ||
       // this.companyname==null || this.companyname==undefined || this.companyname==0 ||
-      this.package == null || this.package == undefined || this.package == 0 ||
-      this.otherreqconditions == null || this.otherreqconditions == undefined || this.otherreqconditions == 0)
+      this.package == null || this.package == undefined || this.package == 0 
+      // this.otherreqconditions == null || this.otherreqconditions == undefined || this.otherreqconditions == 0
+      )
     // this.resourcemanager==null || this.resourcemanager==undefined || this.resourcemanager==0 
     {
       Swal.fire('Please Fill the Mandatory Fields')

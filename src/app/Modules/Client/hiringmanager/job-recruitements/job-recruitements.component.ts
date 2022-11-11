@@ -99,10 +99,10 @@ export class JobRecruitementsComponent implements OnInit {
 
   GetClientStaff(){
 
-    this.RecruitmentServiceService.GetClientStaff().subscribe({
+    this.RecruitmentServiceService.GetRecruiterStaff().subscribe({
       next: data => {
         debugger
-        this.hrlist = data;
+        this.hrlist = data.filter(x => x.role == "Hiring Manager");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Getting Client Staff');
         // Insert error in Db Here//
@@ -121,6 +121,27 @@ export class JobRecruitementsComponent implements OnInit {
 
 
   }
+
+
+  // public GetRecruiterStaff() {
+  //   this.RecruitementService.GetRecruiterStaff().subscribe({
+  //     next: data => {
+  //       debugger
+  //       this.hrlist = data.filter(x => x.role == "Hiring Manager");
+  //     }, error: (err: { error: { message: any; }; }) => {
+  //       Swal.fire(' Issue in Getting Client Staff');
+  //       var obj = {
+  //         'PageName': this.currentUrl,
+  //         'ErrorMessage': err.error.message
+  //       }
+  //       this.RecruitementService.InsertExceptionLogs(obj).subscribe(
+  //         data => {
+  //           debugger
+  //         },
+  //       )
+  //     }
+  //   })
+  // }
   
 // Methods to Displaying Vendor Staff Details//
 

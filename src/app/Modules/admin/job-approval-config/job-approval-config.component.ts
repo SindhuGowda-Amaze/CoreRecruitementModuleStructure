@@ -37,6 +37,15 @@ export class JobApprovalConfigComponent implements OnInit {
   }
 
   update(){
-    Swal.fire('Updated Successfully')
+    if(this.AutoApproval==null || this.AutoApproval==undefined ||
+      this.AutoApproval1==null || this.AutoApproval1==undefined)
+      {
+        Swal.fire('Please Select The Levels')
+      }
+      else{
+        Swal.fire('Updated Successfully') 
+        location.reload();
+      }
+   
   }
 }

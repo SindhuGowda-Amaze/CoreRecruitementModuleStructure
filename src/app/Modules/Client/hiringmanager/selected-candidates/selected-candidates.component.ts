@@ -208,13 +208,13 @@ export class SelectedCandidatesComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
+  resume : any
   public uploadattachments() {
     debugger
     this.RecruitmentServiceService.UploadImages(this.files).subscribe({
       next: (res: any) => {
         debugger
-        this.Company_logo = res;
+        this.resume = res;
         Swal.fire("Attachment Uploaded");
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Uploading Images');
@@ -239,7 +239,8 @@ export class SelectedCandidatesComponent implements OnInit {
   //Method to  Upload offer letter and update tentative DOJ with notes//
   public updatedetails() {
 
-    if (this.Company_logo == null || this.Company_logo == undefined || this.Company_logo == 0 ||
+    debugger
+    if (this.resume == null || this.resume == undefined || this.resume == 0 ||
       this.offernotes == null || this.offernotes == undefined || this.offernotes == 0 ||
       this.TentativeDate == null || this.TentativeDate == undefined || this.TentativeDate == 0) {
       Swal.fire('Please Fill the Mandatory Fields')

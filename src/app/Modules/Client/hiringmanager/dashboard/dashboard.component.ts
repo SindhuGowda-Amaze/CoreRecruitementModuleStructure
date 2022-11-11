@@ -219,6 +219,10 @@ export class DashboardComponent implements OnInit {
          this.joblist = data.filter(x => x.vendor == this.username);
          this.count = this.joblist.length;
        }
+       else if(this.roleid==6){
+        this.joblist = data.filter(x => x.status == 'Manager Approved BU Approved');
+        this.count = this.joblist.length;
+      }
        else{
          this.joblist = data
          this.count = this.joblist.length;

@@ -107,7 +107,19 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
   // Method to Insert the Data  ManpowerPlanningandBudgeting//
 
   insert() {
-    debugger;
+
+    if( this.CompanyName==undefined||this.CompanyName==null|| 
+      this.Department==undefined||this.Department==null||
+      this.Joborder==undefined||this.Joborder==null||
+      this.HeadCount==undefined||this.HeadCount==null||
+      this.Year==undefined||this.Year==null ||
+       this.Remarks==undefined||this.Remarks==null ||
+       this.roletype==undefined || this.roletype==null
+      ){
+        Swal.fire("Please fill all fields!!");
+      }
+   
+      else{
     var entity = {
       CompanyName: this.CompanyName,
       Department_name: this.Department,
@@ -123,6 +135,7 @@ export class ManpowerPlanningandBudgetingComponent implements OnInit {
       Swal.fire('Saved Successfully');
       location.href = '#/BUHead/ManpowerPlanningandBudgetingdash';
     });
+  }
   }
 
   
