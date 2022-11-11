@@ -432,7 +432,21 @@ window.location.reload();
     this.RecruitmentServiceService.GetJob_Requirements().subscribe({
       next: data => {
         debugger
-        this.joblist = data.filter(x => x.vendor == null && x.hiringManager == this.hiringManager);
+     
+         if (this.roleid == 11) {
+          this.joblist = data.filter(x =>x.vendor == null && x.hiringManager == this.hiringManager && x.status == 'Manager Pending');
+        }
+        else if (this.roleid == 10) {
+          this.joblist = data.filter(x =>x.vendor == null && x.hiringManager == this.hiringManager &&  x.status == 'Manager Approved BU Pending');
+        }
+        else if (this.roleid == 3) {
+          this.joblist = data.filter(x =>x.vendor == null && x.hiringManager == this.hiringManager &&  x.role == 'vendor');
+          }
+        else {
+          this.joblist = data.filter(x=>x.vendor == null && x.hiringManager == this.hiringManager );
+        }
+      //  this.joblist = data.filter(x => x.vendor == null && x.hiringManager == this.hiringManager && x.status=="Manager Approved BU Pending");
+       
         this.count = this.joblist.length;
       },error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
