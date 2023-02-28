@@ -28,6 +28,7 @@ import { InterceptorService } from './interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    
     HttpClientModule
   
   ],
