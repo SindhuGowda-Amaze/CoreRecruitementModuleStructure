@@ -37,7 +37,7 @@
   left: 0px;
   top: 0px;
   border-radius: 5px;
-  background: #3247D5;
+  background: #2b6777;
   color: #FFFFFF;
   border: none;
 }
@@ -49,7 +49,7 @@
   bottom: 0;
   display: grid;
   right: 0;
-  background-color: #95A0E2;
+  background-color: #c8d8e4;
   align-content: stretch;
   align-items: stretch;
   justify-items: stretch;
@@ -67,8 +67,8 @@
   /* width: 520px;
     height: 599px; */
 
-  width: 520px;
-  height: 599px;
+  width: 200px;
+  height: 78vh;
   background: #FFFFFF;
   border-top-left-radius: 15px;
   display: flex;
@@ -80,35 +80,44 @@
 
 .inputclass {
   height: 46px;
-  width: 410px;
+  width: 100%;
   left: 290px;
   top: 316px;
   border-radius: 5px;
   margin-bottom: 15px;
   border: 2px solid #C7C7C7;
   outline: none;
-  font-family: 'Poppins'
+  Font: 'Poppins';
 }
+
 .inputclass1 {
-  color: #3247D5;
-  font-family: 'Poppins';
+  color: #2b6777;
+  Font: 'Poppins';
 }
 
 .btnalign {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10%;
-  margin-left: 45px;
-  width: 81%;
+  justify-content: flex-end;
+  width: 90%;
+  align-content: center;
+  flex-direction: row;
   align-items: center;
+  left: -9px;
+  flex-wrap: nowrap;
 }
+
+.butn-sadow1 {
+  margin-left: 230px !important;
+}
+
+
 
 .imgdiv {
   height: 599px;
   width: 390px;
-  margin-left: 41%;
+  margin-left: 20%;
   position: absolute;
-  left: 520px;
+  left: 484px;
 }
 
 .maindiv {
@@ -116,7 +125,7 @@
   align-content: center;
   align-items: stretch;
   margin-top: 6%;
-  margin-left: 12%;
+  margin-left: 5%;
   position: fixed;
   justify-content: space-between;
   flex-direction: row;
@@ -134,7 +143,7 @@
   font-size: 12px;
   line-height: 15px;
   /* identical to box height, or 125% */
-  color: #3247D5;
+  color: #2b6777;
 }
 
 input:focus~.floating-label,
@@ -173,7 +182,7 @@ input:focus~.defalutplace {
   font-size: 10px;
   top: 0px;
   line-height: 15px;
-  color: #3247D5;
+  color: #2b6777;
 }
 
 .enter-your-name {
@@ -201,10 +210,8 @@ input:focus~.defalutplace {
 }
 
 .input-group {
-
   position: relative;
-
-  margin-left: 143px;
+  /* margin-left: 143px; */
 
 }
 
@@ -246,7 +253,7 @@ input:focus~.defalutplace {
   /* identical to box height, or 125% */
 
 
-  color: #3247D5;
+  color: #2b6777;
   top: 5px;
 
 }
@@ -264,7 +271,7 @@ input:focus~.defalutplace {
 
   pointer-events: none;
 
-  left: 20px;
+  left: 26px;
 
   top: 5px;
 
@@ -280,13 +287,13 @@ input:focus~.defalutplace {
 }
 
 .password {
-  color: #3247D5;
+  color: #2b6777;
   margin-left: -224px;
   margin-top: 18px;
 }
 
 .forgotpassword {
-  color: #3247D5;
+  color: #2b6777;
 }
 
 .secure {
@@ -340,7 +347,7 @@ input:focus~.defalutplace {
   width: 317px;
   height: 16px;
   left: 115px;
-  top: 562px;
+  top: 441px;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
@@ -348,19 +355,19 @@ input:focus~.defalutplace {
   color: #0C275A;
 }
 
-.butn-sadow {
-  left: 280px;
-}
+
 
 .forg-ps {
-  color: #3247D5 !important;
-  margin-left: 11px;
-  font-weight: 600;
+  /* color: #2b6777 !important; */
+  color: rgb(43, 105, 120);
+  /* width: 4vh; */
+  /* white-space: pre; */
+  font-weight: 100;
 }
 
 .digi-logo {
-  width: 50%;
-  margin-bottom: 4%;
+  width: 35%;
+  /* margin-bottom: 4%; */
 }
 
 .imgview {
@@ -379,7 +386,235 @@ select {
   margin-top: -15px;
 }
 
-.Save {
+.rightside-img {
+  width: 482px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.butn-sadow {
+  position: relative !important;
+  /* box-sizing: border-box;
+  position: absolute;
+  width: 166px;
   height: 40px;
-  width: 200px;
+  left: 30px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-style: normal;
+  letter-spacing: 0.658333px;
+  color: #ffffff;
+  background: #2b6777;
+  box-shadow: 1px 1px 17px 1px rgb(50 71 213 / 60%);
+  border-radius: 5px solid #2b6777;
+  border: 5px solid #2b6777;
+  text-transform: uppercase; */
+
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  border-radius: 5px;
+  /*  border: none; */
+  padding: 3px;
+  float: right;
+  /* margin-right: 15px; */
+  font-size: 12px;
+  width: 166px;
+  /*  font-weight: bold; */
+  /* background: #2b6777; */
+  background-color: #2b6777;
+  border-radius: 5px solid #2b6777;
+  border: 5px solid #2b6777;
+  /* box-shadow: 1px 1px 17px 1px rgb(50 71 213 / 60%);
+  border-radius: 5px solid #2b6777;
+  border: 5px solid #2b6777; */
+
+}
+
+
+
+/* Mamata Added */
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.loginmainimage {
+  width: 250px;
+}
+
+
+
+
+@media (min-width: 1920px) and (max-width: 2560px) {
+
+  /* .inndercard {
+    position: absolute;
+  
+
+    width: 520px;
+    height: 67vh;
+    background: #FFFFFF;
+    border-top-left-radius: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+  } */
+  .loginmainimage {
+    width: 518px;
+  }
+
+
+}
+
+@media (min-width: 1280px) and (max-width: 1900px) {
+  /* .inndercard {
+    position: relative;
+    width: 483px;
+    height: 78vh;
+    background: #FFFFFF;
+    border-top-left-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 15px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  } */
+
+  .loginmainimage {
+    height: 78vh;
+    width: 85%;
+  }
+
+  .imgdiv {
+    height: 599px;
+    width: 390px;
+    margin-left: 20%;
+    position: absolute;
+    left: 387px;
+  }
+
+  /* .maindiv{
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+    margin-top: 5%;
+    margin-left: 8%;
+    position: fixed;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+} */
+
+  .inputclass {
+    height: 46px;
+    width: 100%;
+    left: 290px;
+    top: 316px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 2px solid #C7C7C7;
+    outline: none;
+    Font: 'Poppins';
+  }
+
+  .forg-ps {
+    /* color: #2b6777 !important; */
+    color: rgb(43, 105, 120);
+    /* width: 60vh; */
+    /* white-space: pre; */
+    font-weight: 100;
+  }
+
+}
+
+
+
+
+.loginBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* width: 75%; */
+}
+
+.inputFieldBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  width: 450px;
+  height: 85%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.imageBlock {
+  height: 85%;
+  width: 300px;
+
+
+  /* background-image: url('../../../assets/Images/loginpageCompressed.jpg'); */
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.container-fluid {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: auto;
+}
+
+.loginBtn {
+  font-size: 12px;
+  width: 166px;
+  background-color: #3eac6c;
+  border-radius: 5px solid #3eac6c;
+  border: 5px solid #3eac6c;
+  padding: 3px;
+  float: right;
+}
+
+
+@media(max-width:600px) {
+  .inputFieldBox {
+    width: 100%;
+  }
+
+  .imageBlock {
+    display: none;
+  }
+
+  .container-fluid {
+    overflow-x: hidden;
+  }
+}
+
+.inputclass {
+  height: 46px;
+  width: 100%;
+  left: 290px;
+  top: 316px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  border: 2px solid #C7C7C7;
+  outline: none;
+  Font: 'Poppins';
 }

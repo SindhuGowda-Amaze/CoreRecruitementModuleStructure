@@ -93,7 +93,7 @@
 
 
 
-<div class="container-fluid  fullscreen">
+<!-- <div class="container-fluid  fullscreen">
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
@@ -136,11 +136,11 @@
                         <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="password"
                             name="password" />
                         <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
-                            name="password" />
+                            name="password" /> -->
                         <!-- <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
                         margin-left: -224px;
                         margin-top: 18px;" (click)="Showhidepassword()"></span> -->
-                        <img class="paswordview" (click)="Showhidepassword()" src="assets/Images/view.svg">
+                        <!-- <img class="paswordview" (click)="Showhidepassword()" src="assets/Images/view.svg">
 
                         <span class="highlight"></span>
 
@@ -170,12 +170,152 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
+</div> -->
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
+
+
+
+<div class="container-fluid  fullscreen ">
+    <div class="row ">
+        <div class="col-lg-12 d-flex justify-content-center">
+            <div class="loginBox d-flex justify-content-center">
+                <div class="inputFieldBox">
+                    <img src="assets/Images/Logo_digiOffice_Colored.png" class="digi-logo">
+                    <select class="inputclass padp-20" (change)="getRoleID($event)">
+                        <option selected>Select</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Hiring Manager</option>
+                        <option value="4">Client</option>
+                        <option value="5">Interview Panel</option>
+                        <option value="6">Recruiter</option>
+                        <option value="3">Vendor</option>
+                        <option value="7">Vendor Staff</option>
+                        <option value="8">HR</option>
+                        <option value="9">CEO</option>
+                        <option value="10">BU Head</option>
+                        <option value="11">Manager</option>
+                    </select>
+                    <img class="imgview" src="assets/Images/dropdown.svg">
+                    <div class="input-group ">
+
+                        <input type="text" class="inputclass" [(ngModel)]="username" name="username">
+                        <span class="highlight"></span>
+
+                        <span class="bar"></span>
+
+                        <label class="placeholder">Username</label>
+
+                    </div>
+                    <div class="input-group ">
+
+                        <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="password"
+                            name="password" />
+                        <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="password"
+                            name="password" />
+                        <img class="paswordview" (click)="Showhidepassword()" src="assets/Images/view.svg">
+
+
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="placeholder">Password</label>
+
+                    </div>
+
+                    <div class="d-flex flex-column w-100">
+                        <div class="d-flex justify-content-between align-item-center">
+                            <div>
+                                <a class="forg-ps" target="_blank"
+                                    href="https://itassist.ayalaland.com.ph/ChangePassword/">
+                                    Forgot
+                                    Password</a>
+                            </div>
+
+                            <button type="button" class="loginBtn" (click)="login()">Sign with 365</button>
+                        </div>
+                        <p class="text-center"><b>Copyright © 2022 AMAZE ONE. All Rights Reserved</b></p>
+                    </div>
+
+                </div>
+                <div class="imageBlock">
+                    <img src="assets/Images/loginpageCompressed.jpg" class="logo">
+                    <!-- <div><span class="secure">Secured and</span></div>
+                    <div><span class="easy">Easy to Use</span></div>
+                    <div><span class="smart">Smart all-in-one software for HR operations</span></div> -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>
+<!-- <div id="changepassword" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      
+        <div class="modal-content" style="margin-top: 100px;">
+            <div class="modal-header">
+                <h4><b>Forgot Password</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3 ">
+                        <p style="padding:3px"> Subsidiary
+                            <span class="starspan">*</span>
+                        </p>
 
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+                    </div>
+                    <div class="col-lg-8 ">
+                        <select class="form-control">
+                            <option value="1001">Asticom Main</option>
+                            <option value="1002">Asticom ABSI (ABSI)</option>
+                            <option value="1005">Asticom FINSI</option>
+                            <option value="1003">Asticom BRAD</option>
+                            <option value="1004">Asticom HCX</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3 ">
+                        <p style="padding:3px">Enter Email
+                            <span class="starspan">*</span>
+                        </p>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <input type="text" [(ngModel)]="email" class="form-control" name="email" id="email"
+                            (ngModelChange)="getpassword()" required placeholder="Enter Email" class="form-control">
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-2">
+                        <button style="width: auto;" [disabled]="email==undefined ||email==''"
+                            class="btn btn-success form-control" data-dismiss="modal" type="button"
+                            (click)="Save()">Send</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <app-loader *ngIf="loader"></app-loader> -->
