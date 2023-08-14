@@ -329,7 +329,6 @@ export class JobRequisitionComponent implements OnInit {
         }
       })
     }
-
   }
  // Method to Serach the jobdescription & jobtitile //
 

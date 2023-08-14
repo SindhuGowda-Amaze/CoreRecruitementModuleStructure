@@ -47,8 +47,6 @@ export class ExternalJobApplyComponent implements OnInit {
       })
     }
     )
-
-
   }
   // files: File[] = [];
 
